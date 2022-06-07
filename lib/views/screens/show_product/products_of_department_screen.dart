@@ -28,6 +28,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
   bool showOneList = false;
   final CategoriesController categoriesController = Get.find();
   final ProductsController productController = Get.find();
+  final screenSize = Get.size;
 
   List colors = [];
   Color color = Colors.grey;

@@ -23,6 +23,7 @@ class _OrderSummaryState extends State<OrderSummary> {
    final storage = GetStorage();
 
    final CartController cartController = Get.find();
+  final screenSize = Get.size;
 
   int _value =1;
 

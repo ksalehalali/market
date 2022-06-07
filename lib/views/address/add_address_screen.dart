@@ -24,6 +24,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
   TextEditingController _addresNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final screenSize = Get.size;
+
     return Container(
       child: Scaffold(
         body: SingleChildScrollView(

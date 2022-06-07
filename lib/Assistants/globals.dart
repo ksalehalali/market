@@ -17,7 +17,6 @@ Color myHexColor2 = const Color(0xff1dd5d7);
 Color myHexColor3 = const Color(0xff22dcdb);
 Color myHexColor4 = const Color(0xff1cd3dc);
 Color myHexColor5 = const Color(0xff0fbcbc);
-final screenSize = Get.size;
 final Map<int, Color> primaryColorMap = {
   50: myHexColor,
   100: myHexColor1,

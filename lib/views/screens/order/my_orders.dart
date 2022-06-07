@@ -15,6 +15,7 @@ class MyOrders extends StatefulWidget {
 
 class _MyOrdersState extends State<MyOrders> {
   final CartController cartController = Get.find();
+  final screenSize = Get.size;
 
   @override
   void initState() {

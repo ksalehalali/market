@@ -28,6 +28,8 @@ class _WalletScreenState extends State<WalletScreen> {
   }
   @override
   Widget build(BuildContext context) {
+  final screenSize = Get.size;
+
     return Container(
       child: Scaffold(
         appBar: AppBar(

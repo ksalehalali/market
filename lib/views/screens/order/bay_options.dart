@@ -26,7 +26,9 @@ class _BayOptionsState extends State<BayOptions> {
   bool showAddressDetails=false;
   final AddressController addressController = Get.find();
   final CartController cartController = Get.find();
-@override
+  final screenSize = Get.size;
+
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();

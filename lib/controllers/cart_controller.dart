@@ -37,6 +37,7 @@ class CartController extends GetxController with BaseController {
   //orders
   Row buildOrderItem(int index) {
     orderItems.value = [];
+    final screenSize = Get.size;
 
     for (int i = 0; i < myOrders[index]['result']['prduct'].length; i++) {
       var price = myOrders[index]['result']['prduct'][i]["price"] *
@@ -284,6 +285,11 @@ class CartController extends GetxController with BaseController {
   Future addNewOrder(
       String invoiceId, String paymentGateway, double invoiceValue,int payType) async {
     processing.value =true;
+
+    Future.delayed(5.milliseconds, () {
+      showLoading('loading');
+    });
+
     var headers = {
       'Authorization': 'Bearer ${user.accessToken}',
       'Content-Type': 'application/json'
@@ -317,6 +323,7 @@ class CartController extends GetxController with BaseController {
       Get.offAll(OrderSummary(fromOrdersList: false,));
       print(" order done .--- ${data}");
       processing.value =false;
+      hideLoading();
     } else {
       print('error add order');
       print(response.reasonPhrase);

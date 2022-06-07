@@ -35,6 +35,7 @@ class _ListAddressesState extends State<ListAddresses> {
   }
 
   final storage = GetStorage();
+  final screenSize = Get.size;
 
   @override
   Widget build(BuildContext context) {

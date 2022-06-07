@@ -14,6 +14,7 @@ Widget buildAddressesOptions() {
 
   Color color = Colors.grey;
   final storage = GetStorage();
+  final screenSize = Get.size;
 
   List<double> opacityColor = [];
   return CustomScrollView(

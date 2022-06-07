@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:market/views/screens/categories/veiw_all_screen.dart';
 import 'package:market/views/screens/home/search_area_des.dart';
 
 import 'package:shimmer/shimmer.dart';
@@ -191,15 +192,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 0.0, left: 12, right: 5.0),
-                          child: Text(
-                            'View all',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 13,
-                                color: Colors.grey[700]),
+                        InkWell(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ViewAllScreen(dep: 1, list:productController.latestProducts.value )));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                top: 0.0, left: 12, right: 5.0),
+                            child: Text(
+                              'View all',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: Colors.grey[700]),
+                            ),
                           ),
                         ),
                         Icon(
@@ -229,15 +235,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 0.0, left: 12, right: 5.0),
-                          child: Text(
-                            'View all',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 13,
-                                color: Colors.grey[700]),
+                        InkWell(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ViewAllScreen(dep: 1, list:productController.recommendedProducts.value )));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                top: 0.0, left: 12, right: 5.0),
+                            child: Text(
+                              'View all',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: Colors.grey[700]),
+                            ),
                           ),
                         ),
                         Icon(
@@ -265,15 +276,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 0.0, left: 12, right: 5.0),
-                          child: Text(
-                            'View all',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 13,
-                                color: Colors.grey[700]),
+                        InkWell(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ViewAllScreen(dep: 1, list:productController.offersProducts.value )));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                top: 0.0, left: 12, right: 5.0),
+                            child: Text(
+                              'View all',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: Colors.grey[700]),
+                            ),
                           ),
                         ),
                         Icon(
@@ -495,6 +511,8 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 Widget buildProductShimmer() {
+  final screenSize = Get.size;
+
   return ListView.builder(
       itemCount: 5,
       scrollDirection: Axis.horizontal,

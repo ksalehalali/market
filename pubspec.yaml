@@ -59,7 +59,7 @@ dependencies:
   my_fatoorah:
   shimmer: ^2.0.0
   flutter_native_splash:
-
+  device_preview: ^1.1.0
 
 dev_dependencies:
   flutter_test:

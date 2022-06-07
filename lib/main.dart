@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -30,13 +31,14 @@ void main() async {
   final langController =Get.putAsync(() async => LangController(),permanent: true);
   final paymentController =Get.putAsync(() async => PaymentController(),permanent: true);
 
-  runApp( GetMaterialApp(
+  runApp(DevicePreview(builder: (context)=> GetMaterialApp(
+    builder: DevicePreview.appBuilder,
     locale: Locale('en'),
     fallbackLocale: Locale('en'),
     translations: Localization(),
     home: MyApp(),
     debugShowCheckedModeBanner: false,
-  ));
+  )));
 }
 
 class MyApp extends StatefulWidget {
@@ -81,6 +83,7 @@ class _MyAppState extends State<MyApp> {
 
     print(position);
   }
+  final screenSize = Get.size;
 
   @override
   Widget build(BuildContext context) {

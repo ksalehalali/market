@@ -31,8 +31,8 @@ class ProductItemCard extends StatelessWidget {
 
   Future<bool> onLikeButtonTapped(bool isLiked) async {
     /// send your request here
-    final bool success = await productController.addProductToFav(product.id!);
-
+    final bool success = true;
+     productController.addProductToFav(product.id!);
     /// if failed, you can do nothing
     return success ? !isLiked : isLiked;
 

@@ -8,6 +8,7 @@ import '../../controllers/product_controller.dart';
 
 Widget ListOneItem(list) {
   final ProductsController productController = Get.find();
+  final screenSize = Get.size;
 
   final customCacheManager = CacheManager(
       Config('customCacheKey', stalePeriod: 15.days, maxNrOfCacheObjects: 100));

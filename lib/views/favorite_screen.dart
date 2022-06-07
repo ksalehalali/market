@@ -15,6 +15,7 @@ class FavoriteScreen extends StatefulWidget {
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
   final ProductsController productController = Get.find();
+  final screenSize = Get.size;
 
   clearCache() {
     DefaultCacheManager().emptyCache();

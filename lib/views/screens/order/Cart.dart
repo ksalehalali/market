@@ -28,6 +28,7 @@ class _CartState extends State<Cart> {
     print('active');
   }
   var cartProductsCounts =[];
+  final screenSize = Get.size;
 
   @override
   void initState() {

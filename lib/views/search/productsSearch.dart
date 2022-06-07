@@ -115,6 +115,7 @@ class PredictionTile extends StatelessWidget {
   final ProductModel? productPredictions;
   final AddressController addressController = Get.find();
   final ProductsController productController = Get.find();
+  final screenSize = Get.size;
 
   PredictionTile({Key? key, this.productPredictions}) : super(key: key);
 

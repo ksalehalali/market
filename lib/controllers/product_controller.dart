@@ -323,6 +323,7 @@ class ProductsController extends GetxController with BaseController{
       update();
       sizes = [];
       var json = jsonDecode(await response.stream.bytesToString());
+      print("product details :: \n $json");
       productData = json['description'];
       print('full product $productData');
       product.value = ProductModel(
@@ -391,6 +392,7 @@ class ProductsController extends GetxController with BaseController{
 
   createImages(int indexX) {
     imagesWidget.value = [[], [], [], []];
+    final screenSize = Get.size;
 
     for (int index = 0; index < imagesData.length; index++) {
       for (int i = 0; i < imagesData[index].imagesUrls!.length; i++) {

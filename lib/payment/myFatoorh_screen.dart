@@ -26,7 +26,7 @@ class _MyFatoorhScreenState extends State<MyFatoorhScreen> {
             print(response);
             print(response.status);
             cartController.addNewOrder(response.paymentId!, 'Card', cartController.fullPrice.value.toDouble(), 1);
-            cartController.addNewOrder('0','Cash',cartController.fullPrice.value.toDouble(),0);
+            //cartController.addNewOrder('0','Cash',cartController.fullPrice.value.toDouble(),0);
           },
           successChild: Column(
             children: [
