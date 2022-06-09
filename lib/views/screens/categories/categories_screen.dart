@@ -7,6 +7,7 @@ import '../../../controllers/catgories_controller.dart';
 import '../../widgets/departments_list_r.dart';
 import '../home/search_area_des.dart';
 import '../show_product/products_of_department_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -131,8 +132,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         },
         child: Container(
 
-          height: 76,
-          width: 79,
+          height: 76.h,
+          width: 79.w,
           decoration: BoxDecoration(
               image: DecorationImage(image: AssetImage(data['imagePath'].toString(),),fit: BoxFit.fill)
           ),
@@ -140,7 +141,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               color: colors[index].withOpacity(opacityColor[index]),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Center(child: Text(data['catName'].toString(),maxLines: 2,textAlign: TextAlign.center,style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500,color: Colors.white),)),
+                child: Center(child: Text(data['catName'].toString(),maxLines: 2,textAlign: TextAlign.center,style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.w500,color: Colors.white),)),
               )),
         ),
       );
@@ -156,8 +157,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             children: <Widget>[
               i==1 ? Container(width:screenSize.width ,height: 7,color: Colors.red[500],):Container(),
               Container(
-                height: 59,
-                width: 59,
+                height: 59.h,
+                width: 59.w,
                 //padding:  EdgeInsets.all(0.1),
                 decoration:  BoxDecoration(
                   color: myHexColor,
@@ -171,8 +172,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 5),
-              Text(categories[i]['catName'].toString(),style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
+              SizedBox(height: 5.h),
+              Text(categories[i]['catName'].toString(),style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
             ],
           )));
     }
@@ -192,19 +193,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       child: SafeArea(child: Scaffold(
         body: Column(
           children:  [
-            const SizedBox(
-              height: 6.0,
+             SizedBox(
+              height: 6.0.h,
             ),
             const SearchAreaDesign(),
-            const SizedBox(
-              height: 12.0,
+             SizedBox(
+              height: 12.0.h,
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  width: 100,
-                  height: screenSize.height > 810 ?screenSize.height-180: screenSize.height-150,
+                  width: 100.w,
+                  height: screenSize.height*.9+10.h,
                   child: CustomScrollView(
                     slivers: [
                       SliverList(delegate: SliverChildBuilderDelegate(
@@ -215,13 +216,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
                 ),
                 SizedBox(
-                  height:screenSize.height > 810 ?screenSize.height-180: screenSize.height-150,
-                  width: screenSize.width -101,
+                  height:screenSize.height*.9+10.h,
+                  width: screenSize.width -101.w,
                   child:  Padding(
-                    padding:  EdgeInsets.only(bottom:screenSize.height > 810? 22.0:42),
+                    padding:  EdgeInsets.only(bottom:2.h),
                     child: Stack(
                       children: [
-                        Container(width:screenSize.width ,height: 0.5,color: Colors.grey[500],),
+                        Container(width:screenSize.width.w ,height: 0.5.h,color: Colors.grey[500],),
 
                         CustomScrollView(
                           anchor: 0.0,
@@ -267,7 +268,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(title,textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: Colors.black)),
+        Text(title,textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18.sp,color: Colors.black)),
       ],
     ));
     // flexibleSpace: FlexibleSpaceBar(
@@ -288,8 +289,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   child: Column(
                     children: <Widget>[
                       Container(
-                        height: 82,
-                        width: 88,
+                        height: 82.h,
+                        width: 78.w,
                         //padding:  EdgeInsets.all(0.1),
                         decoration:  BoxDecoration(
                           color: myHexColor,
@@ -303,17 +304,17 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Text(categories[index]['depName'].toString(),style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
+                      SizedBox(height: 5.h),
+                      Text(categories[index]['depName'].toString(),style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
                     ],
                   )),
             );
 
           },childCount: categories.length),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          mainAxisSpacing: 1.0,
-          crossAxisSpacing: 1.0,
-          childAspectRatio: 0.8,
+          mainAxisSpacing: 1.0.w,
+          crossAxisSpacing: 1.0.h,
+          childAspectRatio: 0.7.h,
           crossAxisCount: 3),);
 
   }

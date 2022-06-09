@@ -18,6 +18,8 @@ import '../../widgets/new_button.dart';
 import '../auth/register.dart';
 import '../order/my_orders.dart';
 import '../wallet/wallet_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class Account extends StatefulWidget {
   Account({Key? key}) : super(key: key);
@@ -51,33 +53,33 @@ class _AccountState extends State<Account> {
             children: [
               // WELCOME
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                 child: accountController.isLoggedIn.value == false ?
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 8.0,),
+                    SizedBox(height: 8.0.h,),
                     // WELCOME
                     Text(
                       "Welcome.",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.bold,
                         color: Color.fromRGBO(56, 216, 218, 1.0),
                       ),
                     ),
-                    SizedBox(height: 8.0,),
+                    SizedBox(height: 8.0.h,),
                     // JOIN US
                     Text(
                       "We'd like if you joined us, login & access all of app features",
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
                           color: Colors.black54
                       ),
                     ),
-                    SizedBox(height: 16.0,),
+                    SizedBox(height: 16.0.h,),
                     Center(
                       child: InkWell(
                         onTap: () {
@@ -96,14 +98,14 @@ class _AccountState extends State<Account> {
                                 ),
                                 child: SvgPicture.asset(
                                   "${assetsIconDir}user.svg",
-                                  width: 30,
+                                  width: 30.w,
                                 ),
                               ),
-                              SizedBox(height: 8.0,),
+                              SizedBox(height: 8.0.h,),
                               Text(
                                 "Login",
                                 style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 20.sp,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black87
                                 ),
@@ -113,7 +115,7 @@ class _AccountState extends State<Account> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16.0,),
+                    SizedBox(height: 16.0.h,),
 
                   ],
                 ) :
@@ -121,32 +123,32 @@ class _AccountState extends State<Account> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 8.0,),
+                    SizedBox(height: 8.0.h,),
                     Text(
                       "Welcome.",
                       style: TextStyle(
-                        fontSize: 13,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.bold,
                         color: Color.fromRGBO(56, 216, 218, 1.0),
                       ),
                     ),
-                    SizedBox(height: 8.0),
+                    SizedBox(height: 8.0.h),
                     Text(
                       accountController.username.value,
                       style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 15.sp,
                           fontWeight: FontWeight.bold,
                           color: Colors.black54
                       ),
                     ),
-                    SizedBox(height: 16.0,),
+                    SizedBox(height: 16.0.h,),
                   ],
                 ),
               ),
-              SizedBox(height: 8,),
+              SizedBox(height: 8.h,),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 38.0),
+                padding:  EdgeInsets.symmetric(horizontal: 38.0.w),
                 child: NeuButton(onTap: (){
                   setState(() {
                     if(btnPressed == true){
@@ -239,16 +241,16 @@ class _AccountState extends State<Account> {
 
                     },
                     child: Container(
-                      height: 60,
+                      height: 60.h,
                       color: Color.fromRGBO(245, 246, 248, 1.0),
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                       child: Align(
                         alignment: Alignment.centerLeft, // Align however you like (i.e .centerRight, centerLeft)
                         child: Text(
                           "My Account",
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 16.sp,
                               color: Colors.black54,
                               fontWeight: FontWeight.bold
                           ),
@@ -259,7 +261,7 @@ class _AccountState extends State<Account> {
 
                   buildOptionRow("Personal File", Icons.account_circle_outlined),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 64.0),
+                    margin: EdgeInsets.symmetric(horizontal: 64.0.w),
                     child: Divider(
                       thickness: 1,
                     ),
@@ -276,16 +278,16 @@ class _AccountState extends State<Account> {
               Container(),
               // APP SETTINGS
               Container(
-                height: 60,
+                height: 60.h,
                 color: Color.fromRGBO(245, 246, 248, 1.0),
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                 child: Align(
                   alignment: Alignment.centerLeft, // Align however you like (i.e .centerRight, centerLeft)
                   child: Text(
                     "App Settings",
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         color: Colors.black54,
                         fontWeight: FontWeight.bold
                     ),
@@ -294,7 +296,7 @@ class _AccountState extends State<Account> {
               ),
               buildOptionRow("Language", Icons.language),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 64.0),
+                margin: EdgeInsets.symmetric(horizontal: 64.0.w),
                 child: Divider(
                   thickness: 1,
                 ),
@@ -302,16 +304,16 @@ class _AccountState extends State<Account> {
               buildOptionRow("Notifications", Icons.notification_important_outlined),
               // CONTACT US
               Container(
-                height: 60,
+                height: 60.h,
                 color: Color.fromRGBO(245, 246, 248, 1.0),
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                 child: Align(
                   alignment: Alignment.centerLeft, // Align however you like (i.e .centerRight, centerLeft)
                   child: Text(
                     "Contact Us",
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         color: Colors.black54,
                         fontWeight: FontWeight.bold
                     ),
@@ -320,14 +322,14 @@ class _AccountState extends State<Account> {
               ),
               buildOptionRow("Help And Technical Support", Icons.contact_support_outlined),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 64.0),
+                margin: EdgeInsets.symmetric(horizontal: 64.0.w),
                 child: Divider(
                   thickness: 1,
                 ),
               ),
               buildOptionRow("Terms Of Usage", Icons.event_note_outlined),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 64.0),
+                margin: EdgeInsets.symmetric(horizontal: 64.0.w),
                 child: Divider(
                   thickness: 1,
                 ),
@@ -336,9 +338,9 @@ class _AccountState extends State<Account> {
               accountController.isLoggedIn.value != false ?
               // LOGOUT
               Container(
-                height: 70,
+                height: 70.h,
                 color: Color.fromRGBO(245, 246, 248, 1.0),
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                 child: GestureDetector(
                   onTap: () {
                     // TODO: logout
@@ -348,15 +350,15 @@ class _AccountState extends State<Account> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(Icons.close, color: Colors.red, size: 30,),
-                      SizedBox(width: 16.0,),
+                      Icon(Icons.close, color: Colors.red, size: 30.sp,),
+                      SizedBox(width: 16.0.w,),
                       Align(
                         alignment: Alignment.centerLeft, // Align however you like (i.e .centerRight, centerLeft)
                         child: Text(
                           "Sign Out",
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 16.sp,
                               color: Colors.red,
                               fontWeight: FontWeight.bold
                           ),
@@ -376,27 +378,27 @@ class _AccountState extends State<Account> {
 
   Container buildOptionRow(String optionText, IconData optionIcon) {
     return Container(
-      height: 50,
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      height: 50.h,
+      padding: EdgeInsets.symmetric(horizontal: 16.0.w),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(
             optionIcon,
-            size: 26,
+            size: 26.sp,
             color: Colors.black54,
           ),
-          SizedBox(width: 16,),
+          SizedBox(width: 16.w,),
           Text(
             optionText,
             style: TextStyle(
-                fontSize: 15,
+                fontSize: 15.sp,
                 color: Colors.black54,
                 fontWeight: FontWeight.bold
             ),
           ),
           Spacer(),
-          Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Colors.black54,),
+          Icon(Icons.arrow_forward_ios_rounded, size: 14.sp, color: Colors.black54,),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -31,13 +32,19 @@ void main() async {
   final langController =Get.putAsync(() async => LangController(),permanent: true);
   final paymentController =Get.putAsync(() async => PaymentController(),permanent: true);
 
-  runApp(DevicePreview(builder: (context)=> GetMaterialApp(
-    builder: DevicePreview.appBuilder,
-    locale: Locale('en'),
-    fallbackLocale: Locale('en'),
-    translations: Localization(),
-    home: MyApp(),
-    debugShowCheckedModeBanner: false,
+  runApp(DevicePreview(builder: (context)=> ScreenUtilInit(
+      designSize: const Size(360, 740),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context , child) {
+    return GetMaterialApp(
+      builder: DevicePreview.appBuilder,
+      locale: Locale('en'),
+      fallbackLocale: Locale('en'),
+      translations: Localization(),
+      home: MyApp(),
+      debugShowCheckedModeBanner: false,
+    );}
   )));
 }
 

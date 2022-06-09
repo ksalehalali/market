@@ -8,6 +8,8 @@ import '../widgets/departments_shpe.dart';
 import 'home/search_area_des.dart';
 import 'show_product/product_details.dart';
 import 'show_product/product_item.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class OffersScreen extends StatefulWidget {
   const OffersScreen({Key? key}) : super(key: key);
@@ -31,50 +33,50 @@ class _OffersScreenState extends State<OffersScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              height: 6.0,
+              height: 6.0.h,
             ),
             SearchAreaDesign(),
             SizedBox(
-              height: 6.0,
+              height: 6.0.h,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
+              padding:  EdgeInsets.symmetric(horizontal: 12.w),
               child: Container(
-                width: screenSize.width,
-                height: 2,
+                width: screenSize.width.w,
+                height: 2.h,
                 color: myHexColor.withOpacity(0.6),
               ),
             ),
             SizedBox(
-              height: 6.0,
+              height: 6.0.h,
             ),
             SizedBox(
-                height: screenSize.height * 0.1 + 50,
-                width: 400,
+                height: screenSize.height * 0.1 + 50.h,
+                width: 400.w,
                 child: _buildDepartmentsList()),
             Container(
-                height: 160,
-                width: screenSize.width,
+                height: 160.h,
+                width: screenSize.width.w,
                 child: Image.asset(
                   'assets/images/apple_3d_logo_wallpaper.jpeg',
                   fit: BoxFit.fill,
                 )),
             Padding(
-              padding: const EdgeInsets.only(top: 16.0, right: 12, left: 12),
+              padding:  EdgeInsets.only(top: 16.0.h, right: 12.w, left: 12.w),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Bestsellers',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
                   ),
                   const Spacer(),
                   Text(
                     'View all',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 13,
+                        fontSize: 13.sp,
                         color: Colors.grey[700]),
                   ),
                   SizedBox(
@@ -82,53 +84,53 @@ class _OffersScreenState extends State<OffersScreen> {
                   ),
                   Icon(
                     Icons.arrow_forward_ios_rounded,
-                    size: 14,
+                    size: 14.sp,
                     color: Colors.grey[700],
                   )
                 ],
               ),
             ),
             SizedBox(
-              height: 12,
+              height: 12.h,
             ),
             _buildHorizontalListOfBestSallersProducts(),
-            const SizedBox(
-              height: 12.0,
+             SizedBox(
+              height: 12.0.h,
             ),
             Row(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 0.0, left: 12),
+                 Padding(
+                  padding: EdgeInsets.only(top: 0.0, left: 12.w),
                   child: Text(
                     'Women\'s fashon offers',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
                   ),
                 ),
                 const Spacer(),
                 Padding(
                   padding:
-                      const EdgeInsets.only(top: 0.0, left: 12, right: 5.0),
+                       EdgeInsets.only(top: 0.0, left: 12.w, right: 5.0.w),
                   child: Text(
                     'View all',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 13,
+                        fontSize: 13.sp,
                         color: Colors.grey[700]),
                   ),
                 ),
                 Icon(
                   Icons.arrow_forward_ios_rounded,
-                  size: 14,
+                  size: 14.sp,
                   color: Colors.grey[700],
                 )
               ],
             ),
-            const SizedBox(
-              height: 12.0,
+             SizedBox(
+              height: 12.0.h,
             ),
             _buildHorizontalListOfOffersProducts(),
-            const SizedBox(
-              height: 28,
+             SizedBox(
+              height: 28.h,
             ),
             _buildOfferArea()
           ],
@@ -139,7 +141,7 @@ class _OffersScreenState extends State<OffersScreen> {
 
   Widget _buildDepartmentsList() {
     return Padding(
-      padding: const EdgeInsets.only(top: 12.0),
+      padding:  EdgeInsets.only(top: 12.0.h),
       child: Container(
         color: Colors.grey[50],
         child: GridView.builder(
@@ -170,7 +172,7 @@ class _OffersScreenState extends State<OffersScreen> {
   Widget _buildHorizontalListOfBestSallersProducts() {
     final screenSize = Get.size;
     return SizedBox(
-        height: screenSize.height * 0.4 - 28,
+        height: screenSize.height * 0.4 - 28.h,
         child: CustomScrollView(
           scrollDirection: Axis.horizontal,
           slivers: [
@@ -215,7 +217,7 @@ class _OffersScreenState extends State<OffersScreen> {
   Widget _buildHorizontalListOfOffersProducts() {
     final screenSize = Get.size;
     return SizedBox(
-        height: screenSize.height * 0.4 - 28,
+        height: screenSize.height * 0.4 - 28.h,
         child: CustomScrollView(
           scrollDirection: Axis.horizontal,
           slivers: [
@@ -265,13 +267,13 @@ class _OffersScreenState extends State<OffersScreen> {
         }
       },
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 22.0),
+        padding:  EdgeInsets.only(bottom: 22.0.h),
         child: Stack(
           children: [
             FittedBox(
               child: SizedBox(
-                height: screenSize.height * 0.2,
-                width: screenSize.width,
+                height: screenSize.height * 0.2.h,
+                width: screenSize.width.w,
                 child: Container(
                     decoration: BoxDecoration(
                   color: Colors.black,
@@ -292,7 +294,7 @@ class _OffersScreenState extends State<OffersScreen> {
               top: 0.0,
               child: Container(
                 color: Colors.black.withOpacity(0.4),
-                height: 200,
+                height: 200.h,
                 width: screenSize.width,
               ),
             ),
@@ -303,22 +305,22 @@ class _OffersScreenState extends State<OffersScreen> {
                 SizedBox(
                   height: screenSize.height * 0.1,
                 ),
-                const Text(
+                 Text(
                   'Offers and Promotions',
                   style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 22.sp,
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  height: screenSize.height * 0.1 - 70,
+                  height: screenSize.height * 0.1 - 70.h,
                 ),
                 Center(
                   child: Text(
                     'On all watches and bags from the most famous world',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         color: Colors.grey[50],
                         fontWeight: FontWeight.bold),
                   ),

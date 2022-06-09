@@ -3,9 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:market/core/info_widget.dart';
 import 'package:market/views/screens/categories/veiw_all_screen.dart';
 import 'package:market/views/screens/home/search_area_des.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../Assistants/globals.dart';
@@ -69,255 +70,263 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final screenSize = Get.size;
-
+    var mediaQueryData = MediaQuery.of(context);
     return Container(
         color: myHexColor5.withOpacity(0.2),
         child: SafeArea(
             child: Scaffold(
-                body: Stack(children: [
+                body: InfoWidget(
+                  builder: (context, deviceInfo) {
+                    print('device type is : ${deviceInfo.deviceType}');
+
+                    print('wed height : ${deviceInfo.localHeight}');
+                    print('wed width : ${deviceInfo.localWidth}');
+
+                    return Stack(children: [
           Positioned(
-              top: 10,
+              top: 10.h,
               child: InkWell(
-                  onTap: () async {
-                    // var response = await MyFatoorah.startPayment(
-                    // context: context,
-                    // request: MyfatoorahRequest.test(
-                    // currencyIso: Country.Qatar,
-                    // successUrl: "http://www.google.com",
-                    // errorUrl: "http://www.facebook.com",
-                    // invoiceAmount: 100,
-                    // language: ApiLanguage.English,
-                    //
-                    // token: "rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL",
-                    // ),
-                    // );
-                    // log(response.paymentId.toString());
-                  },
-                  child: headHomeScreen(MediaQuery.of(context)))),
+                      onTap: () async {
+                        // var response = await MyFatoorah.startPayment(
+                        // context: context,
+                        // request: MyfatoorahRequest.test(
+                        // currencyIso: Country.Qatar,
+                        // successUrl: "http://www.google.com",
+                        // errorUrl: "http://www.facebook.com",
+                        // invoiceAmount: 100,
+                        // language: ApiLanguage.English,
+                        //
+                        // token: "rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL",
+                        // ),
+                        // );
+                        // log(response.paymentId.toString());
+                      },
+                      child: headHomeScreen(MediaQuery.of(context)))),
           Positioned(
-              top: 50, width: screenSize.width, child: SearchAreaDesign()),
+              top: 50.h, width: screenSize.width, child: SearchAreaDesign()),
           Positioned(
-            top: screenSize.height *0.1+25,
+            top: screenSize.height *0.1+25.h,
             child: Obx(() => AnimatedContainer(
-                  duration: 400.milliseconds,
-                  height: addressController.addressWidgetSize.value,
-                  child: InkWell(
-                    onTap: () {
-                      addressController.getMyAddresses();
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ListAddresses(
-                                    fromCart: false,
-                                    fromAccount: false,
-                                  )));
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 1.0, horizontal: 10.0),
-                      child: addressHomeScreen(MediaQuery.of(context)),
-                    ),
-                  ),
-                )),
+                      duration: 400.milliseconds,
+                      height: addressController.addressWidgetSize.value,
+                      child: InkWell(
+                        onTap: () {
+                          addressController.getMyAddresses();
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ListAddresses(
+                                        fromCart: false,
+                                        fromAccount: false,
+                                      )));
+                        },
+                        child: Padding(
+                          padding:  EdgeInsets.symmetric(
+                              vertical: 1.0, horizontal: 10.0.w),
+                          child: addressHomeScreen(MediaQuery.of(context)),
+                        ),
+                      ),
+                    )),
           ),
           Positioned(
-            top: screenSize.height *0.1+48,
+            top: screenSize.height *0.1+48.h,
             child: Container(
               padding: EdgeInsets.zero,
               margin: EdgeInsets.zero,
-              height: screenSize.height > 810
-                  ? screenSize.height - screenSize.height * 0.2 - 76
-                  : screenSize.height - screenSize.height * 0.2 - 50,
-              width: screenSize.width,
+              height: 700.h,
+              width: screenSize.width.w,
               child: Obx(()=>ListView(
-                  controller: scrollController,
-                  padding: EdgeInsets.zero,
-                  children: [
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-                    SizedBox(
-                      height: 170.0,
-                      width: double.infinity,
-                      child: Carousel(
-                        dotSize: 6.0,
-                        dotSpacing: 15.0,
-                        autoplayDuration: 8.seconds,
-                        animationDuration: 500.milliseconds,
-                        dotBgColor: Colors.transparent.withOpacity(0.1),
-                        dotColor: Colors.white,
-                        dotIncreasedColor: Colors.red,
-                        dotPosition: DotPosition.bottomLeft,
-                        images: [
-                          Image.asset(
-                              'assets/images/pexels-markus-spiske-3806753.jpg',
-                              fit: BoxFit.fill),
-                          Image.asset('assets/images/productsample.jpg',
-                              fit: BoxFit.fill),
-                          Image.asset(
-                              'assets/images/Qatar-Online-Marketing-Profile.jpg',
-                              fit: BoxFit.fill),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 22.0,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12.0),
-                      child: Text(
-                        'Shop by category',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                      ),
-                    ),
-                    SizedBox(
-                        height: screenSize.height * 0.2 + 55,
-                        width: 400,
-                        child: _buildDepartmentsList()),
-                    SizedBox(
-                      height: screenSize.height * 0.1 - 64,
-                    ),
-                    Row(
+                      controller: scrollController,
+                      padding: EdgeInsets.zero,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.only(
-                            top: 0.0,
-                            left: 12,
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        SizedBox(
+                          height: 170.0.h,
+                          width: double.infinity,
+                          child: Carousel(
+                            dotSize: 6.0,
+                            dotSpacing: 15.0,
+                            autoplayDuration: 8.seconds,
+                            animationDuration: 500.milliseconds,
+                            dotBgColor: Colors.transparent.withOpacity(0.1),
+                            dotColor: Colors.white,
+                            dotIncreasedColor: Colors.red,
+                            dotPosition: DotPosition.bottomLeft,
+                            images: [
+                              Image.asset(
+                                  'assets/images/pexels-markus-spiske-3806753.jpg',
+                                  fit: BoxFit.fill),
+                              Image.asset('assets/images/productsample.jpg',
+                                  fit: BoxFit.fill),
+                              Image.asset(
+                                  'assets/images/Qatar-Online-Marketing-Profile.jpg',
+                                  fit: BoxFit.fill),
+                            ],
                           ),
+                        ),
+                         SizedBox(
+                          height: 22.0.h,
+                        ),
+                         Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12.0.w),
                           child: Text(
-                            'Latest Products',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 14),
+                            'Shop by category',
+                            style:
+                                TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
                           ),
                         ),
-                        const Spacer(),
-                        InkWell(
-                          onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ViewAllScreen(dep: 1, list:productController.latestProducts.value )));
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                top: 0.0, left: 12, right: 5.0),
-                            child: Text(
-                              'View all',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                  color: Colors.grey[700]),
+                        SizedBox(
+                            height: screenSize.height * 0.2 + 55.h,
+                            width: 400.w,
+                            child: _buildDepartmentsList()),
+                        SizedBox(
+                          height: screenSize.height * 0.1 - 64.h,
+                        ),
+                        Row(
+                          children: [
+                             Padding(
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                left: 12,
+                              ),
+                              child: Text(
+                                'Latest Products',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 14.sp),
+                              ),
                             ),
-                          ),
+                            const Spacer(),
+                            InkWell(
+                              onTap: (){
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ViewAllScreen(dep: 1, list:productController.latestProducts.value )));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 0.0, left: 12, right: 5.0),
+                                child: Text(
+                                  'View all',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13.sp,
+                                      color: Colors.grey[700]),
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              size: 14,
+                              color: Colors.grey[700],
+                            )
+                          ],
                         ),
-                        Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 14,
-                          color: Colors.grey[700],
-                        )
+                         SizedBox(
+                          height: 6.0.h,
+                        ),
+                        productController.gotProductsByCat.value ==true ?  Container(child: buildHorizontalListOfProducts(false)):SizedBox(
+                            height: 400.h,
+                            child: buildProductShimmer()),
+                         SizedBox(
+                          height: 12.0.h,
+                        ),
+                        Row(
+                          children: [
+                             Padding(
+                              padding: EdgeInsets.only(top: 0.0, left: 12),
+                              child: Text(
+                                'Recommended for you',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 14.sp),
+                              ),
+                            ),
+                            const Spacer(),
+                            InkWell(
+                              onTap: (){
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ViewAllScreen(dep: 1, list:productController.recommendedProducts.value )));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 0.0, left: 12, right: 5.0),
+                                child: Text(
+                                  'View all',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13.sp,
+                                      color: Colors.grey[700]),
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              size: 14.sp,
+                              color: Colors.grey[700],
+                            )
+                          ],
+                        ),
+                         SizedBox(
+                          height: 6.0.h,
+                        ),
+                        _buildHorizontalListOfRecommendedProducts(),
+                         SizedBox(
+                          height: 12.0.h,
+                        ),
+                        Row(
+                          children: [
+                             Padding(
+                              padding: EdgeInsets.only(top: 0.0, left: 12),
+                              child: Text(
+                                'Offers',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 14.sp),
+                              ),
+                            ),
+                            const Spacer(),
+                            InkWell(
+                              onTap: (){
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ViewAllScreen(dep: 1, list:productController.offersProducts.value )));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 0.0, left: 12, right: 5.0),
+                                child: Text(
+                                  'View all',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13.sp,
+                                      color: Colors.grey[700]),
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              size: 14.sp,
+                              color: Colors.grey[700],
+                            )
+                          ],
+                        ),
+                         SizedBox(
+                          height: 6.0.h,
+                        ),
+                        _buildHorizontalListOfOffersProducts(),
+                         SizedBox(
+                          height: 22.h,
+                        ),
+                        _buildOfferArea()
                       ],
                     ),
-                    const SizedBox(
-                      height: 6.0,
-                    ),
-                    productController.gotProductsByCat.value ==true ?  Container(child: buildHorizontalListOfProducts(false)):SizedBox(
-                        height: 400,
-                        child: buildProductShimmer()),
-                    const SizedBox(
-                      height: 12.0,
-                    ),
-                    Row(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(top: 0.0, left: 12),
-                          child: Text(
-                            'Recommended for you',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 14),
-                          ),
-                        ),
-                        const Spacer(),
-                        InkWell(
-                          onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ViewAllScreen(dep: 1, list:productController.recommendedProducts.value )));
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                top: 0.0, left: 12, right: 5.0),
-                            child: Text(
-                              'View all',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                  color: Colors.grey[700]),
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 14,
-                          color: Colors.grey[700],
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 6.0,
-                    ),
-                    _buildHorizontalListOfRecommendedProducts(),
-                    const SizedBox(
-                      height: 12.0,
-                    ),
-                    Row(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(top: 0.0, left: 12),
-                          child: Text(
-                            'Offers',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 14),
-                          ),
-                        ),
-                        const Spacer(),
-                        InkWell(
-                          onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ViewAllScreen(dep: 1, list:productController.offersProducts.value )));
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                top: 0.0, left: 12, right: 5.0),
-                            child: Text(
-                              'View all',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                  color: Colors.grey[700]),
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 14,
-                          color: Colors.grey[700],
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 6.0,
-                    ),
-                    _buildHorizontalListOfOffersProducts(),
-                    const SizedBox(
-                      height: 22,
-                    ),
-                    _buildOfferArea()
-                  ],
-                ),
               ),
             ),
           ),
-        ]))));
+        ]);
+                  }
+                ))));
+
   }
 
   Widget _buildDepartmentsList() {
     return Padding(
-      padding: const EdgeInsets.only(top: 12.0),
+      padding:  EdgeInsets.only(top: 12.0.h),
       child: Container(
         color: Colors.grey[50],
         child: GridView.builder(
@@ -348,7 +357,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildHorizontalListOfRecommendedProducts() {
     final screenSize = Get.size;
     return SizedBox(
-        height: screenSize.height * 0.4 - 28,
+        height: screenSize.height * 0.4 - 28.h,
         child: CustomScrollView(
           scrollDirection: Axis.horizontal,
           slivers: [
@@ -394,7 +403,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildHorizontalListOfOffersProducts() {
     final screenSize = Get.size;
     return SizedBox(
-        height: screenSize.height * 0.4 - 28,
+        height: screenSize.height * 0.4 - 28.h,
         child: CustomScrollView(
           scrollDirection: Axis.horizontal,
           slivers: [
@@ -446,13 +455,13 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       },
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 22.0),
+        padding:  EdgeInsets.only(bottom: 22.0.h),
         child: Stack(
           children: [
             FittedBox(
               child: SizedBox(
-                height: screenSize.height * 0.2,
-                width: screenSize.width,
+                height: screenSize.height * 0.2.h,
+                width: screenSize.width.w,
                 child: Container(
                     decoration: BoxDecoration(
                   color: Colors.black,
@@ -473,7 +482,7 @@ class _HomeScreenState extends State<HomeScreen> {
               top: 0.0,
               child: Container(
                 color: Colors.black.withOpacity(0.4),
-                height: 200,
+                height: 200.h,
                 width: screenSize.width,
               ),
             ),
@@ -482,22 +491,22 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: screenSize.height * 0.1,
+                  height: screenSize.height * 0.1.h,
                 ),
-                const Text(
+                 Text(
                   'Offers and Promotions',
                   style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 22.sp,
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  height: screenSize.height * 0.1 - 70,
+                  height: screenSize.height * 0.1 - 70.h,
                 ),
                 Text(
                   'On all men\'s suits from the most famous world',
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       color: Colors.grey[50],
                       fontWeight: FontWeight.bold),
                 )
@@ -527,8 +536,8 @@ Widget buildProductShimmer() {
                   baseColor: Colors.grey[400]!,
                   highlightColor: Colors.grey[300]!,
                   child: Container(
-                    height: screenSize.height * 0.2 + 20,
-                    width: screenSize.width * 0.5 - 40,
+                    height: screenSize.height * 0.2 + 20.h,
+                    width: screenSize.width * 0.5 - 40.w,
                     decoration: BoxDecoration(
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(8)),
@@ -540,8 +549,8 @@ Widget buildProductShimmer() {
                     baseColor: Colors.grey[400]!,
                     highlightColor: Colors.grey[300]!,
                     child: Container(
-                      height: 12,
-                      width: 100,
+                      height: 12.h,
+                      width: 100.w,
                       decoration: BoxDecoration(
                           color: Colors.grey,
                           borderRadius: BorderRadius.circular(3)),
@@ -549,13 +558,13 @@ Widget buildProductShimmer() {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  padding:  EdgeInsets.symmetric(vertical: 4.0.h),
                   child: Shimmer.fromColors(
                     baseColor: Colors.grey[400]!,
                     highlightColor: Colors.grey[300]!,
                     child: Container(
-                      height: 12,
-                      width: 60,
+                      height: 12.h,
+                      width: 60.w,
                       decoration: BoxDecoration(
                           color: Colors.grey,
                           borderRadius: BorderRadius.circular(3)),
@@ -563,13 +572,13 @@ Widget buildProductShimmer() {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  padding:  EdgeInsets.symmetric(vertical: 4.0.h),
                   child: Shimmer.fromColors(
                     baseColor: Colors.grey[400]!,
                     highlightColor: Colors.grey[300]!,
                     child: Container(
-                      height: 12,
-                      width: 120,
+                      height: 12.h,
+                      width: 120.w,
                       decoration: BoxDecoration(
                           color: Colors.grey,
                           borderRadius: BorderRadius.circular(3)),
@@ -579,4 +588,7 @@ Widget buildProductShimmer() {
               ],
             ));
       });
+
+
 }
+

@@ -60,6 +60,8 @@ dependencies:
   shimmer: ^2.0.0
   flutter_native_splash:
   device_preview: ^1.1.0
+  flutter_screenutil: ^5.5.3+2
+
 
 dev_dependencies:
   flutter_test:
