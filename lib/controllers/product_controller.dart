@@ -400,7 +400,7 @@ class ProductsController extends GetxController with BaseController{
           print('the index is $i');
           imagesWidget[index].add(
             ClipRRect(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(2),
                 child: Hero(
                   tag: "${productDetails.id!} details",
                   child: CachedNetworkImage(

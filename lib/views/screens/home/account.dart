@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Assistants/globals.dart';
 import '../../../controllers/account_controller.dart';
 import '../../../controllers/cart_controller.dart';
+import '../../../controllers/lang_controller.dart';
 import '../../../controllers/payment_controller.dart';
 import '../../../controllers/register_controller.dart';
 import '../../address/list_addresses.dart';
@@ -295,6 +297,8 @@ class _AccountState extends State<Account> {
                 ),
               ),
               buildOptionRow("Language", Icons.language),
+
+
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 64.0.w),
                 child: Divider(
@@ -398,7 +402,39 @@ class _AccountState extends State<Account> {
             ),
           ),
           Spacer(),
-          Icon(Icons.arrow_forward_ios_rounded, size: 14.sp, color: Colors.black54,),
+          optionText=="Language" ?   SizedBox(
+            width: 100,
+            child: ListTile(
+
+              leading: GetBuilder<LangController>(
+                init: LangController(),
+                builder: (controller)=> DropdownButton(
+                  iconSize: 38,
+                  style: TextStyle(fontSize: 18,color: Colors.blue[900],),
+                  items: [
+                    DropdownMenuItem(child: Text('EN'),value: 'en',),
+                    DropdownMenuItem(child: Text('AR'),value: 'ar',),
+                    // DropdownMenuItem(child: Text('HI'),value: 'hi',)
+
+                  ],
+                  value:controller.appLocal ,
+                  onChanged: (val)async{
+                    print(val.toString());
+                    controller.changeLang(val.toString());
+                    Get.updateLocale(Locale(val.toString()));
+                    controller.changeDIR(val.toString());
+                    print(Get.deviceLocale);
+                    print(Get.locale);
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+                    await prefs.setString('lang', val.toString());
+                  },
+                ),
+              ),
+              onTap: () {
+              },
+            ),
+          ):Icon(Icons.arrow_forward_ios_rounded, size: 14.sp, color: Colors.black54,),
         ],
       ),
     );

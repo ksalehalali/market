@@ -32,8 +32,11 @@ void main() async {
   final langController =Get.putAsync(() async => LangController(),permanent: true);
   final paymentController =Get.putAsync(() async => PaymentController(),permanent: true);
 
-  runApp(DevicePreview(builder: (context)=> ScreenUtilInit(
-      designSize: const Size(360, 740),
+  runApp(DevicePreview(
+      enabled: false,
+      builder: (context)=> ScreenUtilInit(
+      designSize: const Size(406, 795),
+
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context , child) {

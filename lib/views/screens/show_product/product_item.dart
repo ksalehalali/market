@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
 import 'package:shimmer/shimmer.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../Assistants/globals.dart';
 import '../../../controllers/product_controller.dart';
 import '../../../models/product_model.dart';
@@ -65,16 +65,16 @@ class ProductItemCard extends StatelessWidget {
         // }
       },
       child: Container(
-        height: 220,
-        width: size.width * 0.4 + 10,
+        height: 220.h,
+        width: size.width * 0.4 + 10.w,
         decoration: BoxDecoration(
             border:
                 Border.all(width: 0.3, color: Colors.grey.withOpacity(0.4))),
-        margin: const EdgeInsets.only(
-          left: 5,
-          right: 5,
+        margin:  EdgeInsets.only(
+          left: 5.w,
+          right: 5.w,
         ),
-        padding: const EdgeInsets.only(top: 6, right: 6, left: 6, bottom: 0),
+        padding:  EdgeInsets.only(top: 6.h, right: 6.w, left: 6.w, bottom: 0.h),
         child: Stack(
           children: <Widget>[
             InkWell(
@@ -95,15 +95,15 @@ class ProductItemCard extends StatelessWidget {
                 // }
               },
               child: ClipRRect(
-                  borderRadius: BorderRadius.circular(6),
+                  borderRadius: BorderRadius.circular(2),
                   child: Hero(
                     tag: product.id!,
                     child: CachedNetworkImage(
                       //cacheManager: customCacheManager,
                       key: UniqueKey(),
                       imageUrl: '$baseURL/${product.imageUrl}',
-                      height: screenSize.height * 0.2 + 20,
-                      width: screenSize.width * 0.4,
+                      height: screenSize.height * 0.2 + 20.h,
+                      width: screenSize.width * 0.4.w,
                       maxHeightDiskCache: 110,
                       fit: BoxFit.fill,
                       placeholder: (context, url) =>
@@ -111,11 +111,11 @@ class ProductItemCard extends StatelessWidget {
                             baseColor: Colors.grey[400]!,
                             highlightColor: Colors.grey[300]!,
                             child: Container(
-                              height: 220,
-                              width: size.width * 0.4 + 10,
+                              height: 220.h,
+                              width: size.width * 0.4 + 10.w,
                               decoration: BoxDecoration(
                                   color: Colors.grey,
-                                  borderRadius: BorderRadius.circular(8)),
+                                  borderRadius: BorderRadius.circular(2)),
                             ),
                           ),),
                       errorWidget: (context, url, error) => Container(
@@ -129,14 +129,14 @@ class ProductItemCard extends StatelessWidget {
                   )),
             ),
             Positioned(
-                top: 8.0,
-                left: 10.0,
-                width: screenSize.width * .1 - 5,
-                height: screenSize.width * .1 - 5,
+                top: 8.0.h,
+                left: 10.0.w,
+                width: screenSize.width * .1 - 5.w,
+                height: screenSize.width * .1 - 5.h,
                 child: Align(
                   alignment: Alignment.center,
                   child: LikeButton(
-                    size: buttonSize,
+                    size: buttonSize.sp,
                     onTap: onLikeButtonTapped,
 
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -185,7 +185,7 @@ class ProductItemCard extends StatelessWidget {
                   ),
                 )),
             Positioned(
-              top: size.height * 0.3 - 56,
+              top: size.height * 0.3 - 56.h,
               child: InkWell(
                 onTap: () {
                   productController.getOneProductDetails(product.id!);
@@ -218,48 +218,48 @@ class ProductItemCard extends StatelessWidget {
                           children: [
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(vertical: 8.0),
+                                   EdgeInsets.symmetric(vertical: 8.0.h),
                               child: SizedBox(
-                                width: size.width * 0.3+40,
+                                width: size.width * 0.3+32.w,
                                 child: Text("${product.en_name}".toUpperCase(),
                                     textDirection: TextDirection.rtl,
                                     textAlign: TextAlign.left,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                        fontSize: 13, color: Colors.grey)),
+                                    style:  TextStyle(
+                                        fontSize: 13.sp, color: Colors.grey[700])),
                               ),
                             ),
                             SizedBox(
-                              width: size.width * 0.3,
+                              width: size.width * 0.3.w,
                               child: Text(
                                 "${product.price! - (product.price)! * (product.offer!) / 100} QR "
                                     .toUpperCase(),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style:  TextStyle(
                                     fontFamily: 'Montserrat-Arabic Regular',
                                     color: Colors.black,
-                                    fontSize: 13,
+                                    fontSize: 13.sp,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(vertical: 6.0),
+                                   EdgeInsets.symmetric(vertical: 6.0.h),
                               child: Text(
                                 '${product.categoryNameEN}'.toUpperCase(),
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
                                     fontFamily: 'Montserrat-Arabic Regular',
                                     color: Colors.black.withOpacity(0.7),
-                                    fontSize: 12,
+                                    fontSize: 12.sp,
                                     fontWeight: FontWeight.w500),
                               ),
                             ),
                             SizedBox(
-                              width: size.width * 0.4 + 10,
+                              width: size.width * 0.4 + 10.w,
                               child: Row(
                                 children: [
                                   Text(
@@ -268,14 +268,14 @@ class ProductItemCard extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 1,
                                     textAlign: TextAlign.left,
-                                    style: const TextStyle(
+                                    style:  TextStyle(
                                         decoration: TextDecoration.lineThrough,
                                         fontFamily: 'Montserrat-Arabic Regular',
                                         color: Colors.grey,
-                                        fontSize: 11),
+                                        fontSize: 11.sp),
                                   ),
-                                  const SizedBox(
-                                    width: 7.0,
+                                   SizedBox(
+                                    width: 7.0.w,
                                   ),
                                   Text(
                                     "Discount ${product.offer}%",
@@ -285,7 +285,7 @@ class ProductItemCard extends StatelessWidget {
                                     style: TextStyle(
                                         fontFamily: 'Montserrat-Arabic Regular',
                                         color: myHexColor3,
-                                        fontSize: 11),
+                                        fontSize: 11.sp),
                                   ),
                                 ],
                               ),

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../services/localization/local_storage_lang.dart';
-
-
-
+import 'local_storage_lang.dart';
 
 class LangController extends GetxController {
   var appLocal = 'en';
@@ -33,12 +31,19 @@ class LangController extends GetxController {
   }
 
   //
-void changeDIR(String dir){
+  void changeDIR(String dir){
     if(dir =='ar'){
       isRTL = true;
     }else{
       isRTL = false;
 
     }
-}
+  }
+
+
+
+  @override
+  // TODO: implement onStart
+  get onStart => super.onStart;
+
 }

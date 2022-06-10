@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
 import '../../../Assistants/globals.dart';
 import '../../../controllers/address_location_controller.dart';
 import '../../../controllers/cart_controller.dart';
@@ -37,6 +38,7 @@ class _CartState extends State<Cart> {
     cartController.getMyCartProds(false);
   }
   final AddressController addressController = Get.find();
+  final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -89,34 +91,35 @@ class _CartState extends State<Cart> {
                               margin: const EdgeInsets.only(top: 16),
                               child: Row(
                                 children: [
-                                  const Icon(
-                                    Icons.directions_car_rounded,
-                                    color: Colors.black54,
-                                  ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                  const Text(
-                                    "Delivery address",
-                                    style: const TextStyle(color: Colors.black54),
+                                  SvgPicture.asset('assets/icons/shipping.svg',
+                                      color: Colors.grey[600],
+                                      height: 22.00,
+                                      width: 22.0,
+                                      semanticsLabel: 'A red up arrow'),
+                                   SizedBox(
+                                    width: 8.w,
                                   ),
 
                                   // TODO: REPLACE THE 'ADDRESS' WORD WITH THE ACTUAL VARIABLE NAME
-                                  const Text(
-                                    "Address",
-                                    style: TextStyle(color: Colors.black54),
+                                   SizedBox(
+
+                                     width:screenSize.width *.7+27.w,
+                                     child: Text(
+                                       'Address : ${box.read('address')} ?? Select address',overflow: TextOverflow.ellipsis,maxLines: 1,
+                                      style: TextStyle(color: Colors.black54),
                                   ),
+                                   ),
                                   const Spacer(),
                                   InkWell(
                                     onTap: () {
                                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>MainScreen()));
                                     },
                                     child: Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      padding:  EdgeInsets.symmetric(horizontal: 0.0.w),
                                       child: const Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         color: Colors.black87,
-                                        size: 22,
+                                        size: 20,
                                       ),
                                     ),
                                   ),
@@ -125,14 +128,14 @@ class _CartState extends State<Cart> {
                               ),
                             ),
                             SizedBox(
-                              height: screenSize.height * 0.1 - 70,
+                              height: screenSize.height * 0.1 - 70.h,
                             ),
                              Divider(
                               thickness: 1.0,
                               color: myHexColor5,
                             ),
                             SizedBox(
-                              height: screenSize.height * 0.1 - 70,
+                              height: screenSize.height * 0.1 - 70.h,
                             ),
                             cartController.gotMyCart.value == true
                                 ?buildCartItem()
@@ -142,31 +145,31 @@ class _CartState extends State<Cart> {
                       ),
                     ):Container(),
                   SizedBox(
-                    height: screenSize.height * 0.1 - 50,
+                    height: screenSize.height * 0.1 - 50.h,
                   ),
                   buildCartDetails(),
                   SizedBox(
-                    height: screenSize.height * 0.1 - 50,
+                    height: screenSize.height * 0.1 - 50.h,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    padding:  EdgeInsets.symmetric(horizontal: 12.w),
                     child: Container(
-                      child: const Text(
+                      child:  Text(
                         "Things you might like",
                         style:
-                            TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                            TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: screenSize.height * 0.1 - 50,
+                    height: screenSize.height * 0.1 - 50.h,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    padding:  EdgeInsets.symmetric(horizontal: 12.w),
                     child: buildHorizontalListOfProducts(false),
                   ),
                   SizedBox(
-                    height: screenSize.height * 0.1 - 50,
+                    height: screenSize.height * 0.1 - 50.h,
                   ),
                 ],
               ),
@@ -181,21 +184,21 @@ class _CartState extends State<Cart> {
 
   Widget buildCartDetails() {
     return Container(
-      color: const Color.fromARGB(255, 216, 224, 245),
+      color: const Color.fromARGB(255, 235, 236, 239),
       child: Column(
         children: [
           Padding(
             padding:
-                const EdgeInsets.only(top: 12, bottom: 18, right: 14, left: 14),
+                 EdgeInsets.only(top: 12.h, bottom: 18.h, right: 14.w, left: 14.w),
             child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(2),
                   color: Colors.white,
                 ),
-                height: 44,
-                width: screenSize.width - 30,
+                height: 44.h,
+                width: screenSize.width - 30.w,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 10, left: 10),
+                  padding:  EdgeInsets.only(right: 10.w, left: 10.w),
                   child: TextFormField(
                     decoration: InputDecoration(
                       prefix: InkWell(
@@ -210,7 +213,7 @@ class _CartState extends State<Cart> {
                           child: Text(
                             'APPLY  | ',
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w700,
                                 color: myHexColor4),
                           )),
@@ -223,10 +226,10 @@ class _CartState extends State<Cart> {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             child: Row(
               children: [
-                const Text(
+                 Text(
                   "Products price",
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
                       color: Color.fromARGB(255, 60, 63, 73)),
                 ),
@@ -234,8 +237,8 @@ class _CartState extends State<Cart> {
                 Obx(
                   () => Text(
                     cartController.fullPrice.toStringAsFixed(2),
-                    style: const TextStyle(
-                        fontSize: 16,
+                    style:  TextStyle(
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
                         color: Color.fromARGB(255, 60, 63, 73)),
                   ),
@@ -246,11 +249,11 @@ class _CartState extends State<Cart> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             child: Row(
-              children: const [
+              children:  [
                 Text(
                   "Shipping fee",
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
                       color: Color.fromARGB(255, 60, 63, 73)),
                 ),
@@ -258,7 +261,7 @@ class _CartState extends State<Cart> {
                 Text(
                   "0.0 QAR",
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
                       color: Color.fromARGB(255, 60, 63, 73)),
                 ),
@@ -269,10 +272,10 @@ class _CartState extends State<Cart> {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             child: Row(
               children: [
-                const Text(
+                 Text(
                   "Total",
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
                       color: Color.fromARGB(255, 60, 63, 73)),
                 ),
@@ -280,8 +283,8 @@ class _CartState extends State<Cart> {
                 Obx(
                   () => Text(
                     cartController.fullPrice.toStringAsFixed(2),
-                    style: const TextStyle(
-                        fontSize: 16,
+                    style:  TextStyle(
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
                         color: Color.fromARGB(255, 60, 63, 73)),
                   ),
@@ -308,7 +311,7 @@ class _CartState extends State<Cart> {
                  }
                 },
                 child: Container(
-                  height: 54,
+                  height: 54.h,
                   color:myHexColor2,
                   child: Center(
                       child: Obx(
@@ -317,7 +320,7 @@ class _CartState extends State<Cart> {
                           ? 'BUY ${cartController.myPrCartProducts.length} ITEMS FOR ${cartController.fullPrice.value.toStringAsFixed(2)}  QAR'
                           : 'BUY ${cartController.myPrCartProducts.length} ITEM FOR ${cartController.fullPrice.value.toStringAsFixed(2)}  QAR',
                       style: const TextStyle(color: Colors.white),
-                    ):const Text('Cart is empty',style: const TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w600),),
+                    ): Text('Cart is empty',style:  TextStyle(color: Colors.white,fontSize: 14.sp,fontWeight: FontWeight.w600),),
                   )),
                 )),
           ),
@@ -452,7 +455,7 @@ class _CartState extends State<Cart> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0),
+                    padding:  EdgeInsets.symmetric(vertical: 10.0.h,horizontal: 8.w),
                     decoration: BoxDecoration(
                       color: const Color.fromRGBO(245, 246, 248, 1),
                       border: Border.all(),
@@ -462,7 +465,7 @@ class _CartState extends State<Cart> {
                     child: Row(
                       children: [
                         const SizedBox(
-                          width: 8,
+                          width: 12,
                         ),
                         InkWell(
                           onTap: (){
@@ -475,15 +478,19 @@ class _CartState extends State<Cart> {
                            });
                           },
                           child: Container(
-                            child: const Icon(Icons.remove),
+                            decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(22)
+                            ),
+                            child:  Icon(Icons.remove,color: Colors.grey[600],),
                           ),
                         ),
                         const SizedBox(
-                          width: 8,
+                          width: 18,
                         ),
-                        Text("${cartProductsCounts[i]}"),
+                        Text("${cartProductsCounts[i]}",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 16),),
                         const SizedBox(
-                          width: 8,
+                          width: 18,
                         ),
                         InkWell(
                           onTap: () {
@@ -497,11 +504,15 @@ class _CartState extends State<Cart> {
 
                           },
                           child: Container(
-                            child: const Icon(Icons.add),
+                            decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                                borderRadius: BorderRadius.circular(22)
+                            ),
+                            child:  Icon(Icons.add,color: Colors.grey[600],),
                           ),
                         ),
                         const SizedBox(
-                          width: 8,
+                          width: 12,
                         ),
                       ],
                     ),

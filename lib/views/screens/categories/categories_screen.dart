@@ -205,7 +205,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               children: [
                 Container(
                   width: 100.w,
-                  height: screenSize.height*.9+10.h,
+                  height: screenSize.height*.9-70.h,
                   child: CustomScrollView(
                     slivers: [
                       SliverList(delegate: SliverChildBuilderDelegate(
@@ -216,7 +216,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
                 ),
                 SizedBox(
-                  height:screenSize.height*.9+10.h,
+                  height:screenSize.height*.9-70.h,
                   width: screenSize.width -101.w,
                   child:  Padding(
                     padding:  EdgeInsets.only(bottom:2.h),
@@ -304,7 +304,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 5.h),
+                      SizedBox(height: 4.h),
                       Text(categories[index]['depName'].toString(),style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
                     ],
                   )),

@@ -312,7 +312,8 @@ class _HomeScreenState extends State<HomeScreen> {
                          SizedBox(
                           height: 22.h,
                         ),
-                        _buildOfferArea()
+                        _buildOfferArea(),
+                        SizedBox(height: 95.h,),
                       ],
                     ),
               ),
@@ -326,7 +327,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildDepartmentsList() {
     return Padding(
-      padding:  EdgeInsets.only(top: 12.0.h),
+      padding:  EdgeInsets.only(top: 12.0.h,right:10.w),
       child: Container(
         color: Colors.grey[50],
         child: GridView.builder(
@@ -358,45 +359,48 @@ class _HomeScreenState extends State<HomeScreen> {
     final screenSize = Get.size;
     return SizedBox(
         height: screenSize.height * 0.4 - 28.h,
-        child: CustomScrollView(
-          scrollDirection: Axis.horizontal,
-          slivers: [
-            Obx(
-              () => SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return ProductItemCard(
-                      product: productController.recommendedProducts[index],
-                      fromDetails: false,
-                      from: "home_ho_rec",
-                      press: () {
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            transitionDuration:
-                                const Duration(milliseconds: 200),
-                            reverseTransitionDuration:
-                                const Duration(milliseconds: 200),
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) =>
-                                    FadeTransition(
-                              opacity: animation,
-                              child: ProductDetails(
-                                product: productController
-                                    .recommendedProducts[index],
+        child: Padding(
+          padding:  EdgeInsets.only(right: 5.0.w),
+          child: CustomScrollView(
+            scrollDirection: Axis.horizontal,
+            slivers: [
+              Obx(
+                () => SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return ProductItemCard(
+                        product: productController.recommendedProducts[index],
+                        fromDetails: false,
+                        from: "home_ho_rec",
+                        press: () {
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              transitionDuration:
+                                  const Duration(milliseconds: 200),
+                              reverseTransitionDuration:
+                                  const Duration(milliseconds: 200),
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      FadeTransition(
+                                opacity: animation,
+                                child: ProductDetails(
+                                  product: productController
+                                      .recommendedProducts[index],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  childCount: productController.recommendedProducts.length,
-                  semanticIndexOffset: 2,
+                          );
+                        },
+                      );
+                    },
+                    childCount: productController.recommendedProducts.length,
+                    semanticIndexOffset: 2,
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ));
   }
 
@@ -404,45 +408,48 @@ class _HomeScreenState extends State<HomeScreen> {
     final screenSize = Get.size;
     return SizedBox(
         height: screenSize.height * 0.4 - 28.h,
-        child: CustomScrollView(
-          scrollDirection: Axis.horizontal,
-          slivers: [
-            Obx(
-              () => SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return ProductItemCard(
-                      product: productController.offersProducts[index],
-                      fromDetails: false,
-                      from: "home_hor_offers",
-                      press: () {
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            transitionDuration:
-                                const Duration(milliseconds: 200),
-                            reverseTransitionDuration:
-                                const Duration(milliseconds: 200),
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) =>
-                                    FadeTransition(
-                              opacity: animation,
-                              child: ProductDetails(
-                                product: productController
-                                    .recommendedProducts[index],
+        child: Padding(
+          padding:  EdgeInsets.only(right: 5.0.w),
+          child: CustomScrollView(
+            scrollDirection: Axis.horizontal,
+            slivers: [
+              Obx(
+                () => SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return ProductItemCard(
+                        product: productController.offersProducts[index],
+                        fromDetails: false,
+                        from: "home_hor_offers",
+                        press: () {
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              transitionDuration:
+                                  const Duration(milliseconds: 200),
+                              reverseTransitionDuration:
+                                  const Duration(milliseconds: 200),
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      FadeTransition(
+                                opacity: animation,
+                                child: ProductDetails(
+                                  product: productController
+                                      .recommendedProducts[index],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  childCount: productController.offersProducts.length,
-                  semanticIndexOffset: 2,
+                          );
+                        },
+                      );
+                    },
+                    childCount: productController.offersProducts.length,
+                    semanticIndexOffset: 2,
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ));
   }
 

@@ -4,41 +4,65 @@ import 'package:get/get.dart';
 import '../../controllers/product_controller.dart';
 import '../screens/show_product/product_details.dart';
 import '../screens/show_product/product_item.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 Widget buildHorizontalListOfProducts(bool fromDetails) {
   final ProductsController productController = Get.find();
 
   final screenSize = Get.size;
   return SizedBox(
-    height: screenSize.height * 0.4 - 28,
+    height: screenSize.height * 0.4 - 28.h,
     child: FutureBuilder(
         builder: (context, data) => data.connectionState ==
                 ConnectionState.waiting
-            ? const SizedBox(
-                width: 110,
-                height: 110,
+            ?  SizedBox(
+                width: 110.w,
+                height: 110.h,
                 child: FittedBox(
                   child: CircularProgressIndicator.adaptive(
                     strokeWidth: 0.9,
                   ),
                 ),
               )
-            : CustomScrollView(
-                scrollDirection: Axis.horizontal,
-                slivers: [
-                  Obx(
-                    () => SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          return InkWell(
-                            onTap: () {
-                              productController.getOneProductDetails(
-                                productController.latestProducts[index].id!,
-                              );
+            : Padding(
+              padding: const EdgeInsets.only(right: 0.0),
+              child: CustomScrollView(
+                  scrollDirection: Axis.horizontal,
+                  slivers: [
+                    Obx(
+                      () => SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                productController.getOneProductDetails(
+                                  productController.latestProducts[index].id!,
+                                );
 
-                              Navigator.push(
-                                  context,
-                                  PageRouteBuilder(
+                                Navigator.push(
+                                    context,
+                                    PageRouteBuilder(
+                                        transitionDuration:
+                                            const Duration(milliseconds: 500),
+                                        reverseTransitionDuration:
+                                            const Duration(milliseconds: 500),
+                                        pageBuilder: (context, animation,
+                                                secondaryAnimation) =>
+                                            FadeTransition(
+                                              opacity: animation,
+                                              child: ProductDetails(
+                                                product: productController
+                                                    .latestProducts[index],
+                                              ),
+                                            )));
+                              },
+                              child: ProductItemCard(
+                                product: productController.latestProducts[index],
+                                fromDetails: fromDetails,
+                                from: 'home_hor',
+                                press: () {
+                                  Navigator.push(
+                                    context,
+                                    PageRouteBuilder(
                                       transitionDuration:
                                           const Duration(milliseconds: 500),
                                       reverseTransitionDuration:
@@ -46,46 +70,25 @@ Widget buildHorizontalListOfProducts(bool fromDetails) {
                                       pageBuilder: (context, animation,
                                               secondaryAnimation) =>
                                           FadeTransition(
-                                            opacity: animation,
-                                            child: ProductDetails(
-                                              product: productController
-                                                  .latestProducts[index],
-                                            ),
-                                          )));
-                            },
-                            child: ProductItemCard(
-                              product: productController.latestProducts[index],
-                              fromDetails: fromDetails,
-                              from: 'home_hor',
-                              press: () {
-                                Navigator.push(
-                                  context,
-                                  PageRouteBuilder(
-                                    transitionDuration:
-                                        const Duration(milliseconds: 500),
-                                    reverseTransitionDuration:
-                                        const Duration(milliseconds: 500),
-                                    pageBuilder: (context, animation,
-                                            secondaryAnimation) =>
-                                        FadeTransition(
-                                      opacity: animation,
-                                      child: ProductDetails(
-                                        product: productController
-                                            .recommendedProducts[index],
+                                        opacity: animation,
+                                        child: ProductDetails(
+                                          product: productController
+                                              .recommendedProducts[index],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              },
-                            ),
-                          );
-                        },
-                        childCount: productController.latestProducts.length,
-                        semanticIndexOffset: 2,
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                          childCount: productController.latestProducts.length,
+                          semanticIndexOffset: 2,
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              )),
+                    )
+                  ],
+                ),
+            )),
   );
 }
