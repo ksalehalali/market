@@ -44,140 +44,144 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     final screenSize = Get.size;
 
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          //margin: const EdgeInsets.symmetric(horizontal: 0.0),
-          width: MediaQuery.of(context).size.width,
-          child: SingleChildScrollView(
-            child: Obx(()=>Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (cartController.isCartEmpty.value)
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset("${assetsIconDir}sad cart.svg"),
-                          const SizedBox(
-                            height: 32,
-                          ),
-                          const Text(
-                            "Shopping cart is empty!",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          const Text(
-                            "Shop now & add things you love to the cart",
-                            style: TextStyle(fontSize: 16, color: Colors.black54),
-                          ),
-                        ],
-                      ),
-                    )
-                  else
-                    cartController.gotMyCart.value ==true? Obx(
-                      () => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
+    return Container(
+      color: myHexColor5.withOpacity(0.6),
+
+      child: SafeArea(
+        child: Scaffold(
+          body: Container(
+            //margin: const EdgeInsets.symmetric(horizontal: 0.0),
+            width: MediaQuery.of(context).size.width,
+            child: SingleChildScrollView(
+              child: Obx(()=>Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (cartController.isCartEmpty.value)
+                      Container(
+                        width: MediaQuery.of(context).size.width,
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            // DELIVERY ADDRESS
-                            Container(
-                              margin: const EdgeInsets.only(top: 16),
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset('assets/icons/shipping.svg',
-                                      color: Colors.grey[600],
-                                      height: 22.00,
-                                      width: 22.0,
-                                      semanticsLabel: 'A red up arrow'),
-                                   SizedBox(
-                                    width: 8.w,
-                                  ),
-
-                                  // TODO: REPLACE THE 'ADDRESS' WORD WITH THE ACTUAL VARIABLE NAME
-                                   SizedBox(
-
-                                     width:screenSize.width *.7+27.w,
-                                     child: Text(
-                                       'Address : ${box.read('address')} ?? Select address',overflow: TextOverflow.ellipsis,maxLines: 1,
-                                      style: TextStyle(color: Colors.black54),
-                                  ),
-                                   ),
-                                  const Spacer(),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>MainScreen()));
-                                    },
-                                    child: Padding(
-                                      padding:  EdgeInsets.symmetric(horizontal: 0.0.w),
-                                      child: const Icon(
-                                        Icons.arrow_forward_ios_rounded,
-                                        color: Colors.black87,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  ),
-
-                                ],
+                            SvgPicture.asset("${assetsIconDir}sad cart.svg"),
+                            const SizedBox(
+                              height: 32,
+                            ),
+                            const Text(
+                              "Shopping cart is empty!",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(
-                              height: screenSize.height * 0.1 - 70.h,
+                            const SizedBox(
+                              height: 16,
                             ),
-                             Divider(
-                              thickness: 1.0,
-                              color: myHexColor5,
+                            const Text(
+                              "Shop now & add things you love to the cart",
+                              style: TextStyle(fontSize: 16, color: Colors.black54),
                             ),
-                            SizedBox(
-                              height: screenSize.height * 0.1 - 70.h,
-                            ),
-                            cartController.gotMyCart.value == true
-                                ?buildCartItem()
-                                : Container(),
                           ],
                         ),
-                      ),
-                    ):Container(),
-                  SizedBox(
-                    height: screenSize.height * 0.1 - 50.h,
-                  ),
-                  buildCartDetails(),
-                  SizedBox(
-                    height: screenSize.height * 0.1 - 50.h,
-                  ),
-                  Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 12.w),
-                    child: Container(
-                      child:  Text(
-                        "Things you might like",
-                        style:
-                            TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
+                      )
+                    else
+                      cartController.gotMyCart.value ==true? Obx(
+                        () => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Column(
+                            children: [
+                              // DELIVERY ADDRESS
+                              Container(
+                                margin: const EdgeInsets.only(top: 16),
+                                child: Row(
+                                  children: [
+                                    SvgPicture.asset('assets/icons/shipping.svg',
+                                        color: Colors.grey[600],
+                                        height: 22.00,
+                                        width: 22.0,
+                                        semanticsLabel: 'A red up arrow'),
+                                     SizedBox(
+                                      width: 8.w,
+                                    ),
+
+                                    // TODO: REPLACE THE 'ADDRESS' WORD WITH THE ACTUAL VARIABLE NAME
+                                     SizedBox(
+
+                                       width:screenSize.width *.7+27.w,
+                                       child: Text(
+                                         'Address : ${box.read('address')} ?? Select address',overflow: TextOverflow.ellipsis,maxLines: 1,
+                                        style: TextStyle(color: Colors.black54),
+                                    ),
+                                     ),
+                                    const Spacer(),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>MainScreen()));
+                                      },
+                                      child: Padding(
+                                        padding:  EdgeInsets.symmetric(horizontal: 0.0.w),
+                                        child: const Icon(
+                                          Icons.arrow_forward_ios_rounded,
+                                          color: Colors.black87,
+                                          size: 20,
+                                        ),
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: screenSize.height * 0.1 - 70.h,
+                              ),
+                               Divider(
+                                thickness: 1.0,
+                                color: myHexColor5,
+                              ),
+                              SizedBox(
+                                height: screenSize.height * 0.1 - 70.h,
+                              ),
+                              cartController.gotMyCart.value == true
+                                  ?buildCartItem()
+                                  : Container(),
+                            ],
+                          ),
+                        ),
+                      ):Container(),
+                    SizedBox(
+                      height: screenSize.height * 0.1 - 50.h,
+                    ),
+                    buildCartDetails(),
+                    SizedBox(
+                      height: screenSize.height * 0.1 - 50.h,
+                    ),
+                    Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 12.w),
+                      child: Container(
+                        child:  Text(
+                          "Things you might like",
+                          style:
+                              TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: screenSize.height * 0.1 - 50.h,
-                  ),
-                  Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 12.w),
-                    child: buildHorizontalListOfProducts(false),
-                  ),
-                  SizedBox(
-                    height: screenSize.height * 0.1 - 50.h,
-                  ),
-                ],
+                    SizedBox(
+                      height: screenSize.height * 0.1 - 50.h,
+                    ),
+                    Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 12.w),
+                      child: buildHorizontalListOfProducts(false),
+                    ),
+                    SizedBox(
+                      height: screenSize.height * 0.1 - 50.h,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
+          bottomSheet: buildBuyButton(1),
         ),
       ),
-      bottomSheet: buildBuyButton(1),
     );
 
   }

@@ -25,6 +25,8 @@ class _OffersScreenState extends State<OffersScreen> {
   Widget build(BuildContext context) {
     final screenSize = Get.size;
     return Container(
+      color: myHexColor5,
+
       child: SafeArea(
           child: Scaffold(
         body: SingleChildScrollView(
@@ -43,7 +45,7 @@ class _OffersScreenState extends State<OffersScreen> {
               padding:  EdgeInsets.symmetric(horizontal: 12.w),
               child: Container(
                 width: screenSize.width.w,
-                height: 2.h,
+                height: 1.h,
                 color: myHexColor.withOpacity(0.6),
               ),
             ),
@@ -58,7 +60,7 @@ class _OffersScreenState extends State<OffersScreen> {
                 height: 160.h,
                 width: screenSize.width.w,
                 child: Image.asset(
-                  'assets/images/apple_3d_logo_wallpaper.jpeg',
+                  'assets/images/pexels-artem-beliaikin-2529787 1.jpg',
                   fit: BoxFit.fill,
                 )),
             Padding(

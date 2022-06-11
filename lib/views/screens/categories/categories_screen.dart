@@ -205,7 +205,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               children: [
                 Container(
                   width: 100.w,
-                  height: screenSize.height*.9-70.h,
+                  height: screenSize.height*.9-79.h,
                   child: CustomScrollView(
                     slivers: [
                       SliverList(delegate: SliverChildBuilderDelegate(
@@ -216,11 +216,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
                 ),
                 SizedBox(
-                  height:screenSize.height*.9-70.h,
+                  height:screenSize.height*.9-79.h,
                   width: screenSize.width -101.w,
                   child:  Padding(
                     padding:  EdgeInsets.only(bottom:2.h),
                     child: Stack(
+                      alignment: Alignment.centerLeft,
                       children: [
                         Container(width:screenSize.width.w ,height: 0.5.h,color: Colors.grey[500],),
 
@@ -269,6 +270,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(title,textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18.sp,color: Colors.black)),
+        Spacer(),
+        SizedBox(width: screenSize.width*.2,),
+        Spacer(),
+        Icon(Icons.keyboard_arrow_down_rounded,size: 22.sp,color: Colors.grey[800],)
       ],
     ));
     // flexibleSpace: FlexibleSpaceBar(
@@ -314,7 +319,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           mainAxisSpacing: 1.0.w,
           crossAxisSpacing: 1.0.h,
-          childAspectRatio: 0.7.h,
+          childAspectRatio: 0.8.h,
           crossAxisCount: 3),);
 
   }

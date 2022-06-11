@@ -41,7 +41,6 @@ dependencies:
   get_storage: ^2.0.3
   geolocator:
   flutter_svg: ^1.0.3
-  carousel_pro: ^1.0.0
   shared_preferences: ^2.0.13
   sliding_up_panel:
   location: ^4.2.0
@@ -61,7 +60,8 @@ dependencies:
   flutter_native_splash:
   device_preview: ^1.1.0
   flutter_screenutil: ^5.5.3+2
-
+  carousel_slider: ^4.1.1
+  smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:

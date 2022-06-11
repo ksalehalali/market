@@ -36,6 +36,7 @@ class ProductsController extends GetxController with BaseController{
   var imagesData = [].obs;
   var getDetailsDone = false.obs;
   var imagesWidget = [[], [], [], [], []].obs;
+  dynamic imagesWidget2 = [[], [], [], [], []];
 
   var productData = {};
   var sizes = [];
@@ -441,6 +442,7 @@ class ProductsController extends GetxController with BaseController{
       }
       getDetailsDone.value = true;
     }
+    imagesWidget2 = imagesWidget.value;
     gotProductDetails.value =true;
     getDetailsDone.value = true;
     print('got product == $gotProductDetails');

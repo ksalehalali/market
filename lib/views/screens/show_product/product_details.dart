@@ -1,4 +1,4 @@
-import 'package:carousel_pro/carousel_pro.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -7,6 +7,7 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../Assistants/globals.dart';
 import '../../../controllers/cart_controller.dart';
 import '../../../controllers/product_controller.dart';
@@ -31,7 +32,7 @@ class ProductDetails extends StatefulWidget {
 int indexListImages = 0;
 double scaleOfCart = 1.0;
 double scaleOfItem = 1.0;
-
+int activeIndex =0;
 int duration = 800;
 
 class _ProductDetailsState extends State<ProductDetails>
@@ -116,7 +117,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                 // padding: EdgeInsets.zero,
                                 // shrinkWrap: true,
                                 children: [
-                                   SizedBox(
+                                  SizedBox(
                                     height: 4.0.h,
                                   ),
                                   Row(
@@ -129,7 +130,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                               .latestProducts.length);
                                         },
                                         child: Padding(
-                                          padding:  EdgeInsets.only(
+                                          padding: EdgeInsets.only(
                                               right: 12.0.w, left: 10.w),
                                           child: SvgPicture.asset(
                                               'assets/icons/left arrow.svg',
@@ -149,7 +150,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                       const Cart()));
                                         },
                                         child: Padding(
-                                          padding:  EdgeInsets.symmetric(
+                                          padding: EdgeInsets.symmetric(
                                               horizontal: 5.w),
                                           child: Container(
                                             height: 40.h,
@@ -200,8 +201,9 @@ class _ProductDetailsState extends State<ProductDetails>
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
-                                                              style:  TextStyle(
-                                                                  fontSize: 10.sp,
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                      10.sp,
                                                                   color: Colors
                                                                       .white),
                                                             ),
@@ -227,45 +229,44 @@ class _ProductDetailsState extends State<ProductDetails>
                                             ? Column(
                                                 children: [
                                                   SizedBox(
-                                                    height:
-                                                        screenSize.height * 0.4.h,
+                                                    height: screenSize.height *
+                                                        0.4.h,
                                                     width: double.infinity,
-                                                    child:
-                                                        // InkWell(
-                                                        //     onTap: (){
-                                                        //       gallery();
-                                                        //     },
-                                                        //     child: Ink.image(image: NetworkImage("$baseURL/${productController.imagesData[0].imagesUrls[0]}",),height: 300,))
+                                                    child: Column(
+                                                      children: [
+                                                        CarouselSlider.builder(
+                                                          itemCount: productController.imagesWidget.value[indexListImages].length,
+                                                          itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) => InkWell(
+                                                            onTap: (){
+                                                              gallery(itemIndex);
+                                                            },
+                                                            child: Container(
+                                                              width: screenSize.width,
+                                                                          child: productController.imagesWidget.value[indexListImages][itemIndex],
+                                                                        ),
+                                                          ),
+                                                                      options: CarouselOptions(
+                                                                          viewportFraction: 1,
+                                                                          height: 300,
+                                                                          pageSnapping: true,
+                                                                          //autoPlay: true,
+                                                                          enableInfiniteScroll: true,
+                                                                      enlargeCenterPage: true,
+                                                                        enlargeStrategy: CenterPageEnlargeStrategy.height,
+                                                                        autoPlayInterval: 2500.milliseconds,
+                                                                        onPageChanged:(index,reason ){
+                                                                            setState(() {
+                                                                              activeIndex = index;
+                                                                            });
+                                                                        },
 
-                                                        Obx(
-                                                      () => Carousel(
-                                                        onImageTap: (i) {
-                                                          print(i);
-                                                          gallery(i);
-                                                        },
-                                                        dotSize: 4.0,
-                                                        dotSpacing: 15.0,
-                                                        dotVerticalPadding: 00,
-                                                        indicatorBgPadding: 14,
-                                                        autoplay: false,
-                                                        autoplayDuration:
-                                                            7.seconds,
-                                                        animationDuration:
-                                                            900.milliseconds,
-                                                        dotBgColor: Colors
-                                                            .transparent
-                                                            .withOpacity(0.1),
-                                                        dotColor: Colors.white,
-                                                        dotIncreasedColor:
-                                                            Colors.red,
-                                                        dotPosition: DotPosition
-                                                            .bottomLeft,
-                                                        images: productController
-                                                                .imagesWidget
-                                                                .value[
-                                                            indexListImages],
-                                                      ),
-                                                    ),
+                                                                      ),
+                                                                    ),
+                                                        SizedBox(height: 4.0,),
+                                                        buildIndicator(productController.imagesWidget.value[indexListImages].length),
+                                                      ],
+                                                    )
+
                                                   ),
                                                 ],
                                               )
@@ -306,9 +307,9 @@ class _ProductDetailsState extends State<ProductDetails>
                                                   likeBuilder: (bool isLiked) {
                                                     return Container(
                                                       width: screenSize.width *
-                                                              .1.w,
+                                                          .1.w,
                                                       height: screenSize.width *
-                                                              .1.h,
+                                                          .1.h,
                                                       decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
@@ -340,16 +341,17 @@ class _ProductDetailsState extends State<ProductDetails>
                                                     .getDetailsDone.value ==
                                                 true
                                             ? Positioned(
-                                                top:
-                                                    screenSize.height * .1 - 23.h,
+                                                top: screenSize.height * .1 -
+                                                    23.h,
                                                 left: 10..w,
                                                 child: Container(
                                                   padding: EdgeInsets.zero,
                                                   margin: EdgeInsets.zero,
-                                                  width:
-                                                      screenSize.width * .1 - 5.w,
+                                                  width: screenSize.width * .1 -
+                                                      5.w,
                                                   height:
-                                                      screenSize.width * .1 - 5.w,
+                                                      screenSize.width * .1 -
+                                                          5.w,
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -401,19 +403,19 @@ class _ProductDetailsState extends State<ProductDetails>
                                       ],
                                     ),
                                   ),
-                                   SizedBox(
+                                  SizedBox(
                                     height: 8.0.h,
                                   ),
                                   Padding(
-                                    padding:  EdgeInsets.symmetric(
+                                    padding: EdgeInsets.symmetric(
                                         horizontal: 12.0.w),
                                     child: Obx(
                                       () => Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                           SizedBox(
-                                            height: 12.0.h,
+                                          SizedBox(
+                                            height: 10.0.h,
                                           ),
                                           Text(
                                             '${productController.productDetails.providerName}',
@@ -424,58 +426,58 @@ class _ProductDetailsState extends State<ProductDetails>
                                           ),
                                           SizedBox(
                                             height:
-                                                screenSize.height * 0.1 - 76.h,
+                                                screenSize.height * 0.1 - 70.h,
                                           ),
                                           Text(
                                             productController
                                                 .productDetails.en_name!
                                                 .toUpperCase(),
-                                            style:  TextStyle(
+                                            style: TextStyle(
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: 16.sp,
+                                                fontSize: 15.sp,
                                                 color: Colors.black),
                                           ),
                                           SizedBox(
                                             height:
-                                                screenSize.height * 0.1 - 76.h,
+                                                screenSize.height * 0.1 - 72.h,
                                           ),
                                           Text(
                                             '${productController.productDetails.price! - productController.offerFromPrice.value} QAR',
-                                            style:  TextStyle(
+                                            style: TextStyle(
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: 16.sp,
+                                                fontSize: 15.sp,
                                                 color: Colors.black),
                                           ),
                                           SizedBox(
                                             height:
                                                 screenSize.height * 0.1 - 60.h,
                                           ),
-                                           Text(
+                                          Text(
                                             'Size',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 14.sp,
                                                 color: Colors.black),
                                           ),
-                                           SizedBox(
+                                          SizedBox(
                                             height: 2.h,
                                           ),
                                           _buildSizesOptions(screenSize),
-                                           SizedBox(
+                                          SizedBox(
                                             height: 22.0.h,
                                           ),
-                                           Text(
+                                          Text(
                                             'Color',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 14.sp,
                                                 color: Colors.black),
                                           ),
-                                           SizedBox(
+                                          SizedBox(
                                             height: 2.h,
                                           ),
                                           _buildColorsOptions(screenSize),
-                                           SizedBox(
+                                          SizedBox(
                                             height: 22.0.h,
                                           ),
                                           Container(
@@ -491,7 +493,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                 screenSize.height * 0.1 - 30.h,
                                             child: Row(
                                               children: [
-                                                 SizedBox(
+                                                SizedBox(
                                                   width: 10.0.w,
                                                 ),
                                                 SvgPicture.asset(
@@ -520,8 +522,8 @@ class _ProductDetailsState extends State<ProductDetails>
                                     ),
                                   ),
                                   Padding(
-                                    padding:  EdgeInsets.symmetric(
-                                        vertical: 14.0.h),
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 14.0.h),
                                     child: Container(
                                       margin: const EdgeInsets.symmetric(
                                           horizontal: 0, vertical: 0),
@@ -530,17 +532,16 @@ class _ProductDetailsState extends State<ProductDetails>
                                           borderRadius:
                                               BorderRadius.circular(3)),
                                       child: Padding(
-                                        padding:  EdgeInsets.symmetric(
+                                        padding: EdgeInsets.symmetric(
                                             vertical: 12.h),
                                         child: Container(
                                           color: Colors.white,
                                           child: Column(
                                             children: [
                                               Padding(
-                                                padding:
-                                                     EdgeInsets.symmetric(
-                                                        vertical: 18.0.h,
-                                                        horizontal: 12.w),
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 18.0.h,
+                                                    horizontal: 12.w),
                                                 child: Row(
                                                   children: [
                                                     SvgPicture.asset(
@@ -553,14 +554,14 @@ class _ProductDetailsState extends State<ProductDetails>
                                                     const SizedBox(
                                                       width: 5.0,
                                                     ),
-                                                     Text(
+                                                    Text(
                                                       'Seller',
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           fontSize: 15.sp),
                                                     ),
-                                                     SizedBox(
+                                                    SizedBox(
                                                       width: 8.0.w,
                                                     ),
                                                     Text(
@@ -611,7 +612,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                         color: _color,
                                                         fontWeight:
                                                             FontWeight.w500))),
-                                             SizedBox(
+                                            SizedBox(
                                               height: 10.0.h,
                                             ),
                                             AnimatedContainer(
@@ -649,7 +650,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                       fontWeight:
                                                           FontWeight.w500),
                                                 )),
-                                             SizedBox(
+                                            SizedBox(
                                               height: 10.0.h,
                                             ),
                                             AnimatedContainer(
@@ -669,7 +670,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                             Padding(
+                                            Padding(
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 14.0.h,
                                                   horizontal: 12.w),
@@ -683,10 +684,9 @@ class _ProductDetailsState extends State<ProductDetails>
                                               ),
                                             ),
                                             Padding(
-                                              padding:
-                                                   EdgeInsets.symmetric(
-                                                      vertical: 12.0.h,
-                                                      horizontal: 12.w),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 12.0.h,
+                                                  horizontal: 12.w),
                                               child: Row(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
@@ -716,10 +716,9 @@ class _ProductDetailsState extends State<ProductDetails>
                                               color:
                                                   myHexColor3.withOpacity(0.4),
                                               child: Padding(
-                                                padding:
-                                                     EdgeInsets.symmetric(
-                                                        vertical: 12.0.h,
-                                                        horizontal: 12.w),
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 12.0.h,
+                                                    horizontal: 12.w),
                                                 child: Row(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
@@ -763,10 +762,9 @@ class _ProductDetailsState extends State<ProductDetails>
                                               ),
                                             ),
                                             Padding(
-                                              padding:
-                                                   EdgeInsets.symmetric(
-                                                      vertical: 12.0.h,
-                                                      horizontal: 12.w),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 12.0.h,
+                                                  horizontal: 12.w),
                                               child: Row(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
@@ -805,10 +803,9 @@ class _ProductDetailsState extends State<ProductDetails>
                                               color:
                                                   myHexColor3.withOpacity(0.4),
                                               child: Padding(
-                                                padding:
-                                                     EdgeInsets.symmetric(
-                                                        vertical: 12.0.h,
-                                                        horizontal: 12.w),
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 12.0.h,
+                                                    horizontal: 12.w),
                                                 child: Row(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
@@ -844,10 +841,9 @@ class _ProductDetailsState extends State<ProductDetails>
                                               ),
                                             ),
                                             Padding(
-                                              padding:
-                                                   EdgeInsets.symmetric(
-                                                      vertical: 12.0.h,
-                                                      horizontal: 12.w),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 12.0.h,
+                                                  horizontal: 12.w),
                                               child: Row(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
@@ -884,10 +880,9 @@ class _ProductDetailsState extends State<ProductDetails>
                                               color:
                                                   myHexColor3.withOpacity(0.4),
                                               child: Padding(
-                                                padding:
-                                                     EdgeInsets.symmetric(
-                                                        vertical: 12.0.h,
-                                                        horizontal: 12.w),
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 12.0.h,
+                                                    horizontal: 12.w),
                                                 child: Row(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
@@ -925,17 +920,17 @@ class _ProductDetailsState extends State<ProductDetails>
                                               ),
                                             ),
                                             Padding(
-                                              padding:
-                                                   EdgeInsets.symmetric(
-                                                      vertical: 12.0.h,
-                                                      horizontal: 12.w),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 12.0.h,
+                                                  horizontal: 12.w),
                                               child: Row(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   SizedBox(
                                                       width: screenSize.width *
-                                                              .5 - 30.w,
+                                                              .5 -
+                                                          30.w,
                                                       child: Text(
                                                         'Model Number',
                                                         style: TextStyle(
@@ -966,10 +961,9 @@ class _ProductDetailsState extends State<ProductDetails>
                                               color:
                                                   myHexColor3.withOpacity(0.4),
                                               child: Padding(
-                                                padding:
-                                                     EdgeInsets.symmetric(
-                                                        vertical: 12.0.h,
-                                                        horizontal: 12.w),
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 12.0.h,
+                                                    horizontal: 12.w),
                                                 child: Row(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
@@ -977,7 +971,8 @@ class _ProductDetailsState extends State<ProductDetails>
                                                     SizedBox(
                                                         width:
                                                             screenSize.width *
-                                                                    .5 - 30.w,
+                                                                    .5 -
+                                                                30.w,
                                                         child: Text(
                                                           'Merchant',
                                                           style: TextStyle(
@@ -1016,7 +1011,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: [
-                                                 Padding(
+                                                Padding(
                                                   padding: EdgeInsets.only(
                                                       right: 12.0.w,
                                                       left: 12.0.w,
@@ -1032,8 +1027,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding:  EdgeInsets
-                                                          .symmetric(
+                                                  padding: EdgeInsets.symmetric(
                                                       vertical: 1.0.h,
                                                       horizontal: 12.w),
                                                   child: Text(
@@ -1041,34 +1035,34 @@ class _ProductDetailsState extends State<ProductDetails>
                                                         .productDetails.desc_EN
                                                         .toString(),
                                                     maxLines: 6,
-                                                    style:  TextStyle(
+                                                    style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 12.sp,
                                                         fontWeight:
                                                             FontWeight.w300),
                                                   ),
                                                 ),
-                                                 SizedBox(
+                                                SizedBox(
                                                   height: 150.h,
                                                 )
                                               ],
                                             ),
                                           ),
                                         ),
-                                   SizedBox(
+                                  SizedBox(
                                     height: 40.h,
                                   ),
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Padding(
-                                      padding:  EdgeInsets.only(
+                                      padding: EdgeInsets.only(
                                           right: 12.0.w,
                                           left: 12.0.w,
                                           top: 22.0.h,
                                           bottom: 10.h),
                                       child: Text(
                                         'More from ${productController.product.value.brand}',
-                                        style:  TextStyle(
+                                        style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w800),
@@ -1076,7 +1070,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                     ),
                                   ),
                                   buildHorizontalListOfProducts(true),
-                                   SizedBox(
+                                  SizedBox(
                                     height: 60.h,
                                   ),
                                 ],
@@ -1114,7 +1108,7 @@ class _ProductDetailsState extends State<ProductDetails>
           height: screenSize.height * 0.1 / 7.h,
         ),
         Padding(
-          padding:  EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 12.w),
+          padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 12.w),
           child: Shimmer.fromColors(
             baseColor: Colors.grey[400]!,
             highlightColor: Colors.grey[300]!,
@@ -1127,7 +1121,7 @@ class _ProductDetailsState extends State<ProductDetails>
           ),
         ),
         Padding(
-          padding:  EdgeInsets.symmetric(vertical: 5.0.h, horizontal: 12.w),
+          padding: EdgeInsets.symmetric(vertical: 5.0.h, horizontal: 12.w),
           child: Shimmer.fromColors(
             baseColor: Colors.grey[400]!,
             highlightColor: Colors.grey[300]!,
@@ -1184,8 +1178,7 @@ class _ProductDetailsState extends State<ProductDetails>
         Row(
           children: [
             Padding(
-              padding:
-                   EdgeInsets.symmetric(vertical: 0.0.h, horizontal: 12.w),
+              padding: EdgeInsets.symmetric(vertical: 0.0.h, horizontal: 12.w),
               child: Shimmer.fromColors(
                 baseColor: Colors.grey[400]!,
                 highlightColor: Colors.grey[300]!,
@@ -1199,8 +1192,7 @@ class _ProductDetailsState extends State<ProductDetails>
               ),
             ),
             Padding(
-              padding:
-                   EdgeInsets.symmetric(vertical: 0.0.h, horizontal: 12.w),
+              padding: EdgeInsets.symmetric(vertical: 0.0.h, horizontal: 12.w),
               child: Shimmer.fromColors(
                 baseColor: Colors.grey[400]!,
                 highlightColor: Colors.grey[300]!,
@@ -1214,8 +1206,7 @@ class _ProductDetailsState extends State<ProductDetails>
               ),
             ),
             Padding(
-              padding:
-                   EdgeInsets.symmetric(vertical: 0.0, horizontal: 12.w),
+              padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 12.w),
               child: Shimmer.fromColors(
                 baseColor: Colors.grey[400]!,
                 highlightColor: Colors.grey[300]!,
@@ -1234,7 +1225,7 @@ class _ProductDetailsState extends State<ProductDetails>
           height: 60,
         ),
         Padding(
-          padding:  EdgeInsets.symmetric(vertical: 0.0, horizontal: 12.w),
+          padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 12.w),
           child: Shimmer.fromColors(
             baseColor: Colors.grey[200]!,
             highlightColor: Colors.grey[100]!,
@@ -1247,7 +1238,7 @@ class _ProductDetailsState extends State<ProductDetails>
           ),
         ),
         Padding(
-          padding:  EdgeInsets.symmetric(vertical: 4.0, horizontal: 12.w),
+          padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 12.w),
           child: Shimmer.fromColors(
             baseColor: Colors.grey[200]!,
             highlightColor: Colors.grey[100]!,
@@ -1298,7 +1289,7 @@ class _ProductDetailsState extends State<ProductDetails>
                     });
                   },
                   child: Padding(
-                    padding:  EdgeInsets.only(right: 8.0.w),
+                    padding: EdgeInsets.only(right: 8.0.w),
                     child: Container(
                       height: 24.h,
                       width: 78.w,
@@ -1364,7 +1355,7 @@ class _ProductDetailsState extends State<ProductDetails>
                     });
                   },
                   child: Padding(
-                    padding:  EdgeInsets.only(right: 8.0.w),
+                    padding: EdgeInsets.only(right: 8.0.w),
                     child: Container(
                       height: 24.h,
                       width: 78.w,
@@ -1398,7 +1389,7 @@ class _ProductDetailsState extends State<ProductDetails>
     for (int i = 0; productController.productDetails.special!.length > i; i++) {
       sList.add(
         Padding(
-          padding:  EdgeInsets.symmetric(vertical: 6.0.h),
+          padding: EdgeInsets.symmetric(vertical: 6.0.h),
           child: Column(
             children: [
               Row(
@@ -1501,11 +1492,11 @@ class _ProductDetailsState extends State<ProductDetails>
                                     child: Card(
                                       child: Column(
                                         children: [
-                                           SizedBox(
+                                          SizedBox(
                                             height: 55.h,
                                           ),
                                           Container(
-                                            margin:  EdgeInsets.only(
+                                            margin: EdgeInsets.only(
                                                 left: 10.w, right: 10.w),
                                             child: Row(
                                               children: [
@@ -1532,8 +1523,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                               EdgeInsets
-                                                                      .only(
+                                                              EdgeInsets.only(
                                                                   left: 4.0.w),
                                                           child: Column(
                                                             crossAxisAlignment:
@@ -1544,8 +1534,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                                 width: screenSize
                                                                         .width *
                                                                     0.4.w,
-                                                                child:
-                                                                     Text(
+                                                                child: Text(
                                                                   'iphone 12 232323 32323 32323 2323 23233 32',
                                                                   maxLines: 1,
                                                                   overflow:
@@ -1577,15 +1566,14 @@ class _ProductDetailsState extends State<ProductDetails>
                                                         ),
                                                         Padding(
                                                           padding:
-                                                               EdgeInsets
-                                                                      .only(
+                                                              EdgeInsets.only(
                                                                   left: 80.0.w),
                                                           child: Column(
                                                             crossAxisAlignment:
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
-                                                               Text(
+                                                              Text(
                                                                 'Cart Total',
                                                                 style: TextStyle(
                                                                     fontSize:
@@ -1603,7 +1591,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                                       .value
                                                                       .toStringAsFixed(
                                                                           2),
-                                                                  style:  TextStyle(
+                                                                  style: TextStyle(
                                                                       fontSize:
                                                                           14.sp,
                                                                       fontWeight:
@@ -1732,6 +1720,17 @@ class _ProductDetailsState extends State<ProductDetails>
           index: i,
           urlImages:
               productController.imagesData[indexListImages].imagesUrls)));
+
+  buildIndicator(int count) =>AnimatedSmoothIndicator(
+      activeIndex: activeIndex,
+      count: count,
+    effect:WormEffect(
+      dotHeight: 10,
+      dotWidth: 10,
+      activeDotColor: myHexColor
+    ),
+
+  );
 }
 
 class GalleryWidget extends StatefulWidget {
@@ -1790,7 +1789,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                   onPageChanged: (index) => setState(() => this.index = index),
                 ),
                 Container(
-                  padding:  EdgeInsets.only(
+                  padding: EdgeInsets.only(
                       top: 33.h, bottom: 20.h, right: 20.w, left: 20.w),
                   child: Text(
                     'image ${index + 1}/${widget.urlImages.length}',

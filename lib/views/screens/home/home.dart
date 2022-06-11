@@ -1,4 +1,4 @@
-import 'package:carousel_pro/carousel_pro.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -60,6 +60,16 @@ class _HomeScreenState extends State<HomeScreen> {
   static const defaultPadding = 20.0;
   static const cartBarHeight = 100.0;
   static const headerHeight = 85.0;
+  var images = [
+  Image.asset(
+  'assets/images/pexels-markus-spiske-3806753.jpg',
+  fit: BoxFit.fill),
+  Image.asset('assets/images/productsample.jpg',
+  fit: BoxFit.fill),
+  Image.asset(
+  'assets/images/Qatar-Online-Marketing-Profile.jpg',
+  fit: BoxFit.fill),
+  ];
 
   @override
   void dispose() {
@@ -145,27 +155,25 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           height: 170.0.h,
                           width: double.infinity,
-                          child: Carousel(
-                            dotSize: 6.0,
-                            dotSpacing: 15.0,
-                            autoplayDuration: 8.seconds,
-                            animationDuration: 500.milliseconds,
-                            dotBgColor: Colors.transparent.withOpacity(0.1),
-                            dotColor: Colors.white,
-                            dotIncreasedColor: Colors.red,
-                            dotPosition: DotPosition.bottomLeft,
-                            images: [
-                              Image.asset(
-                                  'assets/images/pexels-markus-spiske-3806753.jpg',
-                                  fit: BoxFit.fill),
-                              Image.asset('assets/images/productsample.jpg',
-                                  fit: BoxFit.fill),
-                              Image.asset(
-                                  'assets/images/Qatar-Online-Marketing-Profile.jpg',
-                                  fit: BoxFit.fill),
-                            ],
-                          ),
-                        ),
+                          child: CarouselSlider(
+                            options: CarouselOptions(height: screenSize.width.w,
+                            viewportFraction: 1,
+                              autoPlay: true
+                            ),
+                            items: images.map((i) {
+                              return Builder(
+                                builder: (BuildContext context) {
+                                  return Container(
+                                      width: screenSize.width.w,
+                                      decoration: BoxDecoration(
+                                          color: Colors.amber
+                                      ),
+                                      child: i
+                                  );
+                                },
+                              );
+                            }).toList(),
+                        ),),
                          SizedBox(
                           height: 22.0.h,
                         ),
