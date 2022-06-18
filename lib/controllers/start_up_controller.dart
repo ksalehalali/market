@@ -5,7 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get_storage/get_storage.dart';
 import '../controllers/register_controller.dart';
-import '../views/screens/home/account.dart';
+import '../views/screens/account/account.dart';
 import '../views/screens/main_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -25,6 +25,7 @@ class LangController extends GetxController {
     super.onInit();
     LocalStorage localStorage = LocalStorage();
     appLocal = await localStorage.langSelected == null ? 'en': await localStorage.langSelected;
+    print('local language:   $appLocal');
     Get.updateLocale(Locale(appLocal));
     changeDIR(appLocal);
     update();

@@ -223,7 +223,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     child: Stack(
                       alignment: Alignment.centerLeft,
                       children: [
-                        Container(width:screenSize.width.w ,height: 0.5.h,color: Colors.grey[500],),
+                        Positioned(
+                            top: 0.0,
+                            child: Container(width:screenSize.width.w ,height: 0.5.h,color: Colors.grey[500],)),
 
                         CustomScrollView(
                           anchor: 0.0,

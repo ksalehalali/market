@@ -1,7 +1,42 @@
 Map<String,String> ar ={
-  'your_account':'حسابك',
+  'my_account':'حسابي',
+  'welcome_txt':'أهلاً بك',
+  'join us,login':''"انضم لنا او قم بتسجيل دخولك حتى تستفيد من كل ميزات التطبيق.",
+  'login_txt':'دخول',
   'personal_info':'المعلومات الشخصية',
+  'My_Address_txt':'عناويني',
+  'App_Settings_txt':'الإعدادات',
+  'Language_txt':'اللغة',
+  'Notifications_txt':'الإشعارات',
+  'Contact_Us_txt':'التواصل',
+  'Help_And_Technical_Support_txt':'المساعدة والدعم التقني',
+  'Terms_Of_Usage_txt':'شروط الإستخدام',
+  'Sign_Out_txt':'تسجيل خروج',
+  'orders_btn':'الطلبيات',
+  'wallet_btn':'المحفظة',
+  'favorite_btn':'المفضلة',
   'your_activities':'نشاطاتك',
+  //-
+
+  'order_txt':'طلبية',
+  'Placed On_txt':'تاريخ الطلب',
+  'View Details_txt':'عرض الكل',
+  //-
+
+  'Wallet balance_txt':'الرصيد',
+  'Credits_txt':'التعبئات',
+  'Transfers_txt':'التحويلات',
+  //-
+
+  'Shop by category_txt':'تسوق حسب الفئة',
+  'Latest Products_txt':'آخر المنتجات',
+  'Recommended for you_txt':'المقترحة لك',
+  'Offers_txt':'العروض',
+  'Offers and Promotions_txt':'العروض والترويج',
+  'On all men\'s suits from the most famous world_txt':'بدلات رجالية من اشهر الماركات العالمية',
+
+
+
   'get_support_btn':'الحصول على الدعم',
   'help_btn':'المساعدة',
   'share_app_btn':'شارك التطبيق',
@@ -92,8 +127,44 @@ Map<String,String> ar ={
 };
 
 Map<String,String> en ={
-  'your_account':'Your Account',
+
+  'my_account':'My Account',
+  'welcome_txt':'welcome',
+  'join us,login':''"We'd like if you joined us, login & access all of app features",
+  'login_txt':'Login',
   'personal_info':'Personal Information',
+  'My_Address_txt':'My Address',
+  'App_Settings_txt':'App Settings',
+  'Language_txt':'Language',
+  'Notifications_txt':'Notifications',
+  'Contact_Us_txt':'Contact Us',
+  'Help_And_Technical_Support_txt':'Help And Technical Support',
+  'Terms_Of_Usage_txt':'Terms Of Usage',
+  'Contact_Us_txt':'Contact Us',
+  'Sign_Out_txt':'Sign Out',
+'orders_btn':'Orders',
+  'wallet_btn':'Wallet',
+  'favorite_btn':'Favorites',
+//-
+
+  'order_txt':'Order',
+  'Placed On_txt':'Placed On',
+  'View Details_txt':'View Details',
+  //-
+
+  'Wallet balance_txt':'Wallet balance',
+  'Credits_txt':'Credits',
+  'Transfers_txt':'Transfers',
+  //-
+
+  'Shop by category_txt':'Shop by category',
+  'Latest Products_txt':'Latest Products',
+  'Recommended for you_txt':'Recommended for you',
+  'Offers_txt':'Offers',
+  'Offers and Promotions_txt':'Offers and Promotions',
+  'On all men\'s suits from the most famous world_txt':'On all men\'s suits from the most famous world',
+
+
   'your_activities':'Your activities',
   'get_support_btn':'Get support',
   'help_btn':'Help',

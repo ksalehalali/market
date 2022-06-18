@@ -69,7 +69,7 @@ class ProductItemCard extends StatelessWidget {
         width: size.width * 0.4 + 10.w,
         decoration: BoxDecoration(
             border:
-                Border.all(width: 0.3, color: Colors.grey.withOpacity(0.4))),
+                Border.all(width: 0.5, color: myHexColor)),
         margin:  EdgeInsets.only(
           left: 5.w,
           right: 5.w,

@@ -1,7 +1,6 @@
 
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -67,7 +66,7 @@ class _AccountState extends State<Account> {
                       SizedBox(height: 8.0.h,),
                       // WELCOME
                       Text(
-                        "Welcome.",
+                        "welcome_txt".tr,
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.bold,
@@ -77,7 +76,7 @@ class _AccountState extends State<Account> {
                       SizedBox(height: 8.0.h,),
                       // JOIN US
                       Text(
-                        "We'd like if you joined us, login & access all of app features",
+                        "join us,login".tr,
                         style: TextStyle(
                             fontSize: 18.sp,
                             fontWeight: FontWeight.bold,
@@ -108,7 +107,7 @@ class _AccountState extends State<Account> {
                                 ),
                                 SizedBox(height: 8.0.h,),
                                 Text(
-                                  "Login",
+                                  "login_txt".tr,
                                   style: TextStyle(
                                       fontSize: 20.sp,
                                       fontWeight: FontWeight.bold,
@@ -130,7 +129,7 @@ class _AccountState extends State<Account> {
                     children: [
                       SizedBox(height: 8.0.h,),
                       Text(
-                        "Welcome.",
+                        "welcome_txt".tr,
                         style: TextStyle(
                           fontSize: 13.sp,
                           fontWeight: FontWeight.bold,
@@ -250,9 +249,9 @@ class _AccountState extends State<Account> {
                         color: Color.fromRGBO(245, 246, 248, 1.0),
                         padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                         child: Align(
-                          alignment: Alignment.centerLeft, // Align however you like (i.e .centerRight, centerLeft)
+                          alignment: Get.locale == "en"? Alignment.centerLeft:Alignment.centerRight, // Align however you like (i.e .centerRight, centerLeft)
                           child: Text(
-                            "My Account",
+                            "my_account".tr,
                             textAlign: TextAlign.start,
                             style: TextStyle(
                                 fontSize: 16.sp,
@@ -264,7 +263,7 @@ class _AccountState extends State<Account> {
                       ),
                     ),
 
-                    buildOptionRow("Personal File", Icons.account_circle_outlined),
+                    buildOptionRow("personal_info".tr, Icons.account_circle_outlined),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 64.0.w),
                       child: Divider(
@@ -277,7 +276,7 @@ class _AccountState extends State<Account> {
 
                           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ListAddresses(fromAccount: true,fromCart: false,)));
                         },
-                        child: buildOptionRow("My Address", Icons.location_history)),
+                        child: buildOptionRow("My_Address_txt".tr, Icons.location_history)),
                   ],
                 ) :
                 Container(),
@@ -287,9 +286,9 @@ class _AccountState extends State<Account> {
                   color: Color.fromRGBO(245, 246, 248, 1.0),
                   padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                   child: Align(
-                    alignment: Alignment.centerLeft, // Align however you like (i.e .centerRight, centerLeft)
+                    alignment: Get.locale == "en"? Alignment.centerLeft:Alignment.centerRight,// Align however you like (i.e .centerRight, centerLeft)
                     child: Text(
-                      "App Settings",
+                      "App_Settings_txt".tr,
                       textAlign: TextAlign.start,
                       style: TextStyle(
                           fontSize: 16.sp,
@@ -299,7 +298,7 @@ class _AccountState extends State<Account> {
                     ),
                   ),
                 ),
-                buildOptionRow("Language", Icons.language),
+                buildOptionRow("Language_txt".tr, Icons.language),
 
 
                 Container(
@@ -308,16 +307,16 @@ class _AccountState extends State<Account> {
                     thickness: 1,
                   ),
                 ),
-                buildOptionRow("Notifications", Icons.notification_important_outlined),
+                buildOptionRow("Notifications_txt".tr, Icons.notification_important_outlined),
                 // CONTACT US
                 Container(
                   height: 60.h,
                   color: Color.fromRGBO(245, 246, 248, 1.0),
                   padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                   child: Align(
-                    alignment: Alignment.centerLeft, // Align however you like (i.e .centerRight, centerLeft)
+                    alignment:Get.locale == "en"? Alignment.centerLeft:Alignment.centerRight,// Align however you like (i.e .centerRight, centerLeft)
                     child: Text(
-                      "Contact Us",
+                      "Contact_Us_txt".tr,
                       textAlign: TextAlign.start,
                       style: TextStyle(
                           fontSize: 16.sp,
@@ -327,21 +326,21 @@ class _AccountState extends State<Account> {
                     ),
                   ),
                 ),
-                buildOptionRow("Help And Technical Support", Icons.contact_support_outlined),
+                buildOptionRow("Help_And_Technical_Support_txt".tr, Icons.contact_support_outlined),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 64.0.w),
                   child: Divider(
                     thickness: 1,
                   ),
                 ),
-                buildOptionRow("Terms Of Usage", Icons.event_note_outlined),
+                buildOptionRow("Terms_Of_Usage_txt".tr, Icons.event_note_outlined),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 64.0.w),
                   child: Divider(
                     thickness: 1,
                   ),
                 ),
-                buildOptionRow("Contact Us", Icons.call),
+                buildOptionRow("Contact_Us_txt".tr, Icons.call),
                 accountController.isLoggedIn.value != false ?
                 // LOGOUT
                 Container(
@@ -362,7 +361,7 @@ class _AccountState extends State<Account> {
                         Align(
                           alignment: Alignment.centerLeft, // Align however you like (i.e .centerRight, centerLeft)
                           child: Text(
-                            "Sign Out",
+                            "Sign_Out_txt".tr,
                             textAlign: TextAlign.start,
                             style: TextStyle(
                                 fontSize: 16.sp,
@@ -382,6 +381,7 @@ class _AccountState extends State<Account> {
         ),
       ),
     );
+
   }
 
   Container buildOptionRow(String optionText, IconData optionIcon) {

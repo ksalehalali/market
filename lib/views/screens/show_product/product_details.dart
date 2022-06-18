@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
@@ -16,9 +17,11 @@ import '../../widgets/horizontal_listOfProducts.dart';
 import '../auth/register.dart';
 import '../categories/categories_screen.dart';
 import '../order/Cart.dart';
-import '../home/account.dart';
+import '../account/account.dart';
 import '../home/home.dart';
 import '../home/search_area_des.dart';
+import 'package:html/parser.dart' show parse;
+
 
 class ProductDetails extends StatefulWidget {
   final ProductModel? product;
@@ -1030,17 +1033,11 @@ class _ProductDetailsState extends State<ProductDetails>
                                                   padding: EdgeInsets.symmetric(
                                                       vertical: 1.0.h,
                                                       horizontal: 12.w),
-                                                  child: Text(
-                                                    productController
-                                                        .productDetails.desc_EN
-                                                        .toString(),
-                                                    maxLines: 6,
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 12.sp,
-                                                        fontWeight:
-                                                            FontWeight.w300),
-                                                  ),
+                                                  child: productController
+                                                      .productDetails.desc_EN !=null ?Html(
+                                                    data: productController
+                                                        .productDetails.desc_EN,
+                                                  ):Container(),
                                                 ),
                                                 SizedBox(
                                                   height: 150.h,

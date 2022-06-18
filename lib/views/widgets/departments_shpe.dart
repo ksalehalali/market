@@ -44,7 +44,8 @@ class DepartmentShapeTile extends StatelessWidget {
           SizedBox(height: 5),
           SizedBox(
             width: screenSize.width *0.2+10,
-              child: Text(this.title!,overflow: TextOverflow.fade,style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),textAlign: TextAlign.center,))
+
+              child: Text(this.title!,overflow: TextOverflow.fade,style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold),textAlign: TextAlign.center,))
         ],
       ),
     );

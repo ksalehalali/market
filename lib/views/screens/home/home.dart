@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:market/controllers/lang_controller.dart';
 import 'package:market/core/info_widget.dart';
 import 'package:market/views/screens/categories/veiw_all_screen.dart';
 import 'package:market/views/screens/home/search_area_des.dart';
@@ -36,6 +37,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ProductsController productController = Get.find();
   final AddressController addressController = Get.find();
+  final LangController langController = Get.find();
 
   ScrollController? scrollController;
 
@@ -97,19 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
               top: 10.h,
               child: InkWell(
                       onTap: () async {
-                        // var response = await MyFatoorah.startPayment(
-                        // context: context,
-                        // request: MyfatoorahRequest.test(
-                        // currencyIso: Country.Qatar,
-                        // successUrl: "http://www.google.com",
-                        // errorUrl: "http://www.facebook.com",
-                        // invoiceAmount: 100,
-                        // language: ApiLanguage.English,
-                        //
-                        // token: "rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL",
-                        // ),
-                        // );
-                        // log(response.paymentId.toString());
+
                       },
                       child: headHomeScreen(MediaQuery.of(context)))),
           Positioned(
@@ -166,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   return Container(
                                       width: screenSize.width.w,
                                       decoration: BoxDecoration(
-                                          color: Colors.amber
+                                          color: Colors.white
                                       ),
                                       child: i
                                   );
@@ -180,13 +170,13 @@ class _HomeScreenState extends State<HomeScreen> {
                          Padding(
                           padding: EdgeInsets.symmetric(horizontal: 12.0.w),
                           child: Text(
-                            'Shop by category',
+                            'Shop by category_txt'.tr,
                             style:
                                 TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
                           ),
                         ),
                         SizedBox(
-                            height: screenSize.height * 0.2 + 55.h,
+                            height: screenSize.height * 0.2 + 95.h,
                             width: 400.w,
                             child: _buildDepartmentsList()),
                         SizedBox(
@@ -200,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 left: 12,
                               ),
                               child: Text(
-                                'Latest Products',
+                                'Latest Products_txt'.tr,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 14.sp),
                               ),
@@ -214,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 padding: const EdgeInsets.only(
                                     top: 0.0, left: 12, right: 5.0),
                                 child: Text(
-                                  'View all',
+                                  'View Details_txt'.tr,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13.sp,
@@ -243,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              Padding(
                               padding: EdgeInsets.only(top: 0.0, left: 12),
                               child: Text(
-                                'Recommended for you',
+                                'Recommended for you_txt'.tr,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 14.sp),
                               ),
@@ -257,7 +247,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 padding: const EdgeInsets.only(
                                     top: 0.0, left: 12, right: 5.0),
                                 child: Text(
-                                  'View all',
+                                  'View Details_txt'.tr,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13.sp,
@@ -284,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              Padding(
                               padding: EdgeInsets.only(top: 0.0, left: 12),
                               child: Text(
-                                'Offers',
+                                'Offers_txt'.tr,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 14.sp),
                               ),
@@ -298,7 +288,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 padding: const EdgeInsets.only(
                                     top: 0.0, left: 12, right: 5.0),
                                 child: Text(
-                                  'View all',
+                                  'View Details_txt'.tr,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13.sp,
@@ -348,13 +338,13 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisCount: 2,
               mainAxisSpacing: 3,
               crossAxisSpacing: 5.0,
-              childAspectRatio: 1.0),
+              childAspectRatio: 1.2),
           itemBuilder: (context, index) {
             return Padding(
                 padding: EdgeInsets.zero,
                 child: DepartmentShapeTile(
                   assetPath: categories[index]['imagePath'],
-                  title: categories[index]['catName'],
+                  title:langController.appLocal=='en' ?categories[index]['catName']:categories[index]['catNameAR'],
                   depId: categories[index]['id']!,
                 ));
           },
@@ -509,7 +499,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: screenSize.height * 0.1.h,
                 ),
                  Text(
-                  'Offers and Promotions',
+                  'Offers and Promotions_txt'.tr,
                   style: TextStyle(
                       fontSize: 22.sp,
                       color: Colors.white,
@@ -519,7 +509,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: screenSize.height * 0.1 - 70.h,
                 ),
                 Text(
-                  'On all men\'s suits from the most famous world',
+                  'On all men\'s suits from the most famous world_txt'.tr,
                   style: TextStyle(
                       fontSize: 16.sp,
                       color: Colors.grey[50],

@@ -8,7 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../../Assistants/globals.dart';
 import '../../../controllers/register_controller.dart';
-import '../home/account.dart';
+import '../account/account.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);

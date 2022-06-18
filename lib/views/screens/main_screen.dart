@@ -10,7 +10,7 @@ import 'auth/register.dart';
 import 'categories/categories_screen.dart';
 import 'offers_screen.dart';
 import 'order/Cart.dart';
-import 'home/account.dart';
+import 'account/account.dart';
 import 'home/home.dart';
 
 class MainScreen extends StatefulWidget {

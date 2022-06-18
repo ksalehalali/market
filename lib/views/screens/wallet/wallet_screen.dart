@@ -43,7 +43,7 @@ class _WalletScreenState extends State<WalletScreen> {
               children: [
                 Center(
                   child: Text(
-                    'Wallet balance',
+                    'Wallet balance_txt'.tr,
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -93,7 +93,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                 children: [
                                   AnimatedContainer(duration: 11.seconds,
                                       curve: Curves.easeIn,
-                                      child: Text('Credits',style: TextStyle(color: _color,fontWeight: FontWeight.w600))),
+                                      child: Text('Credits_txt'.tr,style: TextStyle(color: _color,fontWeight: FontWeight.w600))),
                                   SizedBox(height: 10.0,),
                                   AnimatedContainer(
                                     curve: Curves.easeInOut,
@@ -123,7 +123,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                       curve: Curves.easeIn,
                                       duration: 14.seconds,
 
-                                      child: Text('Transfers',style: TextStyle(color: _color2,fontWeight: FontWeight.w600),)),
+                                      child: Text('Transfers_txt'.tr,style: TextStyle(color: _color2,fontWeight: FontWeight.w600),)),
                                   SizedBox(height: 10.0,),
                                   AnimatedContainer(
                                     curve: Curves.easeInOut,

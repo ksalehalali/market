@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:market/controllers/lang_controller.dart';
 import '../../../Assistants/globals.dart';
 import '../../../controllers/cart_controller.dart';
 import 'order_summary.dart';
@@ -15,6 +16,8 @@ class MyOrders extends StatefulWidget {
 
 class _MyOrdersState extends State<MyOrders> {
   final CartController cartController = Get.find();
+  final LangController langController = Get.find();
+
   final screenSize = Get.size;
 
   @override
@@ -101,22 +104,43 @@ class _MyOrdersState extends State<MyOrders> {
                                 children: [
                                   SizedBox(
                                     width: screenSize.width * 0.8 - 46,
-                                    child: Text(
-                                      'Order ${cartController.myOrders[indexA]['result']['orderNumber']}',
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.grey[900],
-                                          fontWeight: FontWeight.bold),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'order_txt'.tr,
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.grey[900],
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          '${cartController.myOrders[indexA]['result']['orderNumber']}',
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.grey[900],
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   SizedBox(
                                     height: 3,
                                   ),
-                                  Text(
-                                    'Placed On  ${DateFormat('yyyy-MM-dd  HH:mm :ss').format(DateTime.parse(cartController.myOrders[indexA]['result']['orderDate']))}',
-                                    style: TextStyle(
-                                        fontSize: 11, color: Colors.grey[700]),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Placed On_txt'.tr,
+                                        style: TextStyle(
+                                            fontSize: 11, color: Colors.grey[700]),
+                                      ),
+                                      Text(
+                                        '${DateFormat('yyyy-MM-dd  HH:mm :ss').format(DateTime.parse(cartController.myOrders[indexA]['result']['orderDate']))}',
+                                        style: TextStyle(
+                                            fontSize: 11, color: Colors.grey[700]),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -137,7 +161,7 @@ class _MyOrdersState extends State<MyOrders> {
                                 child: Row(
                                   children: [
                                     Text(
-                                      'View Details',
+                                      'View Details_txt'.tr,
                                       style: TextStyle(
                                           fontSize: 13,
                                           color: Colors.blue[700],
@@ -222,7 +246,7 @@ class _MyOrdersState extends State<MyOrders> {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
-                                    "${cartController.myOrders[indexA]['result']['prduct'][index]['product']}",
+                                    langController.appLocal =='en'?"${cartController.myOrders[indexA]['result']['prduct'][index]['product']}":"${cartController.myOrders[indexA]['result']['prduct'][index]['product']}",
                                     style: const TextStyle(
                                         color: Colors.black54,
                                         fontWeight: FontWeight.bold,
