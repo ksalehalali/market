@@ -96,16 +96,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     return Stack(children: [
           Positioned(
-              top: 10.h,
+              top: 6.h,
               child: InkWell(
                       onTap: () async {
 
                       },
                       child: headHomeScreen(MediaQuery.of(context)))),
           Positioned(
-              top: 50.h, width: screenSize.width, child: SearchAreaDesign()),
+              top: 54.h, width: screenSize.width, child: SearchAreaDesign()),
           Positioned(
-            top: screenSize.height *0.1+25.h,
+            top: screenSize.height *0.1+29.h,
             child: Obx(() => AnimatedContainer(
                       duration: 400.milliseconds,
                       height: addressController.addressWidgetSize.value,
@@ -322,7 +322,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ))));
 
   }
-
   Widget _buildDepartmentsList() {
     return Padding(
       padding:  EdgeInsets.only(top: 12.0.h,right:10.w),
@@ -593,7 +592,6 @@ Widget buildProductShimmer() {
               ],
             ));
       });
-
 
 }
 

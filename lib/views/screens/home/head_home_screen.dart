@@ -19,7 +19,7 @@ Widget headHomeScreen(MediaQueryData screenSize) {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Hello!',
+              'welcome_txt'.tr,
               style: TextStyle(
                 fontSize: 13,
                 color: myHexColor3,

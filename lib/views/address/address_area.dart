@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,16 +11,20 @@ import '../../controllers/address_location_controller.dart';
 Widget addressHomeScreen(MediaQueryData screenSize) {
   final box = GetStorage();
   final AddressController addressController = Get.find();
-
+  final angle = -180 / 180 * pi;
+  final transform = Matrix4.identity()..setEntry(3, 2,0.001 )..rotateY(angle);
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: <Widget>[
-      SvgPicture.asset('assets/icons/shipping.svg',
-          color: Colors.grey[600],
-          height: 22.00,
-          width: 22.0,
-          semanticsLabel: 'A red up arrow'),
+      Transform(
+        transform: transform,
+        child: SvgPicture.asset('assets/icons/shipping.svg',
+            color: Colors.grey[600],
+            height: 22.00,
+            width: 22.0,
+            semanticsLabel: 'A red up arrow'),
+      ),
       SizedBox(
         width: screenSize.size.width * 0.1 - 30,
       ),
@@ -31,11 +37,11 @@ Widget addressHomeScreen(MediaQueryData screenSize) {
             height: 16,
             child: RichText(
                 text: TextSpan(children: [
-              const TextSpan(
-                  text: 'Delivery Address ',
+               TextSpan(
+                  text: 'Delivery Address _txt'.tr,
                   style: TextStyle(fontSize: 13, color: Colors.black)),
               TextSpan(
-                  text: box.read('address') ?? 'Add New Address',
+                  text: box.read('address') ?? 'Add New Address_txt'.tr,
                   style: const TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.bold,

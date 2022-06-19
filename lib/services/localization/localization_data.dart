@@ -1,6 +1,6 @@
 Map<String,String> ar ={
   'my_account':'حسابي',
-  'welcome_txt':'أهلاً بك',
+  'welcome_txt':'مرحباً بك.',
   'join us,login':''"انضم لنا او قم بتسجيل دخولك حتى تستفيد من كل ميزات التطبيق.",
   'login_txt':'دخول',
   'personal_info':'المعلومات الشخصية',
@@ -156,6 +156,9 @@ Map<String,String> en ={
   'Credits_txt':'Credits',
   'Transfers_txt':'Transfers',
   //-
+
+  'Delivery Address _txt':'Delivery Address ',
+  'Add New Address_txt':'Add New Address ',
 
   'Shop by category_txt':'Shop by category',
   'Latest Products_txt':'Latest Products',
