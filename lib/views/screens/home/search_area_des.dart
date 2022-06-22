@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../Assistants/globals.dart';
 import '../../search/productsSearch.dart';
@@ -28,7 +29,7 @@ class _SearchAreaDesignState extends State<SearchAreaDesign> {
               borderRadius: BorderRadius.circular(5), color: Colors.blue[50]!.withOpacity(0.5)),
           child: Center(
             child: Row(
-              children: const <Widget>[
+              children:  <Widget>[
                 SizedBox(width: 10.0,),
 
                 Icon(
@@ -36,7 +37,7 @@ class _SearchAreaDesignState extends State<SearchAreaDesign> {
                   size: 25,
                   color: Colors.grey,
                 ),
-                Text('What are you looking for?',
+                Text('What are you looking for?_txt'.tr,
                     style: TextStyle(fontSize: 12,color: Colors.grey,letterSpacing: 1)),
                 SizedBox(width: 10.0,)
               ],

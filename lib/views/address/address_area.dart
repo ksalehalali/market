@@ -7,15 +7,18 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../controllers/address_location_controller.dart';
+import '../../controllers/lang_controller.dart';
 
 Widget addressHomeScreen(MediaQueryData screenSize) {
   final box = GetStorage();
+  final LangController langController = Get.find();
+
   final AddressController addressController = Get.find();
-  final angle = -180 / 180 * pi;
+  final angle = langController.appLocal.value == 'ar'?-30 / 180 * pi:-180 / 180 * pi;
   final transform = Matrix4.identity()..setEntry(3, 2,0.001 )..rotateY(angle);
   return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.center,
+    // mainAxisAlignment: MainAxisAlignment.center,
+    // crossAxisAlignment: CrossAxisAlignment.center,
     children: <Widget>[
       Transform(
         transform: transform,
@@ -29,12 +32,12 @@ Widget addressHomeScreen(MediaQueryData screenSize) {
         width: screenSize.size.width * 0.1 - 30,
       ),
       Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
             width: Get.size.width - 70,
-            height: 16,
+            height: 20,
             child: RichText(
                 text: TextSpan(children: [
                TextSpan(

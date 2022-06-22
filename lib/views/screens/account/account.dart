@@ -298,7 +298,39 @@ class _AccountState extends State<Account> {
                     ),
                   ),
                 ),
-                buildOptionRow("Language_txt".tr, Icons.language),
+                SizedBox(
+                  width: 100,
+                  child: ListTile(
+
+                    leading: GetBuilder<LangController>(
+                      init: LangController(),
+                      builder: (controller)=> DropdownButton(
+                        iconSize: 38,
+                        style: TextStyle(fontSize: 18,color: Colors.blue[900],),
+                        items: [
+                          DropdownMenuItem(child: Text('EN'),value: 'en',),
+                          DropdownMenuItem(child: Text('AR'),value: 'ar',),
+                          // DropdownMenuItem(child: Text('HI'),value: 'hi',)
+
+                        ],
+                        value:controller.appLocal ,
+                        onChanged: (val)async{
+                          print(val.toString());
+                          controller.changeLang(val.toString());
+                          Get.updateLocale(Locale(val.toString()));
+                          controller.changeDIR(val.toString());
+                          print(Get.deviceLocale);
+                          print(Get.locale);
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+
+                          await prefs.setString('lang', val.toString());
+                        },
+                      ),
+                    ),
+                    onTap: () {
+                    },
+                  ),
+                ),
 
 
                 Container(
@@ -406,39 +438,7 @@ class _AccountState extends State<Account> {
             ),
           ),
           Spacer(),
-          optionText=="Language" ?   SizedBox(
-            width: 100,
-            child: ListTile(
-
-              leading: GetBuilder<LangController>(
-                init: LangController(),
-                builder: (controller)=> DropdownButton(
-                  iconSize: 38,
-                  style: TextStyle(fontSize: 18,color: Colors.blue[900],),
-                  items: [
-                    DropdownMenuItem(child: Text('EN'),value: 'en',),
-                    DropdownMenuItem(child: Text('AR'),value: 'ar',),
-                    // DropdownMenuItem(child: Text('HI'),value: 'hi',)
-
-                  ],
-                  value:controller.appLocal ,
-                  onChanged: (val)async{
-                    print(val.toString());
-                    controller.changeLang(val.toString());
-                    Get.updateLocale(Locale(val.toString()));
-                    controller.changeDIR(val.toString());
-                    print(Get.deviceLocale);
-                    print(Get.locale);
-                    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-                    await prefs.setString('lang', val.toString());
-                  },
-                ),
-              ),
-              onTap: () {
-              },
-            ),
-          ):Icon(Icons.arrow_forward_ios_rounded, size: 14.sp, color: Colors.black54,),
+          Icon(Icons.arrow_forward_ios_rounded, size: 14.sp, color: Colors.black54,),
         ],
       ),
     );

@@ -28,6 +28,12 @@ Map<String,String> ar ={
   'Transfers_txt':'التحويلات',
   //-
 
+
+  'Delivery Address _txt':'عنوان التوصيل ',
+  'Add New Address_txt':'اضف عنوان توصيل ',
+  'What are you looking for?_txt':'ما الذي تبحث عنه؟',
+  //-
+
   'Shop by category_txt':'تسوق حسب الفئة',
   'Latest Products_txt':'آخر المنتجات',
   'Recommended for you_txt':'المقترحة لك',
@@ -53,23 +59,15 @@ Map<String,String> ar ={
   'setting_title':'الإعدادات',
   'btn_contact':'اتصل بنا',
   'btn_aboutUs':'عن التطبيق',
-'btn_logOut': 'خروج',
+  'btn_logOut': 'خروج',
 
   //-
 'profile_btn':'ملفي',
-'routes_btn':'الخطوط',
   'wallet_btn':'المحفضة',
   'pay_btn':'ادفع',
   'home_btn':'الرئيسية',
 //-
-  'where_to_txt':"ماهي وجهتك؟",
-  'enter_your_destination_txt':'ادخل وجهتك هنا',
-  //-
 
-'start_pay_txt':'امسح الكود لتقوم بالدفع',
-'msg_0_balance':'الرصيد المتبقي غير كافي لاتمام العملية',
-'scan_btn':'امسح',
-  //-
 
 'available_balance_txt':'الرصيد المتوفر',
 'add_redit_btn':'اضافة رصيد',
@@ -159,6 +157,8 @@ Map<String,String> en ={
 
   'Delivery Address _txt':'Delivery Address ',
   'Add New Address_txt':'Add New Address ',
+  'What are you looking for?_txt':'What are you looking for?',
+
 
   'Shop by category_txt':'Shop by category',
   'Latest Products_txt':'Latest Products',

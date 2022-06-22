@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../Assistants/assistantMethods.dart';
 import '../../Assistants/globals.dart';
 import '../../controllers/address_location_controller.dart';
 import '../../controllers/cart_controller.dart';
+import '../../controllers/lang_controller.dart';
 import '../../controllers/product_controller.dart';
 import 'auth/register.dart';
 import 'categories/categories_screen.dart';
@@ -50,8 +52,24 @@ class _MainScreenState extends State<MainScreen> {
     addressController.getMyAddresses();
     productController.getMyFav();
     cartController.getMyOrders();
+    autoLang();
   }
+//lng
+  final LangController langController = Get.find();
 
+  void autoLang()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    var lang = await prefs.getString('lang');
+    print("lang ====== lang === $lang");
+    if(lang !=null){
+      langController.changeLang(lang);
+      Get.updateLocale(Locale(lang));
+      langController.changeDIR(lang);
+      print(Get.deviceLocale);
+      print(Get.locale);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     print(Get.size.height);
