@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:market/views/screens/show_product/product_details.dart';
 import '../../../Assistants/globals.dart';
 import '../../../controllers/catgories_controller.dart';
+import '../../../controllers/lang_controller.dart';
 import '../../../controllers/product_controller.dart';
 import '../home/search_area_des.dart';
 import 'product_item.dart';
@@ -35,6 +36,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
   List<double> opacityColor = [];
   late final AnimationController _controller;
   bool show = false;
+  final LangController langController = Get.find();
 
   @override
   void dispose() {
@@ -57,68 +59,65 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
     if (widget.haveChildren == true) {
       if (categoriesController.departments.length > 0) {
         productController
-            .getProductsByCat(categoriesController.departments[0]['id']);
+            .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
       } else {
         Timer(200.milliseconds, () {
           if (categoriesController.departments.length > 0) {
             productController
-                .getProductsByCat(categoriesController.departments[0]['id']);
+                .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
             return;
           } else {
             Timer(200.milliseconds, () {
               if (categoriesController.departments.length > 0) {
-                productController.getProductsByCat(
-                    categoriesController.departments[0]['id']);
+                productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
+
                 return;
               } else {
                 Timer(200.milliseconds, () {
                   if (categoriesController.departments.length > 0) {
-                    productController.getProductsByCat(
-                        categoriesController.departments[0]['id']);
+                    productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
+
                     return;
                   } else {
                     Timer(200.milliseconds, () {
                       if (categoriesController.departments.length > 0) {
-                        productController.getProductsByCat(
-                            categoriesController.departments[0]['id']);
+                        productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
+
                         return;
                       } else {
                         Timer(200.milliseconds, () {
                           if (categoriesController.departments.length > 0) {
-                            productController.getProductsByCat(
-                                categoriesController.departments[0]['id']);
+                            productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
+
                             return;
                           } else {
                             Timer(200.milliseconds, () {
                               if (categoriesController.departments.length > 0) {
-                                productController.getProductsByCat(
-                                    categoriesController.departments[0]['id']);
+                                productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
+
                                 return;
                               } else {
                                 Timer(200.milliseconds, () {
                                   if (categoriesController.departments.length >
                                       0) {
-                                    productController.getProductsByCat(
-                                        categoriesController.departments[0]
-                                            ['id']);
+                                    productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
+
                                     return;
                                   } else {
                                     Timer(200.milliseconds, () {
                                       if (categoriesController
                                               .departments.length >
                                           0) {
-                                        productController.getProductsByCat(
-                                            categoriesController.departments[0]
-                                                ['id']);
+                                        productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
+
                                         return;
                                       } else {
                                         Timer(200.milliseconds, () {
                                           if (categoriesController
                                                   .departments.length >
                                               0) {
-                                            productController.getProductsByCat(
-                                                categoriesController
-                                                    .departments[0]['id']);
+                                            productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
+
                                             return;
                                           } else {
                                             Timer(200.milliseconds, () {
@@ -126,10 +125,8 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                                                       .departments.length >
                                                   0) {
                                                 productController
-                                                    .getProductsByCat(
-                                                        categoriesController
-                                                                .departments[0]
-                                                            ['id']);
+                                                    .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
+
                                                 return;
                                               } else {
                                                 Timer(200.milliseconds, () {
@@ -137,19 +134,13 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                                                           .departments.length >
                                                       0) {
                                                     productController
-                                                        .getProductsByCat(
-                                                            categoriesController
-                                                                    .departments[
-                                                                0]['id']);
+                                                        .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
                                                     return;
                                                   } else {
                                                     Timer(2200.milliseconds,
                                                         () {
                                                       productController
-                                                          .getProductsByCat(
-                                                              categoriesController
-                                                                      .departments[
-                                                                  0]['id']);
+                                                          .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
                                                       return;
                                                     });
                                                   }
@@ -184,7 +175,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
         });
       }
     } else {
-      productController.getProductsByCat(widget.depId);
+      productController.getProductsByCat(widget.depId,langController.appLocal);
     }
   }
 
@@ -340,8 +331,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                         }
                       }
                     });
-                    productController.getProductsByCat(
-                        categoriesController.departments[index]['id']);
+                    productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 5),

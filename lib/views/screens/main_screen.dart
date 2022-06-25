@@ -49,10 +49,11 @@ class _MainScreenState extends State<MainScreen> {
         'd115a1f7-2407-4446-9caa-dc9744e5bfa8', 'latest');
     productController.getProductsByCatHome(
         'a7c777ed-cb81-46f3-bd6b-7667842d7819', 'offers');
+    autoLang();
+
     addressController.getMyAddresses();
     productController.getMyFav();
-    cartController.getMyOrders();
-    autoLang();
+    cartController.getMyOrders(langController.appLocal);
   }
 //lng
   final LangController langController = Get.find();
@@ -81,7 +82,7 @@ class _MainScreenState extends State<MainScreen> {
           child: currentScreen,
         ),
         bottomNavigationBar: NavigationBar(
-            height: 55.0,
+            height:langController.appLocal=='en' ?55.0:62,
             backgroundColor: Colors.white,
             labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
             selectedIndex: currentTp!,
@@ -104,7 +105,7 @@ class _MainScreenState extends State<MainScreen> {
                         height: 22.00,
                         width: 22.0,
                         semanticsLabel: 'A red up arrow'),
-                    label: 'Home',
+                    label: 'home_btn'.tr,
                     selectedIcon: SvgPicture.asset('assets/icons/home-fill.svg',
                         height: 24.00,
                         width: 24.0,
@@ -126,7 +127,7 @@ class _MainScreenState extends State<MainScreen> {
                         height: 22.00,
                         width: 22.0,
                         semanticsLabel: 'A red up arrow'),
-                    label: 'Categories',
+                    label: 'categories_btn'.tr,
                     selectedIcon: SvgPicture.asset(//assets/icons/categories-fill.svg
                         'assets/icons/categories-outline.svg',
                         color: myHexColor3,
@@ -145,7 +146,7 @@ class _MainScreenState extends State<MainScreen> {
                         height: 22.00,
                         width: 22.0,
                         semanticsLabel: 'A red up arrow'),
-                    label: 'Clearance',
+                    label: 'clearance_btn'.tr,
                     selectedIcon: SvgPicture.asset(//assets/icons/offers-fill.svg
                         'assets/icons/offers-outline.svg',
                         color: myHexColor3,
@@ -164,7 +165,7 @@ class _MainScreenState extends State<MainScreen> {
                         height: 22.00,
                         width: 22.0,
                         semanticsLabel: 'A red up arrow'),
-                    label: 'Cart',
+                    label: 'cart_btn'.tr,
                     selectedIcon: SvgPicture.asset(//assets/icons/cart-fill.svg
                         'assets/icons/cart-outline.svg',
                         height: 24.00,
@@ -183,7 +184,7 @@ class _MainScreenState extends State<MainScreen> {
                         width: 22.0,
                         color: Colors.grey[600],
                         semanticsLabel: 'A red up arrow'),
-                    label: 'My Account',
+                    label: 'myAccount_btn'.tr,
                     selectedIcon: SvgPicture.asset( //assets/icons/account-fill.svg
                         'assets/icons/account-outline.svg',
                         height: 24.00,

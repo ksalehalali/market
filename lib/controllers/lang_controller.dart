@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'local_storage_lang.dart';
 
 class LangController extends GetxController {
-  var appLocal = 'en'.obs;
+  var appLocal = 'en';
   bool isRTL = false;
   void changeLang(String code) {
     LocalStorage localStorage = LocalStorage();
@@ -13,7 +13,7 @@ class LangController extends GetxController {
     var local = Locale(code);
     Get.updateLocale(local);
     langCode = code;
-    appLocal.value =code;
+    appLocal =code;
     print(langCode);
     update();
   }
@@ -24,10 +24,9 @@ class LangController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     LocalStorage localStorage = LocalStorage();
-    appLocal.value = await localStorage.langSelected == null ? 'en': await localStorage.langSelected;
-    print('local language:   $appLocal');
-    Get.updateLocale(Locale(appLocal.value));
-    changeDIR(appLocal.value);
+    appLocal = await localStorage.langSelected == null ? 'en': await localStorage.langSelected;
+    Get.updateLocale(Locale(appLocal));
+    changeDIR(appLocal);
     update();
   }
 

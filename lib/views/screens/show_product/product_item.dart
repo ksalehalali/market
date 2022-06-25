@@ -7,6 +7,7 @@ import 'package:like_button/like_button.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../Assistants/globals.dart';
+import '../../../controllers/lang_controller.dart';
 import '../../../controllers/product_controller.dart';
 import '../../../models/product_model.dart';
 
@@ -19,6 +20,8 @@ class ProductItemCard extends StatelessWidget {
   final VoidCallback press;
   final bool fromDetails;
   final String from;
+  final LangController langController = Get.find();
+
   ProductItemCard(
       {Key? key,
       required this.product,
@@ -69,7 +72,7 @@ class ProductItemCard extends StatelessWidget {
         width: size.width * 0.4 + 10.w,
         decoration: BoxDecoration(
             border:
-                Border.all(width: 0.5, color: myHexColor)),
+                Border.all(width: 0.3, color: myHexColor)),
         margin:  EdgeInsets.only(
           left: 5.w,
           right: 5.w,
@@ -102,7 +105,7 @@ class ProductItemCard extends StatelessWidget {
                       //cacheManager: customCacheManager,
                       key: UniqueKey(),
                       imageUrl: '$baseURL/${product.imageUrl}',
-                      height: screenSize.height * 0.2 + 20.h,
+                      height: screenSize.height * 0.2 + 25.h,
                       width: screenSize.width * 0.4.w,
                       maxHeightDiskCache: 110,
                       fit: BoxFit.fill,
@@ -221,13 +224,30 @@ class ProductItemCard extends StatelessWidget {
                                    EdgeInsets.symmetric(vertical: 8.0.h),
                               child: SizedBox(
                                 width: size.width * 0.3+32.w,
-                                child: Text("${product.en_name}".toUpperCase(),
-                                    textDirection: TextDirection.rtl,
-                                    textAlign: TextAlign.left,
+                                child: Text("${langController.appLocal=="en"? product.en_name:product.ar_name}".toUpperCase(),
+                                    textDirection:langController.appLocal=="en"? TextDirection.rtl:TextDirection.ltr,
+                                    textAlign: langController.appLocal=="en"?TextAlign.left:TextAlign.right,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style:  TextStyle(
                                         fontSize: 13.sp, color: Colors.grey[700])),
+                              ),
+                            ),
+
+                            Padding(
+                              padding:
+                                   EdgeInsets.symmetric(vertical: 6.0.h),
+                              child: SizedBox(
+                                width: screenSize.width *.3.w,
+                                child: Text(
+                                  '${langController.appLocal=="en"?product.categoryNameEN:product.categoryNameAR}'.toUpperCase(),
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                      fontFamily: 'Montserrat-Arabic Regular',
+                                      color: Colors.black.withOpacity(0.7),
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w500),
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -237,25 +257,12 @@ class ProductItemCard extends StatelessWidget {
                                     .toUpperCase(),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
-                                textAlign: TextAlign.left,
+                                textAlign:langController.appLocal=="en"? TextAlign.left:TextAlign.right,
                                 style:  TextStyle(
                                     fontFamily: 'Montserrat-Arabic Regular',
                                     color: Colors.black,
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                   EdgeInsets.symmetric(vertical: 6.0.h),
-                              child: Text(
-                                '${product.categoryNameEN}'.toUpperCase(),
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                    fontFamily: 'Montserrat-Arabic Regular',
-                                    color: Colors.black.withOpacity(0.7),
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w500),
                               ),
                             ),
                             SizedBox(
@@ -267,7 +274,7 @@ class ProductItemCard extends StatelessWidget {
                                         .toUpperCase(),
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 1,
-                                    textAlign: TextAlign.left,
+                                    textAlign: langController.appLocal=="en"?TextAlign.left:TextAlign.right,
                                     style:  TextStyle(
                                         decoration: TextDecoration.lineThrough,
                                         fontFamily: 'Montserrat-Arabic Regular',
@@ -278,7 +285,7 @@ class ProductItemCard extends StatelessWidget {
                                     width: 7.0.w,
                                   ),
                                   Text(
-                                    "Discount ${product.offer}%",
+                                    langController.appLocal=="en"? "Discount ${product.offer}%":" %${product.offer} الخصم",
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 1,
                                     textAlign: TextAlign.left,

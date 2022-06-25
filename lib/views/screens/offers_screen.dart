@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../Assistants/globals.dart';
 import '../../Data/data_for_ui.dart';
+import '../../controllers/lang_controller.dart';
 import '../../controllers/product_controller.dart';
 import '../widgets/departments_shpe.dart';
 import 'home/search_area_des.dart';
@@ -20,6 +21,7 @@ class OffersScreen extends StatefulWidget {
 
 class _OffersScreenState extends State<OffersScreen> {
   final ProductsController productController = Get.find();
+  final LangController langController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class _OffersScreenState extends State<OffersScreen> {
               ),
             ),
             SizedBox(
-              height: 6.0.h,
+              height: 5.0.h,
             ),
             SizedBox(
                 height: screenSize.height * 0.1 + 50.h,
@@ -63,19 +65,22 @@ class _OffersScreenState extends State<OffersScreen> {
                   'assets/images/pexels-artem-beliaikin-2529787 1.jpg',
                   fit: BoxFit.fill,
                 )),
+            SizedBox(
+              height: 8.0.h,
+            ),
             Padding(
-              padding:  EdgeInsets.only(top: 16.0.h, right: 12.w, left: 12.w),
+              padding: EdgeInsets.only(top: 12.0, left: 8.w,right: 8.w),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Bestsellers',
+                    'Bestsellers_txt'.tr,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
                   ),
                   const Spacer(),
                   Text(
-                    'View all',
+                    'View All_txt'.tr,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 13.sp,
@@ -93,32 +98,33 @@ class _OffersScreenState extends State<OffersScreen> {
               ),
             ),
             SizedBox(
-              height: 12.h,
+              height: 4.h,
             ),
             _buildHorizontalListOfBestSallersProducts(),
              SizedBox(
-              height: 12.0.h,
+              height: 22.0.h,
             ),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                  Padding(
-                  padding: EdgeInsets.only(top: 0.0, left: 12.w),
+                  padding: EdgeInsets.only(top: 0.0, left: 8.w,right: 8.w),
                   child: Text(
-                    'Women\'s fashon offers',
+                    'Women\'s fashon offers_txt'.tr,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
                   ),
                 ),
                 const Spacer(),
-                Padding(
-                  padding:
-                       EdgeInsets.only(top: 0.0, left: 12.w, right: 5.0.w),
-                  child: Text(
-                    'View all',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.sp,
-                        color: Colors.grey[700]),
-                  ),
+                Text(
+                  'View All_txt'.tr,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13.sp,
+                      color: Colors.grey[700]),
+                ),
+                SizedBox(
+                  width: 4,
                 ),
                 Icon(
                   Icons.arrow_forward_ios_rounded,
@@ -128,7 +134,7 @@ class _OffersScreenState extends State<OffersScreen> {
               ],
             ),
              SizedBox(
-              height: 12.0.h,
+              height: 4.0.h,
             ),
             _buildHorizontalListOfOffersProducts(),
              SizedBox(
@@ -156,13 +162,13 @@ class _OffersScreenState extends State<OffersScreen> {
               crossAxisCount: 1,
               mainAxisSpacing: 5,
               crossAxisSpacing: 2.0,
-              childAspectRatio: 1.7),
+              childAspectRatio: 1.4),
           itemBuilder: (context, index) {
             return Padding(
                 padding: EdgeInsets.zero,
                 child: DepartmentShapeTile(
                   assetPath: categories[index]['imagePath'],
-                  title: categories[index]['catName'],
+                  title:langController.appLocal=="en"? categories[index]['catName']:categories[index]['catNameAR'],
                   depId: categories[index]['id']!,
                 ));
           },
@@ -174,7 +180,7 @@ class _OffersScreenState extends State<OffersScreen> {
   Widget _buildHorizontalListOfBestSallersProducts() {
     final screenSize = Get.size;
     return SizedBox(
-        height: screenSize.height * 0.4 - 28.h,
+        height:langController.appLocal =="ar"? screenSize.height * 0.4 - 16.h:screenSize.height * 0.4 - 26.h,
         child: CustomScrollView(
           scrollDirection: Axis.horizontal,
           slivers: [
@@ -219,7 +225,7 @@ class _OffersScreenState extends State<OffersScreen> {
   Widget _buildHorizontalListOfOffersProducts() {
     final screenSize = Get.size;
     return SizedBox(
-        height: screenSize.height * 0.4 - 28.h,
+        height:langController.appLocal =="ar"? screenSize.height * 0.4 - 16.h:screenSize.height * 0.4 - 26.h,
         child: CustomScrollView(
           scrollDirection: Axis.horizontal,
           slivers: [

@@ -330,13 +330,15 @@ class CartController extends GetxController with BaseController {
     }
   }
 
-  Future getMyOrders() async {
+  Future getMyOrders(String langCode) async {
+    print('ang code is ......$langCode');
     gotMyOrders.value = false;
     myOrdersDetails.value = [];
     myOrders.value =[];
     var headers = {
       'Authorization': 'Bearer ${user.accessToken}',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Lang': langCode
     };
     var request = http.Request('POST',
         Uri.parse('https://dashcommerce.click68.com/api/ListOrderByUser'));
@@ -391,7 +393,7 @@ class CartController extends GetxController with BaseController {
     }
   }
 
-  Future deleteOrder(String id,BuildContext context)async{
+  Future deleteOrder(String id,BuildContext context,String langCode)async{
     var headers = {
       'Authorization': 'Bearer ${user.accessToken}',
       'Content-Type': 'application/json'
@@ -406,7 +408,7 @@ class CartController extends GetxController with BaseController {
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
-      getMyOrders();
+      getMyOrders(langCode);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: customCanceledOrderSnackBarContent(context),
         behavior: SnackBarBehavior.floating,

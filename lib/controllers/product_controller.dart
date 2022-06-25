@@ -48,10 +48,12 @@ class ProductsController extends GetxController with BaseController{
 
   var offerFromPrice = 0.0.obs;
 
-  Future getLatestProducts() async {
+  Future getLatestProducts(String langCode) async {
     var headers = {
       'Authorization': 'bearer ${user.accessToken}',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Lang': langCode
+
     };
     var request = http.Request('POST', Uri.parse('$baseURL/api/ListProduct'));
     request.body = json.encode({"PageNumber": 0, "PageSize": 50});
@@ -94,13 +96,15 @@ class ProductsController extends GetxController with BaseController{
 
 
 //get products by cat
-  Future getProductsByCat(String catId) async {
+  Future getProductsByCat(String catId,String langCode) async {
     cartProducts.value = [];
     opacity.value = 0.0;
     gotProductsByCat.value = false;
     var headers = {
       'Authorization': 'bearer ${user.accessToken}',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Lang': langCode
+
     };
     var request =
         http.Request('POST', Uri.parse('$baseURL/api/ListProductByCategory'));

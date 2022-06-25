@@ -24,7 +24,7 @@ class _MyOrdersState extends State<MyOrders> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    cartController.getMyOrders();
+    cartController.getMyOrders(langController.appLocal);
   }
 
   @override

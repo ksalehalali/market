@@ -20,7 +20,7 @@ Map<String,String> ar ={
 
   'order_txt':'طلبية',
   'Placed On_txt':'تاريخ الطلب',
-  'View Details_txt':'عرض الكل',
+  'View Details_txt':'عرض التفاصيل',
   //-
 
   'Wallet balance_txt':'الرصيد',
@@ -35,12 +35,28 @@ Map<String,String> ar ={
   //-
 
   'Shop by category_txt':'تسوق حسب الفئة',
+  'View All_txt':'عرض الكل',
+
   'Latest Products_txt':'آخر المنتجات',
   'Recommended for you_txt':'المقترحة لك',
   'Offers_txt':'العروض',
   'Offers and Promotions_txt':'العروض والترويج',
   'On all men\'s suits from the most famous world_txt':'بدلات رجالية من اشهر الماركات العالمية',
+  //-
 
+  'cart_btn':'السلة',
+  'myAccount_btn':'حسابي',
+  'clearance_btn':'العروض',
+  'categories_btn':'الفئات',
+  'home_btn':'الرئيسية',
+  //-
+
+  'Category_txt':'الفئة',
+  'Brands_txt':'أشهر الماركات',
+  //-
+
+  'Bestsellers_txt':'الأكثر مبيعا',
+  'Women\'s fashon offers_txt':'عروض الموضة النسائية',
 
 
   'get_support_btn':'الحصول على الدعم',
@@ -62,11 +78,6 @@ Map<String,String> ar ={
   'btn_logOut': 'خروج',
 
   //-
-'profile_btn':'ملفي',
-  'wallet_btn':'المحفضة',
-  'pay_btn':'ادفع',
-  'home_btn':'الرئيسية',
-//-
 
 
 'available_balance_txt':'الرصيد المتوفر',
@@ -161,12 +172,27 @@ Map<String,String> en ={
 
 
   'Shop by category_txt':'Shop by category',
+  'View All_txt':'View All',
   'Latest Products_txt':'Latest Products',
   'Recommended for you_txt':'Recommended for you',
   'Offers_txt':'Offers',
   'Offers and Promotions_txt':'Offers and Promotions',
   'On all men\'s suits from the most famous world_txt':'On all men\'s suits from the most famous world',
+//-
 
+  'cart_btn':'Cart',
+  'myAccount_btn':'My Account',
+  'clearance_btn':'Clearance',
+  'categories_btn':'Categories',
+  'home_btn':'Home',
+  //-
+
+  'Category_txt':'Category',
+  'Brands_txt':'Brands',
+  //-
+
+  'Bestsellers_txt':'Bestsellers',
+  'Women\'s fashon offers_txt':'Women\'s fashon offers',
 
   'your_activities':'Your activities',
   'get_support_btn':'Get support',
@@ -185,12 +211,7 @@ Map<String,String> en ={
   'btn_aboutUs':'About Us',
   'btn_logOut': 'Log Out',
 
-  //-
-'routes_btn':'Routes',
-'profile_btn':'Profile',
-  'wallet_btn':'Wallet',
-  'pay_btn':'Pay',
-  'home_btn':'Home',
+
   //-
   'where_to_txt':"Where to?",
   'enter_your_destination_txt':'Enter your destination',

@@ -17,14 +17,14 @@ List<Map<String,dynamic>> categories =[
 
 
 List<Map<String,dynamic>> womenFashionDepartments =[
-  {'depName': 'New arrivals','depId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c','imagePath':'assets/images/skg-photography-EtAV0Z_PmqU-unsplash.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',"hasChildren":false},
-  {'depName': 'Dresses','depId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c','imagePath':'assets/images/pexels-lan-anh-ho…ng-10353828.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',            "hasChildren":false},
-  {'depName': 'Abayat','depId':'3','imagePath':'assets/images/pexels-danang-wicaksono-3272517.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',                                              "hasChildren":false},
-  {'depName': 'Jeans','depId':'4','imagePath':'assets/images/pexels-heitor-verdi-2343661.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',                                                   "hasChildren":false},
-  {'depName': 'Skirts','depId':'5','imagePath':'assets/images/david-hunter-IiNqiRj4SCg-unsplash.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',                                            "hasChildren":false},
-  {'depName': 'Lingerie','depId':'6','imagePath':'assets/images/pexels-lan-anh-ho…ng-10353828.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',                                              "hasChildren":false},
-  {'depName': 'Jalabiyas','depId':'89f6d856-183a-45c1-83a1-0a3119ef5f59','imagePath':'assets/images/pexels-danang-wicaksono-3272517.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',            "hasChildren":true},
-  {'depName': 'Outlet','depId':'8','imagePath':'assets/images/pexels-thirdman-8485732.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',                                                      "hasChildren":false},
+  {'depNameAR': 'وصل حديثا','depName': 'New arrivals','depId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c','imagePath':'assets/images/skg-photography-EtAV0Z_PmqU-unsplash.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',"hasChildren":false},
+  {'depNameAR': 'فساتين','depName': 'Dresses','depId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c','imagePath':'assets/images/pexels-lan-anh-ho…ng-10353828.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',            "hasChildren":false},
+  {'depNameAR': 'عبايات','depName': 'Abayat','depId':'3','imagePath':'assets/images/pexels-danang-wicaksono-3272517.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',                                              "hasChildren":false},
+  {'depNameAR': 'جينزات','depName': 'Jeans','depId':'4','imagePath':'assets/images/pexels-heitor-verdi-2343661.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',                                                   "hasChildren":false},
+  {'depNameAR': 'تنانير','depName': 'Skirts','depId':'5','imagePath':'assets/images/david-hunter-IiNqiRj4SCg-unsplash.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',                                            "hasChildren":false},
+  {'depNameAR': 'لانجيري','depName': 'Lingerie','depId':'6','imagePath':'assets/images/pexels-lan-anh-ho…ng-10353828.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',                                              "hasChildren":false},
+  {'depNameAR': 'جلابيب','depName': 'Jalabiyas','depId':'89f6d856-183a-45c1-83a1-0a3119ef5f59','imagePath':'assets/images/pexels-danang-wicaksono-3272517.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',            "hasChildren":true},
+  {'depNameAR': 'خارجي','depName': 'Outlet','depId':'8','imagePath':'assets/images/pexels-thirdman-8485732.jpg','catName':'Women\'s Fashion','catId':'31afd7d2-5f4d-406d-ae5d-b46e5055b80c',                                                      "hasChildren":false},
 
 ];
 

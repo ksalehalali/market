@@ -263,7 +263,7 @@ class _AccountState extends State<Account> {
                       ),
                     ),
 
-                    buildOptionRow("personal_info".tr, Icons.account_circle_outlined),
+                    buildOptionRow("personal_info".tr, Icons.account_circle_outlined,false),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 64.0.w),
                       child: Divider(
@@ -276,7 +276,7 @@ class _AccountState extends State<Account> {
 
                           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ListAddresses(fromAccount: true,fromCart: false,)));
                         },
-                        child: buildOptionRow("My_Address_txt".tr, Icons.location_history)),
+                        child: buildOptionRow("My_Address_txt".tr, Icons.location_history,false)),
                   ],
                 ) :
                 Container(),
@@ -298,40 +298,62 @@ class _AccountState extends State<Account> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 100,
-                  child: ListTile(
 
-                    leading: GetBuilder<LangController>(
-                      init: LangController(),
-                      builder: (controller)=> DropdownButton(
-                        iconSize: 38,
-                        style: TextStyle(fontSize: 18,color: Colors.blue[900],),
-                        items: [
-                          DropdownMenuItem(child: Text('EN'),value: 'en',),
-                          DropdownMenuItem(child: Text('AR'),value: 'ar',),
-                          // DropdownMenuItem(child: Text('HI'),value: 'hi',)
-
-                        ],
-                        value:controller.appLocal ,
-                        onChanged: (val)async{
-                          print(val.toString());
-                          controller.changeLang(val.toString());
-                          Get.updateLocale(Locale(val.toString()));
-                          controller.changeDIR(val.toString());
-                          print(Get.deviceLocale);
-                          print(Get.locale);
-                          SharedPreferences prefs = await SharedPreferences.getInstance();
-
-                          await prefs.setString('lang', val.toString());
-                        },
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.language,
+                        size: 26.sp,
+                        color: Colors.grey[600],
                       ),
-                    ),
-                    onTap: () {
-                    },
+                      SizedBox(
+                        width: 20.0.w,
+                      ),
+                      Text(
+                        'Language_txt'.tr,
+                        style:TextStyle(fontWeight: FontWeight.w700,fontSize: 15.sp,color: Colors.grey[600]),
+
+                      ),
+                      Spacer(),
+                      SizedBox(
+                        width: 100.w,
+                        child: ListTile(
+
+                          leading: GetBuilder<LangController>(
+                            init: LangController(),
+                            builder: (controller)=> DropdownButton(
+                              iconSize: 38.sp,
+                              style: TextStyle(fontSize: 16.sp,color: Colors.blue[900],),
+                              items: const [
+                                DropdownMenuItem(child: Text('EN'),value: 'en',),
+                                DropdownMenuItem(child: Text('AR'),value: 'ar',),
+                                // DropdownMenuItem(child: Text('HI'),value: 'hi',)
+
+                              ],
+                              value:controller.appLocal ,
+                              onChanged: (val)async{
+                                print(val.toString());
+                                controller.changeLang(val.toString());
+                                Get.updateLocale(Locale(val.toString()));
+                                controller.changeDIR(val.toString());
+                                print(Get.deviceLocale);
+                                print(Get.locale);
+                                SharedPreferences prefs = await SharedPreferences.getInstance();
+
+                                await prefs.setString('lang', val.toString());
+                              },
+                            ),
+                          ),
+                          onTap: () {
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-
 
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 64.0.w),
@@ -339,7 +361,8 @@ class _AccountState extends State<Account> {
                     thickness: 1,
                   ),
                 ),
-                buildOptionRow("Notifications_txt".tr, Icons.notification_important_outlined),
+
+                buildOptionRow("Notifications_txt".tr, Icons.notification_important_outlined,false),
                 // CONTACT US
                 Container(
                   height: 60.h,
@@ -358,21 +381,21 @@ class _AccountState extends State<Account> {
                     ),
                   ),
                 ),
-                buildOptionRow("Help_And_Technical_Support_txt".tr, Icons.contact_support_outlined),
+                buildOptionRow("Help_And_Technical_Support_txt".tr, Icons.contact_support_outlined,false),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 64.0.w),
                   child: Divider(
                     thickness: 1,
                   ),
                 ),
-                buildOptionRow("Terms_Of_Usage_txt".tr, Icons.event_note_outlined),
+                buildOptionRow("Terms_Of_Usage_txt".tr, Icons.event_note_outlined,false),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 64.0.w),
                   child: Divider(
                     thickness: 1,
                   ),
                 ),
-                buildOptionRow("Contact_Us_txt".tr, Icons.call),
+                buildOptionRow("Contact_Us_txt".tr, Icons.call,false),
                 accountController.isLoggedIn.value != false ?
                 // LOGOUT
                 Container(
@@ -416,7 +439,7 @@ class _AccountState extends State<Account> {
 
   }
 
-  Container buildOptionRow(String optionText, IconData optionIcon) {
+  Container buildOptionRow(String optionText, IconData optionIcon,bool lang) {
     return Container(
       height: 50.h,
       padding: EdgeInsets.symmetric(horizontal: 16.0.w),
@@ -438,7 +461,40 @@ class _AccountState extends State<Account> {
             ),
           ),
           Spacer(),
-          Icon(Icons.arrow_forward_ios_rounded, size: 14.sp, color: Colors.black54,),
+         lang == false? Icon(Icons.arrow_forward_ios_rounded, size: 14.sp, color: Colors.black54,): SizedBox(
+           width: 100,
+           child: ListTile(
+
+             leading: GetBuilder<LangController>(
+               init: LangController(),
+               builder: (controller)=> DropdownButton(
+                 iconSize: 38,
+                 style: TextStyle(fontSize: 18,color: Colors.blue[900],),
+                 items: [
+                   DropdownMenuItem(child: Text('EN'),value: 'en',),
+                   DropdownMenuItem(child: Text('AR'),value: 'ar',),
+                    DropdownMenuItem(child: Text('HI'),value: 'hi',)
+
+                 ],
+                 value:controller.appLocal ,
+                 onChanged: (val)async{
+                   print(val.toString());
+                   controller.changeLang(val.toString());
+                   Get.updateLocale(Locale(val.toString()));
+                   controller.changeDIR(val.toString());
+                   print(Get.deviceLocale);
+                   print(Get.locale);
+                   SharedPreferences prefs = await SharedPreferences.getInstance();
+
+                   await prefs.setString('lang', val.toString());
+                 },
+               ),
+             ),
+             onTap: () {
+             },
+           ),
+         ),
+
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -14,30 +15,31 @@ Widget addressHomeScreen(MediaQueryData screenSize) {
   final LangController langController = Get.find();
 
   final AddressController addressController = Get.find();
-  final angle = langController.appLocal.value == 'ar'?-30 / 180 * pi:-180 / 180 * pi;
+  final angle = langController.appLocal == 'ar'?-180 / 180 * pi:30 / 180 * pi;
   final transform = Matrix4.identity()..setEntry(3, 2,0.001 )..rotateY(angle);
   return Row(
     // mainAxisAlignment: MainAxisAlignment.center,
     // crossAxisAlignment: CrossAxisAlignment.center,
     children: <Widget>[
       Transform(
+        alignment:langController.appLocal == 'ar'? Alignment.center:Alignment.center,
         transform: transform,
         child: SvgPicture.asset('assets/icons/shipping.svg',
             color: Colors.grey[600],
-            height: 22.00,
-            width: 22.0,
+            height: 28.0.h,
+            width: 28.0.w,
             semanticsLabel: 'A red up arrow'),
       ),
       SizedBox(
-        width: screenSize.size.width * 0.1 - 30,
+        width: screenSize.size.width * 0.1 - 34,
       ),
       Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
             width: Get.size.width - 70,
-            height: 20,
+            height: 22.h,
             child: RichText(
                 text: TextSpan(children: [
                TextSpan(
@@ -59,7 +61,7 @@ Widget addressHomeScreen(MediaQueryData screenSize) {
               child: Padding(
                 padding: EdgeInsets.zero,
                 child: Icon(
-                  FontAwesomeIcons.angleRight,
+                  langController.appLocal == 'ar'?FontAwesomeIcons.angleLeft:FontAwesomeIcons.angleRight,
                   color: Colors.blue[900],
                   size: addressController.addressWidgetIconSize.value,
                 ),

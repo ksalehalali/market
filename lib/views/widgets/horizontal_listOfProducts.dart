@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/lang_controller.dart';
 import '../../controllers/product_controller.dart';
 import '../screens/show_product/product_details.dart';
 import '../screens/show_product/product_item.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 Widget buildHorizontalListOfProducts(bool fromDetails) {
   final ProductsController productController = Get.find();
+  final LangController langController = Get.find();
 
   final screenSize = Get.size;
   return SizedBox(
-    height: screenSize.height * 0.4 - 28.h,
+    height:langController.appLocal =="ar"? screenSize.height * 0.4 - 16.h:screenSize.height * 0.4 - 26.h,
     child: FutureBuilder(
         builder: (context, data) => data.connectionState ==
                 ConnectionState.waiting

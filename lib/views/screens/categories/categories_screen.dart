@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../Assistants/globals.dart';
 import '../../../Data/data_for_ui.dart';
 import '../../../controllers/catgories_controller.dart';
+import '../../../controllers/lang_controller.dart';
 import '../../widgets/departments_list_r.dart';
 import '../home/search_area_des.dart';
 import '../show_product/products_of_department_screen.dart';
@@ -24,6 +25,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   List<double> opacityColor = [];
   bool showBrands =true;
   final CategoriesController categoriesController = Get.find();
+  final LangController langController = Get.find();
 
   var departmentContent =[];
   var brandsContent =[];
@@ -141,7 +143,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               color: colors[index].withOpacity(opacityColor[index]),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Center(child: Text(data['catName'].toString(),maxLines: 2,textAlign: TextAlign.center,style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.w500,color: Colors.white),)),
+                child: Center(child: Text(langController.appLocal=='en'?data['catName'].toString():data['catNameAR'].toString(),maxLines: 2,textAlign: TextAlign.center,style: TextStyle(fontSize: 13.sp,fontWeight: FontWeight.w600,color: Colors.white),)),
               )),
         ),
       );
@@ -205,7 +207,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               children: [
                 Container(
                   width: 100.w,
-                  height: screenSize.height*.9-79.h,
+                  height: screenSize.height*.9-83.h,
                   child: CustomScrollView(
                     slivers: [
                       SliverList(delegate: SliverChildBuilderDelegate(
@@ -216,7 +218,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
                 ),
                 SizedBox(
-                  height:screenSize.height*.9-79.h,
+                  height:screenSize.height*.9-83.h,
                   width: screenSize.width -101.w,
                   child:  Padding(
                     padding:  EdgeInsets.only(bottom:2.h),
@@ -231,10 +233,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           anchor: 0.0,
 
                           slivers:<Widget> [
-                            _buildTitle('Category'),
+                            _buildTitle('Category_txt'.tr),
                            _buildListOfDepartments(departmentContent),
 
-                            _buildTitle(showBrands?'Brands':''),
+                            _buildTitle(showBrands?'Brands_txt'.tr:''),
                             _buildListOfDepartments(showBrands?brandsContent:[]),
 
                             _buildTitle(departmentContent[0]['depName']),

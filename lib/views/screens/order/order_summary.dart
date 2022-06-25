@@ -6,6 +6,7 @@ import '../../../Assistants/globals.dart';
 import '../../../Data/current_data.dart';
 import '../../../controllers/address_location_controller.dart';
 import '../../../controllers/cart_controller.dart';
+import '../../../controllers/lang_controller.dart';
 import '../main_screen.dart';
 import 'order_timeline.dart';
 
@@ -19,6 +20,7 @@ class OrderSummary extends StatefulWidget {
 
 class _OrderSummaryState extends State<OrderSummary> {
   final AddressController addressController = Get.find();
+  final LangController langController = Get.find();
 
    final storage = GetStorage();
 
@@ -172,7 +174,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                           ElevatedButton(
                                             onPressed: ()async {
                                               if(cartController.optionReasonSelected.value >0){
-                                                await cartController.deleteOrder(cartController.oneOrderDetails['id'],context).then((value) => Navigator.pop(context) );
+                                                await cartController.deleteOrder(cartController.oneOrderDetails['id'],context,langController.appLocal).then((value) => Navigator.pop(context) );
                                                 Navigator.pop(context);
 
                                               }

@@ -188,6 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               padding: EdgeInsets.only(
                                 top: 0.0,
                                 left: 12,
+                                right: 12
                               ),
                               child: Text(
                                 'Latest Products_txt'.tr,
@@ -202,9 +203,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(
-                                    top: 0.0, left: 12, right: 5.0),
+                                    top: 0.0, left: 0, right: 0.0),
                                 child: Text(
-                                  'View Details_txt'.tr,
+                                  'View All_txt'.tr,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13.sp,
@@ -212,10 +213,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                             ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 14,
-                              color: Colors.grey[700],
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 0.0, left: 8, right: 8),
+                              child: Icon(
+                                langController.appLocal == 'en'?Icons.arrow_forward_ios_rounded:Icons.arrow_back_ios_new_rounded,
+                                size: 14,
+                                color: Colors.grey[700],
+                              ),
                             )
                           ],
                         ),
@@ -231,7 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           children: [
                              Padding(
-                              padding: EdgeInsets.only(top: 0.0, left: 12),
+                               padding: EdgeInsets.only(top: 0.0, left: 12,right: 12),
                               child: Text(
                                 'Recommended for you_txt'.tr,
                                 style: TextStyle(
@@ -245,9 +250,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(
-                                    top: 0.0, left: 12, right: 5.0),
+                                    top: 0.0, left: 0, right: 0.0),
                                 child: Text(
-                                  'View Details_txt'.tr,
+                                  'View All_txt'.tr,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13.sp,
@@ -255,10 +260,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                             ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 14.sp,
-                              color: Colors.grey[700],
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 0.0, left: 8, right: 8),
+                              child: Icon(
+                                langController.appLocal == 'en'?Icons.arrow_forward_ios_rounded:Icons.arrow_back_ios_new_rounded,
+                                size: 14.sp,
+                                color: Colors.grey[700],
+                              ),
                             )
                           ],
                         ),
@@ -272,7 +281,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           children: [
                              Padding(
-                              padding: EdgeInsets.only(top: 0.0, left: 12),
+                              padding: EdgeInsets.only(top: 0.0, left: 12,right: 12),
                               child: Text(
                                 'Offers_txt'.tr,
                                 style: TextStyle(
@@ -286,9 +295,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(
-                                    top: 0.0, left: 12, right: 5.0),
+                                    top: 0.0, left: 0, right: 0.0),
                                 child: Text(
-                                  'View Details_txt'.tr,
+                                  'View All_txt'.tr,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13.sp,
@@ -296,10 +305,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                             ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 14.sp,
-                              color: Colors.grey[700],
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 0.0, left: 8, right: 8),
+                              child: Icon(
+                                langController.appLocal == 'en'?Icons.arrow_forward_ios_rounded:Icons.arrow_back_ios_new_rounded,
+                                size: 14.sp,
+                                color: Colors.grey[700],
+                              ),
                             )
                           ],
                         ),
@@ -355,7 +368,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildHorizontalListOfRecommendedProducts() {
     final screenSize = Get.size;
     return SizedBox(
-        height: screenSize.height * 0.4 - 28.h,
+        height:langController.appLocal =="ar"? screenSize.height * 0.4 - 16.h:screenSize.height * 0.4 - 26.h,
         child: Padding(
           padding:  EdgeInsets.only(right: 5.0.w),
           child: CustomScrollView(
@@ -404,7 +417,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildHorizontalListOfOffersProducts() {
     final screenSize = Get.size;
     return SizedBox(
-        height: screenSize.height * 0.4 - 28.h,
+        height:langController.appLocal =="ar"? screenSize.height * 0.4 - 16.h:screenSize.height * 0.4 - 26.h,
         child: Padding(
           padding:  EdgeInsets.only(right: 5.0.w),
           child: CustomScrollView(
@@ -490,31 +503,35 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: screenSize.width,
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: screenSize.height * 0.1.h,
-                ),
-                 Text(
-                  'Offers and Promotions_txt'.tr,
-                  style: TextStyle(
-                      fontSize: 22.sp,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: screenSize.height * 0.1 - 70.h,
-                ),
-                Text(
-                  'On all men\'s suits from the most famous world_txt'.tr,
-                  style: TextStyle(
-                      fontSize: 16.sp,
-                      color: Colors.grey[50],
-                      fontWeight: FontWeight.bold),
-                )
-              ],
+            Positioned(
+              bottom: 12,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: screenSize.height * 0.1.h,
+                    width: screenSize.width,
+                  ),
+                   Text(
+                    'Offers and Promotions_txt'.tr,textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 22.sp,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: screenSize.height * 0.1 - 70.h,
+                  ),
+                  Text(
+                    'On all men\'s suits from the most famous world_txt'.tr,
+                    style: TextStyle(
+                        fontSize: 16.sp,
+                        color: Colors.grey[50],
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             )
           ],
         ),
