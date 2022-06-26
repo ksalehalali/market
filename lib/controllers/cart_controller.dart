@@ -138,7 +138,7 @@ class CartController extends GetxController with BaseController {
     );
   }
 
-  Future addToCart(String prodId, colorId, sizeId) async {
+  Future addToCart(String prodId, colorId, sizeId,String langCode) async {
     var headers = {
       'Authorization': 'Bearer ${user.accessToken}',
       'Content-Type': 'application/json'
@@ -153,13 +153,13 @@ class CartController extends GetxController with BaseController {
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
-      getMyCartProds(true);
+      getMyCartProds(true,langCode);
     } else {
       print(response.reasonPhrase);
     }
   }
 
-  Future deleteProdFromCart(String prodId) async {
+  Future deleteProdFromCart(String prodId,String langCode) async {
     showLoading('loading');
 
     var headers = {
@@ -175,7 +175,7 @@ class CartController extends GetxController with BaseController {
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
-      getMyCartProds(false);
+      getMyCartProds(false,langCode);
       hideLoading();
     } else {
       hideLoading();
@@ -183,7 +183,7 @@ class CartController extends GetxController with BaseController {
     }
   }
 
-  Future getMyCartProds(bool fromAdd) async {
+  Future getMyCartProds(bool fromAdd,String langCode) async {
     if (fromAdd) {
 
     } else {
@@ -195,7 +195,9 @@ class CartController extends GetxController with BaseController {
     gotMyCart.value = false;
     var headers = {
       'Authorization': 'Bearer ${user.accessToken}',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Lang': langCode
+
     };
     var request = http.Request(
         'POST', Uri.parse('https://dashcommerce.click68.com/api/ListCart'));
@@ -283,7 +285,7 @@ class CartController extends GetxController with BaseController {
   final storage = GetStorage();
 
   Future addNewOrder(
-      String invoiceId, String paymentGateway, double invoiceValue,int payType) async {
+      String invoiceId, String paymentGateway, double invoiceValue,int payType,String langCode) async {
     processing.value =true;
 
     Future.delayed(5.milliseconds, () {
@@ -319,7 +321,7 @@ class CartController extends GetxController with BaseController {
       lastOrder.invoiceValue = invoiceValue;
       lastOrder.invoiceId = invoiceId;
       lastOrder.payment = 0;
-      await getOneOrder(data['message']);
+      await getOneOrder(data['message'],langCode);
       Get.offAll(OrderSummary(fromOrdersList: false,));
       print(" order done .--- ${data}");
       processing.value =false;
@@ -367,7 +369,7 @@ class CartController extends GetxController with BaseController {
     }
   }
 
-  Future getOneOrder(String id) async {
+  Future getOneOrder(String id,String langCode) async {
     gotOrderDetails.value = false;
     var headers = {
       'Authorization': 'Bearer ${user.accessToken}',

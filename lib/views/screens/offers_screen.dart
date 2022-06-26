@@ -314,7 +314,7 @@ class _OffersScreenState extends State<OffersScreen> {
                   height: screenSize.height * 0.1,
                 ),
                  Text(
-                  'Offers and Promotions',
+                  'Offers and Promotions_txt'.tr,
                   style: TextStyle(
                       fontSize: 22.sp,
                       color: Colors.white,
@@ -325,7 +325,7 @@ class _OffersScreenState extends State<OffersScreen> {
                 ),
                 Center(
                   child: Text(
-                    'On all watches and bags from the most famous world',
+                    'On all watches and bags from the most famous world_txt'.tr,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 16.sp,

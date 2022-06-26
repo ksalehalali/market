@@ -11,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../Assistants/globals.dart';
 import '../../../controllers/cart_controller.dart';
+import '../../../controllers/lang_controller.dart';
 import '../../../controllers/product_controller.dart';
 import '../../../models/product_model.dart';
 import '../../widgets/horizontal_listOfProducts.dart';
@@ -44,6 +45,7 @@ class _ProductDetailsState extends State<ProductDetails>
   final ProductsController productController = Get.find();
   final CartController cartController = Get.find();
   final screenSize = Get.size;
+  final LangController langController = Get.find();
 
   final List<Color> _colorSize = [
     myHexColor3,
@@ -73,7 +75,7 @@ class _ProductDetailsState extends State<ProductDetails>
   void initState() {
     // TODO: implement initState
     super.initState();
-    cartController.getMyCartProds(false);
+    cartController.getMyCartProds(false,langController.appLocal);
   }
 
   @override
@@ -1468,7 +1470,7 @@ class _ProductDetailsState extends State<ProductDetails>
                       .addToCart(
                         productController.productData['id'],
                         productController.productData['image'][0]['colorID'],
-                        productController.productData['size'][0]['sizeID'],
+                        productController.productData['size'][0]['sizeID'],langController.appLocal
                       )
                       .then(
                         (value) => showGeneralDialog(

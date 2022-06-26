@@ -57,6 +57,8 @@ Map<String,String> ar ={
 
   'Bestsellers_txt':'الأكثر مبيعا',
   'Women\'s fashon offers_txt':'عروض الموضة النسائية',
+  'On all watches and bags from the most famous world_txt' :'على كل الساعات والحقائب من اشهر الماركات العالمية',
+
 
 
   'get_support_btn':'الحصول على الدعم',
@@ -193,6 +195,11 @@ Map<String,String> en ={
 
   'Bestsellers_txt':'Bestsellers',
   'Women\'s fashon offers_txt':'Women\'s fashon offers',
+  'On all watches and bags from the most famous world_txt' :'On all watches and bags from the most famous world',
+  //-
+
+  'Shopping cart is empty!_txt':'Shopping cart is empty' ,
+  'Shop now & add things you love to the cart_txt' :'Shop now & add things you love to the cart',
 
   'your_activities':'Your activities',
   'get_support_btn':'Get support',

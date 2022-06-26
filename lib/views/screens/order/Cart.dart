@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import '../../../Assistants/globals.dart';
 import '../../../controllers/address_location_controller.dart';
 import '../../../controllers/cart_controller.dart';
+import '../../../controllers/lang_controller.dart';
 import '../../address/addresses_options_dialog.dart';
 import '../../address/list_addresses.dart';
 import '../../widgets/horizontal_listOfProducts.dart';
@@ -30,12 +31,13 @@ class _CartState extends State<Cart> {
   }
   var cartProductsCounts =[];
   final screenSize = Get.size;
+  final LangController langController = Get.find();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    cartController.getMyCartProds(false);
+    cartController.getMyCartProds(false,langController.appLocal);
   }
   final AddressController addressController = Get.find();
   final box = GetStorage();
@@ -66,8 +68,8 @@ class _CartState extends State<Cart> {
                             const SizedBox(
                               height: 32,
                             ),
-                            const Text(
-                              "Shopping cart is empty!",
+                             Text(
+                              "Shopping cart is empty!_txt".tr,
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -76,8 +78,8 @@ class _CartState extends State<Cart> {
                             const SizedBox(
                               height: 16,
                             ),
-                            const Text(
-                              "Shop now & add things you love to the cart",
+                             Text(
+                              "Shop now & add things you love to the cart_txt".tr,
                               style: TextStyle(fontSize: 16, color: Colors.black54),
                             ),
                           ],
@@ -106,11 +108,14 @@ class _CartState extends State<Cart> {
                                     // TODO: REPLACE THE 'ADDRESS' WORD WITH THE ACTUAL VARIABLE NAME
                                      SizedBox(
 
-                                       width:screenSize.width *.7+27.w,
-                                       child: Text(
-                                         'Address : ${box.read('address')} ?? Select address',overflow: TextOverflow.ellipsis,maxLines: 1,
+                                       width:screenSize.width *.8+07.w,
+                                       child:langController.appLocal=='en' ?Text(
+                                            box.read('address')!=null ?'Address : ${box.read('address')}': 'Select address',overflow: TextOverflow.ellipsis,maxLines: 1,
                                         style: TextStyle(color: Colors.black54),
-                                    ),
+                                    ):Text(
+                                         box.read('address')!=null ?'العنوان : ${box.read('address')}': 'اختر عنوان',overflow: TextOverflow.ellipsis,maxLines: 1,textAlign: TextAlign.center,textDirection: TextDirection.rtl,
+                                         style: TextStyle(color: Colors.black54,fontSize: 12),
+                                       ),
                                      ),
                                     const Spacer(),
                                     InkWell(
@@ -523,7 +528,7 @@ class _CartState extends State<Cart> {
                   ),
                 ),
                 InkWell(
-                  onTap: (() => cartController.deleteProdFromCart(cartController.myPrCartProducts[i]['id'])),
+                  onTap: (() => cartController.deleteProdFromCart(cartController.myPrCartProducts[i]['id'],langController.appLocal)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children:  [

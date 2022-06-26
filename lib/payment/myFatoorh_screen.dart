@@ -5,6 +5,7 @@ import 'package:my_fatoorah/my_fatoorah.dart';
 
 import '../Assistants/globals.dart';
 import '../controllers/cart_controller.dart';
+import '../controllers/lang_controller.dart';
 
 class MyFatoorhScreen extends StatefulWidget {
   const MyFatoorhScreen({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class MyFatoorhScreen extends StatefulWidget {
 
 class _MyFatoorhScreenState extends State<MyFatoorhScreen> {
   final CartController cartController = Get.find();
+  final LangController langController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class _MyFatoorhScreenState extends State<MyFatoorhScreen> {
             print('-------------------------------...');
             print(response);
             print(response.status);
-            cartController.addNewOrder(response.paymentId!, 'Card', cartController.fullPrice.value.toDouble(), 1);
+            cartController.addNewOrder(response.paymentId!, 'Card', cartController.fullPrice.value.toDouble(), 1,langController.langCode);
             //cartController.addNewOrder('0','Cash',cartController.fullPrice.value.toDouble(),0);
           },
           successChild: Column(

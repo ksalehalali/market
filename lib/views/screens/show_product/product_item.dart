@@ -285,7 +285,7 @@ class ProductItemCard extends StatelessWidget {
                                     width: 7.0.w,
                                   ),
                                   Text(
-                                    langController.appLocal=="en"? "Discount ${product.offer}%":" %${product.offer} الخصم",
+                                    langController.appLocal=="en"? "Discount ${product.offer}%":"  الخصم %${product.offer} ",
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 1,
                                     textAlign: TextAlign.left,

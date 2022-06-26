@@ -9,6 +9,7 @@ import '../../../Assistants/globals.dart';
 import '../../../Data/current_data.dart';
 import '../../../controllers/address_location_controller.dart';
 import '../../../controllers/cart_controller.dart';
+import '../../../controllers/lang_controller.dart';
 import '../../../payment/myFatoorh_screen.dart';
 import '../../../payment/payment_method_dialog.dart';
 
@@ -27,6 +28,7 @@ class _BayOptionsState extends State<BayOptions> {
   final AddressController addressController = Get.find();
   final CartController cartController = Get.find();
   final screenSize = Get.size;
+  final LangController langController = Get.find();
 
   @override
   void initState() {
@@ -316,7 +318,7 @@ initS()async{
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>MyFatoorhScreen()));
 
                     }else {
-                      cartController.addNewOrder('0','Cash',cartController.fullPrice.value.toDouble(),0);
+                      cartController.addNewOrder('0','Cash',cartController.fullPrice.value.toDouble(),0,langController.appLocal);
                     }
 
                   },

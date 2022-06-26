@@ -149,7 +149,7 @@ class _MyOrdersState extends State<MyOrders> {
                             InkWell(
                               onTap: () async {
                                 await cartController.getOneOrder(cartController
-                                    .myOrders[indexA]['result']['id']);
+                                    .myOrders[indexA]['result']['id'],langController.appLocal);
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => OrderSummary(
                                           fromOrdersList: true,
