@@ -163,21 +163,21 @@ class _CartState extends State<Cart> {
                       padding:  EdgeInsets.symmetric(horizontal: 12.w),
                       child: Container(
                         child:  Text(
-                          "Things you might like",
+                          "Things you might like_txt".tr,
                           style:
-                              TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
+                              TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: screenSize.height * 0.1 - 50.h,
+                      height: langController.appLocal=="en"?screenSize.height * 0.1 - 50.h:screenSize.height * 0.1 -  75.h,
                     ),
                     Padding(
                       padding:  EdgeInsets.symmetric(horizontal: 12.w),
                       child: buildHorizontalListOfProducts(false),
                     ),
                     SizedBox(
-                      height: screenSize.height * 0.1 - 50.h,
+                      height: screenSize.height * 0.1 - 16.h,
                     ),
                   ],
                 ),
@@ -220,13 +220,16 @@ class _CartState extends State<Cart> {
                             }
                           },
                           child: Text(
-                            'APPLY  | ',
+                            'APPLY  |_txt'.tr,
                             style: TextStyle(
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w700,
                                 color: myHexColor4),
                           )),
-                      hintText: ' Enter the discount code',
+                      hintText: 'Enter the discount code_txt'.tr,
+                      hintStyle: TextStyle(
+                        height: langController.appLocal=="en"?0:1
+                      )
                     ),
                   ),
                 )),
@@ -236,7 +239,7 @@ class _CartState extends State<Cart> {
             child: Row(
               children: [
                  Text(
-                  "Products price",
+                  "Products price_txt".tr,
                   style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
@@ -260,7 +263,7 @@ class _CartState extends State<Cart> {
             child: Row(
               children:  [
                 Text(
-                  "Shipping fee",
+                  "Shipping fee_txt".tr,
                   style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
@@ -282,7 +285,7 @@ class _CartState extends State<Cart> {
             child: Row(
               children: [
                  Text(
-                  "Total",
+                  "Total_txt".tr,
                   style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
@@ -324,12 +327,18 @@ class _CartState extends State<Cart> {
                   color:myHexColor2,
                   child: Center(
                       child: Obx(
-                    () =>cartController.myPrCartProducts.length >0? Text(
+                    () =>langController.appLocal=="en"?cartController.myPrCartProducts.length >0? Text(
                       cartController.myPrCartProducts.length > 1
                           ? 'BUY ${cartController.myPrCartProducts.length} ITEMS FOR ${cartController.fullPrice.value.toStringAsFixed(2)}  QAR'
                           : 'BUY ${cartController.myPrCartProducts.length} ITEM FOR ${cartController.fullPrice.value.toStringAsFixed(2)}  QAR',
                       style: const TextStyle(color: Colors.white),
-                    ): Text('Cart is empty',style:  TextStyle(color: Colors.white,fontSize: 14.sp,fontWeight: FontWeight.w600),),
+                    ):
+                    Text('Cart is empty_txt'.tr,style:  TextStyle(color: Colors.white,fontSize: 14.sp,fontWeight: FontWeight.w600),):cartController.myPrCartProducts.length >0? Text(
+                          cartController.myPrCartProducts.length > 1
+                          ? 'اشتر ${cartController.myPrCartProducts.length} منجات مقابل ${cartController.fullPrice.value.toStringAsFixed(2)}  QAR'
+                      : 'اشتر ${cartController.myPrCartProducts.length} منتج مقابل ${cartController.fullPrice.value.toStringAsFixed(2)}  QAR',
+                  style: const TextStyle(color: Colors.white),
+                ): Text('Cart is empty_txt'.tr,style:  TextStyle(color: Colors.white,fontSize: 14.sp,fontWeight: FontWeight.w600),),
                   )),
                 )),
           ),
@@ -396,37 +405,41 @@ class _CartState extends State<Cart> {
                     const SizedBox(
                       height: 8,
                     ),
+
+                    //
                     SizedBox(
-                      width: screenSize.width * 0.4 + 10,
+                      width: screenSize.width * 0.4 + 10.w,
                       child: Row(
                         children: [
                           Text(
-                            "${cartController.myPrCartProducts[i]["price"]} QAR".toUpperCase(),
+                            "${cartController.myPrCartProducts[i]["price"]} QAR"
+                                .toUpperCase(),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
+                            textAlign: langController.appLocal=="en"?TextAlign.left:TextAlign.right,
+                            style:  TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 fontFamily: 'Montserrat-Arabic Regular',
                                 color: Colors.grey,
-                                fontSize: 13),
+                                fontSize: 13.sp),
                           ),
-                          const SizedBox(
-                            width: 7.0,
+                          SizedBox(
+                            width: 7.0.w,
                           ),
                           Text(
-                            "Discount ${cartController.myPrCartProducts[i]["offer"]}%",
+                            langController.appLocal=="en"? "Discount ${cartController.myPrCartProducts[i]["offer"]}%":"  الخصم %${cartController.myPrCartProducts[i]["offer"]} ",
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 fontFamily: 'Montserrat-Arabic Regular',
                                 color: myHexColor3,
-                                fontSize: 13),
+                                fontSize: 13.sp),
                           ),
                         ],
                       ),
                     ),
+
                     SizedBox(height: 14,),
                     Text(
                       "${num.parse(cartController.myPrCartProducts[i]["price"]) - price} QAR",
@@ -435,8 +448,12 @@ class _CartState extends State<Cart> {
                     const SizedBox(
                       height: 8,
                     ),
-                    Text(
+                    langController.appLocal=="en"?Text(
                       "seller ${cartController.myPrCartProducts[i]['userName']}",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ):
+                    Text(
+                      "البائع ${cartController.myPrCartProducts[i]['userName']}",
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -476,7 +493,7 @@ class _CartState extends State<Cart> {
                         const SizedBox(
                           width: 12,
                         ),
-                        InkWell(
+                        langController.appLocal=="en"?InkWell(
                           onTap: (){
                            setState(() {
                              if(cartProductsCounts[i]>1){
@@ -493,6 +510,24 @@ class _CartState extends State<Cart> {
                             ),
                             child:  Icon(Icons.remove,color: Colors.grey[600],),
                           ),
+                        ):InkWell(
+                          onTap: () {
+                            setState(() {
+
+                              cartProductsCounts[i]++;
+                              // print(cartProductsCounts[i]);
+                              cartController.editProdCountCart(
+                                  cartController.myPrCartProducts[i]['id'],cartProductsCounts[i],num.parse(cartController.myPrCartProducts[i]["price"])-price,true);
+                            });
+
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                                borderRadius: BorderRadius.circular(22)
+                            ),
+                            child:  Icon(Icons.add,color: Colors.grey[600],),
+                          ),
                         ),
                         const SizedBox(
                           width: 18,
@@ -501,7 +536,7 @@ class _CartState extends State<Cart> {
                         const SizedBox(
                           width: 18,
                         ),
-                        InkWell(
+                        langController.appLocal=="en"?InkWell(
                           onTap: () {
                            setState(() {
 
@@ -519,6 +554,23 @@ class _CartState extends State<Cart> {
                             ),
                             child:  Icon(Icons.add,color: Colors.grey[600],),
                           ),
+                        ):InkWell(
+                          onTap: (){
+                            setState(() {
+                              if(cartProductsCounts[i]>1){
+                                cartProductsCounts[i]--;
+                                cartController.editProdCountCart(
+                                    cartController.myPrCartProducts[i]['id'],cartProductsCounts[i],num.parse(cartController.myPrCartProducts[i]["price"])-price,false);
+                              }
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                                borderRadius: BorderRadius.circular(22)
+                            ),
+                            child:  Icon(Icons.remove,color: Colors.grey[600],),
+                          ),
                         ),
                         const SizedBox(
                           width: 12,
@@ -531,18 +583,26 @@ class _CartState extends State<Cart> {
                   onTap: (() => cartController.deleteProdFromCart(cartController.myPrCartProducts[i]['id'],langController.appLocal)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
+                    //mainAxisAlignment: MainAxisAlignment.end,
                     children:  [
-                      Icon(
+                      langController.appLocal=="en"?Icon(
                         Icons.delete_outline,
                         color: Colors.red[700],
-                      ),
+                      ):Container(),
                       Align(
                         alignment: Alignment.center,
-                        child: Text(
+                        child: langController.appLocal=="en"?Text(
                           "Remove",textAlign: TextAlign.end,
                           style: TextStyle(color: Colors.red[700]),
-                        ),
-                      )
+                        ):Text(
+                        "حذف",textAlign: TextAlign.end,
+                        style: TextStyle(color: Colors.red[700],height: 1,fontSize: 14),
+                      ),
+                      ),
+                      langController.appLocal=="ar"?Icon(
+                        Icons.delete_outline,
+                        color: Colors.red[700],
+                      ):Container(),
                     ],
                   ),
                 )

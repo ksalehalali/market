@@ -79,6 +79,7 @@ class ProductItemCard extends StatelessWidget {
         ),
         padding:  EdgeInsets.only(top: 6.h, right: 6.w, left: 6.w, bottom: 0.h),
         child: Stack(
+            alignment:AlignmentDirectional.topStart,
           children: <Widget>[
             InkWell(
               onTap: () {
@@ -230,7 +231,7 @@ class ProductItemCard extends StatelessWidget {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style:  TextStyle(
-                                        fontSize: 13.sp, color: Colors.grey[700])),
+                                        fontSize: 14.sp, color: Colors.grey[700])),
                               ),
                             ),
 
@@ -241,7 +242,7 @@ class ProductItemCard extends StatelessWidget {
                                 width: screenSize.width *.3.w,
                                 child: Text(
                                   '${langController.appLocal=="en"?product.categoryNameEN:product.categoryNameAR}'.toUpperCase(),
-                                  textAlign: TextAlign.right,
+                                  //textAlign: TextAlign.right,
                                   style: TextStyle(
                                       fontFamily: 'Montserrat-Arabic Regular',
                                       color: Colors.black.withOpacity(0.7),
@@ -279,7 +280,7 @@ class ProductItemCard extends StatelessWidget {
                                         decoration: TextDecoration.lineThrough,
                                         fontFamily: 'Montserrat-Arabic Regular',
                                         color: Colors.grey,
-                                        fontSize: 11.sp),
+                                        fontSize: 12.sp),
                                   ),
                                    SizedBox(
                                     width: 7.0.w,
@@ -292,7 +293,7 @@ class ProductItemCard extends StatelessWidget {
                                     style: TextStyle(
                                         fontFamily: 'Montserrat-Arabic Regular',
                                         color: myHexColor3,
-                                        fontSize: 11.sp),
+                                        fontSize: 12.sp),
                                   ),
                                 ],
                               ),

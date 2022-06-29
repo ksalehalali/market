@@ -58,6 +58,17 @@ Map<String,String> ar ={
   'Bestsellers_txt':'الأكثر مبيعا',
   'Women\'s fashon offers_txt':'عروض الموضة النسائية',
   'On all watches and bags from the most famous world_txt' :'على كل الساعات والحقائب من اشهر الماركات العالمية',
+  //-
+
+  'APPLY  |_txt': 'تفعيل ',
+  'Enter the discount code_txt' : ' ادخل كود الخصم',
+  'Products price_txt':'سعر المنتجات',
+  'Shipping fee_txt':'رسوم الشحن',
+  'Total_txt':'المجموع',
+  'Things you might like_txt':'اشياء قد تعجبك',
+  'Cart is empty_txt':'السلة فارغة' ,
+
+
 
 
 
@@ -112,28 +123,6 @@ Map<String,String> ar ={
   "your_trips_txt":'رحلاتك',
   "your_transactions_txt":'عملياتك',
   //-
-
-  "set_pickup_rop_off_txt":'حدد نقطة الإلتقاط - الوصول',
-  "from_txt":'من',
-  "loading..._txt":'جار التحميل',
-  "to_txt":'الى',
-  "where_To?_txt":"الى اين؟ ",
-  "confirm_drop_off_spot_txt":"تأكيد نقطة الوصول",
-  "confirm_pick_up_spot_txt":"تأكيد نقطة الإلتقاط",
-  //-
-
-  "set_location_on_map_txt":'حدد الموقع من الخريطة',
-  "choose_txt":"اختر",
-  //-
-
-  "start_trip_txt":"ابدأ الرحلة",
-  "Set_your_pickup-Drop_Off_spot_txt":"حدد نقطة الإلتقاط - الوصول",
-  "Start_Your_Trip._txt":"ابدأ رحلتك",
-  "Start:_txt":"البداية : ",
-  "Walk_to_bus_stop_txt":"امشي حتى المحطة",
-  "Board_at_Route_txt":"احجز في الباص ",
-  "Change_to_txt":"غير الى ",
-  "Get_off_at_txt":"انزل في ",
 
 };
 
@@ -200,8 +189,22 @@ Map<String,String> en ={
 
   'Shopping cart is empty!_txt':'Shopping cart is empty' ,
   'Shop now & add things you love to the cart_txt' :'Shop now & add things you love to the cart',
+  //-
 
-  'your_activities':'Your activities',
+  'APPLY  |_txt': 'APPLY  | ',
+  'Enter the discount code_txt' : ' Enter the discount code',
+  'Products price_txt':'Products price',
+  'Shipping fee_txt':'Shipping  fee',
+  'Total_txt':'Total',
+'Things you might like_txt':'Things you might like',
+  'Cart is empty_txt':'Cart is empty' ,
+
+
+
+
+
+
+'your_activities':'Your activities',
   'get_support_btn':'Get support',
   'help_btn':'Help',
   'share_app_btn':'Share App',
@@ -255,35 +258,6 @@ Map<String,String> en ={
   "need_help_now?":"Need help now?",
   "call_support":"Call Support",
   //-
-
-  "your_trips_txt":'Your Trips',
-  "your_transactions_txt":'Your Transactions',
-  //-
-
-  "set_pickup_rop_off_txt":'Set Pickup - Drop off',
-  "from_txt":'From',
-  "loading..._txt":'Loading...',
-  "to_txt":'To',
-  "where_To?_txt":"Where to? ",
-  "confirm_drop_off_spot_txt":"Confirm Drop off spot",
-  "confirm_pick_up_spot_txt":"Confirm Pick up spot",
-  //-
-
-  "set_location_on_map_txt":'Set Location on map',
-  "choose_txt":"Choose",
-  //-
-
-
-  "start_trip_txt":"Start trip",
-  "Set_your_pickup-Drop_Off_spot_txt":"Set your pickup - Drop Off spot",
-  "Start_Your_Trip._txt":"Start your trip",
-  "Start:_txt":"Start : ",
-
-  "Walk_to_bus_stop_txt":"Walk to bus stop",
-  "Board_at_Route_txt":"Board at Route ",
-  "Change_to_txt":"Change to ",
-  "Get_off_at_txt":"Get off at ",
-
 };
 
 Map<String,String> hi ={
