@@ -19,6 +19,8 @@ class AccountController extends GetxController {
   var isLoggedIn = false.obs;
   var username = "".obs;
   var token = "".obs;
+  var userEmail = "".obs;
+
 
   @override
   void onInit() {
@@ -44,6 +46,7 @@ class AccountController extends GetxController {
 
     token.value = storage.read('token');
     username.value = storage.read('username');
+    userEmail.value = storage.read('userEmail');
 
     print("ssssssssss ${username.value}");
     print("tokenssss ${token.value}");

@@ -64,6 +64,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   html: ^0.15.0
   flutter_html:
+  flutter_blurhash: ^0.7.0
 
 dev_dependencies:
   flutter_test:

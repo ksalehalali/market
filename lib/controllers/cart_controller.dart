@@ -307,6 +307,8 @@ class CartController extends GetxController with BaseController {
       "AddressID": storage.read("idAddressSelected"),
       "Payment": payType
     });
+
+    print('invoiceId $invoiceId -- paymentGateway $paymentGateway -- invoice value $invoiceValue payment $payType --- adressId ${storage.read("idAddressSelected")}');
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -329,6 +331,7 @@ class CartController extends GetxController with BaseController {
     } else {
       print('error add order');
       print(response.reasonPhrase);
+      print(response.statusCode);
     }
   }
 

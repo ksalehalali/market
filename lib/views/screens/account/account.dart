@@ -21,6 +21,8 @@ import '../order/my_orders.dart';
 import '../wallet/wallet_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'profile_screen.dart';
+
 
 class Account extends StatefulWidget {
   Account({Key? key}) : super(key: key);
@@ -33,6 +35,8 @@ class _AccountState extends State<Account> {
   final accountController = Get.put(AccountController());
   final CartController cartController = Get.find();
   final PaymentController paymentController = Get.find();
+  final LangController langController = Get.find();
+
   bool btnPressed =false;
   bool btnPressed2 =false;
   bool btnPressed3 =false;
@@ -263,7 +267,11 @@ class _AccountState extends State<Account> {
                       ),
                     ),
 
-                    buildOptionRow("personal_info".tr, Icons.account_circle_outlined,false),
+                    InkWell(
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfileScreen()));
+                        },
+                        child: buildOptionRow("personal_info".tr, Icons.account_circle_outlined,false)),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 64.0.w),
                       child: Divider(
@@ -300,7 +308,7 @@ class _AccountState extends State<Account> {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  padding:  EdgeInsets.only(right: langController.appLocal=="ar"?   14.0.w:0.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [

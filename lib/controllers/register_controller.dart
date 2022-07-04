@@ -85,7 +85,8 @@ print('login...');
       else if (response.statusCode == 200){
         var jsonResponse = json.decode(response.body);
         if(jsonResponse["status"]){
-          storeUserLoginPreference(jsonResponse["description"]["token"], jsonResponse["description"]["userName"], loginPasswordController.text, jsonResponse["description"]["id"]);
+          print('user data ::: ${jsonResponse["description"]}');
+          storeUserLoginPreference(jsonResponse["description"]["token"], jsonResponse["description"]["userName"], loginPasswordController.text, jsonResponse["description"]["id"],jsonResponse["description"]["email"]);
           accountController.fetchUserLoginPreference();
           user.accessToken = jsonResponse["description"]["token"];
           //hideLoading();
@@ -151,9 +152,10 @@ print('login...');
       var jsonResponse = json.decode(response.body);
       if(jsonResponse["status"]){
         print("auttto login ${jsonResponse["description"]}");
+        print('user data ::: ${jsonResponse["description"]}');
 
         token = jsonResponse["description"]["token"];
-        storeUserLoginPreference(jsonResponse["description"]["token"], jsonResponse["description"]["userName"], password, jsonResponse["description"]["id"]);
+        storeUserLoginPreference(jsonResponse["description"]["token"], jsonResponse["description"]["userName"], password, jsonResponse["description"]["id"],jsonResponse["description"]["email"]);
         print(jsonResponse["description"]["token"]);
         accountController.fetchUserLoginPreference();
         user.accessToken = jsonResponse["description"]["token"];
@@ -177,9 +179,10 @@ print('login...');
 
   }
 
-  Future<void> storeUserLoginPreference(token, username, password, id) async {
+  Future<void> storeUserLoginPreference(token, username, password, id,userEmail) async {
     storage.write('token', token);
     storage.write('username', username);
+    storage.write('userEmail', userEmail);
     storage.write('password', password);
     storage.write('id', id);
 

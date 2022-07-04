@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:get/get.dart';
 import '../../Assistants/globals.dart';
 import '../../Data/data_for_ui.dart';
@@ -64,7 +65,12 @@ class _OffersScreenState extends State<OffersScreen> {
                 child: Image.asset(
                   'assets/images/pexels-artem-beliaikin-2529787 1.jpg',
                   fit: BoxFit.fill,
+
                 )),
+            // Container(
+            //   height: 300,
+            //    child: BlurHash(hash: 'f8C6M\$9tcY,FKOR*00%2RPNaaKjZUawdv#K4\$Ps:HXELTJ,@XmS2=yxuNGn%IoR*'),
+            // ),
             SizedBox(
               height: 8.0.h,
             ),
