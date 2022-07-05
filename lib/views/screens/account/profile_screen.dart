@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../Assistants/globals.dart';
 import '../../../controllers/account_controller.dart';
+import 'edit_personal_info_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -186,7 +187,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                               ),
                               onPressed: (){
-                          }, child: Text(
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChangePasswordScreen()));
+                                }, child: Text(
                             'CHANGE PASSWORD',
                           )),
 

@@ -101,6 +101,8 @@ print('login...');
               backgroundColor: Colors.white70,
               textColor: Colors.black,
               fontSize: 16.0);
+          Get.to(Register());
+          return;
         }
       }
 
@@ -169,9 +171,10 @@ print('login...');
             gravity: ToastGravity.CENTER,
             timeInSecForIosWeb: 1,
             backgroundColor: Colors.white70,
-            textColor: Colors.black,
+            textColor: Colors.red,
             fontSize: 16.0);
-        Get.to(()=>Register());
+        Get.offAll(()=>Register());
+        return;
 
       }
     }

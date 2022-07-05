@@ -38,8 +38,6 @@ class StartUpController extends GetxController {
     print("ssssss ${storageToken}");
     if (storageToken == null) {
       print('null');
-//      Navigator.push(context, MaterialPageRoute(builder: (context)=>Register()));
-//      Get.to(() => Account());
       SchedulerBinding.instance.addPostFrameCallback((_) {
         Get.to(() => Register());
         //yourcode
@@ -48,7 +46,6 @@ class StartUpController extends GetxController {
       token = storageToken;
       await registerController.makeAutoLoginRequest(
           storageUsername, storagePassword);
-      Get.to(const MainScreen());
     }
   }
 }
