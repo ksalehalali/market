@@ -90,7 +90,7 @@ print('login...');
           accountController.fetchUserLoginPreference();
           user.accessToken = jsonResponse["description"]["token"];
           //hideLoading();
-          Get.to(MainScreen());
+          Get.to(MainScreen(index: 0));
           isRegisterLoading.value =true;
         } else {
           Fluttertoast.showToast(
@@ -162,7 +162,7 @@ print('login...');
         accountController.fetchUserLoginPreference();
         user.accessToken = jsonResponse["description"]["token"];
         //hideLoading();
-        Get.offAll(const MainScreen());
+        Get.offAll(const MainScreen(index: 0,));
 
       } else {
         Fluttertoast.showToast(

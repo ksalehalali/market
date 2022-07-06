@@ -20,6 +20,8 @@ class AccountController extends GetxController {
 
   var isLoggedIn = false.obs;
   var username = "".obs;
+  var lastName = "".obs;
+
   var token = "".obs;
   var userEmail = "".obs;
 
@@ -85,6 +87,34 @@ class AccountController extends GetxController {
       print(response.reasonPhrase);
     }
 
+
+  }
+
+  Future editPersonalInformation({required String firstName,required String lastName,required String email})async {
+    var headers = {
+      'Authorization': 'Bearer ${user.accessToken}',
+      'Content-Type': 'application/json'
+    };
+    print('last name $lastName , firstName $firstName');
+
+    var request = http.Request('POST', Uri.parse('$baseURL/api/EditeProfile'));
+    request.body = json.encode({
+      "email": email,
+      "FirstName": firstName,
+      "LastName": lastName
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      Get.snackbar('Information Saved', 'change your information done',snackPosition: SnackPosition.BOTTOM,colorText: Colors.white,backgroundColor: myHexColor);
+      Get.offAll(MainScreen(index: 4,));
+    }
+    else {
+      print(response.reasonPhrase);
+    }
 
   }
 

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../Assistants/globals.dart';
 import '../../../controllers/account_controller.dart';
+import 'change_password_screen.dart';
 import 'edit_personal_info_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -106,6 +107,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       fontWeight: FontWeight.bold)),
                               Spacer(),
                               InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          EditPersonalInfoScreen()));
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8.0),
@@ -170,28 +176,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Text(
                             'SECURITY INFORMATION',
                             style: TextStyle(
-                                fontSize: 16.sp, fontWeight: FontWeight.bold,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.bold,
                               color: Colors.grey[700],
-
                             ),
                           ),
-
                           OutlinedButton(
                               style: ElevatedButton.styleFrom(
                                 elevation: 0.0,
-                                  maximumSize: Size(Get.size.width -220,Get.size.width -90),
-                                  minimumSize: Size(Get.size.width -220, 32),primary: Colors.transparent,
-                                  onPrimary: myHexColor,
-                                  alignment: Alignment.center,
-
-
+                                maximumSize: Size(
+                                    Get.size.width - 220, Get.size.width - 90),
+                                minimumSize: Size(Get.size.width - 220, 32),
+                                primary: Colors.transparent,
+                                onPrimary: myHexColor,
+                                alignment: Alignment.center,
                               ),
-                              onPressed: (){
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChangePasswordScreen()));
-                                }, child: Text(
-                            'CHANGE PASSWORD',
-                          )),
-
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChangePasswordScreen()));
+                              },
+                              child: Text(
+                                'CHANGE PASSWORD',
+                              )),
                         ],
                       ),
                     ),

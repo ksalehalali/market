@@ -67,7 +67,7 @@ class _ListAddressesState extends State<ListAddresses> {
                             }else{
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                      builder: (context) => const MainScreen()));
+                                      builder: (context) => const MainScreen(index: 0)));
                             }
                           },
                           child: const Icon(
@@ -164,7 +164,7 @@ class _ListAddressesState extends State<ListAddresses> {
                     if(widget.fromCart ==false){
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                              builder: (context) => const MainScreen()));
+                              builder: (context) => const MainScreen(index: 0)));
                     }else{
                       Navigator.of(context).push(
                           MaterialPageRoute(

@@ -120,7 +120,7 @@ class _CartState extends State<Cart> {
                                     const Spacer(),
                                     InkWell(
                                       onTap: () {
-                                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>MainScreen()));
+                                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>MainScreen(index: 0)));
                                       },
                                       child: Padding(
                                         padding:  EdgeInsets.symmetric(horizontal: 0.0.w),

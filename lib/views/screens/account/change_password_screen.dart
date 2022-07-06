@@ -5,32 +5,20 @@ import 'package:get/get.dart';
 import '../../../Assistants/globals.dart';
 import '../../../controllers/account_controller.dart';
 
-class EditPersonalInfoScreen extends StatefulWidget {
-  const EditPersonalInfoScreen({Key? key}) : super(key: key);
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({Key? key}) : super(key: key);
 
   @override
-  State<EditPersonalInfoScreen> createState() => _EditPersonalInfoScreenState();
+  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
 
-class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController nameTextEditingController = TextEditingController();
-  TextEditingController lastNameTextEditingController = TextEditingController();
-
-  TextEditingController emailTextEditingController = TextEditingController();
+  TextEditingController passwordTextEditingController = TextEditingController();
+  TextEditingController newPasswordTextEditingController = TextEditingController();
 
   TextEditingController confirmTextEditingController = TextEditingController();
   final AccountController accountController = Get.find();
-  String? firstName , lastName , email ;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    firstName = accountController.username.value;
-    lastName = accountController.lastName.value;
-    email = accountController.userEmail.value;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,18 +49,18 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
                             Navigator.of(context).pop();
                           },
                           child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text('CANCEL',style: TextStyle(
-                                  fontSize: 15.sp,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.grey[800]),)
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Text('CANCEL',style: TextStyle(
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.grey[800]),)
                           ),
                         ),
                       ],
                     ),
                   ),
                   SizedBox(
-                    height: 54.h,
+                    height: 44.h,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -80,7 +68,7 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'First Name',
+                          'Current Password',
                           style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w300,
@@ -88,19 +76,17 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
                         ),
 
                         TextFormField(
-                         // controller: nameTextEditingController,
-                          initialValue: accountController.username.value,
+                          controller: passwordTextEditingController,
                           decoration: InputDecoration(
-                              hintText: 'Please enter your first name',
-                             ),
+                              hintText: 'Please enter your current password',
+                              suffixIcon: InkWell(
+                                child: Icon(Icons.remove_red_eye_outlined),
+                              )),
                           validator: (value) {
                             if (value!.isEmpty || value.length < 4) {
-                              return 'Please enter correct name';
+                              return 'Please enter correct password';
                             }
                             return null;
-                          },
-                          onChanged: (val){
-                            firstName = val;
                           },
                         )
                       ],
@@ -108,7 +94,7 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
                   ),
 
                   SizedBox(
-                    height: 34.h,
+                    height: 64.h,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -116,7 +102,7 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Last Name',
+                          'New Password',
                           style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w300,
@@ -124,53 +110,17 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
                         ),
 
                         TextFormField(
-                          // controller: nameTextEditingController,
-                          initialValue: accountController.username.value,
+                          controller: newPasswordTextEditingController,
                           decoration: InputDecoration(
-                            hintText: 'Please enter your last name',
-                          ),
+                              hintText: 'Please enter your new password',
+                              suffixIcon: InkWell(
+                                child: Icon(Icons.remove_red_eye_outlined),
+                              )),
                           validator: (value) {
                             if (value!.isEmpty || value.length < 4) {
-                              return 'Please enter correct name';
+                              return 'Please enter correct password';
                             }
                             return null;
-                          },
-                          onChanged: (val){
-                            lastName = val;
-                          },
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 34.h,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Email',
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.grey[500]),
-                        ),
-
-                        TextFormField(
-                          initialValue: accountController.userEmail.value,
-                          decoration: InputDecoration(
-                              hintText: 'Please enter your email',
-                             ),
-                          validator: (value) {
-                            if (value!.isEmpty || value.length < 4) {
-                              return 'Please enter correct email';
-                            }
-                            return null;
-                          },
-                          onChanged: (val){
-                            email = val;
                           },
                         )
                       ],
@@ -179,6 +129,38 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
 
                   SizedBox(
                     height: 24.h,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Confirm Password',
+                          style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.grey[500]),
+                        ),
+
+                        TextFormField(
+                          controller: confirmTextEditingController,
+                          decoration: InputDecoration(
+                              hintText: 'Please enter your new password again',
+                              suffixIcon: InkWell(
+                                child: Icon(Icons.remove_red_eye_outlined),
+                              )),
+                          validator: (value) {
+                            if (value!.isEmpty || value.length < 4) {
+                              return 'Please enter correct password';
+                            }else if (value != newPasswordTextEditingController.text){
+                              return 'password not match';
+                            }
+                            return null;
+                          },
+                        )
+                      ],
+                    ),
                   ),
 
                 ],
@@ -190,19 +172,19 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
 
                 if (_formKey.currentState!.validate()){
                   print('validate');
-                  // Get.bottomSheet(Container(
-                  //   color: Colors.white,
-                  //   height: 200,
-                  //   child: Text('Password'),));
+                   // Get.bottomSheet(Container(
+                   //   color: Colors.white,
+                   //   height: 200,
+                   //   child: Text('Password'),));
 
-                  accountController.editPersonalInformation( firstName:  firstName!,lastName:  lastName!,email: email!,);
+                  accountController.changePassword(passwordTextEditingController.text, newPasswordTextEditingController.text, confirmTextEditingController.text);
                 }
               },
               child: Container(
                 height: 40,
                 color: myHexColor,
                 child: Center(child: Text(
-                  'SAVE',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),
+                  'CHANGE PASSWORD',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),
                 ),),
               ),
             ) ,

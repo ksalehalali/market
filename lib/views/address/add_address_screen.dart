@@ -48,7 +48,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   InkWell(
                     onTap: () {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const MainScreen()));
+                          builder: (context) => const MainScreen(index: 0)));
                     },
                     child: Text(
                       "Cancel",

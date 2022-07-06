@@ -161,7 +161,7 @@ class AddressOnMapState extends State<AddressOnMap> {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const MainScreen()));
+                          builder: (context) => const MainScreen(index: 0)));
                 },
                 child: Container(
                   //height: 300.0,

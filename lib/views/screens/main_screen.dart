@@ -16,7 +16,8 @@ import 'account/account.dart';
 import 'home/home.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  final index ;
+  const MainScreen({Key? key,this.index}) : super(key: key);
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -42,14 +43,15 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    autoLang();
 
+    currentTp = widget.index;
     productController.getProductsByCatHome(
         '0c348ba7-1873-425e-8e49-97e0ec8ceebe', 'recommended');
     productController.getProductsByCatHome(
         'd115a1f7-2407-4446-9caa-dc9744e5bfa8', 'latest');
     productController.getProductsByCatHome(
         'a7c777ed-cb81-46f3-bd6b-7667842d7819', 'offers');
-    autoLang();
 
     addressController.getMyAddresses();
     productController.getMyFav();
@@ -57,8 +59,10 @@ class _MainScreenState extends State<MainScreen> {
   }
 //lng
   final LangController langController = Get.find();
-
   void autoLang()async{
+    setState(() {
+      currentScreen =screens[widget.index];
+    });
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var lang = await prefs.getString('lang');

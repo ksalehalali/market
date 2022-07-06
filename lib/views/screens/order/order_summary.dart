@@ -46,7 +46,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                  Navigator.of(context).pop();
 
                }else{
-                 Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const MainScreen()));
+                 Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const MainScreen(index: 0)));
                }
               },
               child: Padding(
