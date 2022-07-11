@@ -142,7 +142,7 @@ class _AccountState extends State<Account> {
                       ),
                       SizedBox(height: 8.0.h),
                       Text(
-                        accountController.username.value,
+                        accountController.firstName.value,
                         style: TextStyle(
                             fontSize: 15.sp,
                             fontWeight: FontWeight.bold,
@@ -253,7 +253,7 @@ class _AccountState extends State<Account> {
                         color: Color.fromRGBO(245, 246, 248, 1.0),
                         padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                         child: Align(
-                          alignment: Get.locale == "en"? Alignment.centerLeft:Alignment.centerRight, // Align however you like (i.e .centerRight, centerLeft)
+                          alignment: Get.locale == "en"?Alignment.centerRight : Alignment.centerLeft, // Align however you like (i.e .centerRight, centerLeft)
                           child: Text(
                             "my_account".tr,
                             textAlign: TextAlign.start,
@@ -294,7 +294,7 @@ class _AccountState extends State<Account> {
                   color: Color.fromRGBO(245, 246, 248, 1.0),
                   padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                   child: Align(
-                    alignment: Get.locale == "en"? Alignment.centerLeft:Alignment.centerRight,// Align however you like (i.e .centerRight, centerLeft)
+                    alignment: Get.locale == "en"?Alignment.centerRight : Alignment.centerLeft, // Align however you like (i.e .centerRight, centerLeft)
                     child: Text(
                       "App_Settings_txt".tr,
                       textAlign: TextAlign.start,
@@ -308,7 +308,7 @@ class _AccountState extends State<Account> {
                 ),
 
                 Padding(
-                  padding:  EdgeInsets.only(right: langController.appLocal=="ar"?   14.0.w:0.0),
+                  padding:  EdgeInsets.only(right: langController.appLocal=="ar"?   14.0.w:0.0,left: langController.appLocal=="en"?   14.0.w:0.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -377,7 +377,7 @@ class _AccountState extends State<Account> {
                   color: Color.fromRGBO(245, 246, 248, 1.0),
                   padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                   child: Align(
-                    alignment:Get.locale == "en"? Alignment.centerLeft:Alignment.centerRight,// Align however you like (i.e .centerRight, centerLeft)
+                    alignment: Get.locale == "en"?Alignment.centerRight : Alignment.centerLeft, // Align however you like (i.e .centerRight, centerLeft)
                     child: Text(
                       "Contact_Us_txt".tr,
                       textAlign: TextAlign.start,

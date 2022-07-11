@@ -4,6 +4,7 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import '../../Assistants/globals.dart';
 import '../../controllers/address_location_controller.dart';
+import '../../controllers/lang_controller.dart';
 import '../screens/main_screen.dart';
 import 'address_on_map.dart';
 import 'list_addresses.dart';
@@ -22,6 +23,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 
   final AddressController addressController = Get.find();
   TextEditingController _addresNameController = TextEditingController();
+  final LangController langController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     final screenSize = Get.size;
@@ -51,11 +54,11 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           builder: (context) => const MainScreen(index: 0)));
                     },
                     child: Text(
-                      "Cancel",
+                      "CANCEL_txt".tr,
                       style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey[800],
-                          fontWeight: FontWeight.w400),
+                          fontWeight: FontWeight.w500),
                     ),
                   )
                 ],
@@ -67,7 +70,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
             Padding(
               padding: const EdgeInsets.all(0.0),
               child: Text(
-                'Location Information',
+                'Location Information_txt'.tr,
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -114,39 +117,42 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     ],
                   ),
                   Spacer(),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>  AddressOnMap(fromCart: widget.fromCart,)));
-                    },
-                    child: Container(
-                        height: 72,
-                        width: 72,
-                        decoration: BoxDecoration(
-                            image: const DecorationImage(
-                              fit: BoxFit.fill,
-                              opacity: 0.7,
-                              image: AssetImage(
-                                'assets/images/isolate-golden-location-pin.jpg',
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>  AddressOnMap(fromCart: widget.fromCart,)));
+                      },
+                      child: Container(
+                          height: 72,
+                          width: 72,
+                          decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                fit: BoxFit.fill,
+                                opacity: 0.7,
+                                image: AssetImage(
+                                  'assets/images/isolate-golden-location-pin.jpg',
+                                ),
                               ),
-                            ),
-                            borderRadius: BorderRadius.circular(12)),
-                        child: Stack(
-                          alignment: Alignment.bottomCenter,
-                          children: [
-                            Container(
-                              height: 18,
-                              color: Colors.white.withOpacity(0.3),
-                            ),
-                            Text(
-                              'Edit',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.blue[700],
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        )),
+                              borderRadius: BorderRadius.circular(12)),
+                          child: Stack(
+                            alignment: Alignment.bottomCenter,
+                            children: [
+                              Container(
+                                height: 18,
+                                color: Colors.white.withOpacity(0.3),
+                              ),
+                              Text(
+                                'Edit_txt'.tr,
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.blue[700],
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          )),
+                    ),
                   )
                 ],
               ),
@@ -159,7 +165,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
               height: screenSize.height * 0.1,
             ),
             Text(
-              'Personal Information',
+              'Personal Information_txt'.tr,
               style: TextStyle(
                   fontSize: 16, color: myHexColor, fontWeight: FontWeight.bold),
             ),
@@ -186,13 +192,14 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         onInputValidated: (bool value) {
                           print(value);
                         },
+
                         selectorConfig: const SelectorConfig(
                           selectorType: PhoneInputSelectorType.DIALOG,
                           showFlags: false,
                           useEmoji: false,
                           setSelectorButtonAsPrefixIcon: true,
                           leadingPadding: 0.0,
-                          trailingSpace: true
+                          //trailingSpace: true
                         ),
                         maxLength: 8,
                         ignoreBlank: false,
@@ -203,7 +210,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.bold),
-                        inputDecoration: InputDecoration(),
+                        inputDecoration: InputDecoration(alignLabelWithHint: true),
                         initialValue: number,
 //                            textFieldController: controller,
                         formatInput: false,
@@ -231,7 +238,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           decoration: InputDecoration(
                               focusColor: myHexColor,
                               hoverColor: myHexColor,
-                              label: Text('Name')),
+                              label: Text('Name_txt'.tr)),
                         ),
                       ),
                     ),
@@ -248,8 +255,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           MaterialPageRoute(
                               builder: (context) =>  ListAddresses(fromCart: true,fromAccount: false,)));
                     },
-                    child: const Text(
-                      'SAVE ADDRESS',
+                    child:  Text(
+                      'SAVE ADDRESS_txt'.tr,
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),

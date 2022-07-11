@@ -84,7 +84,7 @@ class _ListAddressesState extends State<ListAddresses> {
                       child:addressController.myAddressData.value.length>0? buildAddressesOptions():Padding(
                         padding: const EdgeInsets.symmetric(vertical: 18.0),
                         child: Container(
-                          child: const Center(child: Text('No Addresses'),),
+                          child:  Center(child: Text('No Addresses_txt'.tr),),
                         ),
                       )),
                 ),
@@ -95,8 +95,8 @@ class _ListAddressesState extends State<ListAddresses> {
                         MaterialPageRoute(
                             builder: (context) =>  AddressOnMap(fromCart: widget.fromCart,)));
                   },
-                  label: const Text(
-                    'Add a new address',
+                  label:  Text(
+                    'Add a new address_txt'.tr,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                   icon: Icon(Icons.add),
@@ -190,28 +190,28 @@ class _ListAddressesState extends State<ListAddresses> {
                               children: [
                                 Icon(Icons.location_on),
                                 Spacer(),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 6.0, vertical: 2),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.edit,
-                                        size: 22,
-                                        color: Colors.grey[700],
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Text(
-                                        'Edit',
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.grey[700]),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                // Padding(
+                                //   padding: const EdgeInsets.symmetric(
+                                //       horizontal: 6.0, vertical: 2),
+                                //   child: Row(
+                                //     children: [
+                                //       Icon(
+                                //         Icons.edit,
+                                //         size: 22,
+                                //         color: Colors.grey[700],
+                                //       ),
+                                //       SizedBox(
+                                //         width: 4,
+                                //       ),
+                                //       Text(
+                                //         'Edit',
+                                //         style: TextStyle(
+                                //             fontSize: 14,
+                                //             color: Colors.grey[700]),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
                                 InkWell(
                                   onTap: () {
                                     addressController.deleteAddress(
@@ -237,7 +237,7 @@ class _ListAddressesState extends State<ListAddresses> {
                               children: [
                                 SizedBox(
                                   width: screenSize.width * 0.3,
-                                  child: Text('Name',
+                                  child: Text('Name_txt'.tr,
                                       style: TextStyle(
                                           fontSize: 13,
                                           color: Colors.grey[700])),
@@ -261,7 +261,7 @@ class _ListAddressesState extends State<ListAddresses> {
                               children: [
                                 SizedBox(
                                   width: screenSize.width * 0.3,
-                                  child: Text('Phone',
+                                  child: Text('Phone_txt'.tr,
                                       style: TextStyle(
                                           fontSize: 13,
                                           color: Colors.grey[700])),
@@ -285,7 +285,7 @@ class _ListAddressesState extends State<ListAddresses> {
                               children: [
                                 SizedBox(
                                   width: screenSize.width * 0.3,
-                                  child: Text('Address',
+                                  child: Text('Address_txt'.tr,
                                       style: TextStyle(
                                           fontSize: 13,
                                           color: Colors.grey[700])),

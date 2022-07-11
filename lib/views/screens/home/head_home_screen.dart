@@ -29,11 +29,12 @@ Widget headHomeScreen(MediaQueryData screenSize) {
             SizedBox(
               height: 4,
             ),
-            Text("${accountController.username.value}",
-                style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.grey[900],
-                    fontWeight: FontWeight.bold))
+            Obx(()=>Text("${accountController.firstName.value}",
+                  style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey[900],
+                      fontWeight: FontWeight.bold)),
+            )
           ],
         ),
         // Image.asset(

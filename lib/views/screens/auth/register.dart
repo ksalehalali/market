@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Assistants/globals.dart';
+import '../../../controllers/lang_controller.dart';
 import '../../../controllers/register_controller.dart';
 import '../account/account.dart';
 
@@ -52,9 +54,9 @@ class _RegisterState extends State<Register> {
             const SizedBox(height: 32,),
             // WELCOME
             Container(
-              alignment: Alignment.centerLeft,
-              child: const Text(
-                "Create A New Account",
+              alignment: Alignment.center,
+              child: Text(
+                "Create A New Account_txt".tr,
                 style: TextStyle(
                     color: Colors.black87,
                     fontWeight: FontWeight.bold,
@@ -68,7 +70,7 @@ class _RegisterState extends State<Register> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Username",
+                  "Username_txt".tr,
                   style: TextStyle(
                     color: myHexColor2,
                     fontWeight: FontWeight.bold,
@@ -95,7 +97,7 @@ class _RegisterState extends State<Register> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Email",
+                  "Email_txt".tr,
                   style: TextStyle(
                     color: myHexColor2,
                     fontWeight: FontWeight.bold,
@@ -122,7 +124,7 @@ class _RegisterState extends State<Register> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Password",
+                  "Password_txt".tr,
                   style: TextStyle(
                     color: myHexColor2,
                     fontWeight: FontWeight.bold,
@@ -152,7 +154,7 @@ class _RegisterState extends State<Register> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Confirm Password",
+                  "Confirm Password_txt".tr,
                   style: TextStyle(
                     color: myHexColor2,
                     fontWeight: FontWeight.bold,
@@ -186,12 +188,13 @@ class _RegisterState extends State<Register> {
         opacity: !showSignUp.value ? 1.0 : 0.0,
         duration: const Duration(milliseconds: 500),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 32,),
             Container(
-              alignment: Alignment.centerLeft,
-              child: const Text(
-                "Welcome again !",
+              alignment: Alignment.center,
+              child: Text(
+                "Welcome again !_txt".tr,
                 style: TextStyle(
                     color: Colors.black87,
                     fontWeight: FontWeight.bold,
@@ -199,13 +202,13 @@ class _RegisterState extends State<Register> {
                 ),
               ),
             ),
-            const SizedBox(height: 32,),
+            const SizedBox(height: 42,),
             // EMAIL TEXT FIELD
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Email",
+                  "Email_txt".tr,
                   style: TextStyle(
                     color: myHexColor2,
                     fontWeight: FontWeight.bold,
@@ -218,7 +221,7 @@ class _RegisterState extends State<Register> {
                   child: TextField(
                     controller: registerController.loginEmailController,
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                       color: Colors.black87,
                     ),
                   ),
@@ -231,10 +234,10 @@ class _RegisterState extends State<Register> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Password",
+                  "Password_txt".tr,
                   style: TextStyle(
                     color: myHexColor2,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 Theme(
@@ -259,11 +262,13 @@ class _RegisterState extends State<Register> {
             Align(
               alignment: Alignment.centerLeft,
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+
+                },
                 child: Container(
                   alignment: Alignment.topRight,
-                  child: const Text(
-                    "Forgot Password ?",
+                  child:  Text(
+                    "Forgot Password ?_txt".tr,
                   ),
                 ),
               ),
@@ -274,6 +279,24 @@ class _RegisterState extends State<Register> {
       ),),
 
     ];
+    autoLang();
+  }
+
+  //lng
+  final LangController langController = Get.find();
+  void autoLang()async{
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    var lang = await prefs.getString('lang');
+    print("lang ====== lang === $lang");
+    if(lang !=null){
+      langController.changeLang(lang);
+      Get.updateLocale(Locale(lang));
+      langController.changeDIR(lang);
+      print(Get.deviceLocale);
+      print(Get.locale);
+    }
   }
 
   @override
@@ -309,7 +332,7 @@ class _RegisterState extends State<Register> {
                       stackItems[1],
                       AnimatedPositioned(
                         duration: const Duration(milliseconds: 500),
-                        top: moveWidgets ? 450 : 300,
+                        top: moveWidgets ? 450 : 360,
                         child: Column(
                           children: [
                             // LOGIN / SIGN UP BUTTON
@@ -332,7 +355,7 @@ class _RegisterState extends State<Register> {
                                   }
                                 },
                                 child: Obx(() =>  !registerController.isRegisterLoading.value ? Text(
-                                  !instantlyTransitionedWidgets.value ? "Login": "Create A New Account",
+                                  !instantlyTransitionedWidgets.value ? "Login_txt".tr: "Create A New Account",
                                   style: const TextStyle(
                                     fontSize: 18,
                                   ),
@@ -346,8 +369,8 @@ class _RegisterState extends State<Register> {
                             ),
                             const SizedBox(height: 32,),
                             // LOGIN OPTION TEXT
-                            const Text(
-                              "Or login via social media account",
+                             Text(
+                              "Or login via social media account_txt".tr,
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold
@@ -393,7 +416,7 @@ class _RegisterState extends State<Register> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  !instantlyTransitionedWidgets.value ? "New User ?  ": "Already have an account ? ",
+                                  !instantlyTransitionedWidgets.value ? "New User ?  _txt".tr: "Already have an account ? _txt".tr,
                                   style: TextStyle(
 
                                   ),
@@ -442,7 +465,7 @@ class _RegisterState extends State<Register> {
                                     });
                                   },
                                   child: Text(
-                                    !instantlyTransitionedWidgets.value ? "Create A New Account": "Login",
+                                    !instantlyTransitionedWidgets.value ? "Create A New Account_txt".tr: "Login_txt".tr,
                                     style: TextStyle(
                                       color: myHexColor2,
                                     ),

@@ -89,6 +89,7 @@ print('login...');
           storeUserLoginPreference(jsonResponse["description"]["token"], jsonResponse["description"]["userName"], loginPasswordController.text, jsonResponse["description"]["id"],jsonResponse["description"]["email"]);
           accountController.fetchUserLoginPreference();
           user.accessToken = jsonResponse["description"]["token"];
+          accountController.getMyProfile();
           //hideLoading();
           Get.to(MainScreen(index: 0));
           isRegisterLoading.value =true;
@@ -161,6 +162,8 @@ print('login...');
         print(jsonResponse["description"]["token"]);
         accountController.fetchUserLoginPreference();
         user.accessToken = jsonResponse["description"]["token"];
+        accountController.getMyProfile();
+
         //hideLoading();
         Get.offAll(const MainScreen(index: 0,));
 
@@ -194,10 +197,26 @@ print('login...');
    await prefs.setString('username', username);
    await prefs.setString('password', password);
    await prefs.setString('id', id);
+  }
 
+  Future getMyProfile()async{
+    var headers = {
+      'Authorization': 'Bearer ${user.accessToken}'
+    };
+    var request = http.Request('GET', Uri.parse('$baseURL/api/MyProfile'));
 
+    request.headers.addAll(headers);
 
+    http.StreamedResponse response = await request.send();
 
+    if (response.statusCode == 200) {
+      var json = jsonDecode(await response.stream.bytesToString());
+      var data = json['description'];
+
+    }
+    else {
+      print(response.reasonPhrase);
+    }
 
   }
 

@@ -36,14 +36,14 @@ class _NeuButtonState extends State<NeuButton> {
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: widget.btnPressed3 ?Colors.grey.shade300:Colors.grey.shade400),
+                    border: Border.all(color: widget.btnPressed3 ?Colors.grey.shade300:Colors.grey.shade400,width: 0.3),
                   boxShadow:widget.btnPressed ?[]: [
-                    BoxShadow(
-                      color: Colors.grey.shade500,
-                      offset: Offset(6,6),
-                      blurRadius: 15,
-                      spreadRadius: 1,
-                    ),
+                    // BoxShadow(
+                    //   color: Colors.grey.shade500,
+                    //   offset: Offset(6,6),
+                    //   blurRadius: 15,
+                    //   spreadRadius: 1,
+                    // ),
 
                     //lighter shadow
                     const BoxShadow(
@@ -73,14 +73,14 @@ class _NeuButtonState extends State<NeuButton> {
                 decoration: BoxDecoration(
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: widget.btnPressed3 ?Colors.grey.shade300:Colors.grey.shade400),
+                    border: Border.all(color: widget.btnPressed3 ?Colors.grey.shade300:Colors.grey.shade400,width: 0.3),
                     boxShadow:widget.btnPressed2 ?[]: [
-                      BoxShadow(
-                        color: Colors.grey.shade500,
-                        offset: Offset(6,6),
-                        blurRadius: 15,
-                        spreadRadius: 1,
-                      ),
+                      // BoxShadow(
+                      //   color: Colors.grey.shade500,
+                      //   offset: Offset(6,6),
+                      //   blurRadius: 15,
+                      //   spreadRadius: 1,
+                      // ),
 
                       //lighter shadow
                       BoxShadow(
@@ -110,14 +110,14 @@ class _NeuButtonState extends State<NeuButton> {
                 decoration: BoxDecoration(
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: widget.btnPressed3 ?Colors.grey.shade300:Colors.grey.shade400),
+                    border: Border.all(color: widget.btnPressed3 ?Colors.grey.shade300:Colors.grey.shade400,width: 0.3),
                     boxShadow:widget.btnPressed3 ?[]: [
-                      BoxShadow(
-                        color: Colors.grey.shade500,
-                        offset: Offset(6,6),
-                        blurRadius: 15,
-                        spreadRadius: 1,
-                      ),
+                      // BoxShadow(
+                      //   color: Colors.grey.shade500,
+                      //   offset: Offset(6,6),
+                      //   blurRadius: 15,
+                      //   spreadRadius: 1,
+                      // ),
 
                       //lighter shadow
                       BoxShadow(

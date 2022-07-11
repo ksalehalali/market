@@ -20,7 +20,9 @@ class AccountController extends GetxController {
 
   var isLoggedIn = false.obs;
   var username = "".obs;
+  var firstName = "".obs;
   var lastName = "".obs;
+  var phoneNumber = "".obs;
 
   var token = "".obs;
   var userEmail = "".obs;
@@ -32,6 +34,7 @@ class AccountController extends GetxController {
     super.onInit();
     print("uhmmm AccountController");
     fetchUserLoginPreference();
+
   }
 
 
@@ -110,11 +113,54 @@ class AccountController extends GetxController {
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
       Get.snackbar('Information Saved', 'change your information done',snackPosition: SnackPosition.BOTTOM,colorText: Colors.white,backgroundColor: myHexColor);
+      await getMyProfile();
       Get.offAll(MainScreen(index: 4,));
     }
     else {
       print(response.reasonPhrase);
     }
+
+  }
+
+  Future getMyProfile()async{
+    var headers = {
+      'Authorization': 'Bearer ${user.accessToken}'
+    };
+    var request = http.Request('GET', Uri.parse('$baseURL/api/MyProfile'));
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var json = jsonDecode(await response.stream.bytesToString());
+      var data = json['description'];
+      print('my data ::::: $data');
+      userEmail.value = data['email'];
+      username.value = data['userName'];
+      lastName.value = data['lastName'];
+      firstName.value = data['firstName'];
+      phoneNumber.value = data['phoneNumber'];
+      update();
+
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+
+  }
+
+  final storage = GetStorage();
+  Future<void> storeUserLoginPreference(token, username, password, id,userEmail) async {
+    storage.write('username', username);
+    storage.write('userEmail', userEmail);
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('username', username);
+
+
+
+
 
   }
 

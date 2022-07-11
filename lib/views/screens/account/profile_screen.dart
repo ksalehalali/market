@@ -100,7 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           Row(
                             children: [
-                              Text('Personal Information',
+                              Text('Personal Information_txt'.tr,
                                   style: TextStyle(
                                       fontSize: 16.sp,
                                       color: Colors.grey[700],
@@ -115,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8.0),
-                                  child: Text('Edit',
+                                  child: Text('Edit_txt'.tr,
                                       style: TextStyle(
                                           fontSize: 16.sp,
                                           color: Colors.blue[700])),
@@ -127,14 +127,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             height: 28.0.h,
                           ),
                           Text(
-                            'First Name',
+                            'First Name_txt'.tr,
                             style: TextStyle(
                               fontSize: 14.sp,
                             ),
                           ),
                           SizedBox(height: 5),
                           Text(
-                            '${accountController.username.value}',
+                            '${accountController.firstName.value}',
+                            style: TextStyle(
+                                fontSize: 16.sp, fontWeight: FontWeight.bold),
+                          ),
+                          Divider(),
+
+                          SizedBox(
+                            height: 28.0.h,
+                          ),
+                          Text(
+                            'Last Name_txt'.tr,
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            '${accountController.lastName.value}',
                             style: TextStyle(
                                 fontSize: 16.sp, fontWeight: FontWeight.bold),
                           ),
@@ -143,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             height: 28.0.h,
                           ),
                           Text(
-                            'Receive Communications In',
+                            'Receive Communications In_txt'.tr,
                             style: TextStyle(
                               fontSize: 14.sp,
                             ),
@@ -174,7 +191,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           SizedBox(height: 5),
                           Text(
-                            'SECURITY INFORMATION',
+                            'SECURITY INFORMATION_txt'.tr,
                             style: TextStyle(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold,

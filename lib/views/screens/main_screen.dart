@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../Assistants/assistantMethods.dart';
 import '../../Assistants/globals.dart';
+import '../../controllers/account_controller.dart';
 import '../../controllers/address_location_controller.dart';
 import '../../controllers/cart_controller.dart';
 import '../../controllers/lang_controller.dart';
@@ -35,7 +36,6 @@ class _MainScreenState extends State<MainScreen> {
     Account(),
   ];
   final ProductsController productController = Get.find();
-
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = const HomeScreen();
   int? currentTp = 0;
@@ -44,7 +44,6 @@ class _MainScreenState extends State<MainScreen> {
     // TODO: implement initState
     super.initState();
     autoLang();
-
     currentTp = widget.index;
     productController.getProductsByCatHome(
         '0c348ba7-1873-425e-8e49-97e0ec8ceebe', 'recommended');

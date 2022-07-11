@@ -67,10 +67,37 @@ Map<String,String> ar ={
   'Total_txt':'المجموع',
   'Things you might like_txt':'اشياء قد تعجبك',
   'Cart is empty_txt':'السلة فارغة' ,
+  //-
 
+  'Create A New Account_txt':'انشاء حساب جديد',
+  'Username_txt':'اسم المستخدم',
+  'Email_txt':'البريد الإلكتروني',
+  'Password_txt':'كلمة المرور',
+  'Confirm Password_txt':'تاكيد كلمة المرور',
+  'Welcome again !_txt': 'اهلا بك مجددا!',
+  'Forgot Password ?_txt':'نسيت كلمة المرور',
+  'Login_txt':'تسجيل الدخول',
+  'Or login via social media account_txt':'او قم بالدخول بحسابات الشبكات الاجتماعية',
+  'New User ?  _txt': 'مستخدم جديد ؟ ',
+  'Already have an account ? _txt':'لديك حساب ؟ ',
+  //-
 
+  'Personal Information_txt':'المعلومات الشخصية',
+  'Edit_txt':'تعديل',
+  'First Name_txt':'الاسم الاول',
+  'Last Name_txt':'الاسم الاخير',
+  'Receive Communications In_txt':'اللغة المفضلة للتواصل',
+  'SECURITY INFORMATION_txt':'معلومات الأمن',
+  'CHANGE PASSWORD_txt':'تغيير كلمة السر',
+  //-
 
-
+  'CANCEL_txt':'إلغاء',
+  'Please enter your first name_txt':'ادخل اسمك الاول',
+  'Please enter correct name_txt':'رجاءا ادخل اسما صحيحا',
+  'Please enter your last name_txt':'ادخل اسمك الاخير',
+  'Please enter your email_txt':'ادخل بريدك الإلكتروني',
+  'Please enter correct email_txt':'ادخل بريد الكتروني صحيح',
+  'SAVE_txt':'احفظ',
 
   'get_support_btn':'الحصول على الدعم',
   'help_btn':'المساعدة',
@@ -198,6 +225,57 @@ Map<String,String> en ={
   'Total_txt':'Total',
 'Things you might like_txt':'Things you might like',
   'Cart is empty_txt':'Cart is empty' ,
+  //-
+
+  'Create A New Account_txt':'Create a new account',
+  'Username_txt':'Username',
+  'Email_txt':'Email',
+  'Password_txt':'Password',
+  'Confirm Password_txt':'Confirm Password',
+  'Welcome again !_txt': 'Welcome again !',
+  'Forgot Password ?_txt':'Forgot Password',
+  'Login_txt':'Login',
+  'Or login via social media account_txt':'Or login via social media account',
+  'New User ?  _txt': 'New User ?  ',
+  'Already have an account ? _txt':'Already have an account ? ',
+  //-
+
+  'Personal Information_txt':'Personal Information',
+  'Edit_txt':'Edit',
+  'First Name_txt':'First Name',
+  'Last Name_txt':'Last Name',
+  'Receive Communications In_txt':'Receive Communications In',
+  'SECURITY INFORMATION_txt':'SECURITY INFORMATION',
+  'CHANGE PASSWORD_txt':'CHANGE PASSWORD',
+  //-
+
+  'CANCEL_txt':'CANCEL',
+  'Please enter your first name_txt':'Please enter your first name',
+  'Please enter correct name_txt':'Please enter correct name',
+  'Please enter your last name_txt':'Please enter your last name',
+  'Please enter your email_txt':'Please enter your email',
+  'Please enter correct email_txt':'Please enter correct email',
+  'SAVE_txt':'SAVE',
+  //-
+
+  'No Addresses_txt':'No Addresses',
+  'Add a new address_txt':'Add a new address',
+  'Name_txt':'Name',
+  'Phone_txt':'Phone',
+  'Address_txt':'Address',
+  'CONFIRM LOCATION_txt':'Confirm LOCATION',
+  'Location Information_txt':'Location Information',
+  'SAVE ADDRESS_txt':'SAVE ADDRESS',
+
+
+
+
+
+
+
+
+
+
 
 
 

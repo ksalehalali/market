@@ -62,7 +62,7 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
                           },
                           child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text('CANCEL',style: TextStyle(
+                              child: Text('CANCEL_txt'.tr,style: TextStyle(
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.grey[800]),)
@@ -80,7 +80,7 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'First Name',
+                          'First Name_txt',
                           style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w300,
@@ -89,13 +89,13 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
 
                         TextFormField(
                          // controller: nameTextEditingController,
-                          initialValue: accountController.username.value,
+                          initialValue: accountController.firstName.value,
                           decoration: InputDecoration(
-                              hintText: 'Please enter your first name',
+                              hintText: 'Please enter your first name_txt'.tr,
                              ),
                           validator: (value) {
                             if (value!.isEmpty || value.length < 4) {
-                              return 'Please enter correct name';
+                              return 'Please enter correct name_txt'.tr;
                             }
                             return null;
                           },
@@ -116,7 +116,7 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Last Name',
+                          'Last Name_txt'.tr,
                           style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w300,
@@ -125,13 +125,13 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
 
                         TextFormField(
                           // controller: nameTextEditingController,
-                          initialValue: accountController.username.value,
+                          initialValue: accountController.lastName.value,
                           decoration: InputDecoration(
-                            hintText: 'Please enter your last name',
+                            hintText: 'Please enter your last name_txt'.tr,
                           ),
                           validator: (value) {
                             if (value!.isEmpty || value.length < 4) {
-                              return 'Please enter correct name';
+                              return 'Please enter correct name_txt'.tr;
                             }
                             return null;
                           },
@@ -151,7 +151,7 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Email',
+                          'Email_txt'.tr,
                           style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w300,
@@ -161,11 +161,11 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
                         TextFormField(
                           initialValue: accountController.userEmail.value,
                           decoration: InputDecoration(
-                              hintText: 'Please enter your email',
+                              hintText: 'Please enter your email_txt'.tr,
                              ),
                           validator: (value) {
                             if (value!.isEmpty || value.length < 4) {
-                              return 'Please enter correct email';
+                              return 'Please enter correct email_txt'.tr;
                             }
                             return null;
                           },
@@ -202,7 +202,7 @@ class _EditPersonalInfoScreenState extends State<EditPersonalInfoScreen> {
                 height: 40,
                 color: myHexColor,
                 child: Center(child: Text(
-                  'SAVE',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),
+                  'SAVE_txt'.tr,style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),
                 ),),
               ),
             ) ,

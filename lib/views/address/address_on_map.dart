@@ -101,7 +101,7 @@ class AddressOnMapState extends State<AddressOnMap> {
                       MaterialPageRoute(builder: (context) => AddAddressScreen(fromCart: false,)));
                 },
                 child: Text(
-                  'CONFIRM LOCATION',
+                  'CONFIRM LOCATION_txt'.tr,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                 ),
                 style: ElevatedButton.styleFrom(
