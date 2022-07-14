@@ -34,6 +34,7 @@ class ProductsController extends GetxController with BaseController{
   ProductModel productDetails = ProductModel();
   var colorsData = [].obs;
   var imagesData = [].obs;
+  var qytsWithSizes = [].obs;
   var getDetailsDone = false.obs;
   var imagesWidget = [[], [], [], [], []].obs;
   dynamic imagesWidget2 = [[], [], [], [], []];
@@ -45,6 +46,7 @@ class ProductsController extends GetxController with BaseController{
   var currentColorSelected = ''.obs;
   var currentSizeIdSelected = ''.obs;
   var currentColorIdSelected = ''.obs;
+  var currentQYTProductSelected = 0.obs;
 
   var offerFromPrice = 0.0.obs;
 
@@ -384,7 +386,7 @@ class ProductsController extends GetxController with BaseController{
       currentSizeIdSelected.value= sizes[0]['sizeID'];
 
       colors = productData['size'][0]['color'];
-
+      sortQytsWithSizes();
 
       print('colors productData ${productDetails.colorsData}');
       await addImagesData();
@@ -484,6 +486,7 @@ class ProductsController extends GetxController with BaseController{
 
       imagesData.add(ProductImagesData(
           imagesUrls: urls,
+          qyt: productDetails.colorsData![i]['qyt'],
           color: productDetails.colorsData![i]['color'],
           colorId: productDetails.colorsData![i]['colorID']));
 
@@ -493,9 +496,34 @@ class ProductsController extends GetxController with BaseController{
       print("$i ${productDetails.colorsData![i]['image4']}");
       //print(imagesData[i].imagesUrls);
     }
-    currentColorSelected.value =imagesData[0].color;
+    currentColorSelected.value =imagesData[0].size;
     currentColorIdSelected.value =imagesData[0].colorId;
     update();
+  }
+
+  //sort qyts with sizes
+  sortQytsWithSizes(){
+    String sizeId ='' ;
+    String size = '' ;
+    int? qyt;
+    for (var i = 0; i < sizes.length; i++) {
+
+
+       sizeId =sizes[i]['sizeID'];
+       size =sizes[i]['size'];
+
+      for (var i = 0; i < sizes[i]['color'].length; i++) {
+        qyt = (qyt! + sizes[i]['qyt']) as int?;
+      }
+
+       qytsWithSizes.add(SizesQyts(
+         sizeID: sizeId,
+         size:size,
+         qyt: qyt
+       ));
+    }
+
+
   }
 
   Future<bool> addProductToFav(String prodId) async {

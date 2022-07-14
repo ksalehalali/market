@@ -362,7 +362,7 @@ class _RegisterState extends State<Register> {
                                 ): Container(
                                   width: 36,
                                   height: 36,
-                                  child: CircularProgressIndicator.adaptive(backgroundColor: Colors.white,)
+                                  child:  Container()
                                 ),
                                 ),
                               ),

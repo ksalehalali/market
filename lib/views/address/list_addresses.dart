@@ -285,7 +285,7 @@ class _ListAddressesState extends State<ListAddresses> {
                               children: [
                                 SizedBox(
                                   width: screenSize.width * 0.3,
-                                  child: Text('Address_txt'.tr,
+                                  child: Text(' '.tr,
                                       style: TextStyle(
                                           fontSize: 13,
                                           color: Colors.grey[700])),

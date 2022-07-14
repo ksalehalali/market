@@ -67,6 +67,7 @@ Map<String,String> ar ={
   'Total_txt':'المجموع',
   'Things you might like_txt':'اشياء قد تعجبك',
   'Cart is empty_txt':'السلة فارغة' ,
+  'Shop now & add things you love to the cart_txt':'تسوق الآن ،اضف اشياء تحبها للسلة',
   //-
 
   'Create A New Account_txt':'انشاء حساب جديد',
@@ -98,6 +99,20 @@ Map<String,String> ar ={
   'Please enter your email_txt':'ادخل بريدك الإلكتروني',
   'Please enter correct email_txt':'ادخل بريد الكتروني صحيح',
   'SAVE_txt':'احفظ',
+  //-
+
+  'No Addresses_txt':'لا يوجد عناوين',
+  'Add a new address_txt':'اضف عنوان جديد',
+  'Name_txt':'الاسم',
+  'Phone_txt':'رقم الجوال',
+  'Address_txt':'العنوان',
+  'CONFIRM LOCATION_txt':'تاكيد الموقع',
+  'Location Information_txt':'معلومات الموقع',
+  'SAVE ADDRESS_txt':'احفظ العنوان',
+
+
+
+
 
   'get_support_btn':'الحصول على الدعم',
   'help_btn':'المساعدة',
@@ -126,14 +141,10 @@ Map<String,String> ar ={
 'recharges_txt':'الشحن',
   //-
 
-  "route_name_txt":'اسم الخط',
-  //-
-
   "name_txt":'الاسم',
   "email_txt":'البريد الإلكتروني',
   //-
 
-  "your_activities":"نشاطاتك",
   "history_txt":'السجل',
   "trips_txt":'الرحلات',
   "transactions_txt":'العمليات',
@@ -225,6 +236,7 @@ Map<String,String> en ={
   'Total_txt':'Total',
 'Things you might like_txt':'Things you might like',
   'Cart is empty_txt':'Cart is empty' ,
+
   //-
 
   'Create A New Account_txt':'Create a new account',
@@ -261,7 +273,7 @@ Map<String,String> en ={
   'No Addresses_txt':'No Addresses',
   'Add a new address_txt':'Add a new address',
   'Name_txt':'Name',
-  'Phone_txt':'Phone',
+  'Phone_txt':'Phone Number',
   'Address_txt':'Address',
   'CONFIRM LOCATION_txt':'Confirm LOCATION',
   'Location Information_txt':'Location Information',

@@ -69,7 +69,7 @@ class _CartState extends State<Cart> {
                               height: 32,
                             ),
                              Text(
-                              "Shopping cart is empty!_txt".tr,
+                              "Cart is empty_txt".tr,
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,

@@ -10,7 +10,8 @@ class ProductImagesData{
   final String? color;
   final List<String>? imagesUrls;
   final String? colorId;
+  final int? qyt;
 
 
-  ProductImagesData( {this.color, required this.imagesUrls, this.colorId});
+  ProductImagesData( {this.color, required this.imagesUrls, this.colorId,this.qyt});
 }

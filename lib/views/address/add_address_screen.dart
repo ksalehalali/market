@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import '../../Assistants/globals.dart';
@@ -18,13 +19,11 @@ class AddAddressScreen extends StatefulWidget {
 }
 
 class _AddAddressScreenState extends State<AddAddressScreen> {
-  PhoneNumber number = PhoneNumber(isoCode: 'QA');
-  PhoneNumber phoneNumber = PhoneNumber(isoCode: 'QA');
 
   final AddressController addressController = Get.find();
   TextEditingController _addresNameController = TextEditingController();
   final LangController langController = Get.find();
-
+String? phoneNumber;
   @override
   Widget build(BuildContext context) {
     final screenSize = Get.size;
@@ -184,44 +183,22 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         horizontal: 12.0, vertical: 14),
                     child: SizedBox(
                       width: screenSize.width * 0.8,
-                      child: InternationalPhoneNumberInput(
-                        onInputChanged: (PhoneNumber number) {
-                          print(number.phoneNumber);
-                          phoneNumber = number;
-                        },
-                        onInputValidated: (bool value) {
-                          print(value);
-                        },
-
-                        selectorConfig: const SelectorConfig(
-                          selectorType: PhoneInputSelectorType.DIALOG,
-                          showFlags: false,
-                          useEmoji: false,
-                          setSelectorButtonAsPrefixIcon: true,
-                          leadingPadding: 0.0,
-                          //trailingSpace: true
+                      child: IntlPhoneField(
+                        decoration: InputDecoration(
+                          labelText: 'Phone_txt'.tr,
+                          focusColor: myHexColor,
+                          hoverColor: myHexColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(color: myHexColor),
+                          ),
                         ),
-                        maxLength: 8,
-                        ignoreBlank: false,
-                        autoValidateMode: AutovalidateMode.disabled,
-                        selectorTextStyle:
-                            TextStyle(color: Colors.grey[600], fontSize: 22),
-                        textStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold),
-                        inputDecoration: InputDecoration(alignLabelWithHint: true),
-                        initialValue: number,
-//                            textFieldController: controller,
-                        formatInput: false,
-                        keyboardType: const TextInputType.numberWithOptions(
-                            signed: true, decimal: true),
-                        inputBorder: OutlineInputBorder(),
-                        onSaved: (PhoneNumber number) {
-                          print('On Saved: $number');
-                          phoneNumber = number;
+                        initialCountryCode: 'QA',
+                        onChanged: (phone) {
+                          print(phone.completeNumber);
+                          phoneNumber = phone.completeNumber;
+                          print(phoneNumber);
                         },
-                      ),
+                      )
                     ),
                   ),
                   Padding(
@@ -236,8 +213,9 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         child: TextFormField(
                           controller: _addresNameController,
                           decoration: InputDecoration(
-                              focusColor: myHexColor,
-                              hoverColor: myHexColor,
+                              focusColor: Colors.blue[700],
+                              hoverColor: Colors.blue[700],
+                              border: OutlineInputBorder(),
                               label: Text('Name_txt'.tr)),
                         ),
                       ),
@@ -249,7 +227,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   ElevatedButton(
                     onPressed: () {
                       addressController.addNewAddress(
-                          _addresNameController.text, phoneNumber);
+                          _addresNameController.text, phoneNumber!);
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

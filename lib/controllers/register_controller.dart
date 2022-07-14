@@ -34,7 +34,9 @@ class RegisterController extends GetxController with BaseController {
   var isRegisterLoading = false.obs;
 
   Future<void> makeLoginRequest () async{
-    //showLoading();
+    Future.delayed(5.milliseconds, () {
+      showLoading('loading');
+    });
     if(loginEmailController.text == "" || loginPasswordController.text == "") {
       // Fill the required information
       Fluttertoast.showToast(
@@ -46,6 +48,7 @@ class RegisterController extends GetxController with BaseController {
           textColor: Colors.black,
           fontSize: 16.0
       );
+      hideLoading();
     } else {
 
       var head = {
@@ -69,6 +72,7 @@ class RegisterController extends GetxController with BaseController {
             textColor: Colors.black,
             fontSize: 16.0
         );
+        hideLoading();
         throw TimeoutException('The connection has timed out, Please try again!');
       });
 print('login...');
@@ -81,6 +85,7 @@ print('login...');
             backgroundColor: Colors.white70,
             textColor: Colors.black,
             fontSize: 16.0);
+        hideLoading();
       }
       else if (response.statusCode == 200){
         var jsonResponse = json.decode(response.body);
@@ -90,7 +95,7 @@ print('login...');
           accountController.fetchUserLoginPreference();
           user.accessToken = jsonResponse["description"]["token"];
           accountController.getMyProfile();
-          //hideLoading();
+          hideLoading();
           Get.to(MainScreen(index: 0));
           isRegisterLoading.value =true;
         } else {
@@ -102,6 +107,7 @@ print('login...');
               backgroundColor: Colors.white70,
               textColor: Colors.black,
               fontSize: 16.0);
+          hideLoading();
           Get.to(Register());
           return;
         }
@@ -112,7 +118,9 @@ print('login...');
   }
 
   Future<void> makeAutoLoginRequest (username, password) async{
-    //showLoading();
+    // Future.delayed(5.milliseconds, () {
+    //   showLoading('loading');
+    // });
     print("CALLING makeAutoLoginRequest");
     var head = {
       "Accept": "application/json",
@@ -135,6 +143,7 @@ print('login...');
           textColor: Colors.black,
           fontSize: 16.0
       );
+     // hideLoading();
       throw TimeoutException('The connection has timed out, Please try again!');
     });
 
@@ -147,7 +156,7 @@ print('login...');
           backgroundColor: Colors.white70,
           textColor: Colors.black,
           fontSize: 16.0);
-
+     // hideLoading();
       Get.to(()=>Register());
 
     }
@@ -177,6 +186,7 @@ print('login...');
             textColor: Colors.red,
             fontSize: 16.0);
         Get.offAll(()=>Register());
+       // hideLoading();
         return;
 
       }

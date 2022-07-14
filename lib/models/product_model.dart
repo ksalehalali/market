@@ -54,3 +54,11 @@ class ProductModel {
 
 }
 
+class SizesQyts{
+  late final int? qyt;
+  late final String? sizeID;
+  late final String? size;
+
+  SizesQyts({this.qyt, this.sizeID, this.size});
+}
+
