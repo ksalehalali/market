@@ -496,24 +496,23 @@ class ProductsController extends GetxController with BaseController{
       print("$i ${productDetails.colorsData![i]['image4']}");
       //print(imagesData[i].imagesUrls);
     }
-    currentColorSelected.value =imagesData[0].size;
-    currentColorIdSelected.value =imagesData[0].colorId;
+    // currentColorSelected.value =imagesData[0].size;
+    // currentColorIdSelected.value =imagesData[0].colorId;
     update();
   }
 
-  //sort qyts with sizes
+  //sort qyts with sizes and collect
   sortQytsWithSizes(){
-    String sizeId ='' ;
-    String size = '' ;
-    int? qyt;
-    for (var i = 0; i < sizes.length; i++) {
 
+    for (var index = 0; index < sizes.length; index++) {
+      String sizeId ='' ;
+      String size = '' ;
+      int? qyt =0;
+       sizeId =sizes[0]['sizeID'];
+       size =sizes[0]['size'];
 
-       sizeId =sizes[i]['sizeID'];
-       size =sizes[i]['size'];
-
-      for (var i = 0; i < sizes[i]['color'].length; i++) {
-        qyt = (qyt! + sizes[i]['qyt']) as int?;
+      for (var i = 0; i < sizes[index]['color'].length; i++) {
+        qyt = (qyt! + sizes[index]['color'][i]['qyt']) as int?;
       }
 
        qytsWithSizes.add(SizesQyts(
@@ -522,7 +521,8 @@ class ProductsController extends GetxController with BaseController{
          qyt: qyt
        ));
     }
-
+print(" qytsWithSizes:  ${qytsWithSizes.value[0].qyt}");
+    print(" qytsWithSizes:  ${qytsWithSizes.value[1].qyt}");
 
   }
 

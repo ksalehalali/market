@@ -67,6 +67,7 @@ class _ProductDetailsState extends State<ProductDetails>
   bool showSpec = false;
   String _colorId = "";
   String _sizeId = "";
+  int currentSizeIndex = 0;
 
   Widget? flyingcart = null;
 
@@ -1271,6 +1272,7 @@ class _ProductDetailsState extends State<ProductDetails>
 
                 return InkWell(
                   onTap: () {
+                    currentSizeIndex =index;
                     productController.currentSizeSelected.value =
                         productController.sizes[index]['size'];
                     productController.currentSizeIdSelected.value =
@@ -1304,7 +1306,7 @@ class _ProductDetailsState extends State<ProductDetails>
                           style: TextStyle(
                               color: _colorSize[index],
                               fontWeight: FontWeight.bold,
-                              decoration: productController.sizes[index]['color'][index]['qyt']==0 && productController.currentColorIdSelected !=productController.sizes[index]['color'][index]['colorID']?TextDecoration.lineThrough:TextDecoration.none,
+                              decoration: productController.qytsWithSizes[index].qyt==0 ?TextDecoration.lineThrough:TextDecoration.none,
                               fontSize: 13.sp),
                         ),
                       ),
@@ -1342,10 +1344,10 @@ class _ProductDetailsState extends State<ProductDetails>
 
                 return InkWell(
                   onTap: () {
-                    productController.currentColorSelected.value =
-                        productController.imagesData[index].size;
-                    productController.currentColorIdSelected.value =
-                        productController.imagesData[index].colorId;
+                    // productController.currentColorSelected.value =
+                    //     productController.imagesData[index].size;
+                    // productController.currentColorIdSelected.value =
+                    //     productController.imagesData[index].colorId;
                     print(
                         'current color id = ${productController.imagesData[index].colorId}');
                     print(index);
@@ -1372,11 +1374,11 @@ class _ProductDetailsState extends State<ProductDetails>
                               width: 1.2, color: _colorColorBorder[index])),
                       child: Center(
                         child: Text(
-                          productController.imagesData[index].size,
+                          productController.sizes[currentSizeIndex]['color'][index]['color'],
                           style: TextStyle(
                               color: _colorColor[index],
                               fontWeight: FontWeight.bold,
-                              decoration: productController.sizes[index]['color'][index]['qyt'] == 0 && productController.currentSizeIdSelected !=productController.sizes[index]['sizeID'] ?TextDecoration.lineThrough:TextDecoration.none,
+                              decoration: productController.qytsWithSizes[index].qyt == 0  ?TextDecoration.lineThrough:TextDecoration.none,
                               fontSize: 13),
                         ),
                       ),
@@ -1384,7 +1386,7 @@ class _ProductDetailsState extends State<ProductDetails>
                   ),
                 );
               },
-              childCount: productController.imagesData.length,
+              childCount: productController.sizes.length,
               semanticIndexOffset: 0,
             ),
           )
