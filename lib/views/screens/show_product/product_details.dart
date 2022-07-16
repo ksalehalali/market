@@ -76,6 +76,8 @@ class _ProductDetailsState extends State<ProductDetails>
     // TODO: implement initState
     super.initState();
     cartController.getMyCartProds(false,langController.appLocal);
+    _colorId = productController.imagesData[0].colorId;
+    _sizeId = productController.sizes[0]['sizeID'];
   }
 
   @override
@@ -1264,19 +1266,17 @@ class _ProductDetailsState extends State<ProductDetails>
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                if(index == 0){
-                  _sizeId = productController.sizes[0]['sizeID'];
-                }
                 _colorSize.add(Colors.grey[800]!);
                 _colorSizeBorder.add(Colors.grey[400]!);
 
                 return InkWell(
                   onTap: () {
-                    currentSizeIndex =index;
+                    currentSizeIndex = index;
                     productController.currentSizeSelected.value =
                         productController.sizes[index]['size'];
                     productController.currentSizeIdSelected.value =
                         productController.sizes[index]['sizeID'];
+                    _sizeId = productController.sizes[index]['sizeID'];
 
                     print(
                         "size is = ${productController.sizes[index]['sizeID']}");
@@ -1335,8 +1335,6 @@ class _ProductDetailsState extends State<ProductDetails>
             delegate: SliverChildBuilderDelegate(
               (context, index) {
 
-                  _colorId = productController.imagesData[0].colorId;
-
                 print('color id for $index is:: ${productController.imagesData[index].colorId}');
                 print('qyt :: ${productController.sizes[index]['color'][index]['qyt']}');
                 _colorColor.add(Colors.grey[800]!);
@@ -1344,10 +1342,11 @@ class _ProductDetailsState extends State<ProductDetails>
 
                 return InkWell(
                   onTap: () {
-                    // productController.currentColorSelected.value =
-                    //     productController.imagesData[index].size;
-                    // productController.currentColorIdSelected.value =
-                    //     productController.imagesData[index].colorId;
+                    productController.currentColorSelected.value =
+                        productController.imagesData[index].color;
+                    productController.currentColorIdSelected.value =
+                        productController.imagesData[index].colorId;
+                    _colorId =productController.imagesData[index].colorId;
                     print(
                         'current color id = ${productController.imagesData[index].colorId}');
                     print(index);
@@ -1386,7 +1385,7 @@ class _ProductDetailsState extends State<ProductDetails>
                   ),
                 );
               },
-              childCount: productController.sizes.length,
+              childCount: productController.sizes[currentSizeIndex]['color'].length,
               semanticIndexOffset: 0,
             ),
           )
@@ -1454,7 +1453,7 @@ class _ProductDetailsState extends State<ProductDetails>
           Expanded(
             child: InkWell(
                 onTap: () {
-                  //_colorId =
+
                   //when this button is pressed, a flying cart display
                   setState(() {
                     duration = 800;
@@ -1479,15 +1478,11 @@ class _ProductDetailsState extends State<ProductDetails>
                     });
                   });
 
-              // if(_colorId !='' && _sizeId !='' ) {
-                 cartController
-                     .addToCart(
-                     productController.productData['id'],
+
+                 cartController.addToCart(productController.productData['id'],
                      _colorId,
                      _sizeId,
-                     langController.appLocal
-                 )
-                     .then(
+                     langController.appLocal).then(
                        (value) => showGeneralDialog(
                        context: context,
                        barrierDismissible: true,
@@ -1700,7 +1695,7 @@ class _ProductDetailsState extends State<ProductDetails>
                          );
                        }),
                  );
-              // }
+
                },
                 child: Container(
                   height: 54.h,
