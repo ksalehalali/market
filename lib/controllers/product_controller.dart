@@ -35,6 +35,8 @@ class ProductsController extends GetxController with BaseController{
   var colorsData = [].obs;
   var imagesData = [].obs;
   var qytsWithSizes = [].obs;
+  var colorsSizesItems = [].obs;
+
   var getDetailsDone = false.obs;
   var imagesWidget = [[], [], [], [], []].obs;
   dynamic imagesWidget2 = [[], [], [], [], []];
@@ -494,10 +496,10 @@ class ProductsController extends GetxController with BaseController{
       print("$i ${productDetails.colorsData![i]['image2']}");
       print("$i ${productDetails.colorsData![i]['image3']}");
       print("$i ${productDetails.colorsData![i]['image4']}");
-      //print(imagesData[i].imagesUrls);
+
     }
-    // currentColorSelected.value =imagesData[0].size;
-    // currentColorIdSelected.value =imagesData[0].colorId;
+    currentColorSelected.value =imagesData[0].color;
+    currentColorIdSelected.value =imagesData[0].colorId;
     update();
   }
 
@@ -513,6 +515,9 @@ class ProductsController extends GetxController with BaseController{
 
       for (var i = 0; i < sizes[index]['color'].length; i++) {
         qyt = (qyt! + sizes[index]['color'][i]['qyt']) as int?;
+        colorsSizesItems.add(
+            sizes[index]['color'][i]
+        );
       }
 
        qytsWithSizes.add(SizesQyts(
@@ -521,7 +526,9 @@ class ProductsController extends GetxController with BaseController{
          qyt: qyt
        ));
     }
-print(" qytsWithSizes:  ${qytsWithSizes.value[0].qyt}");
+
+    print('colorsSizesItems length....: ${colorsSizesItems.length}');
+    print(" qytsWithSizes:  ${qytsWithSizes.value[0].qyt}");
     print(" qytsWithSizes:  ${qytsWithSizes.value[1].qyt}");
 
   }
