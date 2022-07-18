@@ -76,20 +76,8 @@ class _ProductDetailsState extends State<ProductDetails>
     // TODO: implement initState
     super.initState();
     cartController.getMyCartProds(false,langController.appLocal);
-    setIds();
   }
 
-  setIds()async{
-    Future.delayed(const Duration(milliseconds: 3500), (){
-      _colorId = productController.imagesData[0].colorId;
-      _sizeId = productController.sizes[0]['sizeID'];
-      print('auto id selected color: ' + _colorId);
-      print('auto id selected size: ' + _sizeId);
-    });
-
-
-
-  }
 
   @override
   void dispose() {
@@ -1089,8 +1077,7 @@ class _ProductDetailsState extends State<ProductDetails>
                               ),
                             ),
                           ),
-                          bottomSheet:
-                              productController.getDetailsDone.value == true
+                          bottomSheet: productController.getDetailsDone.value == true
                                   ? buildAddCartPrice(
                                       productController.productDetails.price!,
                                       productController.productDetails.offer,
@@ -1279,7 +1266,9 @@ class _ProductDetailsState extends State<ProductDetails>
               (context, index) {
                 _colorSize.add(Colors.grey[800]!);
                 _colorSizeBorder.add(Colors.grey[400]!);
-
+                productController.currentSizeIdSelected.value =
+                productController.sizes[0]['sizeID'];
+                _sizeId = productController.sizes[index]['sizeID'];
                 return InkWell(
                   onTap: () {
                     currentSizeIndex = index;
@@ -1289,8 +1278,7 @@ class _ProductDetailsState extends State<ProductDetails>
                         productController.sizes[index]['sizeID'];
                     _sizeId = productController.sizes[index]['sizeID'];
 
-                    print(
-                        "size is = ${productController.sizes[index]['sizeID']}");
+                    print("size is = ${productController.sizes[index]['sizeID']}");
                     setState(() {
                       for (var i = 0; i < _colorSize.length; i++) {
                         if (i == index) {
@@ -1336,10 +1324,12 @@ class _ProductDetailsState extends State<ProductDetails>
 
 //build colors options
   Widget _buildColorsOptions(size) {
+
     return SizedBox(
       width: size.width,
       height: 36.h,
       child: CustomScrollView(
+
         scrollDirection: Axis.horizontal,
         slivers: [
           SliverList(
@@ -1353,14 +1343,13 @@ class _ProductDetailsState extends State<ProductDetails>
 
                 return InkWell(
                   onTap: () {
-                    productController.currentColorSelected.value =
-                        productController.imagesData[index].color;
-                    productController.currentColorIdSelected.value =
-                        productController.imagesData[index].colorId;
+                    print('current index is :::: $index');
+                    productController.currentColorSelected.value = productController.imagesData[index].color;
+                    productController.currentColorIdSelected.value = productController.imagesData[index].colorId;
                     _colorId =productController.imagesData[index].colorId;
-                    print(
-                        'current color id = ${productController.imagesData[index].colorId}');
-                    print(index);
+                    print('current color index: $index id = $_colorId');
+                    print('current size id = $_sizeId');
+
                     indexListImages = index;
                     setState(() {
                       for (var i = 0; i < _colorColor.length; i++) {
@@ -1384,7 +1373,7 @@ class _ProductDetailsState extends State<ProductDetails>
                               width: 1.2, color: _colorColorBorder[index])),
                       child: Center(
                         child: Text(
-                          productController.sizes[currentSizeIndex]['color'][index]['color'],
+                          productController.imagesData[index].color,
                           style: TextStyle(
                               color: _colorColor[index],
                               fontWeight: FontWeight.bold,
@@ -1465,6 +1454,20 @@ class _ProductDetailsState extends State<ProductDetails>
             child: InkWell(
                 onTap: () {
 
+                  bool available = false;
+
+                  for (int i = 0; i < productController.colorsSizesItems.length; i++) {
+                    if(_colorId == productController.colorsSizesItems[i]['colorID'] && productController.colorsSizesItems[i]['qyt'] > 0){
+                      print('true ...=============..');
+                    }
+
+                    print('id ==== ${productController.colorsSizesItems[i]['colorID']}');
+                    print('id ==== $_colorId');
+                    print('id ==== ${productController.colorsSizesItems[i]['color']}');
+
+
+                  }
+
                   //when this button is pressed, a flying cart display
                   setState(() {
                     duration = 800;
@@ -1489,13 +1492,7 @@ class _ProductDetailsState extends State<ProductDetails>
                     });
                   });
 
-                  bool available = false;
-                  productController.colorsSizesItems.value.forEach((element) {
-                    print(element['color']);
-                    if(_sizeId == element['sizeID'] && element['qyt'] >0){
-                      print('true ...=============..');
-                    }
-                  });
+
                  // cartController.addToCart(productController.productData['id'],
                  //     productController.currentColorIdSelected,
                  //     productController.currentSizeIdSelected,

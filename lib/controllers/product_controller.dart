@@ -332,7 +332,6 @@ class ProductsController extends GetxController with BaseController{
       update();
       sizes = [];
       var json = jsonDecode(await response.stream.bytesToString());
-      print("product details :: \n $json");
       productData = json['description'];
       print('full product $productData');
       product.value = ProductModel(
@@ -492,10 +491,10 @@ class ProductsController extends GetxController with BaseController{
           color: productDetails.colorsData![i]['color'],
           colorId: productDetails.colorsData![i]['colorID']));
 
-      print("$i ${productDetails.colorsData![i]['image1']}");
-      print("$i ${productDetails.colorsData![i]['image2']}");
-      print("$i ${productDetails.colorsData![i]['image3']}");
-      print("$i ${productDetails.colorsData![i]['image4']}");
+      // print("$i ${productDetails.colorsData![i]['image1']}");
+      // print("$i ${productDetails.colorsData![i]['image2']}");
+      // print("$i ${productDetails.colorsData![i]['image3']}");
+      // print("$i ${productDetails.colorsData![i]['image4']}");
 
     }
     currentColorSelected.value =imagesData[0].color;
@@ -512,7 +511,6 @@ class ProductsController extends GetxController with BaseController{
       int? qyt =0;
        sizeId =sizes[0]['sizeID'];
        size =sizes[0]['size'];
-
       for (var i = 0; i < sizes[index]['color'].length; i++) {
         qyt = (qyt! + sizes[index]['color'][i]['qyt']) as int?;
         colorsSizesItems.add(
