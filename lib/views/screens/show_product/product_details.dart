@@ -1266,9 +1266,10 @@ class _ProductDetailsState extends State<ProductDetails>
               (context, index) {
                 _colorSize.add(Colors.grey[800]!);
                 _colorSizeBorder.add(Colors.grey[400]!);
-                productController.currentSizeIdSelected.value =
-                productController.sizes[0]['sizeID'];
-                _sizeId = productController.sizes[index]['sizeID'];
+
+                // productController.currentSizeIdSelected.value =
+                // productController.sizes[0]['sizeID'];
+                // _sizeId = productController.sizes[index]['sizeID'];
                 return InkWell(
                   onTap: () {
                     currentSizeIndex = index;
@@ -1305,7 +1306,7 @@ class _ProductDetailsState extends State<ProductDetails>
                           style: TextStyle(
                               color: _colorSize[index],
                               fontWeight: FontWeight.bold,
-                              decoration: productController.qytsWithSizes[index].qyt==0 ?TextDecoration.lineThrough:TextDecoration.none,
+                              decoration: productController.qytsWithSizes[index].qyt==0 && _sizeId ==productController.qytsWithSizes[index].sizeID ?TextDecoration.lineThrough:TextDecoration.none,
                               fontSize: 13.sp),
                         ),
                       ),
@@ -1336,8 +1337,8 @@ class _ProductDetailsState extends State<ProductDetails>
             delegate: SliverChildBuilderDelegate(
               (context, index) {
 
-                print('color id for $index is:: ${productController.imagesData[index].colorId}');
-                print('qyt :: ${productController.sizes[index]['color'][index]['qyt']}');
+               // print('color id for $index is:: ${productController.imagesData[index].colorId}');
+                // print('qyt :: ${productController.sizes[index]['color'][index]['qyt']}');
                 _colorColor.add(Colors.grey[800]!);
                 _colorColorBorder.add(Colors.grey[400]!);
 
@@ -1457,258 +1458,270 @@ class _ProductDetailsState extends State<ProductDetails>
                   bool available = false;
 
                   for (int i = 0; i < productController.colorsSizesItems.length; i++) {
-                    if(_colorId == productController.colorsSizesItems[i]['colorID'] && productController.colorsSizesItems[i]['qyt'] > 0){
+                    if(_colorId == productController.colorsSizesItems[i]['colorID'] && _sizeId == productController.colorsSizesItems[i]['sizeID'] && productController.colorsSizesItems[i]['qyt'] > 0){
                       print('true ...=============..');
+                      available = true;
+                      print('${productController.colorsSizesItems[i]['qyt']}');
+                    }else{
+
                     }
 
-                    print('id ==== ${productController.colorsSizesItems[i]['colorID']}');
-                    print('id ==== $_colorId');
+                    print('id ==color== ${productController.colorsSizesItems[i]['colorID']}');
+                    print('id ==l== $_colorId');
                     print('id ==== ${productController.colorsSizesItems[i]['color']}');
 
+                    print('id ==size== ${productController.colorsSizesItems[i]['sizeID']}');
+                    print('id ==l== $_sizeId');
+                    print('size ==== ${productController.colorsSizesItems[i]['size']}');
+                    print('qyt ==== ${productController.colorsSizesItems[i]['qyt']}');
+
+                    print('.\n\n');
 
                   }
 
-                  //when this button is pressed, a flying cart display
-                  setState(() {
-                    duration = 800;
-                    scaleOfCart = 1.5;
-                    scaleOfItem = 1.2;
-                    flyingcart = const Flyingcart();
-                    //wait 2 second
-                  });
-
-                  Future.delayed(const Duration(milliseconds: 800), () {
+                  if(available){
+                    //when this button is pressed, a flying cart display
                     setState(() {
-                      scaleOfItem = 0;
-                      duration = 500;
-                      scaleOfCart = 1.0;
+                      duration = 800;
+                      scaleOfCart = 1.5;
+                      scaleOfItem = 1.2;
+                      flyingcart = const Flyingcart();
+                      //wait 2 second
                     });
-                  });
 
-                  Future.delayed(const Duration(seconds: 1), () {
-                    setState(() {
-                      flyingcart = null;
-                      //hide flycart and add number
+                    Future.delayed(const Duration(milliseconds: 800), () {
+                      setState(() {
+                        scaleOfItem = 0;
+                        duration = 500;
+                        scaleOfCart = 1.0;
+                      });
                     });
-                  });
+
+                    Future.delayed(const Duration(seconds: 1), () {
+                      setState(() {
+                        flyingcart = null;
+                        //hide flycart and add number
+                      });
+                    });
 
 
-                 // cartController.addToCart(productController.productData['id'],
-                 //     productController.currentColorIdSelected,
-                 //     productController.currentSizeIdSelected,
-                 //     langController.appLocal).then(
-                 //       (value) => showGeneralDialog(
-                 //       context: context,
-                 //       barrierDismissible: true,
-                 //       transitionDuration: 500.milliseconds,
-                 //       barrierLabel:
-                 //       MaterialLocalizations.of(context).dialogLabel,
-                 //       barrierColor: Colors.black.withOpacity(0.5),
-                 //       pageBuilder: (context, _, __) {
-                 //         return Column(
-                 //           mainAxisAlignment: MainAxisAlignment.start,
-                 //           crossAxisAlignment: CrossAxisAlignment.start,
-                 //           children: [
-                 //             Container(
-                 //               width: screenSize.width,
-                 //               color: Colors.white,
-                 //               child: Card(
-                 //                 child: Column(
-                 //                   children: [
-                 //                     SizedBox(
-                 //                       height: 55.h,
-                 //                     ),
-                 //                     Container(
-                 //                       margin: EdgeInsets.only(
-                 //                           left: 10.w, right: 10.w),
-                 //                       child: Row(
-                 //                         children: [
-                 //                           SvgPicture.asset(
-                 //                             'assets/icons/done.svg',
-                 //                             width: 34.w,
-                 //                             height: 34.h,
-                 //                             color: myHexColor,
-                 //                           ),
-                 //                           Row(
-                 //                             mainAxisAlignment:
-                 //                             MainAxisAlignment
-                 //                                 .spaceBetween,
-                 //                             crossAxisAlignment:
-                 //                             CrossAxisAlignment.center,
-                 //                             children: [
-                 //                               Row(
-                 //                                 mainAxisAlignment:
-                 //                                 MainAxisAlignment
-                 //                                     .spaceBetween,
-                 //                                 crossAxisAlignment:
-                 //                                 CrossAxisAlignment
-                 //                                     .center,
-                 //                                 children: [
-                 //                                   Padding(
-                 //                                     padding:
-                 //                                     EdgeInsets.only(
-                 //                                         left: 4.0.w),
-                 //                                     child: Column(
-                 //                                       crossAxisAlignment:
-                 //                                       CrossAxisAlignment
-                 //                                           .start,
-                 //                                       children: [
-                 //                                         SizedBox(
-                 //                                           width: screenSize
-                 //                                               .width *
-                 //                                               0.4.w,
-                 //                                           child: Text(
-                 //                                             'iphone 12 232323 32323 32323 2323 23233 32',
-                 //                                             maxLines: 1,
-                 //                                             overflow:
-                 //                                             TextOverflow
-                 //                                                 .ellipsis,
-                 //                                             style: TextStyle(
-                 //                                                 fontSize:
-                 //                                                 14.sp,
-                 //                                                 fontWeight:
-                 //                                                 FontWeight
-                 //                                                     .w700,
-                 //                                                 color: Colors
-                 //                                                     .black87),
-                 //                                           ),
-                 //                                         ),
-                 //                                         Text(
-                 //                                           'Added to cart ',
-                 //                                           style: TextStyle(
-                 //                                               fontSize:
-                 //                                               14.sp,
-                 //                                               fontWeight:
-                 //                                               FontWeight
-                 //                                                   .w700,
-                 //                                               color: Colors
-                 //                                                   .black87),
-                 //                                         ),
-                 //                                       ],
-                 //                                     ),
-                 //                                   ),
-                 //                                   Padding(
-                 //                                     padding:
-                 //                                     EdgeInsets.only(
-                 //                                         left: 80.0.w),
-                 //                                     child: Column(
-                 //                                       crossAxisAlignment:
-                 //                                       CrossAxisAlignment
-                 //                                           .start,
-                 //                                       children: [
-                 //                                         Text(
-                 //                                           'Cart Total',
-                 //                                           style: TextStyle(
-                 //                                               fontSize:
-                 //                                               14.sp,
-                 //                                               fontWeight:
-                 //                                               FontWeight
-                 //                                                   .w700,
-                 //                                               color: Colors
-                 //                                                   .black87),
-                 //                                         ),
-                 //                                         Obx(
-                 //                                               () => Text(
-                 //                                             cartController
-                 //                                                 .fullPrice
-                 //                                                 .value
-                 //                                                 .toStringAsFixed(
-                 //                                                 2),
-                 //                                             style: TextStyle(
-                 //                                                 fontSize:
-                 //                                                 14.sp,
-                 //                                                 fontWeight:
-                 //                                                 FontWeight
-                 //                                                     .w700,
-                 //                                                 color: Colors
-                 //                                                     .black87),
-                 //                                           ),
-                 //                                         ),
-                 //                                       ],
-                 //                                     ),
-                 //                                   ),
-                 //                                 ],
-                 //                               ),
-                 //                             ],
-                 //                           ),
-                 //                         ],
-                 //                       ),
-                 //                     ),
-                 //                     SizedBox(
-                 //                       height: 12.h,
-                 //                     ),
-                 //                     Row(
-                 //                       mainAxisAlignment:
-                 //                       MainAxisAlignment.spaceBetween,
-                 //                       children: [
-                 //                         ElevatedButton(
-                 //                           onPressed: () {
-                 //                             Navigator.of(context).pop();
-                 //                           },
-                 //                           style: ElevatedButton.styleFrom(
-                 //                               maximumSize: Size(200, 220),
-                 //                               minimumSize: Size(18, 34),
-                 //                               primary: Colors.green[800],
-                 //                               onPrimary:
-                 //                               Colors.green[900],
-                 //                               alignment:
-                 //                               Alignment.center),
-                 //                           child: Text(
-                 //                             'CONTINUE SHOPPING',
-                 //                             maxLines: 1,
-                 //                             style: const TextStyle(
-                 //                                 fontWeight:
-                 //                                 FontWeight.w700,
-                 //                                 color: Colors.white),
-                 //                           ),
-                 //                         ),
-                 //                         ElevatedButton(
-                 //                           onPressed: () {
-                 //                             Navigator.of(context)
-                 //                                 .pushReplacement(
-                 //                                 MaterialPageRoute(
-                 //                                     builder: (context) =>
-                 //                                     const Cart()));
-                 //                           },
-                 //                           style: ElevatedButton.styleFrom(
-                 //                               maximumSize: Size(200, 220),
-                 //                               minimumSize: Size(180, 34),
-                 //                               primary: myHexColor,
-                 //                               onPrimary: Colors.white,
-                 //                               alignment:
-                 //                               Alignment.center),
-                 //                           child: const Text(
-                 //                             'CHECKOUT',
-                 //                             style: TextStyle(
-                 //                                 fontWeight:
-                 //                                 FontWeight.w700,
-                 //                                 color: Colors.white),
-                 //                           ),
-                 //                         ),
-                 //                       ],
-                 //                     )
-                 //                   ],
-                 //                 ),
-                 //               ),
-                 //             )
-                 //           ],
-                 //         );
-                 //       },
-                 //       transitionBuilder: (context, animation,
-                 //           secondaryAnimation, child) {
-                 //         return SlideTransition(
-                 //           position: CurvedAnimation(
-                 //             parent: animation,
-                 //             curve: Curves.easeInOutCubic,
-                 //           ).drive(
-                 //             Tween<Offset>(
-                 //                 begin: const Offset(0, -1.0),
-                 //                 end: Offset.zero),
-                 //           ),
-                 //           child: child,
-                 //         );
-                 //       }),
-                 // );
+                    cartController.addToCart(productController.productData['id'],
+                        productController.currentColorIdSelected,
+                        productController.currentSizeIdSelected,
+                        langController.appLocal).then(
+                          (value) => showGeneralDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          transitionDuration: 500.milliseconds,
+                          barrierLabel:
+                          MaterialLocalizations.of(context).dialogLabel,
+                          barrierColor: Colors.black.withOpacity(0.5),
+                          pageBuilder: (context, _, __) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: screenSize.width,
+                                  color: Colors.white,
+                                  child: Card(
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 55.h,
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                              left: 10.w, right: 10.w),
+                                          child: Row(
+                                            children: [
+                                              SvgPicture.asset(
+                                                'assets/icons/done.svg',
+                                                width: 34.w,
+                                                height: 34.h,
+                                                color: myHexColor,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .center,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                        EdgeInsets.only(
+                                                            left: 4.0.w),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                          children: [
+                                                            SizedBox(
+                                                              width: screenSize
+                                                                  .width *
+                                                                  0.4.w,
+                                                              child: Text(
+                                                                'iphone 12 232323 32323 32323 2323 23233 32',
+                                                                maxLines: 1,
+                                                                overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    14.sp,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w700,
+                                                                    color: Colors
+                                                                        .black87),
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              'Added to cart ',
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                  14.sp,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                                  color: Colors
+                                                                      .black87),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                        EdgeInsets.only(
+                                                            left: 80.0.w),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                          children: [
+                                                            Text(
+                                                              'Cart Total',
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                  14.sp,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                                  color: Colors
+                                                                      .black87),
+                                                            ),
+                                                            Obx(
+                                                                  () => Text(
+                                                                cartController
+                                                                    .fullPrice
+                                                                    .value
+                                                                    .toStringAsFixed(
+                                                                    2),
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    14.sp,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w700,
+                                                                    color: Colors
+                                                                        .black87),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 12.h,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                  maximumSize: Size(200, 220),
+                                                  minimumSize: Size(18, 34),
+                                                  primary: Colors.green[800],
+                                                  onPrimary:
+                                                  Colors.green[900],
+                                                  alignment:
+                                                  Alignment.center),
+                                              child: Text(
+                                                'CONTINUE SHOPPING',
+                                                maxLines: 1,
+                                                style: const TextStyle(
+                                                    fontWeight:
+                                                    FontWeight.w700,
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.of(context)
+                                                    .pushReplacement(
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                        const Cart()));
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                  maximumSize: Size(200, 220),
+                                                  minimumSize: Size(180, 34),
+                                                  primary: myHexColor,
+                                                  onPrimary: Colors.white,
+                                                  alignment:
+                                                  Alignment.center),
+                                              child: const Text(
+                                                'CHECKOUT',
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                    FontWeight.w700,
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            );
+                          },
+                          transitionBuilder: (context, animation,
+                              secondaryAnimation, child) {
+                            return SlideTransition(
+                              position: CurvedAnimation(
+                                parent: animation,
+                                curve: Curves.easeInOutCubic,
+                              ).drive(
+                                Tween<Offset>(
+                                    begin: const Offset(0, -1.0),
+                                    end: Offset.zero),
+                              ),
+                              child: child,
+                            );
+                          }),
+                    );
+                  }
 
                },
                 child: Container(

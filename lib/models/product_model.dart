@@ -58,7 +58,9 @@ class SizesQyts{
   late final int? qyt;
   late final String? sizeID;
   late final String? size;
+  late final String? colorID;
+  late final String? color;
 
-  SizesQyts({this.qyt, this.sizeID, this.size});
+  SizesQyts({this.qyt, this.sizeID, this.size,this.colorID, this.color});
 }
 

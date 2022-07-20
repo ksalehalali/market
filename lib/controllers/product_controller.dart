@@ -16,7 +16,7 @@ import '../views/address/config-maps.dart';
 import 'address_location_controller.dart';
 import 'base_controller.dart';
 
-class ProductsController extends GetxController with BaseController{
+class ProductsController extends GetxController with BaseController {
   var latestProducts = <ProductModel>[].obs;
   var recommendedProducts = <ProductModel>[].obs;
   var offersProducts = <ProductModel>[].obs;
@@ -35,6 +35,8 @@ class ProductsController extends GetxController with BaseController{
   var colorsData = [].obs;
   var imagesData = [].obs;
   var qytsWithSizes = [].obs;
+  var qytsWithColors = [].obs;
+
   var colorsSizesItems = [].obs;
 
   var getDetailsDone = false.obs;
@@ -57,7 +59,6 @@ class ProductsController extends GetxController with BaseController{
       'Authorization': 'bearer ${user.accessToken}',
       'Content-Type': 'application/json',
       'Lang': langCode
-
     };
     var request = http.Request('POST', Uri.parse('$baseURL/api/ListProduct'));
     request.body = json.encode({"PageNumber": 0, "PageSize": 50});
@@ -98,9 +99,8 @@ class ProductsController extends GetxController with BaseController{
     update();
   }
 
-
 //get products by cat
-  Future getProductsByCat(String catId,String langCode) async {
+  Future getProductsByCat(String catId, String langCode) async {
     cartProducts.value = [];
     opacity.value = 0.0;
     gotProductsByCat.value = false;
@@ -108,7 +108,6 @@ class ProductsController extends GetxController with BaseController{
       'Authorization': 'bearer ${user.accessToken}',
       'Content-Type': 'application/json',
       'Lang': langCode
-
     };
     var request =
         http.Request('POST', Uri.parse('$baseURL/api/ListProductByCategory'));
@@ -194,8 +193,8 @@ class ProductsController extends GetxController with BaseController{
             providerName: data[i]['userName'],
             providerId: data[i]['userID'],
             brand: data[i]['brandName'],
-            desc_AR:data[i]['desc_AR'],
-            desc_EN:data[i]['desc_EN'],
+            desc_AR: data[i]['desc_AR'],
+            desc_EN: data[i]['desc_EN'],
           ));
         }
         print(' products count :: ${latestProducts.length}');
@@ -219,8 +218,8 @@ class ProductsController extends GetxController with BaseController{
             providerName: data[i]['userName'],
             providerId: data[i]['userID'],
             brand: data[i]['brandName'],
-            desc_AR:data[i]['desc_AR'],
-            desc_EN:data[i]['desc_EN'],
+            desc_AR: data[i]['desc_AR'],
+            desc_EN: data[i]['desc_EN'],
           ));
         }
         update();
@@ -245,13 +244,13 @@ class ProductsController extends GetxController with BaseController{
             providerName: data[i]['userName'],
             providerId: data[i]['userID'],
             brand: data[i]['brandName'],
-            desc_AR:data[i]['desc_AR'],
-            desc_EN:data[i]['desc_EN'],
+            desc_AR: data[i]['desc_AR'],
+            desc_EN: data[i]['desc_EN'],
           ));
         }
         print(' products count :: ${offersProducts.length}');
       }
-      gotProductsByCat.value =true;
+      gotProductsByCat.value = true;
       update();
     } else {
       print(response.reasonPhrase);
@@ -264,17 +263,14 @@ class ProductsController extends GetxController with BaseController{
     productPredictionList.clear();
 
     if (productName.length > 1) {
-
       var headers = {
         'Authorization': 'Bearer ${user.accessToken}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('POST', Uri.parse('https://dashcommerce.click68.com/api/SearchProduct'));
-      request.body = json.encode({
-        "PageSize": 100,
-        "PageNumber": 1,
-        "KeyWord": productName
-      });
+      var request = http.Request('POST',
+          Uri.parse('https://dashcommerce.click68.com/api/SearchProduct'));
+      request.body = json
+          .encode({"PageSize": 100, "PageNumber": 1, "KeyWord": productName});
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
@@ -299,22 +295,17 @@ class ProductsController extends GetxController with BaseController{
               price: element.price));
         });
         update();
-
-      }
-      else {
+      } else {
         print(response.reasonPhrase);
       }
-
-
-
     }
   }
 
   Future getOneProductDetails(String id) async {
-   gotProductDetails.value =false;
-   getDetailsDone.value = false;
+    gotProductDetails.value = false;
+    getDetailsDone.value = false;
 
-   print('get prod id :: $id');
+    print('get prod id :: $id');
     var headers = {
       'Authorization': 'bearer ${user.accessToken}',
       'Content-Type': 'application/json'
@@ -354,8 +345,8 @@ class ProductsController extends GetxController with BaseController{
         providerId: productData['merchentID'],
         colorsData: productData['image'],
         brand: productData['brandName'],
-        desc_AR:productData['desc_AR'],
-        desc_EN:productData['desc_EN'],
+        desc_AR: productData['desc_AR'],
+        desc_EN: productData['desc_EN'],
       );
       productDetails = ProductModel(
         id: productData['id'],
@@ -377,14 +368,13 @@ class ProductsController extends GetxController with BaseController{
         providerId: productData['merchentID'],
         colorsData: productData['image'],
         brand: productData['brandName'],
-        desc_AR:productData['desc_AR'],
-        desc_EN:productData['desc_EN'],
-
+        desc_AR: productData['desc_AR'],
+        desc_EN: productData['desc_EN'],
       );
 
       sizes = productData['size'];
       currentSizeSelected.value = sizes[0]['size'];
-      currentSizeIdSelected.value= sizes[0]['sizeID'];
+      currentSizeIdSelected.value = sizes[0]['sizeID'];
 
       colors = productData['size'][0]['color'];
       sortQytsWithSizes();
@@ -393,7 +383,6 @@ class ProductsController extends GetxController with BaseController{
       await addImagesData();
       createImages(2);
       print(product);
-
     }
     offerFromPrice.value = productDetails.price! * productDetails.offer! / 100;
   }
@@ -419,22 +408,21 @@ class ProductsController extends GetxController with BaseController{
                     width: screenSize.width * 0.4,
                     maxHeightDiskCache: 110,
                     fit: BoxFit.fill,
-                    placeholder: (context, url) =>
-                         Center(child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
-                          child: Shimmer.fromColors(
-                            baseColor: Colors.grey[400]!,
-                            highlightColor: Colors.grey[300]!,
-                            child: Container(
-                              height: screenSize.height * 0.2 + 20,
-                              width: screenSize.width * 0.4,
-                              decoration: BoxDecoration(
-
-                                  borderRadius: BorderRadius.circular(3)),
-                              //child: Image.asset('assets/images/no-image.jpeg'),
-                            ),
-                          ),
-                        )),
+                    placeholder: (context, url) => Center(
+                        child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: Shimmer.fromColors(
+                        baseColor: Colors.grey[400]!,
+                        highlightColor: Colors.grey[300]!,
+                        child: Container(
+                          height: screenSize.height * 0.2 + 20,
+                          width: screenSize.width * 0.4,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3)),
+                          //child: Image.asset('assets/images/no-image.jpeg'),
+                        ),
+                      ),
+                    )),
                     errorWidget: (context, url, error) => Container(
                       color: Colors.black,
                       child: const Icon(
@@ -450,7 +438,7 @@ class ProductsController extends GetxController with BaseController{
       getDetailsDone.value = true;
     }
     imagesWidget2 = imagesWidget.value;
-    gotProductDetails.value =true;
+    gotProductDetails.value = true;
     getDetailsDone.value = true;
     print('got product == $gotProductDetails');
     update();
@@ -497,38 +485,87 @@ class ProductsController extends GetxController with BaseController{
       // print("$i ${productDetails.colorsData![i]['image4']}");
 
     }
-    currentColorSelected.value =imagesData[0].color;
-    currentColorIdSelected.value =imagesData[0].colorId;
+    currentColorSelected.value = imagesData[0].color;
+    currentColorIdSelected.value = imagesData[0].colorId;
     update();
   }
 
   //sort qyts with sizes and collect
-  sortQytsWithSizes(){
-
+  sortQytsWithSizes() {
     for (var index = 0; index < sizes.length; index++) {
-      String sizeId ='' ;
-      String size = '' ;
-      int? qyt =0;
-       sizeId =sizes[0]['sizeID'];
-       size =sizes[0]['size'];
+      String sizeId = '';
+      String size = '';
+
+      String colorId = '';
+      String color = '';
+
+      int? qyt = 0;
+      int? qytColor = 0;
+
+      sizeId = sizes[index]['sizeID'];
+      size = sizes[index]['size'];
       for (var i = 0; i < sizes[index]['color'].length; i++) {
         qyt = (qyt! + sizes[index]['color'][i]['qyt']) as int?;
-        colorsSizesItems.add(
-            sizes[index]['color'][i]
-        );
-      }
 
-       qytsWithSizes.add(SizesQyts(
-         sizeID: sizeId,
-         size:size,
-         qyt: qyt
-       ));
+        //add items from "size" to list
+        colorsSizesItems.add({
+          "size": size,
+          "sizeID": sizeId,
+          "colorID": sizes[index]['color'][i]['colorID'],
+          "color": sizes[index]['color'][i]['color'],
+          "qyt": sizes[index]['color'][i]['qyt'],
+          "overPrice": sizes[index]['color'][i]['overPrice']
+        });
+      }
+      print('colorsSizesItems length: ${colorsSizesItems.length}');
+      print('size ..: ${colorsSizesItems[0]['size']}');
+
+      qytsWithSizes.add(SizesQyts(sizeID: sizeId, size: size, qyt: qyt));
     }
 
-    print('colorsSizesItems length....: ${colorsSizesItems.length}');
+    //add qyts with colors to one list
+    // qytsWithColors.clear();
+    // colorsSizesItems.forEach((element) {
+    //   bool colorExists = false ;
+    //   int currentIndex = 0 ;
+    //  if(qytsWithColors.length >0){
+    //    for(var i = 0; i < qytsWithColors.length; i++) {
+    //      if(element['colorID'] == qytsWithColors[i]['colorID']){
+    //        colorExists = true;
+    //        currentIndex = i;
+    //      }
+    //
+    //      if(colorExists !=true){
+    //        qytsWithColors.add(
+    //            {
+    //              "colorID": element['color'],
+    //              "color": element['colorID'],
+    //              "qyt": element['qyt']
+    //            }
+    //        );
+    //      }else{
+    //        qytsWithColors[currentIndex]['qyt'] = qytsWithColors[currentIndex]['qyt'] + element['qyt'];
+    //        print('qyt count fixed ');
+    //      }
+    //    }
+    //
+    //
+    //  }else{
+    //    qytsWithColors.add(
+    //        {
+    //          "colorID": element['color'],
+    //          "color": element['colorID'],
+    //          "qyt": element['qyt']
+    //        });
+    //  }
+    //
+    // });
+    // print("qyts With Colors length :::: ${qytsWithColors.length}");
+    //
+    //
+    print('colors Sizes Items length....: ${colorsSizesItems.length}');
     print(" qytsWithSizes:  ${qytsWithSizes.value[0].qyt}");
-    print(" qytsWithSizes:  ${qytsWithSizes.value[1].qyt}");
-
+    print(" qytsWithSizes:  ${qytsWithSizes.value[0].qyt}");
   }
 
   Future<bool> addProductToFav(String prodId) async {

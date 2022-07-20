@@ -34,7 +34,7 @@ class CartController extends GetxController with BaseController {
   var gotOrderDetails =false.obs;
 
 
-  Future addToCart(String prodId, colorId, sizeId,String langCode) async {
+  Future addToCart(String prodId, colorId, sizeId, langCode) async {
     print('prodId: $prodId, colorId: $colorId, sizeId: $sizeId ... ');
 
     var headers = {
@@ -44,7 +44,7 @@ class CartController extends GetxController with BaseController {
     var request = http.Request(
         'POST', Uri.parse('https://dashcommerce.click68.com/api/AddCart'));
     request.body = json.encode(
-        {"Number": 1, "ProdID": prodId, "ColorID": colorId, "SizeID": sizeId});
+        {"Number": 1, "ProdID": prodId.toString(), "ColorID": colorId.toString(), "SizeID": sizeId.toString()});
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
