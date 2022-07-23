@@ -23,7 +23,6 @@ import '../home/home.dart';
 import '../home/search_area_des.dart';
 import 'package:html/parser.dart' show parse;
 
-
 class ProductDetails extends StatefulWidget {
   final ProductModel? product;
 
@@ -36,7 +35,7 @@ class ProductDetails extends StatefulWidget {
 int indexListImages = 0;
 double scaleOfCart = 1.0;
 double scaleOfItem = 1.0;
-int activeIndex =0;
+int activeIndex = 0;
 int duration = 800;
 
 class _ProductDetailsState extends State<ProductDetails>
@@ -65,8 +64,9 @@ class _ProductDetailsState extends State<ProductDetails>
 
   bool showOver = false;
   bool showSpec = false;
-  String _colorId = "";
-  String _sizeId = "";
+
+  // String _colorId = "";
+  // String _sizeId = "";
   int currentSizeIndex = 0;
 
   Widget? flyingcart = null;
@@ -75,9 +75,8 @@ class _ProductDetailsState extends State<ProductDetails>
   void initState() {
     // TODO: implement initState
     super.initState();
-    cartController.getMyCartProds(false,langController.appLocal);
+    cartController.getMyCartProds(false, langController.appLocal);
   }
-
 
   @override
   void dispose() {
@@ -235,45 +234,77 @@ class _ProductDetailsState extends State<ProductDetails>
                                             ? Column(
                                                 children: [
                                                   SizedBox(
-                                                    height: screenSize.height *
-                                                        0.4.h,
-                                                    width: double.infinity,
-                                                    child: Column(
-                                                      children: [
-                                                        CarouselSlider.builder(
-                                                          itemCount: productController.imagesWidget.value[indexListImages].length,
-                                                          itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) => InkWell(
-                                                            onTap: (){
-                                                              gallery(itemIndex);
-                                                            },
-                                                            child: Container(
-                                                              width: screenSize.width,
-                                                                          child: productController.imagesWidget.value[indexListImages][itemIndex],
-                                                                        ),
+                                                      height:
+                                                          screenSize.height *
+                                                              0.4.h,
+                                                      width: double.infinity,
+                                                      child: Column(
+                                                        children: [
+                                                          CarouselSlider
+                                                              .builder(
+                                                            itemCount:
+                                                                productController
+                                                                    .imagesWidget
+                                                                    .value[
+                                                                        indexListImages]
+                                                                    .length,
+                                                            itemBuilder: (BuildContext
+                                                                        context,
+                                                                    int itemIndex,
+                                                                    int pageViewIndex) =>
+                                                                InkWell(
+                                                              onTap: () {
+                                                                gallery(
+                                                                    itemIndex);
+                                                              },
+                                                              child: Container(
+                                                                width:
+                                                                    screenSize
+                                                                        .width,
+                                                                child: productController
+                                                                        .imagesWidget
+                                                                        .value[indexListImages]
+                                                                    [itemIndex],
+                                                              ),
+                                                            ),
+                                                            options:
+                                                                CarouselOptions(
+                                                              viewportFraction:
+                                                                  1,
+                                                              height: 300,
+                                                              pageSnapping:
+                                                                  true,
+                                                              //autoPlay: true,
+                                                              enableInfiniteScroll:
+                                                                  true,
+                                                              enlargeCenterPage:
+                                                                  true,
+                                                              enlargeStrategy:
+                                                                  CenterPageEnlargeStrategy
+                                                                      .height,
+                                                              autoPlayInterval:
+                                                                  2500.milliseconds,
+                                                              onPageChanged:
+                                                                  (index,
+                                                                      reason) {
+                                                                setState(() {
+                                                                  activeIndex =
+                                                                      index;
+                                                                });
+                                                              },
+                                                            ),
                                                           ),
-                                                                      options: CarouselOptions(
-                                                                          viewportFraction: 1,
-                                                                          height: 300,
-                                                                          pageSnapping: true,
-                                                                          //autoPlay: true,
-                                                                          enableInfiniteScroll: true,
-                                                                      enlargeCenterPage: true,
-                                                                        enlargeStrategy: CenterPageEnlargeStrategy.height,
-                                                                        autoPlayInterval: 2500.milliseconds,
-                                                                        onPageChanged:(index,reason ){
-                                                                            setState(() {
-                                                                              activeIndex = index;
-                                                                            });
-                                                                        },
-
-                                                                      ),
-                                                                    ),
-                                                        SizedBox(height: 4.0,),
-                                                        buildIndicator(productController.imagesWidget.value[indexListImages].length),
-                                                      ],
-                                                    )
-
-                                                  ),
+                                                          SizedBox(
+                                                            height: 4.0,
+                                                          ),
+                                                          buildIndicator(
+                                                              productController
+                                                                  .imagesWidget
+                                                                  .value[
+                                                                      indexListImages]
+                                                                  .length),
+                                                        ],
+                                                      )),
                                                 ],
                                               )
                                             : Container(),
@@ -435,8 +466,10 @@ class _ProductDetailsState extends State<ProductDetails>
                                                 screenSize.height * 0.1 - 70.h,
                                           ),
                                           Text(
-                                            productController
+                                            langController.appLocal=='en' ?productController
                                                 .productDetails.en_name!
+                                                .toUpperCase():productController
+                                                .productDetails.ar_name!
                                                 .toUpperCase(),
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
@@ -459,7 +492,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                 screenSize.height * 0.1 - 60.h,
                                           ),
                                           Text(
-                                            'Size',
+                                            'Size_txt'.tr,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 14.sp,
@@ -473,7 +506,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                             height: 22.0.h,
                                           ),
                                           Text(
-                                            'Color',
+                                            'Color_txt'.tr,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 14.sp,
@@ -512,9 +545,9 @@ class _ProductDetailsState extends State<ProductDetails>
                                                 const SizedBox(
                                                   width: 10.0,
                                                 ),
-                                                const Text('Delivery time :'),
+                                                 Text('Delivery time :_txt'.tr),
                                                 const Spacer(),
-                                                const Text(' Jan 28 - Jan 30'),
+                                                 Text(' Jan 28 - Jan 30_txt'.tr),
                                                 SizedBox(
                                                   width:
                                                       screenSize.width * 0.1 -
@@ -561,7 +594,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                       width: 5.0,
                                                     ),
                                                     Text(
-                                                      'Seller',
+                                                      'Merchant_txt'.tr,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w600,
@@ -613,7 +646,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                             AnimatedContainer(
                                                 duration: 11.seconds,
                                                 curve: Curves.easeIn,
-                                                child: Text('Overview',
+                                                child: Text('Overview_txt'.tr,
                                                     style: TextStyle(
                                                         color: _color,
                                                         fontWeight:
@@ -650,7 +683,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                 curve: Curves.easeIn,
                                                 duration: 14.seconds,
                                                 child: Text(
-                                                  'Specifications',
+                                                  'Specifications_txt'.tr,
                                                   style: TextStyle(
                                                       color: _color2,
                                                       fontWeight:
@@ -681,7 +714,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                   vertical: 14.0.h,
                                                   horizontal: 12.w),
                                               child: Text(
-                                                'Specifications',
+                                                'Specifications_txt'.tr,
                                                 style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 12.sp,
@@ -780,7 +813,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                               .5 -
                                                           30.w,
                                                       child: Text(
-                                                        'Department',
+                                                        'Department_txt'.tr,
                                                         style: TextStyle(
                                                             color: Colors
                                                                 .grey[900],
@@ -822,7 +855,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                                     .5 -
                                                                 30.w,
                                                         child: Text(
-                                                          'Offer',
+                                                          'Offer_txt'.tr,
                                                           style: TextStyle(
                                                               color: Colors
                                                                   .grey[900],
@@ -859,7 +892,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                               .5 -
                                                           30.w,
                                                       child: Text(
-                                                        'Material',
+                                                        'Material_txt'.tr,
                                                         style: TextStyle(
                                                             color: Colors
                                                                 .grey[900],
@@ -899,7 +932,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                                     .5 -
                                                                 30.w,
                                                         child: Text(
-                                                          'Material Composition',
+                                                          'Material Composition_txt'.tr,
                                                           style: TextStyle(
                                                               color: Colors
                                                                   .grey[900],
@@ -938,7 +971,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                               .5 -
                                                           30.w,
                                                       child: Text(
-                                                        'Model Number',
+                                                        'Model Number_txt'.tr,
                                                         style: TextStyle(
                                                             color: Colors
                                                                 .grey[900],
@@ -980,7 +1013,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                                     .5 -
                                                                 30.w,
                                                         child: Text(
-                                                          'Merchant',
+                                                          'Merchant_txt'.tr,
                                                           style: TextStyle(
                                                               color: Colors
                                                                   .grey[900],
@@ -1022,9 +1055,9 @@ class _ProductDetailsState extends State<ProductDetails>
                                                       right: 12.0.w,
                                                       left: 12.0.w,
                                                       top: 22.0.h,
-                                                      bottom: 10.h),
+                                                      bottom: 4.h),
                                                   child: Text(
-                                                    'Highlights',
+                                                    'Highlights_txt'.tr,
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 12.sp,
@@ -1037,13 +1070,48 @@ class _ProductDetailsState extends State<ProductDetails>
                                                       vertical: 1.0.h,
                                                       horizontal: 12.w),
                                                   child: productController
-                                                      .productDetails.desc_EN !=null ?Html(
+                                                              .productDetails
+                                                              .desc_EN !=
+                                                          null
+                                                      ? Html(
+                                                          data: productController
+                                                              .productDetails
+                                                              .desc_EN,
+                                                        )
+                                                      : Container(),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: 12.0.w,
+                                                      left: 12.0.w,
+                                                      top: 5.0.h,
+                                                      bottom: 10.h),
+                                                  child: Text(
+                                                    'Specifications_txt'.tr,
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 12.sp,
+                                                        fontWeight:
+                                                        FontWeight.w800),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 1.0.h ,
+                                                      horizontal: 12.w),
+                                                  child: productController
+                                                      .productDetails
+                                                      .desc_EN !=
+                                                      null
+                                                      ? Html(
                                                     data: productController
-                                                        .productDetails.desc_EN,
-                                                  ):Container(),
+                                                        .productDetails
+                                                        .desc_EN,
+                                                  )
+                                                      : Container(),
                                                 ),
                                                 SizedBox(
-                                                  height: 150.h,
+                                                  height: 20.h,
                                                 )
                                               ],
                                             ),
@@ -1053,7 +1121,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                     height: 40.h,
                                   ),
                                   Align(
-                                    alignment: Alignment.centerLeft,
+                                    alignment:langController.appLocal =='en' ?Alignment.centerLeft:Alignment.centerRight,
                                     child: Padding(
                                       padding: EdgeInsets.only(
                                           right: 12.0.w,
@@ -1061,7 +1129,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                           top: 22.0.h,
                                           bottom: 10.h),
                                       child: Text(
-                                        'More from ${productController.product.value.brand}',
+                                        langController.appLocal == 'en' ? 'More from ${productController.product.value.brand}':' المزيد من ${productController.product.value.brand} ',
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 12.sp,
@@ -1077,7 +1145,8 @@ class _ProductDetailsState extends State<ProductDetails>
                               ),
                             ),
                           ),
-                          bottomSheet: productController.getDetailsDone.value == true
+                          bottomSheet:
+                              productController.getDetailsDone.value == true
                                   ? buildAddCartPrice(
                                       productController.productDetails.price!,
                                       productController.productDetails.offer,
@@ -1277,9 +1346,10 @@ class _ProductDetailsState extends State<ProductDetails>
                         productController.sizes[index]['size'];
                     productController.currentSizeIdSelected.value =
                         productController.sizes[index]['sizeID'];
-                    _sizeId = productController.sizes[index]['sizeID'];
+                    //_sizeId = productController.sizes[index]['sizeID'];
 
-                    print("size is = ${productController.sizes[index]['sizeID']}");
+                    print(
+                        "size is = ${productController.sizes[index]['sizeID']}");
                     setState(() {
                       for (var i = 0; i < _colorSize.length; i++) {
                         if (i == index) {
@@ -1306,7 +1376,16 @@ class _ProductDetailsState extends State<ProductDetails>
                           style: TextStyle(
                               color: _colorSize[index],
                               fontWeight: FontWeight.bold,
-                              decoration: productController.qytsWithSizes[index].qyt==0 && _sizeId ==productController.qytsWithSizes[index].sizeID ?TextDecoration.lineThrough:TextDecoration.none,
+                              decoration:
+                                  productController.qytsWithSizes[index].qyt ==
+                                              0 &&
+                                          productController
+                                                  .currentSizeIdSelected
+                                                  .value ==
+                                              productController
+                                                  .qytsWithSizes[index].sizeID
+                                      ? TextDecoration.lineThrough
+                                      : TextDecoration.none,
                               fontSize: 13.sp),
                         ),
                       ),
@@ -1325,19 +1404,16 @@ class _ProductDetailsState extends State<ProductDetails>
 
 //build colors options
   Widget _buildColorsOptions(size) {
-
     return SizedBox(
       width: size.width,
       height: 36.h,
       child: CustomScrollView(
-
         scrollDirection: Axis.horizontal,
         slivers: [
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-
-               // print('color id for $index is:: ${productController.imagesData[index].colorId}');
+                // print('color id for $index is:: ${productController.imagesData[index].colorId}');
                 // print('qyt :: ${productController.sizes[index]['color'][index]['qyt']}');
                 _colorColor.add(Colors.grey[800]!);
                 _colorColorBorder.add(Colors.grey[400]!);
@@ -1345,11 +1421,13 @@ class _ProductDetailsState extends State<ProductDetails>
                 return InkWell(
                   onTap: () {
                     print('current index is :::: $index');
-                    productController.currentColorSelected.value = productController.imagesData[index].color;
-                    productController.currentColorIdSelected.value = productController.imagesData[index].colorId;
-                    _colorId =productController.imagesData[index].colorId;
-                    print('current color index: $index id = $_colorId');
-                    print('current size id = $_sizeId');
+                    productController.currentColorSelected.value =
+                        productController.imagesData[index].color;
+                    productController.currentColorIdSelected.value =
+                        productController.imagesData[index].colorId;
+                    //_colorId =productController.imagesData[index].colorId;
+                    // print('current color index: $index id = $_colorId');
+                    // print('current size id = $_sizeId');
 
                     indexListImages = index;
                     setState(() {
@@ -1374,11 +1452,17 @@ class _ProductDetailsState extends State<ProductDetails>
                               width: 1.2, color: _colorColorBorder[index])),
                       child: Center(
                         child: Text(
-                          productController.imagesData[index].color,
+                          productController.sizes[currentSizeIndex]['color']
+                              [index]['color'],
                           style: TextStyle(
                               color: _colorColor[index],
                               fontWeight: FontWeight.bold,
-                              decoration: productController.qytsWithSizes[index].qyt == 0  ?TextDecoration.lineThrough:TextDecoration.none,
+                              decoration:
+                                  productController.sizes[currentSizeIndex]
+                                              ['color'][index]['qyt'] ==
+                                          0
+                                      ? TextDecoration.lineThrough
+                                      : TextDecoration.none,
                               fontSize: 13),
                         ),
                       ),
@@ -1386,7 +1470,8 @@ class _ProductDetailsState extends State<ProductDetails>
                   ),
                 );
               },
-              childCount: productController.sizes[currentSizeIndex]['color'].length,
+              childCount:
+                  productController.sizes[currentSizeIndex]['color'].length,
               semanticIndexOffset: 0,
             ),
           )
@@ -1454,32 +1539,39 @@ class _ProductDetailsState extends State<ProductDetails>
           Expanded(
             child: InkWell(
                 onTap: () {
-
                   bool available = false;
 
-                  for (int i = 0; i < productController.colorsSizesItems.length; i++) {
-                    if(_colorId == productController.colorsSizesItems[i]['colorID'] && _sizeId == productController.colorsSizesItems[i]['sizeID'] && productController.colorsSizesItems[i]['qyt'] > 0){
+                  for (int i = 0;
+                      i < productController.colorsSizesItems.length;
+                      i++) {
+                    if (productController.currentColorIdSelected.value ==
+                            productController.colorsSizesItems[i]['colorID'] &&
+                        productController.currentSizeIdSelected.value ==
+                            productController.colorsSizesItems[i]['sizeID'] &&
+                        productController.colorsSizesItems[i]['qyt'] > 0) {
                       print('true ...=============..');
                       available = true;
                       print('${productController.colorsSizesItems[i]['qyt']}');
-                    }else{
+                    } else {}
 
-                    }
+                    print(
+                        'id ==color== ${productController.colorsSizesItems[i]['colorID']}');
+                    // print('id ==l== $_colorId');
+                    print(
+                        'id ==== ${productController.colorsSizesItems[i]['color']}');
 
-                    print('id ==color== ${productController.colorsSizesItems[i]['colorID']}');
-                    print('id ==l== $_colorId');
-                    print('id ==== ${productController.colorsSizesItems[i]['color']}');
-
-                    print('id ==size== ${productController.colorsSizesItems[i]['sizeID']}');
-                    print('id ==l== $_sizeId');
-                    print('size ==== ${productController.colorsSizesItems[i]['size']}');
-                    print('qyt ==== ${productController.colorsSizesItems[i]['qyt']}');
+                    print(
+                        'id ==size== ${productController.colorsSizesItems[i]['sizeID']}');
+                    //print('id ==l== $_sizeId');
+                    print(
+                        'size ==== ${productController.colorsSizesItems[i]['size']}');
+                    print(
+                        'qyt ==== ${productController.colorsSizesItems[i]['qyt']}');
 
                     print('.\n\n');
-
                   }
 
-                  if(available){
+                  if (available) {
                     //when this button is pressed, a flying cart display
                     setState(() {
                       duration = 800;
@@ -1504,232 +1596,261 @@ class _ProductDetailsState extends State<ProductDetails>
                       });
                     });
 
-
-                    cartController.addToCart(productController.productData['id'],
-                        productController.currentColorIdSelected,
-                        productController.currentSizeIdSelected,
-                        langController.appLocal).then(
+                    cartController
+                        .addToCart(
+                            productController.productData['id'],
+                            productController.currentColorIdSelected,
+                            productController.currentSizeIdSelected,
+                            langController.appLocal)
+                        .then(
                           (value) => showGeneralDialog(
-                          context: context,
-                          barrierDismissible: true,
-                          transitionDuration: 500.milliseconds,
-                          barrierLabel:
-                          MaterialLocalizations.of(context).dialogLabel,
-                          barrierColor: Colors.black.withOpacity(0.5),
-                          pageBuilder: (context, _, __) {
-                            return Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: screenSize.width,
-                                  color: Colors.white,
-                                  child: Card(
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 55.h,
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.only(
-                                              left: 10.w, right: 10.w),
-                                          child: Row(
-                                            children: [
-                                              SvgPicture.asset(
-                                                'assets/icons/done.svg',
-                                                width: 34.w,
-                                                height: 34.h,
-                                                color: myHexColor,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                              context: context,
+                              barrierDismissible: true,
+                              transitionDuration: 500.milliseconds,
+                              barrierLabel:
+                                  MaterialLocalizations.of(context).dialogLabel,
+                              barrierColor: Colors.black.withOpacity(0.5),
+                              pageBuilder: (context, _, __) {
+                                return Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: screenSize.width,
+                                      color: Colors.white,
+                                      child: Card(
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 55.h,
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(
+                                                  left: 10.w, right: 10.w),
+                                              child: Row(
                                                 children: [
+                                                  SvgPicture.asset(
+                                                    'assets/icons/done.svg',
+                                                    width: 34.w,
+                                                    height: 34.h,
+                                                    color: myHexColor,
+                                                  ),
+                                                  SizedBox(width: 4.w,),
                                                   Row(
                                                     mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .center,
+                                                        CrossAxisAlignment
+                                                            .center,
                                                     children: [
-                                                      Padding(
-                                                        padding:
-                                                        EdgeInsets.only(
-                                                            left: 4.0.w),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                          children: [
-                                                            SizedBox(
-                                                              width: screenSize
-                                                                  .width *
-                                                                  0.4.w,
-                                                              child: Text(
-                                                                'iphone 12 232323 32323 32323 2323 23233 32',
-                                                                maxLines: 1,
-                                                                overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                    14.sp,
-                                                                    fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                                    color: Colors
-                                                                        .black87),
-                                                              ),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left:
+                                                                        4.0.w),
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                SizedBox(
+                                                                  width: screenSize
+                                                                          .width *
+                                                                      0.4.w,
+                                                                  child: Text(
+                                                                    langController.appLocal=='en' ?productController
+                                                                        .productDetails.en_name!
+                                                                        .toUpperCase():productController
+                                                                        .productDetails.ar_name!
+                                                                        .toUpperCase(),
+                                                                    maxLines: 1,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
+                                                                    style: TextStyle(
+                                                                        fontSize: 14
+                                                                            .sp,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w700,
+                                                                        color: Colors
+                                                                            .black87),
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  'Added to cart _txt'.tr,
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          14.sp,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                      color: Colors
+                                                                          .black87),
+                                                                ),
+                                                              ],
                                                             ),
-                                                            Text(
-                                                              'Added to cart ',
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                  14.sp,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                                  color: Colors
-                                                                      .black87),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                        EdgeInsets.only(
-                                                            left: 80.0.w),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                          children: [
-                                                            Text(
-                                                              'Cart Total',
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                  14.sp,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                                  color: Colors
-                                                                      .black87),
-                                                            ),
-                                                            Obx(
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left:
+                                                                        80.0.w),
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  'Cart Total_txt'.tr,
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          14.sp,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                      color: Colors
+                                                                          .black87),
+                                                                ),
+                                                                Obx(
                                                                   () => Text(
-                                                                cartController
-                                                                    .fullPrice
-                                                                    .value
-                                                                    .toStringAsFixed(
-                                                                    2),
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                    14.sp,
-                                                                    fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                                    color: Colors
-                                                                        .black87),
-                                                              ),
+                                                                    cartController
+                                                                        .fullPrice
+                                                                        .value
+                                                                        .toStringAsFixed(
+                                                                            2),
+                                                                    style: TextStyle(
+                                                                        fontSize: 14
+                                                                            .sp,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w700,
+                                                                        color: Colors
+                                                                            .black87),
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             ),
-                                                          ],
-                                                        ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ],
                                                   ),
                                                 ],
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 12.h,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                              style: ElevatedButton.styleFrom(
-                                                  maximumSize: Size(200, 220),
-                                                  minimumSize: Size(18, 34),
-                                                  primary: Colors.green[800],
-                                                  onPrimary:
-                                                  Colors.green[900],
-                                                  alignment:
-                                                  Alignment.center),
-                                              child: Text(
-                                                'CONTINUE SHOPPING',
-                                                maxLines: 1,
-                                                style: const TextStyle(
-                                                    fontWeight:
-                                                    FontWeight.w700,
-                                                    color: Colors.white),
-                                              ),
                                             ),
-                                            ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.of(context)
-                                                    .pushReplacement(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                        const Cart()));
-                                              },
-                                              style: ElevatedButton.styleFrom(
-                                                  maximumSize: Size(200, 220),
-                                                  minimumSize: Size(180, 34),
-                                                  primary: myHexColor,
-                                                  onPrimary: Colors.white,
-                                                  alignment:
-                                                  Alignment.center),
-                                              child: const Text(
-                                                'CHECKOUT',
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                    FontWeight.w700,
-                                                    color: Colors.white),
-                                              ),
+                                            SizedBox(
+                                              height: 12.h,
                                             ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceAround,
+                                              children: [
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  style:
+                                                      ElevatedButton.styleFrom(maximumSize: Size(220, 220), minimumSize: Size(180, 34),
+                                                          primary:
+                                                              Colors.green[800],
+                                                          onPrimary:
+                                                              Colors.green[900],
+                                                          alignment:
+                                                              Alignment.center),
+                                                  child: Text(
+                                                    'CONTINUE SHOPPING_txt'.tr,
+                                                    maxLines: 1,
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context)
+                                                        .pushReplacement(
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        const Cart()));
+                                                  },
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          maximumSize:
+                                                              Size(200, 220),
+                                                          minimumSize:
+                                                              Size(180, 34),
+                                                          primary: myHexColor,
+                                                          onPrimary:
+                                                              Colors.white,
+                                                          alignment:
+                                                              Alignment.center),
+                                                  child:  Text(
+                                                    'CHECKOUT_txt'.tr,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                              ],
+                                            )
                                           ],
-                                        )
-                                      ],
-                                    ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                );
+                              },
+                              transitionBuilder: (context, animation,
+                                  secondaryAnimation, child) {
+                                return SlideTransition(
+                                  position: CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.easeInOutCubic,
+                                  ).drive(
+                                    Tween<Offset>(
+                                        begin: const Offset(0, -1.0),
+                                        end: Offset.zero),
                                   ),
-                                )
-                              ],
-                            );
-                          },
-                          transitionBuilder: (context, animation,
-                              secondaryAnimation, child) {
-                            return SlideTransition(
-                              position: CurvedAnimation(
-                                parent: animation,
-                                curve: Curves.easeInOutCubic,
-                              ).drive(
-                                Tween<Offset>(
-                                    begin: const Offset(0, -1.0),
-                                    end: Offset.zero),
-                              ),
-                              child: child,
-                            );
-                          }),
-                    );
+                                  child: child,
+                                );
+                              }),
+                        );
+                  } else {
+                    Get.snackbar(
+                        'UnAvailable_txt'.tr, 'this color or size is not available_txt'.tr,
+                        snackPosition: SnackPosition.TOP,
+                        snackStyle: SnackStyle.FLOATING,
+                        titleText: Text(
+                          'UnAvailable_txt'.tr,
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.bold),
+                        ),messageText:Text(
+                      'this color or size is not available_txt'.tr,
+                      style: TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w500,color: Colors.black54),
+                    ) );
                   }
-
-               },
+                },
                 child: Container(
                   height: 54.h,
                   color: myHexColor1,
-                  child: const Center(
+                  child:  Center(
                     child: Text(
-                      'Add to Cart',
+                      'Add to cart _txt'.tr,
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
@@ -1758,16 +1879,12 @@ class _ProductDetailsState extends State<ProductDetails>
           urlImages:
               productController.imagesData[indexListImages].imagesUrls)));
 
-  buildIndicator(int count) =>AnimatedSmoothIndicator(
-      activeIndex: activeIndex,
-      count: count,
-    effect:WormEffect(
-      dotHeight: 10,
-      dotWidth: 10,
-      activeDotColor: myHexColor
-    ),
-
-  );
+  buildIndicator(int count) => AnimatedSmoothIndicator(
+        activeIndex: activeIndex,
+        count: count,
+        effect:
+            WormEffect(dotHeight: 10, dotWidth: 10, activeDotColor: myHexColor),
+      );
 }
 
 class GalleryWidget extends StatefulWidget {

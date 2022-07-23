@@ -22,7 +22,7 @@ class ProductsController extends GetxController with BaseController {
   var offersProducts = <ProductModel>[].obs;
   List productPredictionList = [].obs;
 
-  var cartProducts = <ProductModel>[].obs;
+  var catProducts = <ProductModel>[].obs;
   var favProducts = [].obs;
 
   var gotProductsByCat = false.obs;
@@ -101,7 +101,7 @@ class ProductsController extends GetxController with BaseController {
 
 //get products by cat
   Future getProductsByCat(String catId, String langCode) async {
-    cartProducts.value = [];
+    catProducts.value = [];
     opacity.value = 0.0;
     gotProductsByCat.value = false;
     var headers = {
@@ -117,12 +117,12 @@ class ProductsController extends GetxController with BaseController {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      cartProducts.value = [];
+      catProducts.value = [];
       var json = jsonDecode(await response.stream.bytesToString());
       var data = json['description'];
 
       for (int i = 0; i < data.length; i++) {
-        cartProducts.add(ProductModel(
+        catProducts.add(ProductModel(
           id: data[i]['id'],
           en_name: data[i]['name_EN'],
           ar_name: data[i]['name_AR'],
@@ -143,9 +143,10 @@ class ProductsController extends GetxController with BaseController {
       }
       gotProductsByCat.value = true;
       opacity.value = 1.0;
-      print(' products count :: ${cartProducts.length}');
+      print(' products count :: ${catProducts.length}');
       update();
     } else {
+      print('error in :: ListProductByCategory');
       print(response.reasonPhrase);
     }
     update();
@@ -154,7 +155,7 @@ class ProductsController extends GetxController with BaseController {
   //get products by cat home
   Future getProductsByCatHome(String catId, String cat) async {
     print(cat);
-    cartProducts.value = [];
+    catProducts.value = [];
     opacity.value = 0.0;
     gotProductsByCat.value = false;
 
@@ -253,6 +254,7 @@ class ProductsController extends GetxController with BaseController {
       gotProductsByCat.value = true;
       update();
     } else {
+      print('error ListProductByCategory home');
       print(response.reasonPhrase);
     }
     update();

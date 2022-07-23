@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -194,21 +195,22 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                       children: [
                         InkWell(
                           onTap: () {
                             Get.back();
-                            productController.cartProducts.value = [];
+                            productController.catProducts.value = [];
                             categoriesController.departments.value = [];
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                top: 16.0, right: 12, left: 12, bottom: 12),
+                                top: 14.0, right: 12, left: 12, bottom: 12),
                             child: SvgPicture.asset(
-                                'assets/icons/left arrow.svg',
+                                langController.appLocal == 'en'? 'assets/icons/left arrow.svg':'assets/icons/rghit_arrow.svg',
                                 color: Colors.grey[800],
-                                height: 27.00,
-                                width: 27.0,
+                                height: 24.00,
+                                width: 24.0,
                                 semanticsLabel: 'A red up arrow'),
                           ),
                         ),
@@ -224,18 +226,18 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                top: 16.0, right: 12, left: 12, bottom: 12),
+                                top: 14.0, right: 12, left: 12, bottom: 12),
                             child: showOneList
                                 ? SvgPicture.asset('assets/icons/menu.svg',
                                     color: Colors.grey[800],
-                                    height: 26.00,
-                                    width: 26.0,
+                                    height: 22.00,
+                                    width: 22.0,
                                     semanticsLabel: 'A red up arrow')
                                 : SvgPicture.asset(
                                     'assets/icons/menu_category.svg',
                                     color: Colors.grey[800],
-                                    height: 29.00,
-                                    width: 29.0,
+                                    height: 24.00,
+                                    width: 24.0,
                                     semanticsLabel: 'A red up arrow'),
                           ),
                         ),
@@ -243,7 +245,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                     ),
                     const SearchAreaDesign(),
                     const SizedBox(
-                      height: 5.0,
+                      height: 3.0,
                     ),
                     Container(
                       width: screenSize.width,
@@ -254,12 +256,12 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                 ),
               ),
               const SizedBox(
-                height: 10.0,
+                height: 4.0,
               ),
               widget.haveChildren == true
                   ? SizedBox(
-                      width: screenSize.width,
-                      height: screenSize.height * 0.1 - 50,
+                      width: screenSize.width.w,
+                      height: screenSize.height * 0.1 - 45.h,
                       child: _buildDepartmentsOptions())
                   : Container(),
               Center(
@@ -267,8 +269,8 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                   () => productController.gotProductsByCat.value == false
                       ? Lottie.asset(
                           'assets/animations/30826-online-shopping.json',
-                          height: 102,
-                          width: 222,
+                          height: 2.h,
+                          width: 222.w,
                           fit: BoxFit.cover,
                           controller: _controller,
                           onLoaded: (composition) {
@@ -282,9 +284,12 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                       : Container(),
                 ),
               ),
+              const SizedBox(
+                height: 7.0,
+              ),
               SizedBox(
                 width: screenSize.width,
-                height: screenSize.height * 0.6 - 10,
+                height: screenSize.height * 0.8 -24.h,
                 child: Obx(
                   () => AnimatedOpacity(
                       duration: 600.milliseconds,
@@ -292,6 +297,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                       child: _buildDepartmentProductsList()),
                 ),
               ),
+
             ],
           ),
         ),
@@ -379,12 +385,13 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
 
   Widget _buildDepartmentProductsList() {
     return Padding(
-      padding: const EdgeInsets.only(top: 12.0, bottom: 0.0),
+      padding:  EdgeInsets.only(top: 4.0.h, bottom: 0.0.h),
       child: Container(
         color: Colors.grey[50],
         child: Obx(
           () => GridView.builder(
-            itemCount: productController.cartProducts.length,
+            itemCount: productController.catProducts.length,
+            physics:ScrollPhysics() ,
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             padding: EdgeInsets.zero,
@@ -392,13 +399,13 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 1,
-                crossAxisSpacing: 6.1,
+                crossAxisSpacing: 6.2,
                 childAspectRatio: 0.6),
             itemBuilder: (context, index) {
               return Padding(
                   padding: EdgeInsets.zero,
                   child: ProductItemCard(
-                    product: productController.cartProducts[index],
+                    product: productController.catProducts[index],
                     fromDetails: false,
                     from: 'dep',
                     press: () {

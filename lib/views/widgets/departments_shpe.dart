@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../Assistants/globals.dart';
 import '../../controllers/catgories_controller.dart';
+import '../../controllers/product_controller.dart';
 import '../screens/show_product/products_of_department_screen.dart';
 
 class DepartmentShapeTile extends StatelessWidget {
@@ -14,13 +15,16 @@ class DepartmentShapeTile extends StatelessWidget {
    DepartmentShapeTile({Key? key, this.color, this.title, this.assetPath,required this.depId})
       : super(key: key);
   final CategoriesController categoriesController = Get.find();
+  final ProductsController productController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     final screenSize =Get.size;
     return InkWell(
       onTap: (){
+        productController.catProducts.value.clear();
         categoriesController.getListCategoryByCategory(depId);
+
         Get.to(()=> ProductsOfDepartmentScreen(depId: depId, haveChildren: true,));
       },
       child: Column(

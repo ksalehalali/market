@@ -109,6 +109,35 @@ Map<String,String> ar ={
   'CONFIRM LOCATION_txt':'تاكيد الموقع',
   'Location Information_txt':'معلومات الموقع',
   'SAVE ADDRESS_txt':'احفظ العنوان',
+  //-
+
+  'UnAvailable_txt':'غير متوفر',
+  'this color or size is not available_txt':'اللون المحدد او الحجم غير متوفر',
+  //-
+
+  'Color_txt':'اللون',
+  'Size_txt':'الحجم',
+
+  'Delivery time :_txt':'وقت التوصيل',
+  ' Jan 28 - Jan 30_txt':'Jan 28 - Jan 30',
+  'Seller_txt':'Seller',
+  'Specifications_txt':'المواصفات',
+  'Color name_txt':'اسم اللون',
+  'Department_txt':'القسم',
+  'Offer_txt':'الخصم',
+  'Material_txt':'المادة',
+  'Material Composition_txt':'مواد خاصة',
+  'Model Number_txt':'رقم الموديل',
+  'Merchant_txt':'التاجر',
+  'Highlights_txt':'الميزات الاساسية',
+  'Add to cart _txt':'أضف للسلة',
+  'Overview_txt':'نظرة عامة',
+  'Added to cart _txt':'تمت الإضافة للسلة',
+  'Cart Total_txt':'مجموع السلة',
+  'CONTINUE SHOPPING_txt':'متابعة التسوق',
+  'CHECKOUT_txt':'إتمام الشراء',
+
+
 
 
 
@@ -178,7 +207,6 @@ Map<String,String> en ={
   'Contact_Us_txt':'Contact Us',
   'Help_And_Technical_Support_txt':'Help And Technical Support',
   'Terms_Of_Usage_txt':'Terms Of Usage',
-  'Contact_Us_txt':'Contact Us',
   'Sign_Out_txt':'Sign Out',
 'orders_btn':'Orders',
   'wallet_btn':'Wallet',
@@ -278,6 +306,49 @@ Map<String,String> en ={
   'CONFIRM LOCATION_txt':'Confirm LOCATION',
   'Location Information_txt':'Location Information',
   'SAVE ADDRESS_txt':'SAVE ADDRESS',
+  //-
+
+  'UnAvailable_txt':'Unavailable',
+  'this color or size is not available_txt':'This color or size is not available',
+  //-
+
+  'Color_txt':'Color',
+  'Size_txt':'Size',
+  'Delivery time :_txt':'Delivery time',
+  ' Jan 28 - Jan 30_txt':'Jan 28 - Jan 30',
+  'Seller_txt':'Seller',
+  'Specifications_txt':'Specifications',
+  'Color name_txt':'Color name',
+  'Department_txt':'Department',
+  'Offer_txt':'Offer',
+  'Material_txt':'Material',
+  'Material Composition_txt':'Material Composition',
+  'Model Number_txt':'Model Number',
+  'Merchant_txt':'Merchant',
+  'Highlights_txt':'Highlights',
+  'Add to cart _txt':'Added to cart',
+'Overview_txt':'Overview',
+  'Added to cart _txt':'Added to cart',
+  'Cart Total_txt':'Cart Total',
+  'CONTINUE SHOPPING_txt':'CONTINUE SHOPPING',
+  'CHECKOUT_txt':'CHECKOUT',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

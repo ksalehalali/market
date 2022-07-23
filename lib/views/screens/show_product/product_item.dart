@@ -74,8 +74,9 @@ class ProductItemCard extends StatelessWidget {
             border:
                 Border.all(width: 0.3, color: myHexColor)),
         margin:  EdgeInsets.only(
-          left: 5.w,
-          right: 5.w,
+          left:from == 'dep'? 2.w:6,
+          right:from == 'dep'? 2.w:6,
+          bottom: from == 'dep'? 3.w:1,
         ),
         padding:  EdgeInsets.only(top: 6.h, right: 6.w, left: 6.w, bottom: 0.h),
         child: Stack(
@@ -107,7 +108,7 @@ class ProductItemCard extends StatelessWidget {
                       key: UniqueKey(),
                       imageUrl: '$baseURL/${product.imageUrl}',
                       height: screenSize.height * 0.2 + 25.h,
-                      width: screenSize.width * 0.4.w,
+                      width:from =='dep' ?  screenSize.width * 0.4 +30.w:screenSize.width * 0.4.w,
                       maxHeightDiskCache: 110,
                       fit: BoxFit.fill,
                       placeholder: (context, url) =>
