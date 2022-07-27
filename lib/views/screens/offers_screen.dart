@@ -56,7 +56,7 @@ class _OffersScreenState extends State<OffersScreen> {
               height: 5.0.h,
             ),
             SizedBox(
-                height: screenSize.height * 0.1 + 50.h,
+                height: screenSize.height * 0.1 + 55.h,
                 width: 400.w,
                 child: _buildDepartmentsList()),
             Container(
@@ -168,7 +168,7 @@ class _OffersScreenState extends State<OffersScreen> {
               crossAxisCount: 1,
               mainAxisSpacing: 5,
               crossAxisSpacing: 2.0,
-              childAspectRatio: 1.4),
+              childAspectRatio: 1.3),
           itemBuilder: (context, index) {
             return Padding(
                 padding: EdgeInsets.zero,

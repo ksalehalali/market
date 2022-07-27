@@ -235,8 +235,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                 children: [
                                                   SizedBox(
                                                       height:
-                                                          screenSize.height *
-                                                              0.4.h,
+                                                          screenSize.height>700? screenSize.height * 0.4+41.h:screenSize.height * 0.4.h,
                                                       width: double.infinity,
                                                       child: Column(
                                                         children: [

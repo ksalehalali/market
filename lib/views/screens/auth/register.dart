@@ -2,6 +2,7 @@
 // ignore_for_file: sized_box_for_whitespace, prefer_final_fields, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -33,7 +34,7 @@ class _RegisterState extends State<Register> {
   bool moveWidgets = false;
   RxBool instantlyTransitionedWidgets = false.obs;
   bool disabilitySwitch = false; // When false, login text fields are not disabled, sign up text fields are.
-  double stackHeight = Get.size.height * 0.8;
+  double stackHeight = Get.height >700? Get.size.height * 0.8:Get.size.height * 0.9;
 
   double opacity = 1.0;
 
@@ -51,7 +52,7 @@ class _RegisterState extends State<Register> {
         duration: const Duration(milliseconds: 0),
         child: Column(
           children: [
-            const SizedBox(height: 32,),
+             SizedBox(height: 32.h,),
             // WELCOME
             Container(
               alignment: Alignment.center,
@@ -60,11 +61,11 @@ class _RegisterState extends State<Register> {
                 style: TextStyle(
                     color: Colors.black87,
                     fontWeight: FontWeight.bold,
-                    fontSize: 30
+                    fontSize: 30.sp
                 ),
               ),
             ),
-            const SizedBox(height: 32,),
+             SizedBox(height: 32.h,),
             // USERNAME TEXT FIELD
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +92,7 @@ class _RegisterState extends State<Register> {
                 ),
               ],
             ),
-            const SizedBox(height: 16,),
+             SizedBox(height: 16.h,),
             // EMAIL TEXT FIELD
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -178,7 +179,7 @@ class _RegisterState extends State<Register> {
                 ),
               ],
             ),
-            const SizedBox(height: 32,),
+             SizedBox(height: 32.h,),
           ],
         ),
       ),),
@@ -190,7 +191,7 @@ class _RegisterState extends State<Register> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 32,),
+             SizedBox(height: 12.h,),
             Container(
               alignment: Alignment.center,
               child: Text(
@@ -198,11 +199,11 @@ class _RegisterState extends State<Register> {
                 style: TextStyle(
                     color: Colors.black87,
                     fontWeight: FontWeight.bold,
-                    fontSize: 30
+                    fontSize: 30.sp
                 ),
               ),
             ),
-            const SizedBox(height: 42,),
+             SizedBox(height: 32.h,),
             // EMAIL TEXT FIELD
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -228,7 +229,7 @@ class _RegisterState extends State<Register> {
                 ),
               ],
             ),
-            const SizedBox(height: 16,),
+             SizedBox(height: 16.h,),
             // PASSWORD TEXT FIELD
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -257,7 +258,7 @@ class _RegisterState extends State<Register> {
                 ),
               ],
             ),
-            const SizedBox(height: 20,),
+             SizedBox(height: 20.h,),
             // FORGOT PASSWORD?
             Align(
               alignment: Alignment.centerLeft,
@@ -273,7 +274,7 @@ class _RegisterState extends State<Register> {
                 ),
               ),
             ),
-            const SizedBox(height: 32,),
+             SizedBox(height: 32.h,),
           ],
         ),
       ),),
@@ -306,11 +307,11 @@ class _RegisterState extends State<Register> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           width: Get.size.width,
-          height: Get.size.height,
+          height: Get.size.height.h,
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 16,),
+                const SizedBox(height: 10,),
                 // CLOSE
                 Container(
                   alignment: Alignment.centerRight,
@@ -325,19 +326,17 @@ class _RegisterState extends State<Register> {
                 // LOGIN / SIGN UP SWITCH
                 Container(
                   width: Get.size.width,
-                  height: stackHeight,
+                  height: stackHeight.h,
                   child: Stack(
                     children: [
-                      stackItems[0],
-                      stackItems[1],
                       AnimatedPositioned(
                         duration: const Duration(milliseconds: 500),
-                        top: moveWidgets ? 450 : 360,
+                        top: moveWidgets ? 550.h : 350.h,
                         child: Column(
                           children: [
                             // LOGIN / SIGN UP BUTTON
                             Container(
-                              height: 60,
+                              height: 60.h,
                               width: Get.size.width,
                               child: ElevatedButton(
                                 style: ButtonStyle(
@@ -355,28 +354,28 @@ class _RegisterState extends State<Register> {
                                   }
                                 },
                                 child: Obx(() =>  !registerController.isRegisterLoading.value ? Text(
-                                  !instantlyTransitionedWidgets.value ? "Login_txt".tr: "Create A New Account",
-                                  style: const TextStyle(
-                                    fontSize: 18,
+                                  !instantlyTransitionedWidgets.value ? "Login_txt".tr: "Create A New Account",textAlign: TextAlign.center,
+                                  style:  TextStyle(
+                                    fontSize: 18.sp,
                                   ),
                                 ): Container(
-                                  width: 36,
-                                  height: 36,
+                                  width: 36.w,
+                                  height: 36.h,
                                   child:  Container()
                                 ),
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 32,),
+                             SizedBox(height: 32.h,),
                             // LOGIN OPTION TEXT
                              Text(
                               "Or login via social media account_txt".tr,
                               style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 15.sp,
                                   fontWeight: FontWeight.bold
                               ),
                             ),
-                            const SizedBox(height: 32,),
+                             SizedBox(height: 32.h,),
                             // SOCIAL MEDIA OPTIONS
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -394,7 +393,7 @@ class _RegisterState extends State<Register> {
                                   ),
                                   child: SvgPicture.asset("assets/images/svg/facebook2.svg", width: 25,height: 25,),
                                 ),
-                                const SizedBox(width: 32,),
+                                 SizedBox(width: 32.w,),
                                 // GOOGLE
                                 Container(
                                   padding: const EdgeInsets.all(16),
@@ -410,7 +409,7 @@ class _RegisterState extends State<Register> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 16,),
+                             SizedBox(height: 16.h,),
                             // NEW USER / ALREADY HAVE AN ACCOUNT
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -473,14 +472,16 @@ class _RegisterState extends State<Register> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 16,),
+                             SizedBox(height: 16.h,),
                           ],
                         ),
                       ),
+                      stackItems[0],
+                      stackItems[1],
                     ],
                   ),
                 ),
-                const SizedBox(height: 40,),
+                 SizedBox(height: 11.h,),
               ],
             ),
           ),

@@ -82,9 +82,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final screenSize = Get.size;
-    var mediaQueryData = MediaQuery.of(context);
     return Container(
         color: myHexColor5.withOpacity(0.2),
+
         child: SafeArea(
             child: Scaffold(
                 body: InfoWidget(
@@ -102,10 +102,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       },
                       child: headHomeScreen(MediaQuery.of(context)))),
+          Positioned(top: 54.h,right:12.w , width: screenSize.width.w, child: SearchAreaDesign()),
+
           Positioned(
-              top: 54.h, width: screenSize.width, child: SearchAreaDesign()),
-          Positioned(
-            top: screenSize.height *0.1+29.h,
+            top: screenSize.height <650? screenSize.height *0.1+29.h:screenSize.height *0.1+39.h,
             child: Obx(() => AnimatedContainer(
                       duration: 400.milliseconds,
                       height: addressController.addressWidgetSize.value,
@@ -129,11 +129,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     )),
           ),
           Positioned(
-            top: screenSize.height *0.1+48.h,
+            top:screenSize.height <650 ? screenSize.height *0.1+48.h:screenSize.height *0.1+58.h,
+            width: screenSize.width,
+
             child: Container(
               padding: EdgeInsets.zero,
               margin: EdgeInsets.zero,
-              height: 700.h,
+              height: screenSize.height.h,
               width: screenSize.width.w,
               child: Obx(()=>ListView(
                       controller: scrollController,
@@ -144,9 +146,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         SizedBox(
                           height: 170.0.h,
-                          width: double.infinity,
+                          width:screenSize.width,
                           child: CarouselSlider(
-                            options: CarouselOptions(height: screenSize.width.w,
+                            options: CarouselOptions(height: screenSize.width,
                             viewportFraction: 1,
                               autoPlay: true
                             ),
@@ -154,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               return Builder(
                                 builder: (BuildContext context) {
                                   return Container(
-                                      width: screenSize.width.w,
+                                      width: screenSize.width,
                                       decoration: BoxDecoration(
                                           color: Colors.white
                                       ),
@@ -336,6 +338,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   }
   Widget _buildDepartmentsList() {
+    final size = Get.size;
     return Padding(
       padding:  EdgeInsets.only(top: 12.0.h,right:10.w),
       child: Container(
@@ -346,11 +349,11 @@ class _HomeScreenState extends State<HomeScreen> {
           shrinkWrap: true,
           padding: EdgeInsets.zero,
           semanticChildCount: 0,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 3,
               crossAxisSpacing: 5.0,
-              childAspectRatio: 1.2),
+              childAspectRatio:size.width<390? 1.1:1.2),
           itemBuilder: (context, index) {
             return Padding(
                 padding: EdgeInsets.zero,
