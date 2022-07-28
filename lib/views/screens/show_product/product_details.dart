@@ -97,7 +97,7 @@ class _ProductDetailsState extends State<ProductDetails>
 
   @override
   Widget build(BuildContext context) {
-    double buttonSize = 31;
+    double buttonSize = 35;
     final screenSize = Get.size;
     return Container(
       color: Colors.white,
@@ -191,17 +191,11 @@ class _ProductDetailsState extends State<ProductDetails>
                                                                     .circular(
                                                                         20),
                                                             color: const Color
-                                                                    .fromARGB(
-                                                                255,
-                                                                246,
-                                                                138,
-                                                                24)),
+                                                                    .fromARGB(255, 246, 138, 24)),
                                                         child: Center(
                                                           child: Obx(
                                                             () => Text(
-                                                              cartController
-                                                                  .myPrCartProducts
-                                                                  .length
+                                                              cartController.myPrCartProducts.length
                                                                   .toString(),
                                                               textAlign:
                                                                   TextAlign
@@ -229,8 +223,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                       key: const Key('s'),
                                       children: [
                                         productController
-                                                    .getDetailsDone.value ==
-                                                true
+                                            .getDetailsDone.value == true
                                             ? Column(
                                                 children: [
                                                   SizedBox(
@@ -242,11 +235,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                           CarouselSlider
                                                               .builder(
                                                             itemCount:
-                                                                productController
-                                                                    .imagesWidget
-                                                                    .value[
-                                                                        indexListImages]
-                                                                    .length,
+                                                                productController.imagesWidget.value[indexListImages].length,
                                                             itemBuilder: (BuildContext
                                                                         context,
                                                                     int itemIndex,
@@ -258,8 +247,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                               },
                                                               child: Container(
                                                                 width:
-                                                                    screenSize
-                                                                        .width,
+                                                                    screenSize.width,
                                                                 child: productController
                                                                         .imagesWidget
                                                                         .value[indexListImages]
@@ -311,12 +299,12 @@ class _ProductDetailsState extends State<ProductDetails>
                                                     .getDetailsDone.value ==
                                                 true
                                             ? Positioned(
-                                                top: 8.0.h,
-                                                left: 10.0.w,
+                                                top: 12.0.h,
+                                                left: 8.0.w,
                                                 width:
-                                                    screenSize.width * .1 + 0.w,
+                                                    screenSize.width * .1 + 3.w,
                                                 height:
-                                                    screenSize.width * .1 + 0.w,
+                                                    screenSize.width * .1 + 3.w,
                                                 child: LikeButton(
                                                   size: buttonSize + 5,
                                                   onTap: onLikeButtonTapped,
@@ -343,9 +331,9 @@ class _ProductDetailsState extends State<ProductDetails>
                                                   likeBuilder: (bool isLiked) {
                                                     return Container(
                                                       width: screenSize.width *
-                                                          .1.w,
+                                                          .1+5.w,
                                                       height: screenSize.width *
-                                                          .1.h,
+                                                          .1+5.h,
                                                       decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
@@ -378,16 +366,16 @@ class _ProductDetailsState extends State<ProductDetails>
                                                 true
                                             ? Positioned(
                                                 top: screenSize.height * .1 -
-                                                    23.h,
-                                                left: 10..w,
+                                                    14.h,
+                                                left: 12..w,
                                                 child: Container(
                                                   padding: EdgeInsets.zero,
                                                   margin: EdgeInsets.zero,
                                                   width: screenSize.width * .1 -
-                                                      5.w,
+                                                      3.w,
                                                   height:
                                                       screenSize.width * .1 -
-                                                          5.w,
+                                                          3.w,
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(

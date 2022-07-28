@@ -34,9 +34,12 @@ class RegisterController extends GetxController with BaseController {
   var isRegisterLoading = false.obs;
 
   Future<void> makeLoginRequest () async{
-    Future.delayed(5.milliseconds, () {
-      showLoading('loading');
-    });
+    if(loginEmailController.text != "" || loginPasswordController.text != ""){
+      Future.delayed(5.milliseconds, () {
+        showLoading('loading');
+      });
+    }
+
     if(loginEmailController.text == "" || loginPasswordController.text == "") {
       // Fill the required information
       Fluttertoast.showToast(
