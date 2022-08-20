@@ -138,7 +138,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                           padding: EdgeInsets.only(
                                               right: 12.0.w, left: 10.w),
                                           child: SvgPicture.asset(
-                                              'assets/icons/left arrow.svg',
+                                              langController.appLocal =='en' ?'assets/icons/left arrow.svg':'assets/icons/rghit_arrow.svg',
                                               alignment: Alignment.center,
                                               //color:,
                                               height: 22.h,

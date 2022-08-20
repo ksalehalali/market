@@ -289,7 +289,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
               ),
               SizedBox(
                 width: screenSize.width,
-                height: screenSize.height * 0.8 -24.h,
+                height: screenSize.height * 0.8 -27.h,
                 child: Obx(
                   () => AnimatedOpacity(
                       duration: 600.milliseconds,

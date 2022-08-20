@@ -185,7 +185,7 @@ class CartController extends GetxController with BaseController {
   Future addNewOrder(
       String invoiceId, String paymentGateway, double invoiceValue,int payType,String langCode) async {
     processing.value =true;
-
+    String addressId = storage.read("idAddressSelected");
     Future.delayed(5.milliseconds, () {
       showLoading('loading');
     });
@@ -200,14 +200,14 @@ class CartController extends GetxController with BaseController {
       "api_key": "u#XW|27@vl*8>n,sCr]qq)K@c^tpC}",
       "api_secret": "/IIOpP`[(9]e`#S1&Yx{zm_w(mkbMO",
       "invoiceValue": invoiceValue,
-      "invoiceId": invoiceId,
+      "invoiceId": 0,
       "paymentGateway": paymentGateway,
-      "AddressID": storage.read("idAddressSelected"),
+      "AddressID": addressId,
       "Payment": payType
     });
 
-    print('invoiceId $invoiceId -- paymentGateway $paymentGateway -- invoice value $invoiceValue payment $payType --- adressId ${storage.read("idAddressSelected")}');
     request.headers.addAll(headers);
+    print('invoiceId $invoiceId -- paymentGateway $paymentGateway -- invoice value $invoiceValue payment $payType --- adressId $addressId');
 
     http.StreamedResponse response = await request.send();
 
