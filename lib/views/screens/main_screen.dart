@@ -48,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
     productController.getProductsByCatHome(
         '0c348ba7-1873-425e-8e49-97e0ec8ceebe', 'recommended');
     productController.getProductsByCatHome(
-        'd115a1f7-2407-4446-9caa-dc9744e5bfa8', 'latest');
+        '0c348ba7-1873-425e-8e49-97e0ec8ceebe', 'latest');
     productController.getProductsByCatHome(
         'a7c777ed-cb81-46f3-bd6b-7667842d7819', 'offers');
 

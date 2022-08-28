@@ -59,9 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  static const defaultPadding = 20.0;
-  static const cartBarHeight = 100.0;
-  static const headerHeight = 85.0;
   var images = [
   Image.asset(
   'assets/images/pexels-markus-spiske-3806753.jpg',
@@ -102,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       },
                       child: headHomeScreen(MediaQuery.of(context)))),
-          Positioned(top: 54.h,right:12.w , width: screenSize.width.w, child: SearchAreaDesign()),
+          Positioned(top: 54.h , width: screenSize.width.w, child: SearchAreaDesign()),
 
           Positioned(
             top: screenSize.height <650? screenSize.height *0.1+29.h:screenSize.height *0.1+39.h,
@@ -326,7 +323,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 22.h,
                         ),
                         _buildOfferArea(),
-                        SizedBox(height: 95.h,),
+                        SizedBox(height:screenSize.height <650 ? 135.h:235.h,),
                       ],
                     ),
               ),

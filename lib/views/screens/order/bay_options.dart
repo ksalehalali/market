@@ -11,6 +11,7 @@ import '../../../controllers/address_location_controller.dart';
 import '../../../controllers/cart_controller.dart';
 import '../../../controllers/lang_controller.dart';
 import '../../../payment/myFatoorh_screen.dart';
+import '../../../payment/my_fatoorh_checkout.dart';
 import '../../../payment/payment_method_dialog.dart';
 
 
@@ -315,7 +316,8 @@ initS()async{
                   onTap: () async{
                     if(_value==1){
                       //showDialogCardsOptions(context);
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MyFatoorhScreen()));
+                      //Navigator.push(context, MaterialPageRoute(builder: (context)=>MyFatoorhScreen()));
+                      MyFatoorahCheckOut().startPayment(context);
 
                     }else {
                       cartController.addNewOrder('0','Cash',cartController.fullPrice.value.toDouble(),0,langController.appLocal);

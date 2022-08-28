@@ -97,7 +97,7 @@ class _ProductDetailsState extends State<ProductDetails>
 
   @override
   Widget build(BuildContext context) {
-    double buttonSize = 35;
+    double buttonSize = 32;
     final screenSize = Get.size;
     return Container(
       color: Colors.white,
@@ -228,7 +228,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                 children: [
                                                   SizedBox(
                                                       height:
-                                                          screenSize.height>700? screenSize.height * 0.4+41.h:screenSize.height * 0.4.h,
+                                                          screenSize.height>700? screenSize.height * 0.4+41.h:screenSize.height * 0.4+55.h,
                                                       width: double.infinity,
                                                       child: Column(
                                                         children: [
@@ -302,63 +302,80 @@ class _ProductDetailsState extends State<ProductDetails>
                                                 top: 12.0.h,
                                                 left: 8.0.w,
                                                 width:
-                                                    screenSize.width * .1 + 3.w,
+                                                    screenSize.width * .1 + 6.w,
                                                 height:
-                                                    screenSize.width * .1 + 3.w,
-                                                child: LikeButton(
-                                                  size: buttonSize + 5,
-                                                  onTap: onLikeButtonTapped,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  // padding: EdgeInsets.only(
-                                                  //     left: screenSize.width * .1 - 37,
-                                                  //     top: 2),
-                                                  circleColor:
-                                                      const CircleColor(
-                                                          start:
-                                                              Color(0xff00ddff),
-                                                          end: Color(
-                                                              0xff0099cc)),
-                                                  bubblesColor:
-                                                      const BubblesColor(
-                                                    dotPrimaryColor:
-                                                        Color(0xff33b5e5),
-                                                    dotSecondaryColor:
-                                                        Color(0xff0099cc),
+                                                    screenSize.width * .1 + 6.w,
+                                                child: Container(
+                                                  padding: EdgeInsets.zero,
+                                                  margin: EdgeInsets.zero,
+                                                  width: screenSize.width *
+                                                      .1+5.w,
+                                                  height: screenSize.width *
+                                                      .1+5.h,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                      BorderRadius.circular(
+                                                          100),
+                                                      color: Colors.white
+                                                          .withOpacity(1)),
+                                                  child: Align(
+                                                    alignment: Alignment.center,
+                                                    child: LikeButton(
+                                                      size: buttonSize + 5,
+                                                      onTap: onLikeButtonTapped,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment.center,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.center,
+                                                      // padding: EdgeInsets.only(
+                                                      //     left: screenSize.width * .1 - 37,
+                                                      //     top: 2),
+                                                      circleColor:
+                                                          const CircleColor(
+                                                              start:
+                                                                  Color(0xff00ddff),
+                                                              end: Color(
+                                                                  0xff0099cc)),
+                                                      bubblesColor:
+                                                          const BubblesColor(
+                                                        dotPrimaryColor:
+                                                            Color(0xff33b5e5),
+                                                        dotSecondaryColor:
+                                                            Color(0xff0099cc),
+                                                      ),
+                                                      likeBuilder: (bool isLiked) {
+                                                        return Container(
+                                                          width: screenSize.width *
+                                                              .1+5.w,
+                                                          height: screenSize.width *
+                                                              .1+5.h,
+                                                          decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(50),
+                                                            color: Colors.white,
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(6.0),
+                                                            child: SvgPicture.asset(
+                                                                'assets/icons/heart.svg',
+                                                                alignment: Alignment
+                                                                    .center,
+                                                                color: isLiked
+                                                                    ? myHexColor3
+                                                                    : Colors
+                                                                        .grey[600],
+                                                                height: buttonSize,
+                                                                width: buttonSize,
+                                                                semanticsLabel:
+                                                                    'A red up arrow'),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
                                                   ),
-                                                  likeBuilder: (bool isLiked) {
-                                                    return Container(
-                                                      width: screenSize.width *
-                                                          .1+5.w,
-                                                      height: screenSize.width *
-                                                          .1+5.h,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(50),
-                                                        color: Colors.white,
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(6.0),
-                                                        child: SvgPicture.asset(
-                                                            'assets/icons/heart.svg',
-                                                            alignment: Alignment
-                                                                .center,
-                                                            color: isLiked
-                                                                ? myHexColor3
-                                                                : Colors
-                                                                    .grey[600],
-                                                            height: buttonSize,
-                                                            width: buttonSize,
-                                                            semanticsLabel:
-                                                                'A red up arrow'),
-                                                      ),
-                                                    );
-                                                  },
                                                 ))
                                             : Container(),
                                         productController
@@ -366,16 +383,15 @@ class _ProductDetailsState extends State<ProductDetails>
                                                 true
                                             ? Positioned(
                                                 top: screenSize.height * .1 -
-                                                    14.h,
-                                                left: 12..w,
+                                                    11.h,
+                                                left: 8..w,
                                                 child: Container(
                                                   padding: EdgeInsets.zero,
                                                   margin: EdgeInsets.zero,
-                                                  width: screenSize.width * .1 -
-                                                      3.w,
-                                                  height:
-                                                      screenSize.width * .1 -
-                                                          3.w,
+                                                  width: screenSize.width *
+                                                      .1+5.w,
+                                                  height: screenSize.width *
+                                                      .1+5.h,
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -643,7 +659,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                             ),
                                             AnimatedContainer(
                                               curve: Curves.easeInOut,
-                                              width: screenSize.width / 2.w,
+                                              width:screenSize.width<390 ? screenSize.width / 2.w -34:screenSize.width / 2.w,
                                               height: 2.5.h,
                                               color: _color,
                                               duration: 900.milliseconds,

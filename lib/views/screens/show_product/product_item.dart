@@ -268,7 +268,7 @@ class ProductItemCard extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              width:screenSize.width<390 ? size.width * 0.4 + 20.w:size.width * 0.4 + 10.w,
+                              width:screenSize.width<390 ? size.width * 0.4 + 22.w:size.width * 0.3 + 10.w,
                               child: Row(
                                 children: [
                                   Text(
@@ -284,7 +284,7 @@ class ProductItemCard extends StatelessWidget {
                                         fontSize: 12.sp),
                                   ),
                                    SizedBox(
-                                    width: 7.0.w,
+                                    width: 6.0.w,
                                   ),
                                   Text(
                                     langController.appLocal=="en"? "Discount ${product.offer}%":"  الخصم %${product.offer} ",

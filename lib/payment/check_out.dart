@@ -22,15 +22,6 @@ class CheckOut {
     'Authorization':_secretKey
   };
 
-  Future<String> getToken ()async{
-    Map<String,dynamic> body = {
-      'body': { 'InvoiceAmount': 100, 'CurrencyIso': 'KWD' },
-      'json': true
-    };
-     http.Response response = await http.post(Uri.parse(_url_InitialPayment),headers: _tokenHeader,body:jsonEncode(body) );
-     print(response.body);
-    return response.body;
-  }
 
   //my Fatoorah Payment
   var token =

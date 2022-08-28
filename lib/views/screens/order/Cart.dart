@@ -8,7 +8,7 @@ import '../../../Assistants/globals.dart';
 import '../../../controllers/address_location_controller.dart';
 import '../../../controllers/cart_controller.dart';
 import '../../../controllers/lang_controller.dart';
-import '../../address/addresses_options_dialog.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../address/list_addresses.dart';
 import '../../widgets/horizontal_listOfProducts.dart';
 import '../main_screen.dart';
@@ -93,7 +93,7 @@ class _CartState extends State<Cart> {
                             children: [
                               // DELIVERY ADDRESS
                               Container(
-                                margin: const EdgeInsets.only(top: 16),
+                                margin:  EdgeInsets.only(top: 16.h),
                                 child: Row(
                                   children: [
                                     SvgPicture.asset('assets/icons/shipping.svg',
@@ -108,7 +108,7 @@ class _CartState extends State<Cart> {
                                     // TODO: REPLACE THE 'ADDRESS' WORD WITH THE ACTUAL VARIABLE NAME
                                      SizedBox(
 
-                                       width:screenSize.width *.8+07.w,
+                                       width:screenSize.width >380 ? screenSize.width*.8+07.w:screenSize.width*.8+01.w,
                                        child:langController.appLocal=='en' ?Text(
                                             box.read('address')!=null ?'Address : ${box.read('address')}': 'Select address',overflow: TextOverflow.ellipsis,maxLines: 1,
                                         style: TextStyle(color: Colors.black54),
