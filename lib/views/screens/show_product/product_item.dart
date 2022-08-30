@@ -268,7 +268,7 @@ class ProductItemCard extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              width:screenSize.width<390 ? size.width * 0.4 + 22.w:size.width * 0.3 + 10.w,
+                              width:screenSize.width<390 ? size.width * 0.4 + 22.w:size.width * 0.3 + 52.w,
                               child: Row(
                                 children: [
                                   Text(
