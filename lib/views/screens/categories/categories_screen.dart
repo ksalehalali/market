@@ -5,6 +5,7 @@ import '../../../Assistants/globals.dart';
 import '../../../Data/data_for_ui.dart';
 import '../../../controllers/catgories_controller.dart';
 import '../../../controllers/lang_controller.dart';
+import '../../../controllers/product_controller.dart';
 import '../../widgets/departments_list_r.dart';
 import '../home/search_area_des.dart';
 import '../show_product/products_of_department_screen.dart';
@@ -26,6 +27,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   bool showBrands =true;
   final CategoriesController categoriesController = Get.find();
   final LangController langController = Get.find();
+  final ProductsController productController = Get.find();
 
   var departmentContent =[];
   var brandsContent =[];
@@ -56,6 +58,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               showBrands= true;
               departmentContent = womenFashionDepartments;
               brandsContent = womenFashionDepartments;
+              if(womenFashionDepartments[0]['hasChildren']==true ){
+                productController
+                    .getProductsByCat(womenFashionDepartments[0]['depId'],langController.appLocal);
+              }
               break;
             case 1:
               showBrands= true;
@@ -65,7 +71,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             case 2:
               showBrands= true;
 
-              departmentContent = kidsBabyToysDepartments;
+              departmentContent = childrenAndToysDepartments;
               break;
             case 3:
               showBrands= true;
@@ -131,6 +137,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
              }
            }
           });
+
         },
         child: Container(
 
@@ -234,16 +241,16 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
                           slivers:<Widget> [
                             _buildTitle('Category_txt'.tr),
-                           _buildListOfDepartments(departmentContent),
+                           _buildListOfDepartments(departmentContent,true,0),
 
-                            _buildTitle(showBrands?'Brands_txt'.tr:''),
-                            _buildListOfDepartments(showBrands?brandsContent:[]),
+                            // _buildTitle(showBrands?'Brands_txt'.tr:''),
+                            // _buildListOfDepartments(showBrands?brandsContent:[]),
 
                             _buildTitle(departmentContent[0]['depName']),
-                            _buildListOfDepartments(departmentContent),
+                            _buildListOfDepartments(departmentContent,false,0),
 
                             _buildTitle(departmentContent[1]['depName']),
-                            _buildListOfDepartments(departmentContent),
+                            _buildListOfDepartments(departmentContent,false,1),
 
                           ],
                         ),
@@ -273,9 +280,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(title,textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18.sp,color: Colors.black)),
+        SizedBox(
+            width: screenSize.width *0.6-16.w,
+            child: Text(title,textAlign: TextAlign.start,overflow:TextOverflow.ellipsis,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18.sp,color: Colors.black))),
         Spacer(),
-        SizedBox(width: screenSize.width*.2,),
+        SizedBox(width: screenSize.width*.1.w,),
         Spacer(),
         Icon(Icons.keyboard_arrow_down_rounded,size: 22.sp,color: Colors.grey[800],)
       ],
@@ -284,7 +293,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     //   title: Text('AAAAAAAA',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: Colors.black),),
     // ),
   }
-  Widget _buildListOfDepartments(categories){
+  Widget _buildListOfDepartments(categories,bool hasChildren,int i){
     return  SliverGrid(
       delegate: SliverChildBuilderDelegate(
               (context,index){
@@ -308,18 +317,18 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         child: ClipRRect(
                           borderRadius: const BorderRadius.all(Radius.circular(6)),
                           child: Image.asset(
-                            categories[index]['imagePath'].toString(),
+                            hasChildren ==true ?categories[index]['imagePath'].toString():categories[i]['imagePath'].toString(),
                             fit: BoxFit.fill,
                           ),
                         ),
                       ),
                       SizedBox(height: 4.h),
-                      Text(categories[index]['depName'].toString(),style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
+                      Text(hasChildren ==true ?categories[index]['depName'].toString():categories[i]['depName'].toString(),style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
                     ],
                   )),
             );
 
-          },childCount: categories.length),
+          },childCount:hasChildren ==true ?categories.length:1),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           mainAxisSpacing: 1.0.w,
           crossAxisSpacing: 1.0.h,

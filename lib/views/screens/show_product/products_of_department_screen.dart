@@ -337,7 +337,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                         }
                       }
                     });
-                    productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
+                    productController.getProductsByCat(categoriesController.departments[index]['id'],langController.appLocal);
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 5),
