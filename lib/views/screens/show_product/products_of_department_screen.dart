@@ -35,6 +35,12 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
   List colors = [];
   Color color = Colors.grey;
   List<double> opacityColor = [];
+
+  //
+  List colors2 = [];
+  Color color2 = Colors.grey;
+  List<double> opacityColor2 = [];
+  bool hasChildren2 = false;
   late final AnimationController _controller;
   bool show = false;
   final LangController langController = Get.find();
@@ -264,6 +270,13 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                       height: screenSize.height * 0.1 - 45.h,
                       child: _buildDepartmentsOptions())
                   : Container(),
+             hasChildren2 ==true?Divider():Container(),
+              hasChildren2 == true
+                  ? SizedBox(
+                  width: screenSize.width.w,
+                  height: screenSize.height * 0.1 - 45.h,
+                  child: _buildDepartmentsOptionsOfDeps())
+                  : Container(),
               Center(
                 child: Obx(
                   () => productController.gotProductsByCat.value == false
@@ -289,7 +302,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
               ),
               SizedBox(
                 width: screenSize.width,
-                height: screenSize.height * 0.8 -27.h,
+                height:hasChildren2 ==false ? screenSize.height * 0.8 -42.h:screenSize.height * 0.8 -73.h,
                 child: Obx(
                   () => AnimatedOpacity(
                       duration: 600.milliseconds,
@@ -338,6 +351,21 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                       }
                     });
                     productController.getProductsByCat(categoriesController.departments[index]['id'],langController.appLocal);
+                    print('has children ::: ${ categoriesController.departments[index]['children']}');
+                    if(categoriesController.departments[index]['children']==true){
+                      categoriesController.getListDepartmentsByDepartmentId(categoriesController.departments[index]['id']).then((value) {
+                        setState(() {
+                          hasChildren2 =true;
+                        });
+                        productController.getProductsByCat(categoriesController.departments2[0]['id'],langController.appLocal);
+
+                      });
+
+                    }else{
+                      setState(() {
+                        hasChildren2 =false;
+                      });
+                    }
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 5),
@@ -382,6 +410,88 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
       ],
     );
   }
+
+  //build departments2
+  Widget _buildDepartmentsOptionsOfDeps() {
+    return CustomScrollView(
+      scrollDirection: Axis.horizontal,
+      slivers: [
+        Obx(
+              () => SliverList(
+            delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                for (int i = 0;
+                i < categoriesController.departments2.length;
+                i++) {
+                  if (i == 0) {
+                    colors2.add(myHexColor);
+                    opacityColor2.add(1.0);
+                  } else {
+                    opacityColor2.add(0.7);
+                    colors2.add(Colors.black);
+                  }
+                }
+                return InkWell(
+                  onTap: () {
+                    setState(() {
+                      for (int i = 0; i < colors2.length; i++) {
+                        if (index == i) {
+                          colors2[index] = myHexColor;
+                          opacityColor2[index] = 1.0;
+                        } else {
+                          opacityColor2[i] = 0.7;
+                          colors2[i] = Colors.black;
+                        }
+                      }
+                    });
+                    productController.getProductsByCat(categoriesController.departments2[index]['id'],langController.appLocal);
+                    print('has children ::: ${ categoriesController.departments2[index]['children']}');
+
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    padding: EdgeInsets.zero,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 0.4,
+                        color: colors2[index].withOpacity(opacityColor2[index]),
+                      ),
+                      borderRadius: BorderRadius.circular(22),
+                    ),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            categoriesController.departments2[index]['name_EN'],
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: colors2[index]
+                                  .withOpacity(opacityColor2[index]),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+              childCount: categoriesController.departments2.length,
+              semanticIndexOffset: 1,
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
 
   Widget _buildDepartmentProductsList() {
     return Padding(

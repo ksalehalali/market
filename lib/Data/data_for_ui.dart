@@ -12,6 +12,7 @@ List<Map<String,dynamic>> categories =[
   {'catNameAR': 'احذية رجالية','catName': 'Men\'s shoes','imagePath':'assets/images/iman-ameli-XNWBOKpYgYE-unsplash.jpg','id':"7ff2c840-1f34-4f76-9fe9-07c123265c1e",              "hasChildren":true  },
   {'catNameAR': 'احذية نسائية','catName': 'Women\'s shoes','imagePath':'assets/images/mohammad-metri-E-0ON3VGrBc-unsplash.jpg','id':"3ca11af3-e200-4898-8eb9-30f1bf3b8347",        "hasChildren":true  },
   {'catNameAR': 'احذية أطفال','catName': 'Kids shoes','imagePath':'assets/images/lefteris-kallergis-j1GiPlvSGWI-unsplash.jpg','id':"33739903-d8c5-4604-9f27-4e52273110e8",        "hasChildren":true  },
+  {'catNameAR': 'ألبسة الأطفال','catName': "Children's Clothing",'imagePath':'assets/images/lefteris-kallergis-j1GiPlvSGWI-unsplash.jpg','id':"6956bc2b-b8f6-48be-8be6-6c56983c79d5",        "hasChildren":true  },
 
 ];
 
@@ -58,7 +59,7 @@ List<Map<String,dynamic>> childrenAndToysDepartments =[
   {'depNameAR': 'ألعاب عصرية','depName': 'Modern Games','depId':'885fec2e-f104-4368-9680-a6bd486de99c','imagePath':'assets/images/robo-wunderkind-3EuPcI31MQU-unsplash.jpg','catName':'Kids, Baby & Toys','catId':'818ce955-2ce3-4486-ba6e-45784c5cce99'        ,"hasChildren":false},
   {'depNameAR': "ألعاب تعليمية",'depName': "Learning Games",'depId':'b7f85358-ac9f-4c8c-904f-822e2f9dd3bd','imagePath':'assets/images/robo-wunderkind-3EuPcI31MQU-unsplash.jpg','catName':'Kids, Baby & Toys','catId':'818ce955-2ce3-4486-ba6e-45784c5cce99'        ,"hasChildren":false},
   {'depNameAR': 'ألعاب متحركة','depName': 'Cars','depId':'25affdcf-076d-4f7c-b090-f890c2f07d0a','imagePath':'assets/images/robo-wunderkind-3EuPcI31MQU-unsplash.jpg','catName':'Kids, Baby & Toys','catId':'818ce955-2ce3-4486-ba6e-45784c5cce99'        ,"hasChildren":false},
-  {'depNameAR': "ملابس حديثي الولادة",'depName': "Baby clothes",'depId':'25affdcf-076d-4f7c-b090-f890c2f07d0a','imagePath':'assets/images/robo-wunderkind-3EuPcI31MQU-unsplash.jpg','catName':'Kids, Baby & Toys','catId':'818ce955-2ce3-4486-ba6e-45784c5cce99'        ,"hasChildren":false},
+  {'depNameAR': "ملابس حديثي الولادة",'depName': "Baby clothes",'depId':'14f9c3db-b832-4c3c-a4c7-4d8b6af099a3','imagePath':'assets/images/robo-wunderkind-3EuPcI31MQU-unsplash.jpg','catName':'Kids, Baby & Toys','catId':'818ce955-2ce3-4486-ba6e-45784c5cce99'        ,"hasChildren":false},
 
 ];
 
@@ -158,5 +159,12 @@ List<Map<String,dynamic>> kidsShoes =[
   //{'depNameAR': 'بوط',"hasChildren":false,'depName': 'Boots','depId':'33739903-d8c5-4604-9f27-4e52273110e8','imagePath':'assets/images/zara-outlet.jpg','catName':'Women\'s Fashion','catId':'33739903-d8c5-4604-9f27-4e52273110e8'   },
   {'depNameAR': 'أحذية بنات',"hasChildren":false,'depName': 'girls shoes','depId':'cc13603b-9dc0-475d-96e4-6e14418b04ac','imagePath':'assets/images/zara-outlet.jpg','catName':'Women\'s Fashion','catId':'33739903-d8c5-4604-9f27-4e52273110e8'   },
   {'depNameAR': 'أحذية أولاد',"hasChildren":false,'depName': 'boys shoes','depId':'666bc216-281c-4706-9858-791fb3a5299e','imagePath':'assets/images/zara-outlet.jpg','catName':'Women\'s Fashion','catId':'33739903-d8c5-4604-9f27-4e52273110e8'   },
+
+];
+
+List<Map<String,dynamic>> childrenClothes =[
+  {'depNameAR': 'ملابس الأولاد','depName': 'Boys Fashion','depId':'7e47df95-5787-48e4-b6de-06cee7d2768e','imagePath':'assets/images/pexels-vitaliy-izonin-10046276.jpg','catName':'Kids, Baby & Toys','catId':'6956bc2b-b8f6-48be-8be6-6c56983c79d5'      ,"hasChildren":false},
+  {'depNameAR': 'ملابس البنات','depName': 'Girls Fashion','depId':'4c208e8b-0a94-4cec-866e-7d4771f3ba3d','imagePath':'assets/images/vanessa-serpas-e6lWMBIgNso-unsplash.jpg','catName':'Kids, Baby & Toys','catId':'6956bc2b-b8f6-48be-8be6-6c56983c79d5',"hasChildren":false},
+  {'depNameAR': "ملابس حديثي الولادة",'depName': "Baby clothes",'depId':'14f9c3db-b832-4c3c-a4c7-4d8b6af099a3','imagePath':'assets/images/robo-wunderkind-3EuPcI31MQU-unsplash.jpg','catName':'Kids, Baby & Toys','catId':'6956bc2b-b8f6-48be-8be6-6c56983c79d5'        ,"hasChildren":false},
 
 ];
