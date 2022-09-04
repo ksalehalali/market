@@ -165,6 +165,6 @@ List<Map<String,dynamic>> kidsShoes =[
 List<Map<String,dynamic>> childrenClothes =[
   {'depNameAR': 'ملابس الأولاد','depName': 'Boys Fashion','depId':'7e47df95-5787-48e4-b6de-06cee7d2768e','imagePath':'assets/images/pexels-vitaliy-izonin-10046276.jpg','catName':'Kids, Baby & Toys','catId':'6956bc2b-b8f6-48be-8be6-6c56983c79d5'      ,"hasChildren":false},
   {'depNameAR': 'ملابس البنات','depName': 'Girls Fashion','depId':'4c208e8b-0a94-4cec-866e-7d4771f3ba3d','imagePath':'assets/images/vanessa-serpas-e6lWMBIgNso-unsplash.jpg','catName':'Kids, Baby & Toys','catId':'6956bc2b-b8f6-48be-8be6-6c56983c79d5',"hasChildren":false},
-  {'depNameAR': "ملابس حديثي الولادة",'depName': "Baby clothes",'depId':'14f9c3db-b832-4c3c-a4c7-4d8b6af099a3','imagePath':'assets/images/robo-wunderkind-3EuPcI31MQU-unsplash.jpg','catName':'Kids, Baby & Toys','catId':'6956bc2b-b8f6-48be-8be6-6c56983c79d5'        ,"hasChildren":false},
+  {'depNameAR': "ملابس حديثي الولادة",'depName': "Baby clothes",'depId':'14f9c3db-b832-4c3c-a4c7-4d8b6af099a3','imagePath':'assets/images/robo-wunderkind-3EuPcI31MQU-unsplash.jpg','catName':'Kids, Baby & Toys','catId':'6956bc2b-b8f6-48be-8be6-6c56983c79d5'        ,"hasChildren":true},
 
 ];

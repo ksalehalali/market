@@ -284,7 +284,7 @@ class ProductItemCard extends StatelessWidget {
                                         fontSize: 12.sp),
                                   ),
                                    SizedBox(
-                                    width: 6.0.w,
+                                    width: 5.0.w,
                                   ),
                                   Text(
                                     langController.appLocal=="en"? "Discount ${product.offer}%":"  الخصم %${product.offer} ",

@@ -124,6 +124,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
               departmentContent = kidsShoes;
               break;
+            case 13:
+              showBrands= true;
+
+              departmentContent = childrenClothes;
+              break;
           }
           setState(() {
 
@@ -300,6 +305,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             return InkWell(
               onTap: ()async{
                  categoriesController.getListCategoryByCategory(categories[index]['depId']);
+                 print(categories[index]['hasChildren']);
                 Get.to(()=> ProductsOfDepartmentScreen(depId: categories[index]['depId'],haveChildren: categories[index]['hasChildren'],));
               },
               child: Padding(
