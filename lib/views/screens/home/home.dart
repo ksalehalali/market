@@ -75,7 +75,28 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement dispose
     super.dispose();
   }
-
+Widget _buildCrosolImages(){
+    final screenSize = Get.size;
+    return CarouselSlider(
+      options: CarouselOptions(height: screenSize.width,
+          viewportFraction: 1,
+          autoPlay: true
+      ),
+      items: images.map((i) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Container(
+                width: screenSize.width,
+                decoration: BoxDecoration(
+                    color: Colors.white
+                ),
+                child: i
+            );
+          },
+        );
+      }).toList(),
+    );
+}
   @override
   Widget build(BuildContext context) {
     final screenSize = Get.size;
@@ -91,78 +112,52 @@ class _HomeScreenState extends State<HomeScreen> {
                     print('wed height : ${deviceInfo.localHeight}');
                     print('wed width : ${deviceInfo.localWidth}');
 
-                    return Stack(children: [
-          Positioned(
-              top: 6.h,
-              child: InkWell(
-                      onTap: () async {
+                    return Column(children: [
+          InkWell(
+                  onTap: () async {
 
+                  },
+                  child: headHomeScreen(MediaQuery.of(context))),
+          SearchAreaDesign(),
+
+          Obx(() => AnimatedContainer(
+                    duration: 400.milliseconds,
+                    height: addressController.addressWidgetSize.value,
+                    child: InkWell(
+                      onTap: () {
+                        addressController.getMyAddresses();
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListAddresses(
+                                      fromCart: false,
+                                      fromAccount: false,
+                                    )));
                       },
-                      child: headHomeScreen(MediaQuery.of(context)))),
-          Positioned(top: 54.h , width: screenSize.width.w, child: SearchAreaDesign()),
-
-          Positioned(
-            top: screenSize.height <650? screenSize.height *0.1+29.h:screenSize.height *0.1+39.h,
-            child: Obx(() => AnimatedContainer(
-                      duration: 400.milliseconds,
-                      height: addressController.addressWidgetSize.value,
-                      child: InkWell(
-                        onTap: () {
-                          addressController.getMyAddresses();
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ListAddresses(
-                                        fromCart: false,
-                                        fromAccount: false,
-                                      )));
-                        },
-                        child: Padding(
-                          padding:  EdgeInsets.symmetric(
-                              vertical: 1.0, horizontal: 10.0.w),
-                          child: addressHomeScreen(MediaQuery.of(context)),
-                        ),
+                      child: Padding(
+                        padding:  EdgeInsets.symmetric(
+                            vertical: 1.0, horizontal: 10.0.w),
+                        child: addressHomeScreen(MediaQuery.of(context)),
                       ),
-                    )),
-          ),
-          Positioned(
-            top:screenSize.height <650 ? screenSize.height *0.1+48.h:screenSize.height *0.1+58.h,
-            width: screenSize.width,
-
+                    ),
+                  )),
+          Expanded(
             child: Container(
               padding: EdgeInsets.zero,
               margin: EdgeInsets.zero,
-              height: screenSize.height.h,
+              height: screenSize.height.h -screenSize.height* 0.2,
               width: screenSize.width.w,
               child: Obx(()=>ListView(
                       controller: scrollController,
                       padding: EdgeInsets.zero,
                       children: [
-                        const SizedBox(
-                          height: 10.0,
+                         SizedBox(
+                          height:screenSize.height*0.1-72.h,
                         ),
                         SizedBox(
-                          height: 170.0.h,
+                          height: screenSize.height*0.2.h,
                           width:screenSize.width,
-                          child: CarouselSlider(
-                            options: CarouselOptions(height: screenSize.width,
-                            viewportFraction: 1,
-                              autoPlay: true
-                            ),
-                            items: images.map((i) {
-                              return Builder(
-                                builder: (BuildContext context) {
-                                  return Container(
-                                      width: screenSize.width,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white
-                                      ),
-                                      child: i
-                                  );
-                                },
-                              );
-                            }).toList(),
-                        ),),
+                          child: _buildCrosolImages()),
                          SizedBox(
                           height: 22.0.h,
                         ),
@@ -323,7 +318,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 22.h,
                         ),
                         _buildOfferArea(),
-                        SizedBox(height:screenSize.height <650 ? 135.h:235.h,),
                       ],
                     ),
               ),
@@ -445,7 +439,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 opacity: animation,
                                 child: ProductDetails(
                                   product: productController
-                                      .recommendedProducts[index],
+                                      .offersProducts[index],
                                 ),
                               ),
                             ),

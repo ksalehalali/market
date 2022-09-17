@@ -60,7 +60,7 @@ class _OffersScreenState extends State<OffersScreen> {
                 width: 400.w,
                 child: _buildDepartmentsList()),
             Container(
-                height: 160.h,
+                height:screenSize.height*0.2 -10.h,
                 width: screenSize.width.w,
                 child: Image.asset(
                   'assets/images/pexels-artem-beliaikin-2529787 1.jpg',

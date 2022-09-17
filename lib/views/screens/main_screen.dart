@@ -45,12 +45,7 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     autoLang();
     currentTp = widget.index;
-    productController.getProductsByCatHome(
-        '0c348ba7-1873-425e-8e49-97e0ec8ceebe', 'recommended');
-    productController.getProductsByCatHome(
-        '0c348ba7-1873-425e-8e49-97e0ec8ceebe', 'latest');
-    productController.getProductsByCatHome(
-        'a7c777ed-cb81-46f3-bd6b-7667842d7819', 'offers');
+    productController.listProductsByFavorite('a', langController.appLocal);
 
     addressController.getMyAddresses();
     productController.getMyFav();
@@ -73,6 +68,9 @@ class _MainScreenState extends State<MainScreen> {
       print(Get.deviceLocale);
       print(Get.locale);
     }
+    productController.getLatestProducts(langController.appLocal);
+    productController.listProductsOffers('',langController.appLocal);
+
   }
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,7 @@ List<Map<String,dynamic>> categories =[
   {'catNameAR': 'الموبايل وإكسسواراته','catName': 'Mobiles & Accessories','imagePath':'assets/images/mehrshad-rajabi-cLrcbfSwBxU-unsplash.jpg','id':"e38f580e-b705-4055-ba59-6bc5714d7616","hasChildren":true },
   {'catNameAR': 'المنزل والمطبخ','catName': 'Home & Kitchen','imagePath':'assets/images/ryan-christodoulou-68CDDj03rks-unsplash.jpg','id':"d2a67fba-9070-4687-ae75-fb74f25e7924",    "hasChildren":true  },
   {'catNameAR': 'ماركات','catName': 'Brands','imagePath':'assets/images/zara-outlet.jpg','id':"4774bfdb-5dca-47e7-a43b-0a8acb659305",                                        "hasChildren":true  },
-  {'catNameAR': 'ساعات وحقائب','catName': 'Watches & Bags','imagePath':'assets/images/pexels-ge-yonk-1152077.jpg','id':"60fc2a32-8489-4981-872e-9d53f611647b",                     "hasChildren":true  },
+ // {'catNameAR': 'ساعات وحقائب','catName': 'Watches & Bags','imagePath':'assets/images/pexels-ge-yonk-1152077.jpg','id':"60fc2a32-8489-4981-872e-9d53f611647b",                     "hasChildren":true  },
   {'catNameAR': 'احذية رجالية','catName': 'Men\'s shoes','imagePath':'assets/images/iman-ameli-XNWBOKpYgYE-unsplash.jpg','id':"7ff2c840-1f34-4f76-9fe9-07c123265c1e",              "hasChildren":true  },
   {'catNameAR': 'احذية نسائية','catName': 'Women\'s shoes','imagePath':'assets/images/mohammad-metri-E-0ON3VGrBc-unsplash.jpg','id':"3ca11af3-e200-4898-8eb9-30f1bf3b8347",        "hasChildren":true  },
   {'catNameAR': 'احذية أطفال','catName': 'Kids shoes','imagePath':'assets/images/lefteris-kallergis-j1GiPlvSGWI-unsplash.jpg','id':"33739903-d8c5-4604-9f27-4e52273110e8",        "hasChildren":true  },

@@ -4,6 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
+import 'package:market/views/screens/show_product/flyingcart.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:shimmer/shimmer.dart';
@@ -32,7 +33,6 @@ class ProductDetails extends StatefulWidget {
   _ProductDetailsState createState() => _ProductDetailsState();
 }
 
-int indexListImages = 0;
 double scaleOfCart = 1.0;
 double scaleOfItem = 1.0;
 int activeIndex = 0;
@@ -45,6 +45,7 @@ class _ProductDetailsState extends State<ProductDetails>
   final CartController cartController = Get.find();
   final screenSize = Get.size;
   final LangController langController = Get.find();
+  int indexListImages = 0;
 
   final List<Color> _colorSize = [
     myHexColor3,
@@ -97,7 +98,7 @@ class _ProductDetailsState extends State<ProductDetails>
 
   @override
   Widget build(BuildContext context) {
-    double buttonSize = 32;
+    double buttonSize = 36;
     final screenSize = Get.size;
     return Container(
       color: Colors.white,
@@ -300,81 +301,65 @@ class _ProductDetailsState extends State<ProductDetails>
                                                 true
                                             ? Positioned(
                                                 top: 12.0.h,
-                                                left: 8.0.w,
-                                                width:
-                                                    screenSize.width * .1 + 6.w,
-                                                height:
-                                                    screenSize.width * .1 + 6.w,
-                                                child: Container(
-                                                  padding: EdgeInsets.zero,
-                                                  margin: EdgeInsets.zero,
-                                                  width: screenSize.width *
-                                                      .1+5.w,
-                                                  height: screenSize.width *
-                                                      .1+5.h,
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                      BorderRadius.circular(
-                                                          100),
-                                                      color: Colors.white
-                                                          .withOpacity(1)),
-                                                  child: Align(
-                                                    alignment: Alignment.center,
-                                                    child: LikeButton(
-                                                      size: buttonSize + 5,
-                                                      onTap: onLikeButtonTapped,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment.center,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.center,
-                                                      // padding: EdgeInsets.only(
-                                                      //     left: screenSize.width * .1 - 37,
-                                                      //     top: 2),
-                                                      circleColor:
-                                                          const CircleColor(
-                                                              start:
-                                                                  Color(0xff00ddff),
-                                                              end: Color(
-                                                                  0xff0099cc)),
-                                                      bubblesColor:
-                                                          const BubblesColor(
-                                                        dotPrimaryColor:
-                                                            Color(0xff33b5e5),
-                                                        dotSecondaryColor:
-                                                            Color(0xff0099cc),
-                                                      ),
-                                                      likeBuilder: (bool isLiked) {
-                                                        return Container(
-                                                          width: screenSize.width *
-                                                              .1+5.w,
-                                                          height: screenSize.width *
-                                                              .1+5.h,
-                                                          decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(50),
-                                                            color: Colors.white,
-                                                          ),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .all(6.0),
-                                                            child: SvgPicture.asset(
-                                                                'assets/icons/heart.svg',
-                                                                alignment: Alignment
-                                                                    .center,
-                                                                color: isLiked
-                                                                    ? myHexColor3
-                                                                    : Colors
-                                                                        .grey[600],
-                                                                height: buttonSize,
-                                                                width: buttonSize,
-                                                                semanticsLabel:
-                                                                    'A red up arrow'),
-                                                          ),
-                                                        );
-                                                      },
+                                                left: 12.0.w,
+
+                                                child: Align(
+                                                  alignment: Alignment.center,
+                                                  child: LikeButton(
+                                                    size: buttonSize + 5,
+                                                    //padding: EdgeInsets.symmetric(horizontal: 22),
+                                                    onTap: onLikeButtonTapped,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.center,
+                                                    // padding: EdgeInsets.only(
+                                                    //     left: screenSize.width * .1 - 37,
+                                                    //     top: 2),
+                                                    circleColor:
+                                                        const CircleColor(
+                                                            start:
+                                                                Color(0xff00ddff),
+                                                            end: Color(
+                                                                0xff0099cc)),
+                                                    bubblesColor:
+                                                        const BubblesColor(
+                                                      dotPrimaryColor:
+                                                          Color(0xff33b5e5),
+                                                      dotSecondaryColor:
+                                                          Color(0xff0099cc),
                                                     ),
+                                                    likeBuilder: (bool isLiked) {
+                                                      return Container(
+                                                        width: screenSize.width *
+                                                            .1+5.w,
+                                                        height: screenSize.width *
+                                                            .1+5.h,
+                                                        decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(50),
+                                                          color: Colors.white,
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                               EdgeInsets
+                                                                  .all(6.0.w),
+                                                          child: SvgPicture.asset(
+                                                              'assets/icons/heart.svg',
+                                                              alignment: Alignment
+                                                                  .center,
+                                                              color: isLiked
+                                                                  ? myHexColor3
+                                                                  : Colors
+                                                                      .grey[600],
+                                                              height: buttonSize,
+                                                              width: buttonSize,
+                                                              semanticsLabel:
+                                                                  'A red up arrow'),
+                                                        ),
+                                                      );
+                                                    },
                                                   ),
                                                 ))
                                             : Container(),
@@ -384,14 +369,14 @@ class _ProductDetailsState extends State<ProductDetails>
                                             ? Positioned(
                                                 top: screenSize.height * .1 -
                                                     11.h,
-                                                left: 8..w,
+                                                left: 12..w,
                                                 child: Container(
                                                   padding: EdgeInsets.zero,
                                                   margin: EdgeInsets.zero,
                                                   width: screenSize.width *
-                                                      .1+5.w,
+                                                      .1.w,
                                                   height: screenSize.width *
-                                                      .1+5.h,
+                                                      .1.h,
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -399,7 +384,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                       color: Colors.white
                                                           .withOpacity(1)),
                                                   child: LikeButton(
-                                                    size: buttonSize - 10,
+                                                    size: buttonSize - 12.sp,
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
                                                             .center,
@@ -1428,9 +1413,6 @@ class _ProductDetailsState extends State<ProductDetails>
                         productController.imagesData[index].color;
                     productController.currentColorIdSelected.value =
                         productController.imagesData[index].colorId;
-                    //_colorId =productController.imagesData[index].colorId;
-                    // print('current color index: $index id = $_colorId');
-                    // print('current size id = $_sizeId');
 
                     indexListImages = index;
                     setState(() {
@@ -1580,7 +1562,8 @@ class _ProductDetailsState extends State<ProductDetails>
                       duration = 800;
                       scaleOfCart = 1.5;
                       scaleOfItem = 1.2;
-                      flyingcart = const Flyingcart();
+                      flyingcart =  FlyingCart(indexListImages:  indexListImages);
+
                       //wait 2 second
                     });
 
@@ -1962,66 +1945,3 @@ class _GalleryWidgetState extends State<GalleryWidget> {
   }
 }
 
-class Flyingcart extends StatefulWidget {
-  const Flyingcart({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  _FlyingcartState createState() => _FlyingcartState();
-}
-
-class _FlyingcartState extends State<Flyingcart> with TickerProviderStateMixin {
-  AnimationController? _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller =
-        AnimationController(duration: const Duration(seconds: 1), vsync: this)
-          ..forward();
-  }
-
-  @override
-  void dispose() {
-    _controller!.dispose();
-    super.dispose();
-  }
-
-  final ProductsController productController = Get.find();
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      //code here
-      final Size biggest = constraints.biggest;
-      return Stack(
-        children: [
-          PositionedTransition(
-              rect: RelativeRectTween(
-                begin:
-                    //flying cart fly from bottom to top
-                    RelativeRect.fromSize(
-                        Rect.fromLTRB(
-                            biggest.width / 2 - 60,
-                            biggest.height - 60,
-                            biggest.width / 2,
-                            biggest.height),
-                        biggest),
-                end: RelativeRect.fromSize(
-                    Rect.fromLTRB(
-                        biggest.width - 48, 10, biggest.width + 10, 70),
-                    biggest),
-              ).animate(
-                  CurvedAnimation(parent: _controller!, curve: Curves.ease)),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                child: productController.imagesWidget.value[indexListImages][0],
-              ))
-        ],
-      );
-    });
-  }
-}

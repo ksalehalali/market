@@ -385,7 +385,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                             width: 10,
                           ),
                           Text(
-                            categoriesController.departments[index]['name_EN'],
+                            langController.appLocal=="ar"?categoriesController.departments[index]['name_AR'] :categoriesController.departments[index]['name_EN'],
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w400,
@@ -466,7 +466,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                             width: 10,
                           ),
                           Text(
-                            categoriesController.departments2[index]['name_EN'],
+                            langController.appLocal=="ar" ?categoriesController.departments2[index]['name_AR']  :categoriesController.departments2[index]['name_EN'],
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w400,

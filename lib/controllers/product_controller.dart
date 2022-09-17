@@ -61,7 +61,7 @@ class ProductsController extends GetxController with BaseController {
       'Lang': langCode
     };
     var request = http.Request('POST', Uri.parse('$baseURL/api/ListProduct'));
-    request.body = json.encode({"PageNumber": 0, "PageSize": 50});
+    request.body = json.encode({"PageNumber": 0, "PageSize": 10});
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -98,7 +98,6 @@ class ProductsController extends GetxController with BaseController {
     }
     update();
   }
-
 //get products by cat
   Future getProductsByCat(String catId, String langCode) async {
     catProducts.value = [];
@@ -110,7 +109,7 @@ class ProductsController extends GetxController with BaseController {
       'Lang': langCode
     };
     var request =
-        http.Request('POST', Uri.parse('$baseURL/api/ListProductByCategory'));
+    http.Request('POST', Uri.parse('$baseURL/api/ListProductByCategory'));
     request.body = json.encode({"id": catId, "PageNumber": 0, "PageSize": 50});
     request.headers.addAll(headers);
 
@@ -151,7 +150,157 @@ class ProductsController extends GetxController with BaseController {
     }
     update();
   }
+//List Products ByFavorite
+  Future listProductsByFavorite(String catId, String langCode) async {
+    catProducts.value = [];
+    opacity.value = 0.0;
+    gotProductsByCat.value = false;
+    var headers = {
+      'Authorization': 'bearer ${user.accessToken}',
+      'Content-Type': 'application/json',
+      'Lang': langCode
+    };
+    var request =
+        http.Request('POST', Uri.parse('$baseURL/api/ListProductByFavorite'));
+    request.body = json.encode({ "PageNumber": 1, "PageSize": 50});
+    request.headers.addAll(headers);
 
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      recommendedProducts.value = [];
+      var json = jsonDecode(await response.stream.bytesToString());
+      var data = json['description'];
+
+      for (int i = 0; i < data.length; i++) {
+        recommendedProducts.add(ProductModel(
+          id: data[i]['id'],
+          en_name: data[i]['name_EN'],
+          ar_name: data[i]['name_AR'],
+          price: double.parse(data[i]['price'].toString()),
+          offer: data[i]['offer'],
+          imageUrl: data[i]['image'],
+          catId: data[i]['catID'],
+          categoryNameEN: data[i]['categoryName_EN'],
+          categoryNameAR: data[i]['categoryName_AR'],
+          modelName: data[i]['modelName'],
+          modelId: data[i]['modelID'],
+          userId: data[i]['userID'],
+          userName: data[i]['userName'],
+          providerName: data[i]['userName'],
+          providerId: data[i]['userID'],
+          brand: data[i]['brandName'],
+        ));
+      }
+      print('ListProductByFavorite products count :: ${recommendedProducts.length}');
+      listProductByLastOrder(catId,langCode);
+      update();
+    } else {
+      print('error in :: ListProductByCategory');
+      print(response.reasonPhrase);
+    }
+    update();
+  }
+
+  //List Products By Last Order
+  Future listProductByLastOrder(String catId, String langCode) async {
+
+    var headers = {
+      'Authorization': 'bearer ${user.accessToken}',
+      'Content-Type': 'application/json',
+      'Lang': langCode
+    };
+    var request =
+    http.Request('POST', Uri.parse('$baseURL/api/ListProductByLastOrder'));
+    request.body = json.encode({ "PageNumber": 1, "PageSize": 50});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var json = jsonDecode(await response.stream.bytesToString());
+      var data = json['description'];
+
+      for (int i = 0; i < data.length; i++) {
+        recommendedProducts.add(ProductModel(
+          id: data[i]['id'],
+          en_name: data[i]['name_EN'],
+          ar_name: data[i]['name_AR'],
+          price: double.parse(data[i]['price'].toString()),
+          offer: data[i]['offer'],
+          imageUrl: data[i]['image'],
+          catId: data[i]['catID'],
+          categoryNameEN: data[i]['categoryName_EN'],
+          categoryNameAR: data[i]['categoryName_AR'],
+          modelName: data[i]['modelName'],
+          modelId: data[i]['modelID'],
+          userId: data[i]['userID'],
+          userName: data[i]['userName'],
+          providerName: data[i]['userName'],
+          providerId: data[i]['userID'],
+          brand: data[i]['brandName'],
+        ));
+      }
+      gotProductsByCat.value = true;
+      opacity.value = 1.0;
+      print('ListProductByLastOrder products count :: ${recommendedProducts.length}');
+      update();
+    } else {
+      print('error in :: ListProductByLastOrder');
+      print(response.reasonPhrase);
+    }
+    update();
+  }
+
+  //List Products offers
+  Future listProductsOffers(String catId, String langCode) async {
+    offersProducts.value = [];
+    var headers = {
+      'Authorization': 'bearer ${user.accessToken}',
+      'Content-Type': 'application/json',
+      'Lang': langCode
+    };
+    var request =
+    http.Request('POST', Uri.parse('$baseURL/api/ListProductOffer'));
+    request.body = json.encode({ "PageNumber": 1, "PageSize": 10});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      offersProducts.value = [];
+      var json = jsonDecode(await response.stream.bytesToString());
+      var data = json['description'];
+
+      for (int i = 0; i < data.length; i++) {
+        offersProducts.add(ProductModel(
+          id: data[i]['id'],
+          en_name: data[i]['name_EN'],
+          ar_name: data[i]['name_AR'],
+          price: double.parse(data[i]['price'].toString()),
+          offer: data[i]['offer'],
+          imageUrl: data[i]['image'],
+          catId: data[i]['catID'],
+          categoryNameEN: data[i]['categoryName_EN'],
+          categoryNameAR: data[i]['categoryName_AR'],
+          modelName: data[i]['modelName'],
+          modelId: data[i]['modelID'],
+          userId: data[i]['userID'],
+          userName: data[i]['userName'],
+          providerName: data[i]['userName'],
+          providerId: data[i]['userID'],
+          brand: data[i]['brandName'],
+        ));
+      }
+      print('ListProductByFavorite products count :: ${recommendedProducts.length}');
+      listProductByLastOrder(catId,langCode);
+      update();
+    } else {
+      print('error in :: ListProductByCategory');
+      print(response.reasonPhrase);
+    }
+    update();
+  }
   //get products by cat home
   Future getProductsByCatHome(String catId, String cat) async {
     print(cat);
@@ -401,7 +550,7 @@ class ProductsController extends GetxController with BaseController {
             ClipRRect(
                 borderRadius: BorderRadius.circular(2),
                 child: Hero(
-                  tag: "${productDetails.id!} details",
+                  tag: "${productDetails.id!}",
                   child: CachedNetworkImage(
                     //cacheManager: customCacheManager,
                     key: UniqueKey(),

@@ -470,7 +470,7 @@ class _RegisterState extends State<Register> {
                     child:showSignUp.value ? Column(
                       children: [
                         SizedBox(
-                          height: 32.h,
+                          height: 28.h,
                         ),
                         // WELCOME
                         Container(

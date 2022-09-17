@@ -251,10 +251,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                             // _buildTitle(showBrands?'Brands_txt'.tr:''),
                             // _buildListOfDepartments(showBrands?brandsContent:[]),
 
-                            _buildTitle(departmentContent[0]['depName']),
+                            _buildTitle(langController.appLocal=="ar"?departmentContent[0]['depNameAR']:departmentContent[0]['depName']),
                             _buildListOfDepartments(departmentContent,false,0),
 
-                            _buildTitle(departmentContent[1]['depName']),
+                            _buildTitle(langController.appLocal=="ar"?departmentContent[1]['depNameAR']:departmentContent[0]['depName']),
                             _buildListOfDepartments(departmentContent,false,1),
 
                           ],
@@ -329,7 +329,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         ),
                       ),
                       SizedBox(height: 4.h),
-                      Text(hasChildren ==true ?categories[index]['depName'].toString():categories[i]['depName'].toString(),style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
+                      Text(hasChildren ==true ?langController.appLocal=="ar"?categories[index]['depNameAR'].toString():categories[index]['depName'].toString():langController.appLocal=="ar"?categories[i]['depNameAR'].toString() :categories[i]['depName'].toString(),style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
                     ],
                   )),
             );
@@ -338,7 +338,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           mainAxisSpacing: 1.0.w,
           crossAxisSpacing: 1.0.h,
-          childAspectRatio: 0.8.h,
+          childAspectRatio: 0.7.h,
           crossAxisCount: 3),);
 
   }

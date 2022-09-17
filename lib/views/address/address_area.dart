@@ -38,8 +38,8 @@ Widget addressHomeScreen(MediaQueryData screenSize) {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            width: Get.size.width - 70,
-            height: 22.h,
+            width: Get.size.width - 74,
+           // height: Get.size.height *0.1-10.h,
             child: RichText(
                 text: TextSpan(children: [
                TextSpan(
