@@ -155,7 +155,7 @@ class _AccountState extends State<Account> {
                 ),
                 SizedBox(height: 8.h,),
 
-                Padding(
+                accountController.isLoggedIn.value != false ? Padding(
                   padding:  EdgeInsets.symmetric(horizontal: 38.0.w),
                   child: NeuButton(onTap: (){
                     setState(() {
@@ -237,7 +237,7 @@ class _AccountState extends State<Account> {
 
 
                     },btnPressed: btnPressed,btnPressed2: btnPressed2,btnPressed3: btnPressed3,),
-                ),
+                ):Container(),
                 SizedBox(height: 14,),
                 accountController.isLoggedIn.value != false ?
                 Column(

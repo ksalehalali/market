@@ -54,7 +54,7 @@ var transfers =[].obs;
 
     if (response.statusCode == 200) {
       var json = jsonDecode(await response.stream.bytesToString());
-      print("my charge ${json['description']['total']}");
+      //print("my charge ${json['description']['total']}");
       var data = json['description'];
       myBalance.value = data['total'];
       gotMyCredits.value =true;

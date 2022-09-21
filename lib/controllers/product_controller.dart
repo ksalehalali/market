@@ -498,6 +498,7 @@ class ProductsController extends GetxController with BaseController {
         brand: productData['brandName'],
         desc_AR: productData['desc_AR'],
         desc_EN: productData['desc_EN'],
+
       );
       productDetails = ProductModel(
         id: productData['id'],
@@ -521,6 +522,7 @@ class ProductsController extends GetxController with BaseController {
         brand: productData['brandName'],
         desc_AR: productData['desc_AR'],
         desc_EN: productData['desc_EN'],
+
       );
 
       sizes = productData['size'];
@@ -595,14 +597,14 @@ class ProductsController extends GetxController with BaseController {
     update();
   }
 
-  addColorsData() {
-    for (int i = 0; i < productDetails.colorsData!.length; i++) {
-      colorsData.add(ProductColorsData(
-          imagesUrls: productDetails.colorsData![i]['image'],
-          color: productDetails.colorsData![i]['property']));
-    }
-    update();
-  }
+  // addColorsData() {
+  //   for (int i = 0; i < productDetails.colorsData!.length; i++) {
+  //     colorsData.add(ProductColorsData(
+  //         imagesUrls: productDetails.colorsData![i]['image'],
+  //         color: productDetails.colorsData![i]['property']));
+  //   }
+  //   update();
+  // }
 
   addImagesData() {
     for (int i = 0; i < productDetails.colorsData!.length; i++) {

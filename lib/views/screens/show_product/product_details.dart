@@ -1409,6 +1409,10 @@ class _ProductDetailsState extends State<ProductDetails>
                 return InkWell(
                   onTap: () {
                     print('current index is :::: $index');
+                    print('color id ${productController.imagesData[index].colorId}');
+                    print('color name ${productController.imagesData[index].color}');
+
+                    //print('all data :: ${productController.colorsData[index]['property']}');
                     productController.currentColorSelected.value =
                         productController.imagesData[index].color;
                     productController.currentColorIdSelected.value =
@@ -1437,8 +1441,7 @@ class _ProductDetailsState extends State<ProductDetails>
                               width: 1.2, color: _colorColorBorder[index])),
                       child: Center(
                         child: Text(
-                          productController.sizes[currentSizeIndex]['color']
-                              [index]['color'],
+                          productController.productDetails.colorsData![index]['color'],
                           style: TextStyle(
                               color: _colorColor[index],
                               fontWeight: FontWeight.bold,
@@ -1457,7 +1460,7 @@ class _ProductDetailsState extends State<ProductDetails>
               },
               childCount:
                   productController.sizes[currentSizeIndex]['color'].length,
-              semanticIndexOffset: 0,
+
             ),
           )
         ],

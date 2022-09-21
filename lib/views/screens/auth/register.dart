@@ -11,6 +11,7 @@ import '../../../Assistants/globals.dart';
 import '../../../controllers/lang_controller.dart';
 import '../../../controllers/register_controller.dart';
 import '../account/account.dart';
+import '../main_screen.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -343,10 +344,10 @@ class _RegisterState extends State<Register> {
                 Container(
                   alignment: Alignment.centerRight,
                   child: IconButton(
-                    icon: const Icon(Icons.close),
+                    icon: const Icon(Icons.close,size: 38,),
                     onPressed: () {
                       registerController.accountController.signOut();
-                      Get.off(Account());
+                      Get.off(MainScreen(index: 0,));
                     },
                   ),
                 ),
