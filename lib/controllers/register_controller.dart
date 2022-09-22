@@ -30,8 +30,8 @@ class RegisterController extends GetxController with BaseController {
   final signUpPasswordController = TextEditingController();
   final signUpConfirmPasswordController = TextEditingController();
   final storage = GetStorage();
-
   var isRegisterLoading = false.obs;
+  var isLoggedIn = false.obs;
 
   Future<void> makeLoginRequest () async{
     if(loginEmailController.text != "" || loginPasswordController.text != ""){
@@ -91,6 +91,7 @@ print('login...');
         hideLoading();
       }
       else if (response.statusCode == 200){
+        isLoggedIn.value = true;
         var jsonResponse = json.decode(response.body);
         if(jsonResponse["status"]){
           print('user data ::: ${jsonResponse["description"]}');
@@ -176,7 +177,7 @@ print('login...');
         user.accessToken = jsonResponse["description"]["token"];
         accountController.getMyProfile();
 
-        //hideLoading();
+        isLoggedIn.value = true;
         Get.offAll(const MainScreen(index: 0,));
 
       } else {

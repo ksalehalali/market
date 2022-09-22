@@ -7,6 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart' as loc;
 import 'package:geolocator/geolocator.dart' as geo;
 import 'package:lottie/lottie.dart';
+import 'package:market/controllers/register_controller.dart';
 import 'Assistants/globals.dart';
 import 'controllers/address_location_controller.dart';
 import 'controllers/cart_controller.dart';
@@ -31,6 +32,7 @@ void main() async {
       Get.putAsync(() async => CartController(), permanent: true);
   final langController =Get.putAsync(() async => LangController(),permanent: true);
   final paymentController =Get.putAsync(() async => PaymentController(),permanent: true);
+  final registerController =Get.putAsync(() async => RegisterController(),permanent: true);
 
   runApp(DevicePreview(
       enabled: false,

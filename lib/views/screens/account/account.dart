@@ -36,6 +36,7 @@ class _AccountState extends State<Account> {
   final CartController cartController = Get.find();
   final PaymentController paymentController = Get.find();
   final LangController langController = Get.find();
+  final RegisterController registerController = Get.find();
 
   bool btnPressed =false;
   bool btnPressed2 =false;
@@ -414,7 +415,8 @@ class _AccountState extends State<Account> {
                     onTap: () {
                       // TODO: logout
                       accountController.signOut();
-                      Get.offAll(Register());
+                      registerController.isLoggedIn.value = false;
+
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,

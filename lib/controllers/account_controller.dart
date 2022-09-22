@@ -44,6 +44,7 @@ class AccountController extends GetxController {
     token.value = "";
     isLoggedIn.value = false;
     storage.erase();
+    Get.offAll(Register());
   }
 
   Future<void> fetchUserLoginPreference() async {

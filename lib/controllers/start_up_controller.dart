@@ -13,7 +13,7 @@ import '../Assistants/globals.dart';
 import '../views/screens/auth/register.dart';
 
 class StartUpController extends GetxController {
-  final registerController = Get.put(RegisterController());
+  final RegisterController registerController = Get.find();
 
   @override
   void onInit() {

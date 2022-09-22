@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,6 +15,7 @@ import '../../../Assistants/globals.dart';
 import '../../../controllers/cart_controller.dart';
 import '../../../controllers/lang_controller.dart';
 import '../../../controllers/product_controller.dart';
+import '../../../controllers/register_controller.dart';
 import '../../../models/product_model.dart';
 import '../../widgets/horizontal_listOfProducts.dart';
 import '../auth/register.dart';
@@ -45,6 +47,8 @@ class _ProductDetailsState extends State<ProductDetails>
   final CartController cartController = Get.find();
   final screenSize = Get.size;
   final LangController langController = Get.find();
+  final RegisterController registerController = Get.find();
+
   int indexListImages = 0;
 
   final List<Color> _colorSize = [
@@ -1447,10 +1451,9 @@ class _ProductDetailsState extends State<ProductDetails>
                               fontWeight: FontWeight.bold,
                               decoration:
                                   productController.sizes[currentSizeIndex]
-                                              ['color'][index]['qyt'] ==
-                                          0
-                                      ? TextDecoration.lineThrough
-                                      : TextDecoration.none,
+                                              ['color'][index]['qyt'] ==0
+                                      ? TextDecoration.none
+                                      : TextDecoration.lineThrough,
                               fontSize: 13),
                         ),
                       ),
@@ -1528,10 +1531,11 @@ class _ProductDetailsState extends State<ProductDetails>
             child: InkWell(
                 onTap: () {
                   bool available = false;
-
-                  for (int i = 0;
-                      i < productController.colorsSizesItems.length;
-                      i++) {
+                  if(registerController.isLoggedIn.value ==false){
+                    showDialogBoxNotLoggedIn();
+                    return;
+                  }
+                  for (int i = 0; i < productController.colorsSizesItems.length; i++) {
                     if (productController.currentColorIdSelected.value ==
                             productController.colorsSizesItems[i]['colorID'] &&
                         productController.currentSizeIdSelected.value ==
@@ -1861,6 +1865,29 @@ class _ProductDetailsState extends State<ProductDetails>
       ),
     );
   }
+
+  showDialogBoxNotLoggedIn() => showCupertinoDialog<String>(
+    context: context,
+    builder: (BuildContext context) => CupertinoAlertDialog(
+      title: const Text('Your are\'nt logged in'),
+      content: const Text('Please please login to fill cart'),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () async {
+            Navigator.pop(context, 'Cancel');
+            Get.offAll(()=> Register());
+          },
+          child: const Text('Login'),
+        ),
+        TextButton(
+          onPressed: () async {
+            Navigator.pop(context, 'Cancel');
+          },
+          child: const Text('Cancel'),
+        ),
+      ],
+    ),
+  );
 
   void gallery(int i) => Navigator.of(context).push(MaterialPageRoute(
       builder: (_) => GalleryWidget(
