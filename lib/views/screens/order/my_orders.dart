@@ -18,7 +18,6 @@ class _MyOrdersState extends State<MyOrders> {
   final CartController cartController = Get.find();
   final LangController langController = Get.find();
 
-  final screenSize = Get.size;
 
   @override
   void initState() {
@@ -29,6 +28,8 @@ class _MyOrdersState extends State<MyOrders> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     return  Obx(
           () =>Container(
       color: myHexColor,
@@ -47,7 +48,7 @@ class _MyOrdersState extends State<MyOrders> {
                   cartController.gotMyOrders.value == true
                       ? SizedBox(
                           height: screenSize.height - 100,
-                          child: buildOrdersList())
+                          child: buildOrdersList(screenSize))
                       : Container(
                           child: Center(
                             child: SizedBox(
@@ -70,7 +71,7 @@ class _MyOrdersState extends State<MyOrders> {
     );
   }
 
-  Widget buildOrdersList() {
+  Widget buildOrdersList(screenSize) {
     return CustomScrollView(
       key: const Key('a'),
       scrollDirection: Axis.vertical,
@@ -180,7 +181,7 @@ class _MyOrdersState extends State<MyOrders> {
                         SizedBox(
                             height: screenSize.height * 0.2,
                             width: screenSize.width,
-                            child: _buildOrderProductsList(indexA))
+                            child: _buildOrderProductsList(screenSize,indexA))
                       ]),
                     ),
                   ),
@@ -195,7 +196,7 @@ class _MyOrdersState extends State<MyOrders> {
     );
   }
 
-  Widget _buildOrderProductsList(int indexA) {
+  Widget _buildOrderProductsList(screenSize,int indexA) {
     return CustomScrollView(
       key: const Key('b'),
       scrollDirection: Axis.horizontal,
@@ -207,8 +208,7 @@ class _MyOrdersState extends State<MyOrders> {
                 var price = cartController.myOrders[indexA]['result']['prduct']
                         [index]["price"] *
                     cartController.myOrders[indexA]['result']['prduct'][index]
-                        ["offer"] /
-                    100;
+                        ["offer"] / 100;
                 return InkWell(
                   onTap: () {},
                   child: Column(
@@ -236,6 +236,7 @@ class _MyOrdersState extends State<MyOrders> {
                               ),
                             ),
                           ),
+                          SizedBox(width: 6,),
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Container(
@@ -255,39 +256,43 @@ class _MyOrdersState extends State<MyOrders> {
                                   const SizedBox(
                                     height: 8,
                                   ),
-                                  SizedBox(
-                                    width: screenSize.width * 0.4 + 10,
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "${cartController.myOrders[indexA]['result']['prduct'][index]["price"]} QAR"
-                                              .toUpperCase(),
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                          textAlign: TextAlign.left,
-                                          style: const TextStyle(
-                                              decoration:
-                                                  TextDecoration.lineThrough,
-                                              fontFamily:
-                                                  'Montserrat-Arabic Regular',
-                                              color: Colors.grey,
-                                              fontSize: 13),
-                                        ),
-                                        const SizedBox(
-                                          width: 7.0,
-                                        ),
-                                        Text(
-                                          "Discount ${cartController.myOrders[indexA]['result']['prduct'][index]["offer"]}%",
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                              fontFamily:
-                                                  'Montserrat-Arabic Regular',
-                                              color: myHexColor3,
-                                              fontSize: 13),
-                                        ),
-                                      ],
+                                  Expanded(
+                                    child: SizedBox(
+                                      width: screenSize.width * 0.4 + 20,
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              "${cartController.myOrders[indexA]['result']['prduct'][index]["price"]} QAR"
+                                                  .toUpperCase(),
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                              textAlign: TextAlign.left,
+                                              style: const TextStyle(
+                                                  decoration:
+                                                      TextDecoration.lineThrough,
+                                                  fontFamily:
+                                                      'Montserrat-Arabic Regular',
+                                                  color: Colors.grey,
+                                                  fontSize: 13),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 8.0,
+                                          ),
+                                          Text(
+                                            "Discount ${cartController.myOrders[indexA]['result']['prduct'][index]["offer"]}%",
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            textAlign: TextAlign.left,
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    'Montserrat-Arabic Regular',
+                                                color: myHexColor3,
+                                                fontSize: 13),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   Text(

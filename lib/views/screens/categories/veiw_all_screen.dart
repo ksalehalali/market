@@ -13,11 +13,12 @@ class ViewAllScreen extends StatelessWidget {
   final List <ProductModel> list;
    ViewAllScreen({Key? key,required this.dep,required this.list}) : super(key: key);
 
-  final screenSize = Get.size;
   final ProductsController productController = Get.find();
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     return Container(
       child: Scaffold(
         appBar: AppBar(foregroundColor: Colors.grey[800],

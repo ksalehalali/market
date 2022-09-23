@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -25,13 +26,13 @@ class _OrderSummaryState extends State<OrderSummary> {
    final storage = GetStorage();
 
    final CartController cartController = Get.find();
-  final screenSize = Get.size;
 
   int _value =1;
 
   @override
   Widget build(BuildContext context) {
     int indexAddress = storage.read("indexAddressSelected");
+    final screenSize = MediaQuery.of(context).size;
 
     return Container(
       child: Scaffold(
@@ -430,7 +431,7 @@ class _OrderSummaryState extends State<OrderSummary> {
               ),
               SizedBox(
                   height: 200,
-                  child: _buildOrderProductsList())
+                  child: _buildOrderProductsList(screenSize))
 
             ],
           ):Container(
@@ -441,7 +442,7 @@ class _OrderSummaryState extends State<OrderSummary> {
     );
   }
 
-   Widget _buildOrderProductsList() {
+   Widget _buildOrderProductsList(screenSize) {
      return CustomScrollView(
        key: const Key('b'),
 
@@ -494,6 +495,9 @@ class _OrderSummaryState extends State<OrderSummary> {
                                    ),
                                  ),
                                ),
+                               const SizedBox(
+                                 width: 6,
+                               ),
                                Padding(
                                  padding: const EdgeInsets.only(left: 8.0),
                                  child: Container(
@@ -515,19 +519,21 @@ class _OrderSummaryState extends State<OrderSummary> {
                                          height: 8,
                                        ),
                                        SizedBox(
-                                         width: screenSize.width * 0.4 + 10,
+                                         width: screenSize.width * 0.4.w + 20,
                                          child: Row(
                                            children: [
-                                             Text(
-                                               "${cartController.oneOrderDetails['listProduct'][index]["price"]} QAR".toUpperCase(),
-                                               overflow: TextOverflow.ellipsis,
-                                               maxLines: 1,
-                                               textAlign: TextAlign.left,
-                                               style: const TextStyle(
-                                                   decoration: TextDecoration.lineThrough,
-                                                   fontFamily: 'Montserrat-Arabic Regular',
-                                                   color: Colors.grey,
-                                                   fontSize: 13),
+                                             Expanded(
+                                               child: Text(
+                                                 "${cartController.oneOrderDetails['listProduct'][index]["price"]} QAR".toUpperCase(),
+                                                 overflow: TextOverflow.ellipsis,
+                                                 maxLines: 1,
+                                                 textAlign: TextAlign.left,
+                                                 style: const TextStyle(
+                                                     decoration: TextDecoration.lineThrough,
+                                                     fontFamily: 'Montserrat-Arabic Regular',
+                                                     color: Colors.grey,
+                                                     fontSize: 13),
+                                               ),
                                              ),
                                              const SizedBox(
                                                width: 7.0,

@@ -44,9 +44,8 @@ class ProductItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size screenSize = MediaQuery.of(context).size;
     double buttonSize = 28;
-    final screenSize = Get.size;
     return InkWell(
       onTap: () {
         productController.getOneProductDetails(product.id!);
@@ -69,7 +68,7 @@ class ProductItemCard extends StatelessWidget {
       },
       child: Container(
         height: 220.h,
-        width: size.width * 0.4 + 10.w,
+        width: screenSize.width * 0.4 + 10.w,
         decoration: BoxDecoration(
             border:
                 Border.all(width: 0.3, color: myHexColor)),
@@ -117,7 +116,7 @@ class ProductItemCard extends StatelessWidget {
                             highlightColor: Colors.grey[300]!,
                             child: Container(
                               height: 220.h,
-                              width: size.width * 0.4 + 10.w,
+                              width: screenSize.width * 0.4 + 10.w,
                               decoration: BoxDecoration(
                                   color: Colors.grey,
                                   borderRadius: BorderRadius.circular(2)),
@@ -190,7 +189,7 @@ class ProductItemCard extends StatelessWidget {
                   ),
                 )),
             Positioned(
-              top: size.height * 0.3 - 56.h,
+              top: screenSize.height * 0.3 - 56.h,
               child: InkWell(
                 onTap: () {
                   productController.getOneProductDetails(product.id!);
@@ -225,7 +224,7 @@ class ProductItemCard extends StatelessWidget {
                               padding:
                                    EdgeInsets.symmetric(vertical: 8.0.h),
                               child: SizedBox(
-                                width: size.width * 0.3+32.w,
+                                width: screenSize.width * 0.3+32.w,
                                 child: Text("${langController.appLocal=="en"? product.en_name:product.ar_name}".toUpperCase(),
                                     textDirection:langController.appLocal=="en"? TextDirection.rtl:TextDirection.ltr,
                                     textAlign: langController.appLocal=="en"?TextAlign.left:TextAlign.right,
@@ -253,7 +252,7 @@ class ProductItemCard extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              width: size.width * 0.3.w,
+                              width: screenSize.width * 0.3.w,
                               child: Text(
                                 "${product.price! - (product.price)! * (product.offer!) / 100} QR "
                                     .toUpperCase(),
@@ -268,7 +267,7 @@ class ProductItemCard extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              width:screenSize.width<390 ? size.width * 0.4 + 22.w:size.width * 0.3 + 52.w,
+                              width:screenSize.width<390 ? screenSize.width * 0.4 + 22.w:screenSize.width * 0.3 + 52.w,
                               child: Row(
                                 children: [
                                   Text(

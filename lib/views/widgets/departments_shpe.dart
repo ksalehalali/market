@@ -19,7 +19,7 @@ class DepartmentShapeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize =Get.size;
+    final screenSize = MediaQuery.of(context).size;
     return InkWell(
       onTap: (){
         productController.catProducts.value.clear();

@@ -15,11 +15,12 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final screenSize = Get.size;
   final AccountController accountController = Get.find();
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     return Container(
       color: myHexColor5.withOpacity(0.9),
       child: SafeArea(

@@ -38,7 +38,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     super.initState();
     departmentContent = womenFashionDepartments;
     brandsContent =womenFashionDepartments;
-    createBrandsList();
+    //createBrandsList();
   }
   Widget buildCategoriesButtons(var data,int index){
     for(int i =0; i<categories.length;i++){
@@ -161,10 +161,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       );
 
   }
-  final screenSize = Get.size;
-
    createBrandsList(){
-    for(int i =0; i<categories.length;i++){
+     final screenSize= MediaQuery.of(context).size;
+
+     for(int i =0; i<categories.length;i++){
       brandsWidgets.add(Padding(
           padding: EdgeInsets.zero,
           child: Column(
@@ -201,6 +201,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   Key? key;
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
 
     return Container(
       color: myHexColor5,
@@ -214,58 +215,62 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
              SizedBox(
               height: 12.0.h,
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: 100.w,
-                  height:screenSize.height <700? screenSize.height*.9-93.h:screenSize.height*.9-83.h,
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverList(delegate: SliverChildBuilderDelegate(
-                          (context,index)=> buildCategoriesButtons(categories[index], index),childCount: categories.length
-                      ))
-                    ],
-                  )
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 100.w,
+                    height:screenSize.height <700? screenSize.height*.9-93.h:screenSize.height*.9-83.h,
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverList(delegate: SliverChildBuilderDelegate(
+                            (context,index)=> buildCategoriesButtons(categories[index], index),childCount: categories.length
+                        ))
+                      ],
+                    )
 
-                ),
-                SizedBox(
-                  height:screenSize.height <700? screenSize.height*.9-93.h:screenSize.height*.9-83.h,
-                  width: screenSize.width -101.w,
-                  child:  Padding(
-                    padding:  EdgeInsets.only(bottom:2.h),
-                    child: Stack(
-                      alignment: Alignment.centerLeft,
-                      children: [
-                        Positioned(
-                            top: 0.0,
-                            child: Container(width:screenSize.width.w ,height: 0.5.h,color: Colors.grey[500],)),
+                  ),
+                  Expanded(
+                    child: SizedBox(
+                      height:screenSize.height <700? screenSize.height*.9-93.h:screenSize.height*.9-83.h,
+                      width: screenSize.width -101.w,
+                      child:  Padding(
+                        padding:  EdgeInsets.only(bottom:2.h),
+                        child: Stack(
+                          alignment: Alignment.centerLeft,
+                          children: [
+                            Positioned(
+                                top: 0.0,
+                                child: Container(width:screenSize.width.w ,height: 0.5.h,color: Colors.grey[500],)),
 
-                        CustomScrollView(
-                          anchor: 0.0,
+                            CustomScrollView(
+                              anchor: 0.0,
 
-                          slivers:<Widget> [
-                            _buildTitle('Category_txt'.tr),
-                           _buildListOfDepartments(departmentContent,true,0),
+                              slivers:<Widget> [
+                                _buildTitle('Category_txt'.tr,screenSize,),
+                               _buildListOfDepartments(departmentContent,true,0),
 
-                            // _buildTitle(showBrands?'Brands_txt'.tr:''),
-                            // _buildListOfDepartments(showBrands?brandsContent:[]),
+                                // _buildTitle(showBrands?'Brands_txt'.tr:''),
+                                // _buildListOfDepartments(showBrands?brandsContent:[]),
 
-                            _buildTitle(langController.appLocal=="ar"?departmentContent[0]['depNameAR']:departmentContent[0]['depName']),
-                            _buildListOfDepartments(departmentContent,false,0),
+                                // _buildTitle(langController.appLocal=="ar"?departmentContent[0]['depNameAR']:departmentContent[0]['depName'],screenSize,),
+                                // _buildListOfDepartments(departmentContent,false,0),
+                                //
+                                // _buildTitle(langController.appLocal=="ar"?departmentContent[1]['depNameAR']:departmentContent[0]['depName'],screenSize,),
+                                // _buildListOfDepartments(departmentContent,false,1),
 
-                            _buildTitle(langController.appLocal=="ar"?departmentContent[1]['depNameAR']:departmentContent[0]['depName']),
-                            _buildListOfDepartments(departmentContent,false,1),
+                              ],
+                            ),
 
                           ],
                         ),
-
-                      ],
+                      ),
                     ),
                   ),
-                ),
 
-              ],
+                ],
+              ),
             ),
           ],
         ),
@@ -273,7 +278,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       ),),
     );
   }
-  Widget _buildTitle(String title){
+  Widget _buildTitle(String title,screenSize){
     return  SliverAppBar(
         floating: false,
         expandedHeight: 1,
@@ -286,7 +291,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-            width: screenSize.width *0.6-16.w,
+            width: screenSize.width *0.3.w,
             child: Text(title,textAlign: TextAlign.start,overflow:TextOverflow.ellipsis,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18.sp,color: Colors.black))),
         Spacer(),
         SizedBox(width: screenSize.width*.1.w,),
@@ -338,7 +343,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           mainAxisSpacing: 1.0.w,
           crossAxisSpacing: 1.0.h,
-          childAspectRatio: 0.7.h,
+          childAspectRatio: 0.6.h,
           crossAxisCount: 3),);
 
   }

@@ -99,7 +99,7 @@ Widget _buildCrosolImages(){
 }
   @override
   Widget build(BuildContext context) {
-    final screenSize = Get.size;
+    final screenSize = MediaQuery.of(context).size;
     return Container(
         color: myHexColor5.withOpacity(0.2),
 
@@ -137,7 +137,7 @@ Widget _buildCrosolImages(){
                       child: Padding(
                         padding:  EdgeInsets.symmetric(
                             vertical: 1.0, horizontal: 10.0.w),
-                        child: addressHomeScreen(MediaQuery.of(context)),
+                        child: addressHomeScreen(context,MediaQuery.of(context)),
                       ),
                     ),
                   )),
@@ -171,7 +171,7 @@ Widget _buildCrosolImages(){
                         ),
                         SizedBox(
                             height: screenSize.height * 0.2 + 95.h,
-                            width: 400.w,
+                            width: screenSize.width ,
                             child: _buildDepartmentsList()),
                         SizedBox(
                           height: screenSize.height * 0.1 - 64.h,
@@ -221,9 +221,9 @@ Widget _buildCrosolImages(){
                          SizedBox(
                           height: 6.0.h,
                         ),
-                        productController.gotProductsByCat.value ==true ?  Container(child: buildHorizontalListOfProducts(false)):SizedBox(
+                        productController.gotProductsByCat.value ==true ?  Container(child: buildHorizontalListOfProducts(context,false)):SizedBox(
                             height: 400.h,
-                            child: buildProductShimmer()),
+                            child: buildProductShimmer(context)),
                          SizedBox(
                           height: 12.0.h,
                         ),
@@ -329,9 +329,9 @@ Widget _buildCrosolImages(){
 
   }
   Widget _buildDepartmentsList() {
-    final size = Get.size;
+    final size = MediaQuery.of(context).size;
     return Padding(
-      padding:  EdgeInsets.only(top: 12.0.h,right:10.w),
+      padding:  EdgeInsets.only(top: 12.0.h),
       child: Container(
         color: Colors.grey[50],
         child: GridView.builder(
@@ -360,7 +360,7 @@ Widget _buildCrosolImages(){
   }
 
   Widget _buildHorizontalListOfRecommendedProducts() {
-    final screenSize = Get.size;
+    final screenSize = MediaQuery.of(context).size;
     return SizedBox(
         height:langController.appLocal =="ar"? screenSize.height * 0.4 - 16.h:screenSize.height * 0.4 - 26.h,
         child: Padding(
@@ -409,7 +409,7 @@ Widget _buildCrosolImages(){
   }
 
   Widget _buildHorizontalListOfOffersProducts() {
-    final screenSize = Get.size;
+    final screenSize = MediaQuery.of(context).size;
     return SizedBox(
         height:langController.appLocal =="ar"? screenSize.height * 0.4 - 16.h:screenSize.height * 0.4 - 26.h,
         child: Padding(
@@ -458,7 +458,7 @@ Widget _buildCrosolImages(){
   }
 
   Widget _buildOfferArea() {
-    final screenSize = Get.size;
+    final screenSize = MediaQuery.of(context).size;
     return InkWell(
       onTap: () {
         if (kDebugMode) {
@@ -534,8 +534,8 @@ Widget _buildCrosolImages(){
   }
 }
 
-Widget buildProductShimmer() {
-  final screenSize = Get.size;
+Widget buildProductShimmer(BuildContext context) {
+  final screenSize = MediaQuery.of(context).size;
 
   return ListView.builder(
       itemCount: 5,

@@ -30,7 +30,6 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
   bool showOneList = false;
   final CategoriesController categoriesController = Get.find();
   final ProductsController productController = Get.find();
-  final screenSize = Get.size;
 
   List colors = [];
   Color color = Colors.grey;
@@ -188,6 +187,8 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     return Container(
       color: myHexColor5,
       child: SafeArea(
@@ -302,7 +303,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
               ),
               SizedBox(
                 width: screenSize.width,
-                height:hasChildren2 ==false ? screenSize.height * 0.8 -42.h:screenSize.height * 0.8 -77.h,
+                //height:hasChildren2 ==false ? screenSize.height * 0.8 -42.h:screenSize.height * 0.8 -77.h,
                 child: Obx(
                   () => AnimatedOpacity(
                       duration: 600.milliseconds,

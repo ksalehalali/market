@@ -6,9 +6,9 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import '../../Assistants/globals.dart';
 import '../../controllers/product_controller.dart';
 
-Widget ListOneItem(list) {
+Widget ListOneItem(BuildContext context,list) {
   final ProductsController productController = Get.find();
-  final screenSize = Get.size;
+  final screenSize = MediaQuery.of(context).size;
 
   final customCacheManager = CacheManager(
       Config('customCacheKey', stalePeriod: 15.days, maxNrOfCacheObjects: 100));
@@ -58,16 +58,18 @@ Widget ListOneItem(list) {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(
-                                  width: screenSize.width * 0.5 - 12,
-                                  child: Text(
-                                    '${list[index]['product']}'.toUpperCase(),
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                    style: const TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color.fromARGB(255, 22, 21, 21)),
+                                Expanded(
+                                  child: SizedBox(
+                                    width: screenSize.width * 0.5 - 12,
+                                    child: Text(
+                                      '${list[index]['product']}'.toUpperCase(),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                          color: Color.fromARGB(255, 22, 21, 21)),
+                                    ),
                                   ),
                                 ),
                                 SizedBox(

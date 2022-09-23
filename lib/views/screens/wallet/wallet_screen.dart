@@ -142,17 +142,17 @@ class _WalletScreenState extends State<WalletScreen> {
                         SizedBox(
                           height: screenSize.height * 0.1 - 62,
                         ),
-                        Obx(()=> (paymentController.gotMyCredits.value ==false)?Center(child:  SizedBox(
+                       Center(child:   SizedBox(
                           width: 80,
                           height: 80,
 
-                          child: Lottie.asset(
+                          child:Obx(()=> paymentController.gotMyCredits.value ==false ? Lottie.asset(
                             'assets/animations/loading_black_background_editor.json',
                             width: 80,
                             height: 80,
 
-                          ),
-                        ),):Container()),
+                          ):Container(),
+                        ))),
                         showCredits?SizedBox(
                             height: screenSize.height-200,
                             child: Padding(

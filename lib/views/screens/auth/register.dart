@@ -324,10 +324,11 @@ class _RegisterState extends State<Register> {
     }
   }
 
-  final screenSize = Get.size;
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -344,7 +345,7 @@ class _RegisterState extends State<Register> {
                 Container(
                   alignment: Alignment.centerRight,
                   child: IconButton(
-                    icon: const Icon(Icons.close,size: 38,),
+                    icon:  Icon(Icons.close,size: 38.sp,),
                     onPressed: () {
                       registerController.accountController.signOut();
                       Get.off(MainScreen(index: 0,));

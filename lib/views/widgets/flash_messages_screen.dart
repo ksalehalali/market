@@ -10,6 +10,7 @@ class FlashMessageScreen extends StatelessWidget {
 }
 
 Widget customSnackBarContent(BuildContext context){
+  final screenSize = MediaQuery.of(context).size;
 
   return Stack(
     clipBehavior: Clip.none,

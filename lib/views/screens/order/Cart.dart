@@ -30,7 +30,6 @@ class _CartState extends State<Cart> {
     print('active');
   }
   var cartProductsCounts =[];
-  final screenSize = Get.size;
   final LangController langController = Get.find();
 
   @override
@@ -44,7 +43,8 @@ class _CartState extends State<Cart> {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = Get.size;
+    final screenSize = MediaQuery.of(context).size;
+
 
     return Container(
       color: myHexColor5.withOpacity(0.6),
@@ -106,15 +106,17 @@ class _CartState extends State<Cart> {
                                     ),
 
                                     // TODO: REPLACE THE 'ADDRESS' WORD WITH THE ACTUAL VARIABLE NAME
-                                     SizedBox(
+                                     Expanded(
+                                       child: SizedBox(
 
-                                       width:screenSize.width >380 ? screenSize.width*.8+07.w:screenSize.width*.8+01.w,
-                                       child:langController.appLocal=='en' ?Text(
-                                            box.read('address')!=null ?'Address : ${box.read('address')}': 'Select address',overflow: TextOverflow.ellipsis,maxLines: 1,
-                                        style: TextStyle(color: Colors.black54),
+                                         width:screenSize.width >380 ? screenSize.width*.8+07.w:screenSize.width*.8+01.w,
+                                         child:langController.appLocal=='en' ?Text(
+                                              box.read('address')!=null ?'Address : ${box.read('address')}': 'Select address',overflow: TextOverflow.ellipsis,maxLines: 1,
+                                          style: TextStyle(color: Colors.black54),
                                     ):Text(
-                                         box.read('address')!=null ?'العنوان : ${box.read('address')}': 'اختر عنوان',overflow: TextOverflow.ellipsis,maxLines: 1,textAlign: TextAlign.center,textDirection: TextDirection.rtl,
-                                         style: TextStyle(color: Colors.black54,fontSize: 12),
+                                           box.read('address')!=null ?'العنوان : ${box.read('address')}': 'اختر عنوان',overflow: TextOverflow.ellipsis,maxLines: 1,textAlign: TextAlign.center,textDirection: TextDirection.rtl,
+                                           style: TextStyle(color: Colors.black54,fontSize: 12),
+                                         ),
                                        ),
                                      ),
                                     const Spacer(),
@@ -146,7 +148,7 @@ class _CartState extends State<Cart> {
                                 height: screenSize.height * 0.1 - 70.h,
                               ),
                               cartController.gotMyCart.value == true
-                                  ?buildCartItem()
+                                  ?buildCartItem(screenSize)
                                   : Container(),
                             ],
                           ),
@@ -155,7 +157,7 @@ class _CartState extends State<Cart> {
                     SizedBox(
                       height: screenSize.height * 0.1 - 50.h,
                     ),
-                    buildCartDetails(),
+                    buildCartDetails(screenSize),
                     SizedBox(
                       height: screenSize.height * 0.1 - 50.h,
                     ),
@@ -174,7 +176,7 @@ class _CartState extends State<Cart> {
                     ),
                     Padding(
                       padding:  EdgeInsets.symmetric(horizontal: 12.w),
-                      child: buildHorizontalListOfProducts(false),
+                      child: buildHorizontalListOfProducts(context,false),
                     ),
                     SizedBox(
                       height: screenSize.height * 0.1 - 16.h,
@@ -191,7 +193,7 @@ class _CartState extends State<Cart> {
 
   }
 
-  Widget buildCartDetails() {
+  Widget buildCartDetails(screenSize) {
     return Container(
       color: const Color.fromARGB(255, 235, 236, 239),
       child: Column(
@@ -347,7 +349,7 @@ class _CartState extends State<Cart> {
     );
   }
 
-  Column buildCartItem() {
+  Column buildCartItem(screenSize) {
     cartController.cartItems.value = [];
 
     print("length ${cartController.myPrCartProducts.length}");

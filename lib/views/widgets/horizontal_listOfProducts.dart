@@ -6,11 +6,11 @@ import '../../controllers/product_controller.dart';
 import '../screens/show_product/product_details.dart';
 import '../screens/show_product/product_item.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-Widget buildHorizontalListOfProducts(bool fromDetails) {
+Widget buildHorizontalListOfProducts(BuildContext context ,bool fromDetails) {
   final ProductsController productController = Get.find();
   final LangController langController = Get.find();
 
-  final screenSize = Get.size;
+  final screenSize = MediaQuery.of(context).size;
   return SizedBox(
     height:langController.appLocal =="ar"? screenSize.height * 0.4 - 6.h:screenSize.height * 0.4 - 12.h,
     child: FutureBuilder(

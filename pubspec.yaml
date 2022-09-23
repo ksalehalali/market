@@ -68,7 +68,7 @@ dependencies:
   intl_phone_field: ^3.1.0
   myfatoorah_pay: any
   flutter_countdown_timer:
-  #responsive_framework:
+  responsive_framework:
 
 dev_dependencies:
   flutter_test:

@@ -45,7 +45,6 @@ class _ProductDetailsState extends State<ProductDetails>
   late AnimationController _animationController;
   final ProductsController productController = Get.find();
   final CartController cartController = Get.find();
-  final screenSize = Get.size;
   final LangController langController = Get.find();
   final RegisterController registerController = Get.find();
 
@@ -103,7 +102,7 @@ class _ProductDetailsState extends State<ProductDetails>
   @override
   Widget build(BuildContext context) {
     double buttonSize = 36;
-    final screenSize = Get.size;
+    final screenSize = MediaQuery.of(context).size;
     return Container(
       color: Colors.white,
       child: Obx(
@@ -232,8 +231,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                             ? Column(
                                                 children: [
                                                   SizedBox(
-                                                      height:
-                                                          screenSize.height>700? screenSize.height * 0.4+41.h:screenSize.height * 0.4+55.h,
+                                                      //height: screenSize.height<720? screenSize.height * 0.3.h+46:screenSize.height * 0.2+15.h,
                                                       width: double.infinity,
                                                       child: Column(
                                                         children: [
@@ -371,8 +369,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                     .getDetailsDone.value ==
                                                 true
                                             ? Positioned(
-                                                top: screenSize.height * .1 -
-                                                    11.h,
+                                                top: screenSize.height * .1 - 11.h,
                                                 left: 12..w,
                                                 child: Container(
                                                   padding: EdgeInsets.zero,
@@ -432,9 +429,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                       ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 8.0.h,
-                                  ),
+
                                   Padding(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 12.0.w),
@@ -736,7 +731,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                                         mainAxisSize:
                                                             MainAxisSize.min,
                                                         children: [
-                                                          ..._buildSpicalProperties()
+                                                          ..._buildSpicalProperties(screenSize)
                                                         ],
                                                       )),
                                                   const Spacer()
@@ -769,24 +764,20 @@ class _ProductDetailsState extends State<ProductDetails>
                                                             screenSize.width *
                                                                     .5 -
                                                                 30.w),
-                                                    SizedBox(
-                                                        width:
-                                                            screenSize.width *
-                                                                0.5.w,
-                                                        child: Text(
-                                                          productController
-                                                                  .productDetails
-                                                                  .colorsData![
-                                                              0]['color'],
-                                                          maxLines: 3,
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .grey[800],
-                                                              fontSize: 11.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500),
-                                                        )),
+                                                    Text(
+                                                      productController
+                                                              .productDetails
+                                                              .colorsData![
+                                                          0]['color'],
+                                                      maxLines: 3,
+                                                      style: TextStyle(
+                                                          color: Colors
+                                                              .grey[800],
+                                                          fontSize: 11.sp,
+                                                          fontWeight:
+                                                              FontWeight
+                                                                  .w500),
+                                                    ),
                                                     const Spacer()
                                                   ],
                                                 ),
@@ -1129,7 +1120,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                       ),
                                     ),
                                   ),
-                                  buildHorizontalListOfProducts(true),
+                                  buildHorizontalListOfProducts(context,true),
                                   SizedBox(
                                     height: 60.h,
                                   ),
@@ -1139,7 +1130,7 @@ class _ProductDetailsState extends State<ProductDetails>
                           ),
                           bottomSheet:
                               productController.getDetailsDone.value == true
-                                  ? buildAddCartPrice(
+                                  ? buildAddCartPrice(screenSize,
                                       productController.productDetails.price!,
                                       productController.productDetails.offer,
                                       indexListImages)
@@ -1147,7 +1138,7 @@ class _ProductDetailsState extends State<ProductDetails>
                         ),
                       ),
                     ))
-                : _buildShimmerLoadingData(),
+                : _buildShimmerLoadingData(screenSize),
             Container(
               margin: EdgeInsets.only(top: screenSize.height * 0.1 - 54.h),
               width: MediaQuery.of(context).size.width.w,
@@ -1160,7 +1151,7 @@ class _ProductDetailsState extends State<ProductDetails>
     );
   }
 
-  Widget _buildShimmerLoadingData() {
+  Widget _buildShimmerLoadingData(screenSize) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1174,7 +1165,7 @@ class _ProductDetailsState extends State<ProductDetails>
             highlightColor: Colors.grey[300]!,
             child: Container(
               height: screenSize.height * 0.4 - 10.h,
-              width: screenSize.width.w,
+              width: screenSize.width,
               decoration: BoxDecoration(
                   color: Colors.grey, borderRadius: BorderRadius.circular(12)),
             ),
@@ -1200,7 +1191,7 @@ class _ProductDetailsState extends State<ProductDetails>
             highlightColor: Colors.grey[300]!,
             child: Container(
               height: screenSize.height * 0.1 - 62.h,
-              width: screenSize.width.w,
+              width: screenSize.width,
               decoration: BoxDecoration(
                   color: Colors.grey, borderRadius: BorderRadius.circular(4)),
             ),
@@ -1213,7 +1204,7 @@ class _ProductDetailsState extends State<ProductDetails>
             highlightColor: Colors.grey[300]!,
             child: Container(
               height: screenSize.height * 0.1 - 62.h,
-              width: screenSize.width.w,
+              width: screenSize.width,
               decoration: BoxDecoration(
                   color: Colors.grey, borderRadius: BorderRadius.circular(4)),
             ),
@@ -1226,7 +1217,7 @@ class _ProductDetailsState extends State<ProductDetails>
             highlightColor: Colors.grey[300]!,
             child: Container(
               height: screenSize.height * 0.1 - 62.h,
-              width: screenSize.width.w,
+              width: screenSize.width,
               decoration: BoxDecoration(
                   color: Colors.grey, borderRadius: BorderRadius.circular(4)),
             ),
@@ -1291,7 +1282,7 @@ class _ProductDetailsState extends State<ProductDetails>
             highlightColor: Colors.grey[100]!,
             child: Container(
               height: screenSize.height * 0.1 - 70.h,
-              width: screenSize.width.w,
+              width: screenSize.width,
               decoration: BoxDecoration(
                   color: Colors.grey, borderRadius: BorderRadius.circular(2)),
             ),
@@ -1304,7 +1295,7 @@ class _ProductDetailsState extends State<ProductDetails>
             highlightColor: Colors.grey[100]!,
             child: Container(
               height: screenSize.height * 0.1 - 70.h,
-              width: screenSize.width.w,
+              width: screenSize.width,
               decoration: BoxDecoration(
                   color: Colors.red[50],
                   borderRadius: BorderRadius.circular(2)),
@@ -1453,7 +1444,7 @@ class _ProductDetailsState extends State<ProductDetails>
                                   productController.sizes[currentSizeIndex]
                                               ['color'][index]['qyt'] ==0
                                       ? TextDecoration.none
-                                      : TextDecoration.lineThrough,
+                                      : TextDecoration.none,
                               fontSize: 13),
                         ),
                       ),
@@ -1471,7 +1462,7 @@ class _ProductDetailsState extends State<ProductDetails>
     );
   }
 
-  List _buildSpicalProperties() {
+  List _buildSpicalProperties(screenSize) {
     var sList = [];
     for (int i = 0; productController.productDetails.special!.length > i; i++) {
       sList.add(
@@ -1522,7 +1513,7 @@ class _ProductDetailsState extends State<ProductDetails>
     return sList;
   }
 
-  Widget buildAddCartPrice(double price, int? offer, int indexImage) {
+  Widget buildAddCartPrice(screenSize,double price, int? offer, int indexImage) {
     return Card(
       margin: EdgeInsets.zero,
       child: Row(

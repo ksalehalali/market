@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 import '../Data/current_data.dart';
 class PaymentController extends GetxController{
-var myBalance = 0.0.obs;
+var myBalance = 0.obs;
 var gotMyCredits = false.obs;
 var gotMyTransfers = false.obs;
 
@@ -58,7 +58,7 @@ var transfers =[].obs;
       var data = json['description'];
       myBalance.value = data['total'];
       gotMyCredits.value =true;
-
+      update();
     }
     else {
       print(response.reasonPhrase);

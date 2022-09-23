@@ -111,23 +111,31 @@ class _SearchProductScreenState extends State<SearchProductScreen> {
   }
 }
 
-class PredictionTile extends StatelessWidget {
+class PredictionTile extends StatefulWidget {
   final ProductModel? productPredictions;
-  final AddressController addressController = Get.find();
-  final ProductsController productController = Get.find();
-  final screenSize = Get.size;
 
   PredictionTile({Key? key, this.productPredictions}) : super(key: key);
 
   @override
+  State<PredictionTile> createState() => _PredictionTileState();
+}
+
+class _PredictionTileState extends State<PredictionTile> {
+  final AddressController addressController = Get.find();
+
+  final ProductsController productController = Get.find();
+
+
+  @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
 
     return InkWell(
       onTap: () {
-        productController.getOneProductDetails(productPredictions!.id!);
+        productController.getOneProductDetails(widget.productPredictions!.id!);
 
         Get.to(() => ProductDetails(
-          product: productPredictions,
+          product: widget.productPredictions,
         ));
         // Navigator.pushAndRemoveUntil(
         //     context,
@@ -152,7 +160,7 @@ class PredictionTile extends StatelessWidget {
                           child: CachedNetworkImage(
                             //cacheManager: customCacheManager,
                             key: UniqueKey(),
-                            imageUrl: '$baseURL/${productPredictions!.imageUrl}',
+                            imageUrl: '$baseURL/${widget.productPredictions!.imageUrl}',
                             height: screenSize.height * 0.3,
                             width: screenSize.width * 0.5,
                             maxHeightDiskCache: 110,
@@ -170,19 +178,19 @@ class PredictionTile extends StatelessWidget {
                           )),
                       SizedBox(height: 6,),
                       Text(
-                        productPredictions!.en_name!,
+                        widget.productPredictions!.en_name!,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(fontSize: 16.0,fontWeight: FontWeight.w600,letterSpacing: 1),
                       ),
                       SizedBox(height: 6,),
                       Text(
-                        productPredictions!.brand!,
+                        widget.productPredictions!.brand!,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(fontSize: 16.0,fontWeight: FontWeight.w600,letterSpacing: 1),
                       ),
                       SizedBox(height: 4.0),
                       Text(
-                        "${productPredictions!.price.toString()} QAR",
+                        "${widget.productPredictions!.price.toString()} QAR",
                         overflow: TextOverflow.ellipsis,
                         style:
                         TextStyle(fontSize: 14.0, color: Colors.grey[800],letterSpacing: 0.5),
@@ -201,5 +209,4 @@ class PredictionTile extends StatelessWidget {
       ),
     );
   }
-
 }

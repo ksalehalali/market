@@ -28,7 +28,6 @@ class _BayOptionsState extends State<BayOptions> {
   bool showAddressDetails=false;
   final AddressController addressController = Get.find();
   final CartController cartController = Get.find();
-  final screenSize = Get.size;
   final LangController langController = Get.find();
 
   @override
@@ -43,6 +42,8 @@ initS()async{
 }
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     int indexAddress = storage.read("indexAddressSelected");
     if(indexAddress != null){
       showAddressDetails =true;

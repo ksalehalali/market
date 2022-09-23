@@ -26,7 +26,7 @@ class _OffersScreenState extends State<OffersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = Get.size;
+    final screenSize = MediaQuery.of(context).size;
     return Container(
       color: myHexColor5,
 
@@ -184,7 +184,7 @@ class _OffersScreenState extends State<OffersScreen> {
   }
 
   Widget _buildHorizontalListOfBestSallersProducts() {
-    final screenSize = Get.size;
+    final screenSize = MediaQuery.of(context).size;
     return SizedBox(
         height:langController.appLocal =="ar"? screenSize.height * 0.4 - 16.h:screenSize.height * 0.4 - 26.h,
         child: CustomScrollView(
@@ -229,7 +229,7 @@ class _OffersScreenState extends State<OffersScreen> {
   }
 
   Widget _buildHorizontalListOfOffersProducts() {
-    final screenSize = Get.size;
+    final screenSize = MediaQuery.of(context).size;
     return SizedBox(
         height:langController.appLocal =="ar"? screenSize.height * 0.4 - 16.h:screenSize.height * 0.4 - 26.h,
         child: CustomScrollView(
@@ -273,7 +273,7 @@ class _OffersScreenState extends State<OffersScreen> {
   }
 
   Widget _buildOfferArea() {
-    final screenSize = Get.size;
+    final screenSize = MediaQuery.of(context).size;
     return InkWell(
       onTap: () {
         if (kDebugMode) {

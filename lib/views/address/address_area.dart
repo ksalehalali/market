@@ -10,7 +10,7 @@ import 'package:get_storage/get_storage.dart';
 import '../../controllers/address_location_controller.dart';
 import '../../controllers/lang_controller.dart';
 
-Widget addressHomeScreen(MediaQueryData screenSize) {
+Widget addressHomeScreen(BuildContext context, MediaQueryData screenSize) {
   final box = GetStorage();
   final LangController langController = Get.find();
 
@@ -31,14 +31,14 @@ Widget addressHomeScreen(MediaQueryData screenSize) {
             semanticsLabel: 'A red up arrow'),
       ),
       SizedBox(
-        width: screenSize.size.width * 0.1 - 34,
+        width: screenSize.size.width * 0.1 - 37,
       ),
       Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            width: Get.size.width - 74,
+            width: MediaQuery.of(context).size.width - 72.w,
            // height: Get.size.height *0.1-10.h,
             child: RichText(
                 text: TextSpan(children: [

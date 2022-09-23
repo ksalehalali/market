@@ -15,7 +15,6 @@ class FavoriteScreen extends StatefulWidget {
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
   final ProductsController productController = Get.find();
-  final screenSize = Get.size;
 
   clearCache() {
     DefaultCacheManager().emptyCache();
@@ -30,6 +29,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   }
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     return Container(
       color: myHexColor,
       child: SafeArea(
@@ -75,7 +76,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   SizedBox(
                       height: screenSize.height - 120,
                       width: screenSize.width,
-                      child: ListOneItem(productController.favProducts)),
+                      child: ListOneItem(context,productController.favProducts)),
                   SizedBox(
                     height: screenSize.height * 0.1,
                   )
