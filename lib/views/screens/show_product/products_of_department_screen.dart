@@ -112,7 +112,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                                   } else {
                                     Timer(200.milliseconds, () {
                                       if (categoriesController
-                                              .departments.length >
+                                          .departments.length >
                                           0) {
                                         productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
 
@@ -120,7 +120,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                                       } else {
                                         Timer(200.milliseconds, () {
                                           if (categoriesController
-                                                  .departments.length >
+                                              .departments.length >
                                               0) {
                                             productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
 
@@ -128,7 +128,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                                           } else {
                                             Timer(200.milliseconds, () {
                                               if (categoriesController
-                                                      .departments.length >
+                                                  .departments.length >
                                                   0) {
                                                 productController
                                                     .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
@@ -137,18 +137,18 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                                               } else {
                                                 Timer(200.milliseconds, () {
                                                   if (categoriesController
-                                                          .departments.length >
+                                                      .departments.length >
                                                       0) {
                                                     productController
                                                         .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
                                                     return;
                                                   } else {
                                                     Timer(2200.milliseconds,
-                                                        () {
-                                                      productController
-                                                          .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
-                                                      return;
-                                                    });
+                                                            () {
+                                                          productController
+                                                              .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
+                                                          return;
+                                                        });
                                                   }
                                                   return;
                                                 });
@@ -236,16 +236,16 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                                 top: 14.0, right: 12, left: 12, bottom: 12),
                             child: showOneList
                                 ? SvgPicture.asset('assets/icons/menu.svg',
-                                    color: Colors.grey[800],
-                                    height: 22.00,
-                                    width: 22.0,
-                                    semanticsLabel: 'A red up arrow')
+                                color: Colors.grey[800],
+                                height: 22.00,
+                                width: 22.0,
+                                semanticsLabel: 'A red up arrow')
                                 : SvgPicture.asset(
-                                    'assets/icons/menu_category.svg',
-                                    color: Colors.grey[800],
-                                    height: 24.00,
-                                    width: 24.0,
-                                    semanticsLabel: 'A red up arrow'),
+                                'assets/icons/menu_category.svg',
+                                color: Colors.grey[800],
+                                height: 24.00,
+                                width: 24.0,
+                                semanticsLabel: 'A red up arrow'),
                           ),
                         ),
                       ],
@@ -267,11 +267,11 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
               ),
               widget.haveChildren == true
                   ? SizedBox(
-                      width: screenSize.width.w,
-                      height: screenSize.height * 0.1 - 45.h,
-                      child: _buildDepartmentsOptions())
+                  width: screenSize.width.w,
+                  height: screenSize.height * 0.1 - 25.h,
+                  child: _buildDepartmentsOptions())
                   : Container(),
-             hasChildren2 ==true?Divider():Container(),
+              hasChildren2 ==true?Divider():Container(),
               hasChildren2 == true
                   ? SizedBox(
                   width: screenSize.width.w,
@@ -280,21 +280,21 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                   : Container(),
               Center(
                 child: Obx(
-                  () => productController.gotProductsByCat.value == false
+                      () => productController.gotProductsByCat.value == false
                       ? Lottie.asset(
-                          'assets/animations/30826-online-shopping.json',
-                          height: 2.h,
-                          width: 222.w,
-                          fit: BoxFit.cover,
-                          controller: _controller,
-                          onLoaded: (composition) {
-                            // Configure the AnimationController with the duration of the
-                            // Lottie file and start the animation.
-                            _controller
-                              ..duration = composition.duration
-                              ..forward();
-                          },
-                        )
+                    'assets/animations/30826-online-shopping.json',
+                    height: 2.h,
+                    width: 222.w,
+                    fit: BoxFit.cover,
+                    controller: _controller,
+                    onLoaded: (composition) {
+                      // Configure the AnimationController with the duration of the
+                      // Lottie file and start the animation.
+                      _controller
+                        ..duration = composition.duration
+                        ..forward();
+                    },
+                  )
                       : Container(),
                 ),
               ),
@@ -305,7 +305,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                 width: screenSize.width,
                 //height:hasChildren2 ==false ? screenSize.height * 0.8 -42.h:screenSize.height * 0.8 -77.h,
                 child: Obx(
-                  () => AnimatedOpacity(
+                      () => AnimatedOpacity(
                       duration: 600.milliseconds,
                       opacity: productController.opacity.value,
                       child: _buildDepartmentProductsList()),
@@ -324,18 +324,18 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
       scrollDirection: Axis.horizontal,
       slivers: [
         Obx(
-          () => SliverList(
+              () => SliverList(
             delegate: SliverChildBuilderDelegate(
-              (context, index) {
+                  (context, index) {
                 for (int i = 0;
-                    i < categoriesController.departments.length;
-                    i++) {
+                i < categoriesController.departments.length;
+                i++) {
                   if (i == 0) {
                     colors.add(myHexColor);
                     opacityColor.add(1.0);
                   } else {
                     opacityColor.add(0.7);
-                    colors.add(Colors.black);
+                    colors.add(Colors.white);
                   }
                 }
                 return InkWell(
@@ -347,7 +347,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                           opacityColor[index] = 1.0;
                         } else {
                           opacityColor[i] = 0.7;
-                          colors[i] = Colors.black;
+                          colors[i] = Colors.white;
                         }
                       }
                     });
@@ -375,30 +375,29 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                       border: Border.all(
                         width: 0.4,
                         color: colors[index].withOpacity(opacityColor[index]),
+
                       ),
-                      borderRadius: BorderRadius.circular(22),
+                      image:DecorationImage(image: NetworkImage("$baseURL/${categoriesController.departments[index]['image']}",scale: 1),fit: BoxFit.fill),
+                      borderRadius: BorderRadius.circular(4),
                     ),
                     child: Align(
-                      alignment: Alignment.center,
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            langController.appLocal=="ar"?categoriesController.departments[index]['name_AR'] :categoriesController.departments[index]['name_EN'],
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: colors[index]
-                                  .withOpacity(opacityColor[index]),
+                      alignment: Alignment.bottomCenter,
+                      child:
+                          Container(
+                            color:Colors.black.withOpacity(0.4),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 1),
+                              child: Text(
+                                langController.appLocal=="ar"?categoriesController.departments[index]['name_AR'] :categoriesController.departments[index]['name_EN'],
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: colors[index],
+                                ),
+                              ),
                             ),
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                        ],
-                      ),
+
                     ),
                   ),
                 );
@@ -455,31 +454,30 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 0.4,
-                        color: colors2[index].withOpacity(opacityColor2[index]),
+                        color: colors[index].withOpacity(opacityColor[index]),
+
                       ),
-                      borderRadius: BorderRadius.circular(22),
+                      image:DecorationImage(image: NetworkImage("$baseURL/${categoriesController.departments2[index]['image']}",scale: 1),fit: BoxFit.fill),
+                      borderRadius: BorderRadius.circular(4),
                     ),
                     child: Align(
-                      alignment: Alignment.center,
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            langController.appLocal=="ar" ?categoriesController.departments2[index]['name_AR']  :categoriesController.departments2[index]['name_EN'],
+                      alignment: Alignment.bottomCenter,
+                      child:
+                      Container(
+                        color:Colors.black.withOpacity(0.4),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 1),
+                          child: Text(
+                            langController.appLocal=="ar"?categoriesController.departments2[index]['name_AR'] :categoriesController.departments2[index]['name_EN'],
                             style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: colors2[index]
-                                  .withOpacity(opacityColor2[index]),
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w500,
+                              color: colors[index],
                             ),
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                        ],
+                        ),
                       ),
+
                     ),
                   ),
                 );
@@ -500,7 +498,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
       child: Container(
         color: Colors.grey[50],
         child: Obx(
-          () => GridView.builder(
+              () => GridView.builder(
             itemCount: productController.catProducts.length,
             physics:ScrollPhysics() ,
             scrollDirection: Axis.vertical,
@@ -525,16 +523,16 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                         PageRouteBuilder(
                           transitionDuration: const Duration(milliseconds: 500),
                           reverseTransitionDuration:
-                              const Duration(milliseconds: 500),
+                          const Duration(milliseconds: 500),
                           pageBuilder:
                               (context, animation, secondaryAnimation) =>
-                                  FadeTransition(
-                            opacity: animation,
-                            child: ProductDetails(
-                              product:
+                              FadeTransition(
+                                opacity: animation,
+                                child: ProductDetails(
+                                  product:
                                   productController.recommendedProducts[index],
-                            ),
-                          ),
+                                ),
+                              ),
                         ),
                       );
                     },
@@ -544,5 +542,4 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
         ),
       ),
     );
-  }
-}
+  }}
