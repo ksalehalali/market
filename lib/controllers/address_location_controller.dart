@@ -137,7 +137,7 @@ class AddressController extends GetxController {
     if (placeName.length > 1) {
       placePredictionList.clear();
       String autoCompleteUrl =
-          "https://api.mapbox.com/geocoding/v5/mapbox.places/$placeName.json?worldview=us&country=kw&access_token=$mapbox_token";
+          "https://api.mapbox.com/geocoding/v5/mapbox.places/$placeName.json?worldview=us&access_token=$mapbox_token";
 
       var res = await RequestAssistant.getRequest(autoCompleteUrl);
 

@@ -100,14 +100,15 @@ class _MyAppState extends State<MyApp> {
 
       _permissionGranted = permissionStatusReqResult;
     }
+    loc.LocationData loca = await location.getLocation();
+    print('loca ...............  $loca');
+    if(loca.latitude !=null){
+      addressController.areaLoc.value =
+          LatLng(loca.latitude!, loca.longitude!);
+    }else{
 
-    geo.Position position = await geo.Geolocator.getCurrentPosition(
-        desiredAccuracy: geo.LocationAccuracy.high,
-        forceAndroidLocationManager: true);
-    addressController.areaLoc.value =
-        LatLng(position.latitude, position.longitude);
+    }
 
-    print(position);
   }
   final screenSize = Get.size;
 

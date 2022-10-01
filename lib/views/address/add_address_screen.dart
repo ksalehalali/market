@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -26,7 +27,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 String? phoneNumber;
   @override
   Widget build(BuildContext context) {
-    final screenSize = Get.size;
+    final screenSize = MediaQuery.of(context).size;
 
     return Container(
       child: Scaffold(
@@ -34,7 +35,7 @@ String? phoneNumber;
             child: Column(
           children: [
             SizedBox(
-              height: screenSize.height * 0.1 - 30,
+              height: screenSize.height * 0.1 - 60,
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
@@ -64,7 +65,7 @@ String? phoneNumber;
               ),
             ),
             SizedBox(
-              height: screenSize.height * 0.1 - 60,
+              height: screenSize.height * 0.1 - 60.h,
             ),
             Padding(
               padding: const EdgeInsets.all(0.0),
@@ -87,13 +88,13 @@ String? phoneNumber;
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 170,
+                        width: 160.w,
                         child: Text(
                           addressController.aAddress.value,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                               color: Colors.black),
                         ),
@@ -102,13 +103,13 @@ String? phoneNumber;
                         height: 12,
                       ),
                       SizedBox(
-                        width: screenSize.width * 0.7,
+                        width: screenSize.width * 0.6.w,
                         child: Text(
                           addressController.bAddress.value,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                               color: Colors.black),
                         ),
@@ -124,8 +125,8 @@ String? phoneNumber;
                             builder: (context) =>  AddressOnMap(fromCart: widget.fromCart,)));
                       },
                       child: Container(
-                          height: 72,
-                          width: 72,
+                          height: 72.h,
+                          width: 72.w,
                           decoration: BoxDecoration(
                               image: const DecorationImage(
                                 fit: BoxFit.fill,
@@ -139,7 +140,7 @@ String? phoneNumber;
                             alignment: Alignment.bottomCenter,
                             children: [
                               Container(
-                                height: 18,
+                                height: 17.h,
                                 color: Colors.white.withOpacity(0.3),
                               ),
                               Text(
@@ -156,12 +157,86 @@ String? phoneNumber;
                 ],
               ),
             ),
-            Divider(
-              thickness: 1,
-              height: 20,
+
+            //
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Theme(
+                data: ThemeData.from(
+                  colorScheme: ColorScheme.fromSwatch(
+                      primarySwatch: primaryColorSwatch),
+                ),
+                child: SizedBox(
+                  width: screenSize.width * 0.7.w,
+                  height: 50,
+                  child: TextFormField(
+                    controller: _addresNameController,
+                    decoration: InputDecoration(
+                        focusColor: Colors.blue[700],
+                        labelStyle: TextStyle(fontSize: 14),
+                        hoverColor: Colors.blue[700],
+                        border: OutlineInputBorder(),
+                        label: Text('Area_txt'.tr)),
+                  ),
+                ),
+              ),
             ),
             SizedBox(
-              height: screenSize.height * 0.1,
+              height: screenSize.height * 0.1-60.h,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Theme(
+                data: ThemeData.from(
+                  colorScheme: ColorScheme.fromSwatch(
+                      primarySwatch: primaryColorSwatch),
+                ),
+                child: SizedBox(
+                  width: screenSize.width * 0.7.w,
+                  height: 50,
+                  child: TextFormField(
+                    controller: _addresNameController,
+                    decoration: InputDecoration(
+                        focusColor: Colors.blue[700],
+                        labelStyle: TextStyle(fontSize: 14),
+                        hoverColor: Colors.blue[700],
+                        border: OutlineInputBorder(),
+                        label: Text('Street_txt'.tr)),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: screenSize.height * 0.1-60.h,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Theme(
+                data: ThemeData.from(
+                  colorScheme: ColorScheme.fromSwatch(
+                      primarySwatch: primaryColorSwatch),
+                ),
+                child: SizedBox(
+                  width: screenSize.width * 0.7.w,
+                  height: 50,
+                  child: TextFormField(
+                    controller: _addresNameController,
+                    decoration: InputDecoration(
+                        focusColor: Colors.blue[700],
+                        labelStyle: TextStyle(fontSize: 14),
+                        hoverColor: Colors.blue[700],
+                        border: OutlineInputBorder(),
+                        label: Text('HouseOrBuilding_txt'.tr)),
+                  ),
+                ),
+              ),
+            ),
+            Divider(
+              thickness: 1,
+              height: 20.h,
+            ),
+            SizedBox(
+              height: screenSize.height * 0.1-50.h,
             ),
             Text(
               'Personal Information_txt'.tr,
@@ -182,11 +257,12 @@ String? phoneNumber;
                     padding: const EdgeInsets.symmetric(
                         horizontal: 12.0, vertical: 14),
                     child: SizedBox(
-                      width: screenSize.width * 0.8,
+                      width: screenSize.width * 0.7,
                       child: IntlPhoneField(
                         decoration: InputDecoration(
                           labelText: 'Phone_txt'.tr,
                           focusColor: myHexColor,
+                          labelStyle: TextStyle(fontSize: 14),
                           hoverColor: myHexColor,
                           border: OutlineInputBorder(
                             borderSide: BorderSide(color: myHexColor),
@@ -209,11 +285,12 @@ String? phoneNumber;
                             primarySwatch: primaryColorSwatch),
                       ),
                       child: SizedBox(
-                        width: screenSize.width * 0.8,
+                        width: screenSize.width * 0.7,
                         child: TextFormField(
                           controller: _addresNameController,
                           decoration: InputDecoration(
                               focusColor: Colors.blue[700],
+                              labelStyle: TextStyle(fontSize: 14),
                               hoverColor: Colors.blue[700],
                               border: OutlineInputBorder(),
                               label: Text('Name_txt'.tr)),
@@ -239,8 +316,8 @@ String? phoneNumber;
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                     style: ElevatedButton.styleFrom(
-                        maximumSize: Size(220, 300),
-                        minimumSize: Size(220, 40),
+                        maximumSize: Size(200, 300),
+                        minimumSize: Size(200, 40),
                         primary: myHexColor1,
                         onPrimary: Colors.white,
                         alignment: Alignment.center),

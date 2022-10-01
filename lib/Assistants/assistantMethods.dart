@@ -24,11 +24,22 @@ class AssistantMethods {
       // print('address :: ${res['features'][2]['place_name']}');
       // print('address :: ${res['features'][3]['place_name']}');
 
-      print('0 :: ${res['features'][0]}');
-      print('0 context :: ${res['features'][0]['context'][2]['text_en']}'); //المحافضة
-      print('0 context :: ${res['features'][0]['context'][1]['text_en']}'); //المنطقة
+      print('0 :::::: ${res['features'][0]}');
+      addressController.updatePinAddress('${res['features'][0]['place_name_en']}',res['features'][0]['text_en'],res['features'][0]['context'][0]['text_en']);
 
-      print('0 :: ${res['features'][0]['text_en']}'); //العنوان
+      if(res['features'][0]['context'].length >1){
+        //print('0 context :: ${res['features'][0]['context'][2]['text_en']}'); //المحافضة
+        addressController.updatePinAddress('${res['features'][0]['place_name_en']}',res['features'][0]['text_en'],res['features'][0]['context'][0]['text_en']);
+
+      }else if(res['features'][0]['context'].length >=1){
+        //print('0 context :: ${res['features'][0]['context'][1]['text_en']}'); //المنطقة
+
+        print('0 :: ${res['features'][0]['text_en']}'); //العنوان
+        placeAddress = res['features'][0]['place_name'];
+        box.write('address', res['features'][0]['place_name']);
+
+      }
+
 
       //print('0 :: ${res['features'][0]['place_name_en']}');
 
@@ -44,10 +55,6 @@ class AssistantMethods {
       // print('3 :: ${res['features'][3]['text']}');
       // print('3 :: ${res['features'][3]['place_name']}');
 
-
-      placeAddress = res['features'][0]['place_name'];
-      box.write('address', res['features'][0]['place_name']);
-      addressController.updatePinAddress('${res['features'][0]['context'][2]['text_en']} - ${res['features'][0]['context'][1]['text_en']} (${res['features'][0]['text_en']})',res['features'][0]['context'][2]['text_en'],res['features'][0]['context'][1]['text_en']);
     } else {
       print(res);
       print("get address failed");

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -70,7 +71,7 @@ class AddressOnMapState extends State<AddressOnMap> {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = Get.size;
+    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: SlidingUpPanel(
         controller: panelController,
@@ -90,11 +91,12 @@ class AddressOnMapState extends State<AddressOnMap> {
                       maxLines: 1,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ),
                 ),
               ),
+              SizedBox(height:12.h),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
@@ -102,11 +104,11 @@ class AddressOnMapState extends State<AddressOnMap> {
                 },
                 child: Text(
                   'CONFIRM LOCATION_txt'.tr,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                 ),
                 style: ElevatedButton.styleFrom(
-                    maximumSize: Size(220, 300),
-                    minimumSize: Size(220, 40),
+                    maximumSize: Size(210, 300),
+                    minimumSize: Size(210, 40),
                     primary: myHexColor1,
                     onPrimary: Colors.white,
                     alignment: Alignment.center),

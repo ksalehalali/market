@@ -109,6 +109,9 @@ Map<String,String> ar ={
   'CONFIRM LOCATION_txt':'تاكيد الموقع',
   'Location Information_txt':'معلومات الموقع',
   'SAVE ADDRESS_txt':'احفظ العنوان',
+  "Area_txt":'المنطقة',
+  "Street_txt":'الشارع',
+  "HouseOrBuilding_txt":'رقم المنزل او المبنى',
   //-
 
   'UnAvailable_txt':'غير متوفر',
@@ -306,6 +309,9 @@ Map<String,String> en ={
   'CONFIRM LOCATION_txt':'Confirm LOCATION',
   'Location Information_txt':'Location Information',
   'SAVE ADDRESS_txt':'SAVE ADDRESS',
+  "Area_txt":'Area Name',
+  "Street_txt":'Street Name',
+  "HouseOrBuilding_txt":'House or Building No',
   //-
 
   'UnAvailable_txt':'Unavailable',
