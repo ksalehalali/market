@@ -59,7 +59,7 @@ class AddressController extends GetxController {
     update();
   }
 
-  Future addNewAddress(String addressName, String phone) async {
+  Future addNewAddress(String addressName, String phone,String area,String street,String house) async {
     print('address === ${pinAddress.value}');
     print(' name $addressName ... phone :: ${phone}');
     var headers = {
@@ -73,7 +73,10 @@ class AddressController extends GetxController {
       "Latitude": myCurrentLoc.value.latitude,
       "Address": pinAddress.value.toString(),
       "NameAddress": addressName,
-      "phone": phone
+      "phone": phone,
+      'Arera':area,
+      'Street':street,
+      'House':house
     });
     request.headers.addAll(headers);
 

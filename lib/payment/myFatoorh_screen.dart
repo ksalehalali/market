@@ -6,6 +6,7 @@ import 'package:my_fatoorah/my_fatoorah.dart';
 import '../Assistants/globals.dart';
 import '../controllers/cart_controller.dart';
 import '../controllers/lang_controller.dart';
+import '../views/widgets/cupertino-dialog-message.dart';
 
 class MyFatoorhScreen extends StatefulWidget {
   const MyFatoorhScreen({Key? key}) : super(key: key);
@@ -27,9 +28,14 @@ class _MyFatoorhScreenState extends State<MyFatoorhScreen> {
             print('-------------------------------...');
             print(response);
             print(response.status);
-            cartController.addNewOrder(response.paymentId!, 'Card', cartController.fullPrice.value.toDouble(), 1,langController.langCode);
-            //cartController.addNewOrder('0','Cash',cartController.fullPrice.value.toDouble(),0);
-          },
+            var addOrder = cartController.addNewOrder(response.paymentId!, 'Card', cartController.fullPrice.value.toDouble(), 1,langController.langCode);
+          if(addOrder == true) {
+
+          }else{
+            showCupertinoDialogBox(context,'Something wont wrong','Please check and try again.');
+            return;
+          }
+            },
           successChild: Column(
             children: [
               Icon(

@@ -34,7 +34,7 @@ class CartController extends GetxController with BaseController {
   var gotOrderDetails =false.obs;
 
 
-  Future addToCart(String prodId, colorId, sizeId, langCode) async {
+  Future<bool> addToCart(String prodId, colorId, sizeId, langCode) async {
     print('prodId: $prodId, colorId: $colorId, sizeId: $sizeId ... ');
 
     var headers = {
@@ -52,8 +52,10 @@ class CartController extends GetxController with BaseController {
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
       getMyCartProds(true,langCode);
+      return true;
     } else {
       print(response.reasonPhrase);
+      return false;
     }
   }
 
@@ -182,7 +184,7 @@ class CartController extends GetxController with BaseController {
 
   final storage = GetStorage();
 
-  Future addNewOrder(
+  Future<bool> addNewOrder(
       String invoiceId, String paymentGateway, double invoiceValue,int payType,String langCode) async {
     processing.value =true;
     String addressId = storage.read("idAddressSelected");
@@ -222,14 +224,17 @@ class CartController extends GetxController with BaseController {
       lastOrder.invoiceId = invoiceId;
       lastOrder.payment = 0;
       await getOneOrder(data['message'],langCode);
-      Get.offAll(OrderSummary(fromOrdersList: false,));
+      Get.offAll(OrderSummary(fromOrdersList: false, Order:oneOrderDetails));
       print(" order done .--- ${data}");
       processing.value =false;
       hideLoading();
+      return true;
     } else {
       print('error add order');
       print(response.reasonPhrase);
       print(response.statusCode);
+      hideLoading();
+      return false;
     }
   }
 

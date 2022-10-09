@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:market/views/screens/auth/reset_password.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Assistants/globals.dart';
@@ -12,6 +13,7 @@ import '../../../controllers/lang_controller.dart';
 import '../../../controllers/register_controller.dart';
 import '../account/account.dart';
 import '../main_screen.dart';
+import 'confirm_number.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -441,18 +443,23 @@ class _RegisterState extends State<Register> {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ConfirmNumber()));
+                            },
                             child: Container(
                               alignment: Alignment.topRight,
                               child: Text(
                                 "Forgot Password ?_txt".tr,
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline
+                                ),
                               ),
                             ),
                           ),
                         ),
-                        // SizedBox(
-                        //   height: 32.h,
-                        // ),
+                        SizedBox(
+                          height: 4.h,
+                        ),
                       ],
                     ),
                   ):Container(),
@@ -462,9 +469,9 @@ class _RegisterState extends State<Register> {
                 Obx(
                       () =>
                       showSignUp.value ?AnimatedContainer(
-                        height: !showSignUp.value ?0.0  : screenSize.height*0.6-30,
+                        height: !showSignUp.value ?0.0  : screenSize.height*0.6-20,
                         width: !showSignUp.value ? 0.0 : screenSize.width,
-                            duration: const Duration(milliseconds: 300),
+                            duration: const Duration(milliseconds: 200),
                       child:
                       AnimatedOpacity(
                         opacity: !showSignUp.value ?0.0  : 1.0,

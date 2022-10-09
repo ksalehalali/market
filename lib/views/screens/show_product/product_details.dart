@@ -1443,7 +1443,7 @@ class _ProductDetailsState extends State<ProductDetails>
                               decoration:
                                   productController.sizes[currentSizeIndex]
                                               ['color'][index]['qyt'] ==0
-                                      ? TextDecoration.none
+                                      ? TextDecoration.lineThrough
                                       : TextDecoration.none,
                               fontSize: 13),
                         ),
@@ -1520,7 +1520,7 @@ class _ProductDetailsState extends State<ProductDetails>
         children: [
           Expanded(
             child: InkWell(
-                onTap: () {
+                onTap: () async{
                   bool available = false;
                   if(registerController.isLoggedIn.value ==false){
                     showDialogBoxNotLoggedIn();
@@ -1580,240 +1580,249 @@ class _ProductDetailsState extends State<ProductDetails>
                       });
                     });
 
-                    cartController
-                        .addToCart(
+                    var addToCart =await cartController.addToCart(
                             productController.productData['id'],
                             productController.currentColorIdSelected,
                             productController.currentSizeIdSelected,
-                            langController.appLocal)
-                        .then(
-                          (value) => showGeneralDialog(
-                              context: context,
-                              barrierDismissible: true,
-                              transitionDuration: 500.milliseconds,
-                              barrierLabel:
-                                  MaterialLocalizations.of(context).dialogLabel,
-                              barrierColor: Colors.black.withOpacity(0.5),
-                              pageBuilder: (context, _, __) {
-                                return Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: screenSize.width,
-                                      color: Colors.white,
-                                      child: Card(
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                              height: 55.h,
-                                            ),
-                                            Container(
-                                              margin: EdgeInsets.only(
-                                                  left: 10.w, right: 10.w),
-                                              child: Row(
+                            langController.appLocal);
+                    if(addToCart == true){
+                      showGeneralDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          transitionDuration: 500.milliseconds,
+                          barrierLabel:
+                          MaterialLocalizations.of(context).dialogLabel,
+                          barrierColor: Colors.black.withOpacity(0.5),
+                          pageBuilder: (context, _, __) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: screenSize.width,
+                                  color: Colors.white,
+                                  child: Card(
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 55.h,
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                              left: 10.w, right: 10.w),
+                                          child: Row(
+                                            children: [
+                                              SvgPicture.asset(
+                                                'assets/icons/done.svg',
+                                                width: 34.w,
+                                                height: 34.h,
+                                                color: myHexColor,
+                                              ),
+                                              SizedBox(width: 4.w,),
+                                              Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment
+                                                    .center,
                                                 children: [
-                                                  SvgPicture.asset(
-                                                    'assets/icons/done.svg',
-                                                    width: 34.w,
-                                                    height: 34.h,
-                                                    color: myHexColor,
-                                                  ),
-                                                  SizedBox(width: 4.w,),
                                                   Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
+                                                    CrossAxisAlignment
+                                                        .center,
                                                     children: [
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    left:
-                                                                        4.0.w),
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                SizedBox(
-                                                                  width: screenSize
-                                                                          .width *
-                                                                      0.4.w,
-                                                                  child: Text(
-                                                                    langController.appLocal=='en' ?productController
-                                                                        .productDetails.en_name!
-                                                                        .toUpperCase():productController
-                                                                        .productDetails.ar_name!
-                                                                        .toUpperCase(),
-                                                                    maxLines: 1,
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
-                                                                    style: TextStyle(
-                                                                        fontSize: 14
-                                                                            .sp,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w700,
-                                                                        color: Colors
-                                                                            .black87),
-                                                                  ),
-                                                                ),
-                                                                Text(
-                                                                  'Added to cart _txt'.tr,
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          14.sp,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w700,
-                                                                      color: Colors
-                                                                          .black87),
-                                                                ),
-                                                              ],
+                                                      Padding(
+                                                        padding:
+                                                        EdgeInsets.only(
+                                                            left:
+                                                            4.0.w),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                          children: [
+                                                            SizedBox(
+                                                              width: screenSize
+                                                                  .width *
+                                                                  0.4.w,
+                                                              child: Text(
+                                                                langController.appLocal=='en' ?productController
+                                                                    .productDetails.en_name!
+                                                                    .toUpperCase():productController
+                                                                    .productDetails.ar_name!
+                                                                    .toUpperCase(),
+                                                                maxLines: 1,
+                                                                overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                                style: TextStyle(
+                                                                    fontSize: 14
+                                                                        .sp,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w700,
+                                                                    color: Colors
+                                                                        .black87),
+                                                              ),
                                                             ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    left:
-                                                                        80.0.w),
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  'Cart Total_txt'.tr,
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          14.sp,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w700,
-                                                                      color: Colors
-                                                                          .black87),
-                                                                ),
-                                                                Obx(
+                                                            Text(
+                                                              'Added to cart _txt'.tr,
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                  14.sp,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                                  color: Colors
+                                                                      .black87),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                        EdgeInsets.only(
+                                                            left:
+                                                            80.0.w),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                          children: [
+                                                            Text(
+                                                              'Cart Total_txt'.tr,
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                  14.sp,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                                  color: Colors
+                                                                      .black87),
+                                                            ),
+                                                            Obx(
                                                                   () => Text(
-                                                                    cartController
-                                                                        .fullPrice
-                                                                        .value
-                                                                        .toStringAsFixed(
-                                                                            2),
-                                                                    style: TextStyle(
-                                                                        fontSize: 14
-                                                                            .sp,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w700,
-                                                                        color: Colors
-                                                                            .black87),
-                                                                  ),
-                                                                ),
-                                                              ],
+                                                                cartController
+                                                                    .fullPrice
+                                                                    .value
+                                                                    .toStringAsFixed(
+                                                                    2),
+                                                                style: TextStyle(
+                                                                    fontSize: 14
+                                                                        .sp,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w700,
+                                                                    color: Colors
+                                                                        .black87),
+                                                              ),
                                                             ),
-                                                          ),
-                                                        ],
+                                                          ],
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
                                                 ],
                                               ),
-                                            ),
-                                            SizedBox(
-                                              height: 12.h,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceAround,
-                                              children: [
-                                                ElevatedButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  style:
-                                                      ElevatedButton.styleFrom(maximumSize: Size(220, 220), minimumSize: Size(180, 34),
-                                                          primary:
-                                                              Colors.green[800],
-                                                          onPrimary:
-                                                              Colors.green[900],
-                                                          alignment:
-                                                              Alignment.center),
-                                                  child: Text(
-                                                    'CONTINUE SHOPPING_txt'.tr,
-                                                    maxLines: 1,
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        color: Colors.white),
-                                                  ),
-                                                ),
-                                                ElevatedButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context)
-                                                        .pushReplacement(
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        const Cart()));
-                                                  },
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                          maximumSize:
-                                                              Size(200, 220),
-                                                          minimumSize:
-                                                              Size(180, 34),
-                                                          primary: myHexColor,
-                                                          onPrimary:
-                                                              Colors.white,
-                                                          alignment:
-                                                              Alignment.center),
-                                                  child:  Text(
-                                                    'CHECKOUT_txt'.tr,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        color: Colors.white),
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  ],
-                                );
-                              },
-                              transitionBuilder: (context, animation,
-                                  secondaryAnimation, child) {
-                                return SlideTransition(
-                                  position: CurvedAnimation(
-                                    parent: animation,
-                                    curve: Curves.easeInOutCubic,
-                                  ).drive(
-                                    Tween<Offset>(
-                                        begin: const Offset(0, -1.0),
-                                        end: Offset.zero),
+                                        SizedBox(
+                                          height: 12.h,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          children: [
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              style:
+                                              ElevatedButton.styleFrom(maximumSize: Size(220, 220), minimumSize: Size(180, 34),
+                                                  primary: Colors.green[800],
+                                                  onPrimary: Colors.green[900],
+                                                  alignment: Alignment.center),
+                                              child: Text(
+                                                'CONTINUE SHOPPING_txt'.tr,
+                                                maxLines: 1,
+                                                style: const TextStyle(
+                                                    fontWeight:
+                                                    FontWeight.w700,
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.of(context)
+                                                    .pushReplacement(
+                                                    MaterialPageRoute(
+                                                        builder:
+                                                            (context) =>
+                                                        const Cart()));
+                                              },
+                                              style:
+                                              ElevatedButton.styleFrom(
+                                                  maximumSize:
+                                                  Size(200, 220),
+                                                  minimumSize:
+                                                  Size(180, 34),
+                                                  primary: myHexColor,
+                                                  onPrimary:
+                                                  Colors.white,
+                                                  alignment:
+                                                  Alignment.center),
+                                              child:  Text(
+                                                'CHECKOUT_txt'.tr,
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                    FontWeight.w700,
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                  child: child,
-                                );
-                              }),
-                        );
-                  } else {
+                                )
+                              ],
+                            );
+                          },
+                          transitionBuilder: (context, animation,
+                              secondaryAnimation, child) {
+                            return SlideTransition(
+                              position: CurvedAnimation(
+                                parent: animation,
+                                curve: Curves.easeInOutCubic,
+                              ).drive(
+                                Tween<Offset>(
+                                    begin: const Offset(0, -1.0),
+                                    end: Offset.zero),
+                              ),
+                              child: child,
+                            );
+                          });
+                    }else{
+                      Get.snackbar(
+                          'UnAvailable_txt'.tr, 'this color or size is not available_txt'.tr,
+                          snackPosition: SnackPosition.TOP,
+                          snackStyle: SnackStyle.FLOATING,
+                          titleText: Text(
+                            'UnAvailable_txt'.tr,
+                            style: TextStyle(
+                                fontSize: 17, fontWeight: FontWeight.bold),
+                          ),messageText:Text(
+                        'this color or size is not available_txt'.tr,
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w500,color: Colors.black54),
+                      ) );
+                    }
+
+                  }else{
                     Get.snackbar(
                         'UnAvailable_txt'.tr, 'this color or size is not available_txt'.tr,
                         snackPosition: SnackPosition.TOP,
@@ -1828,6 +1837,8 @@ class _ProductDetailsState extends State<ProductDetails>
                           fontSize: 15, fontWeight: FontWeight.w500,color: Colors.black54),
                     ) );
                   }
+
+
                 },
                 child: Container(
                   height: 54.h,

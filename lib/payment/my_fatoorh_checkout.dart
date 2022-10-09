@@ -43,8 +43,12 @@ class MyFatoorahCheckOut with BaseController {
   print(response.url);
   if(!response.isSuccess){
     print(response.paymentId);
-    cartController.addNewOrder(response.paymentId!, 'Card', cartController.fullPrice.value.toDouble(), 1,langController.langCode);
-    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>MainScreen(index: 0)), (route) => false);
+    var addOrder = cartController.addNewOrder(response.paymentId!, 'Card', cartController.fullPrice.value.toDouble(), 1,langController.langCode);
+    if(addOrder ==true){
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>MainScreen(index: 0)), (route) => false);
+    }else{
+
+    }
   }else{
 
   }

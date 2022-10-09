@@ -13,7 +13,8 @@ import 'order_timeline.dart';
 
 class OrderSummary extends StatefulWidget {
   final bool fromOrdersList;
-   OrderSummary({Key? key,required this.fromOrdersList}) : super(key: key);
+  final Map Order;
+   OrderSummary({Key? key,required this.fromOrdersList, required this.Order }) : super(key: key);
 
   @override
   State<OrderSummary> createState() => _OrderSummaryState();
@@ -246,7 +247,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                      SizedBox(
                        width: screenSize.width -110,
                        child: SelectableText(
-                         cartController.oneOrderDetails['orderNumber'],
+                         widget.Order['orderNumber'],
                          maxLines: 1,
                          scrollPhysics: ScrollPhysics(),
                          style: TextStyle(
@@ -277,7 +278,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                     SizedBox(
                       height: 8.0,
                     ),
-                    Text('Address : \n${cartController.oneOrderDetails['address']}',textAlign: TextAlign.start,
+                    Text('Address : \n${widget.Order['address']}',textAlign: TextAlign.start,
                       style: TextStyle(
                           fontSize: 13,
                           color: Colors.grey[900],
@@ -301,7 +302,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                     const SizedBox(
                       height: 12.0,
                     ),
-                    lastOrder.payment == 0 ?Row(
+                    widget.Order['paymentMethod'] == 0 ?Row(
                       children: [
                         SvgPicture.asset('assets/icons/cash2.svg',
                             //color: Colors.grey[600],
@@ -365,7 +366,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                               fontWeight: FontWeight.w700
                           ),),
                         Spacer(),
-                        Text('QAR ${cartController.oneOrderDetails['total']}',textAlign: TextAlign.start,
+                        Text('QAR ${widget.Order['total']}',textAlign: TextAlign.start,
                           style: TextStyle(
                               fontSize: 13,
                               color: Colors.grey[700],
@@ -408,7 +409,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                               fontWeight: FontWeight.w700
                           ),),
                         Spacer(),
-                        Text('QAR ${cartController.oneOrderDetails['total']}',textAlign: TextAlign.start,
+                        Text('QAR ${widget.Order['total']}',textAlign: TextAlign.start,
                           style: TextStyle(
                               fontSize: 13,
                               color: Colors.grey[900],
@@ -454,8 +455,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                () => SliverList(
              delegate: SliverChildBuilderDelegate(
                    (context, index) {
-                 var price = cartController.oneOrderDetails['listProduct'][index]["price"] *
-                     cartController.oneOrderDetails['listProduct'][index]["offer"] /
+                 var price = widget.Order['listProduct'][index]["price"] *
+                     widget.Order['listProduct'][index]["offer"] /
                      100;
                  return InkWell(
                    onTap: () {
@@ -488,7 +489,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                    child: Container(
                                      width: 80,
                                      child: Image.network(
-                                       "$baseURL/${cartController.oneOrderDetails['listProduct'][index]['image']}",
+                                       "$baseURL/${widget.Order['listProduct'][index]['image']}",
                                        height: 122,
                                        fit: BoxFit.fill,
                                      ),
@@ -508,7 +509,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                                      children: [
                                        Text(
-                                         "${cartController.oneOrderDetails['listProduct'][index]['product']}",
+                                         "${widget.Order['listProduct'][index]['product']}",
                                          style: const TextStyle(
                                              color: Colors.black54,
                                              fontWeight: FontWeight.bold,
@@ -524,7 +525,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                            children: [
                                              Expanded(
                                                child: Text(
-                                                 "${cartController.oneOrderDetails['listProduct'][index]["price"]} QAR".toUpperCase(),
+                                                 "${widget.Order['listProduct'][index]["price"]} QAR".toUpperCase(),
                                                  overflow: TextOverflow.ellipsis,
                                                  maxLines: 1,
                                                  textAlign: TextAlign.left,
@@ -539,7 +540,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                width: 7.0,
                                              ),
                                              Text(
-                                               "Discount ${cartController.oneOrderDetails['listProduct'][index]["offer"]}%",
+                                               "Discount ${widget.Order['listProduct'][index]["offer"]}%",
                                                overflow: TextOverflow.ellipsis,
                                                maxLines: 1,
                                                textAlign: TextAlign.left,
@@ -552,7 +553,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                          ),
                                        ),
                                        Text(
-                                         "${cartController.oneOrderDetails['listProduct'][index]["price"] - price} QAR",
+                                         "${widget.Order['listProduct'][index]["price"] - price} QAR",
                                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                        ),
 
@@ -576,7 +577,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                  );
 
                },
-               childCount: cartController.oneOrderDetails['listProduct'].length,
+               childCount: widget.Order['listProduct'].length,
                semanticIndexOffset: 2,
              ),
            ),

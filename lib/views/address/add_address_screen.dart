@@ -23,6 +23,10 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 
   final AddressController addressController = Get.find();
   TextEditingController _addresNameController = TextEditingController();
+  TextEditingController _areaController = TextEditingController();
+  TextEditingController _streetNameController = TextEditingController();
+  TextEditingController _houseNameController = TextEditingController();
+
   final LangController langController = Get.find();
 String? phoneNumber;
   @override
@@ -170,7 +174,7 @@ String? phoneNumber;
                   width: screenSize.width * 0.7.w,
                   height: 50,
                   child: TextFormField(
-                    controller: _addresNameController,
+                    controller: _areaController,
                     decoration: InputDecoration(
                         focusColor: Colors.blue[700],
                         labelStyle: TextStyle(fontSize: 14),
@@ -195,7 +199,7 @@ String? phoneNumber;
                   width: screenSize.width * 0.7.w,
                   height: 50,
                   child: TextFormField(
-                    controller: _addresNameController,
+                    controller: _streetNameController,
                     decoration: InputDecoration(
                         focusColor: Colors.blue[700],
                         labelStyle: TextStyle(fontSize: 14),
@@ -220,7 +224,7 @@ String? phoneNumber;
                   width: screenSize.width * 0.7.w,
                   height: 50,
                   child: TextFormField(
-                    controller: _addresNameController,
+                    controller: _houseNameController,
                     decoration: InputDecoration(
                         focusColor: Colors.blue[700],
                         labelStyle: TextStyle(fontSize: 14),
@@ -304,7 +308,7 @@ String? phoneNumber;
                   ElevatedButton(
                     onPressed: () {
                       addressController.addNewAddress(
-                          _addresNameController.text, phoneNumber!);
+                          _addresNameController.text, phoneNumber!,_areaController.text,_streetNameController.text,_houseNameController.text);
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

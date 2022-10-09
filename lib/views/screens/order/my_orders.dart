@@ -153,7 +153,7 @@ class _MyOrdersState extends State<MyOrders> {
                                     .myOrders[indexA]['result']['id'],langController.appLocal);
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => OrderSummary(
-                                          fromOrdersList: true,
+                                          fromOrdersList: true, Order: cartController.oneOrderDetails,
                                         )));
                               },
                               child: Padding(
