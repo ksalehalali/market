@@ -59,7 +59,12 @@ class AddressController extends GetxController {
     update();
   }
 
-  Future addNewAddress(String addressName, String phone,String area,String street,String house) async {
+  Future addNewAddress(
+      {required String addressName,
+      required String phone,
+      required String area,
+      required String street,
+      required String house}) async {
     print('address === ${pinAddress.value}');
     print(' name $addressName ... phone :: ${phone}');
     var headers = {
@@ -74,8 +79,8 @@ class AddressController extends GetxController {
       "Address": pinAddress.value.toString(),
       "NameAddress": addressName,
       "phone": phone,
-      'Arera':area,
-      'Street':street,
+      'Area':area,
+      'Strret':street,
       'House':house
     });
     request.headers.addAll(headers);
@@ -126,11 +131,14 @@ class AddressController extends GetxController {
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
+    var jsonRes = jsonDecode(await response.stream.bytesToString());
+    var data = jsonRes['description'];
+    print(jsonRes);
+    if (jsonRes['status'] == true) {
       print(await response.stream.bytesToString());
       getMyAddresses();
     } else {
+      Get.snackbar('Wrong','Delete not done');
       print(response.reasonPhrase);
     }
   }

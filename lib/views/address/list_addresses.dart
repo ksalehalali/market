@@ -64,7 +64,7 @@ class _ListAddressesState extends State<ListAddresses> {
                                       builder: (context) => const Cart()));
                             }else if(widget.fromAccount ==true){
                               Navigator.of(context).pop();
-                            }else{
+                            }else if(widget.fromAccount ==false && widget.fromCart ==false){
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) => const MainScreen(index: 0)));
@@ -285,7 +285,7 @@ class _ListAddressesState extends State<ListAddresses> {
                               children: [
                                 SizedBox(
                                   width: screenSize.width * 0.3,
-                                  child: Text(' '.tr,
+                                  child: Text('Full auto address'.tr,
                                       style: TextStyle(
                                           fontSize: 13,
                                           color: Colors.grey[700])),
@@ -295,6 +295,76 @@ class _ListAddressesState extends State<ListAddresses> {
                                   child: Text(
                                       addressController.myAddressData[index]
                                           ['address'],
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.grey[700])),
+                                ),
+                              ],
+                            ),
+                            Divider(
+                              thickness: 2,
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: screenSize.width * 0.3,
+                                  child: Text('area'.tr,
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.grey[700])),
+                                ),
+                                SizedBox(
+                                  width: screenSize.width * 0.5,
+                                  child: Text(
+                                      addressController.myAddressData[index]
+                                      ['area']??'',
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.grey[700])),
+                                ),
+                              ],
+                            ), Divider(
+                              thickness: 2,
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: screenSize.width * 0.3,
+                                  child: Text('Street'.tr,
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.grey[700])),
+                                ),
+                                SizedBox(
+                                  width: screenSize.width * 0.5,
+                                  child: Text(
+                                      addressController.myAddressData[index]
+                                      ['strret']??'',
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.grey[700])),
+                                ),
+                              ],
+                            ), Divider(
+                              thickness: 2,
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: screenSize.width * 0.3,
+                                  child: Text('House'.tr,
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.grey[700])),
+                                ),
+                                SizedBox(
+                                  width: screenSize.width * 0.5,
+                                  child: Text(
+                                      addressController.myAddressData[index]
+                                      ['house']??'',
                                       style: TextStyle(
                                           fontSize: 13,
                                           color: Colors.grey[700])),

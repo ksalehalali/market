@@ -308,7 +308,7 @@ String? phoneNumber;
                   ElevatedButton(
                     onPressed: () {
                       addressController.addNewAddress(
-                          _addresNameController.text, phoneNumber!,_areaController.text,_streetNameController.text,_houseNameController.text);
+                          addressName:_addresNameController.text,phone: phoneNumber!,area:_areaController.text,street:_streetNameController.text,house:_houseNameController.text);
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
