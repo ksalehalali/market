@@ -106,7 +106,7 @@ class ProductItemCard extends StatelessWidget {
                       //cacheManager: customCacheManager,
                       key: UniqueKey(),
                       imageUrl: '$baseURL/${product.imageUrl}',
-                      height: screenSize.height * 0.2 + 25.h,
+                      height: screenSize.height * 0.2 + 55.h,
                       width:from =='dep' ?  screenSize.width * 0.4 +30.w:screenSize.width * 0.4.w,
                       maxHeightDiskCache: 110,
                       fit: BoxFit.fill,
@@ -189,7 +189,7 @@ class ProductItemCard extends StatelessWidget {
                   ),
                 )),
             Positioned(
-              top: screenSize.height * 0.3 - 56.h,
+              top: screenSize.height * 0.3 - 22.h,
               child: InkWell(
                 onTap: () {
                   productController.getOneProductDetails(product.id!);

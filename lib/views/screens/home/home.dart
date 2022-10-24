@@ -362,7 +362,7 @@ Widget _buildCrosolImages(){
   Widget _buildHorizontalListOfRecommendedProducts() {
     final screenSize = MediaQuery.of(context).size;
     return SizedBox(
-        height:langController.appLocal =="ar"? screenSize.height * 0.4 - 16.h:screenSize.height * 0.4 - 26.h,
+        height:langController.appLocal =="ar"? screenSize.height * 0.4+10.h:screenSize.height * 0.4+10.h,
         child: Padding(
           padding:  EdgeInsets.only(right: 5.0.w),
           child: CustomScrollView(
@@ -411,7 +411,7 @@ Widget _buildCrosolImages(){
   Widget _buildHorizontalListOfOffersProducts() {
     final screenSize = MediaQuery.of(context).size;
     return SizedBox(
-        height:langController.appLocal =="ar"? screenSize.height * 0.4 - 16.h:screenSize.height * 0.4 - 26.h,
+        height:langController.appLocal =="ar"? screenSize.height * 0.4+10.h:screenSize.height * 0.4+10.h,
         child: Padding(
           padding:  EdgeInsets.only(right: 5.0.w),
           child: CustomScrollView(

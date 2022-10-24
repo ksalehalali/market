@@ -268,14 +268,14 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
               widget.haveChildren == true
                   ? SizedBox(
                   width: screenSize.width.w,
-                  height: screenSize.height * 0.1 - 25.h,
-                  child: _buildDepartmentsOptions())
+                  height: screenSize.height * 0.1+12.h,
+                  child: _buildDepartmentsOptions(screenSize))
                   : Container(),
               hasChildren2 ==true?Divider():Container(),
               hasChildren2 == true
                   ? SizedBox(
                   width: screenSize.width.w,
-                  height: screenSize.height * 0.1 - 45.h,
+                  height: screenSize.height * 0.1 - 35.h,
                   child: _buildDepartmentsOptionsOfDeps())
                   : Container(),
               Center(
@@ -303,13 +303,9 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
               ),
               SizedBox(
                 width: screenSize.width,
-                //height:hasChildren2 ==false ? screenSize.height * 0.8 -42.h:screenSize.height * 0.8 -77.h,
-                child: Obx(
-                      () => AnimatedOpacity(
-                      duration: 600.milliseconds,
-                      opacity: productController.opacity.value,
-                      child: _buildDepartmentProductsList()),
-                ),
+                height:screenSize.height * 0.6.h,
+                child: _buildDepartmentProductsList(),
+
               ),
 
             ],
@@ -317,9 +313,11 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
         ),
       ),
     );
+
+
   }
 
-  Widget _buildDepartmentsOptions() {
+  Widget _buildDepartmentsOptions(screenSize) {
     return CustomScrollView(
       scrollDirection: Axis.horizontal,
       slivers: [
@@ -347,7 +345,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                           opacityColor[index] = 1.0;
                         } else {
                           opacityColor[i] = 0.7;
-                          colors[i] = Colors.white;
+                          colors[i] = Colors.black87;
                         }
                       }
                     });
@@ -368,37 +366,32 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                       });
                     }
                   },
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
-                    padding: EdgeInsets.zero,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 0.4,
-                        color: colors[index].withOpacity(opacityColor[index]),
+                  child:
 
-                      ),
-                      image:DecorationImage(image: NetworkImage("$baseURL/${categoriesController.departments[index]['image']}",scale: 1),fit: BoxFit.fill),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child:
-                          Container(
-                            color:Colors.black.withOpacity(0.4),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 1),
-                              child: Text(
-                                langController.appLocal=="ar"?categoriesController.departments[index]['name_AR'] :categoriesController.departments[index]['name_EN'],
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: colors[index],
-                                ),
-                              ),
-                            ),
+                  Column(
+                    children: <Widget>[
+                      Container(
+                        height: screenSize.height *0.1 -16,
+                        width:  screenSize.height *0.1 -16,
+                        padding:  EdgeInsets.all(0.1),
+                        decoration:  BoxDecoration(
+                          color: myHexColor,
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
+                          child: Image.network(
+                            "$baseURL/${categoriesController.departments[index]['image']}",
+                            fit: BoxFit.fill,
                           ),
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      SizedBox(
+                          width: screenSize.width *0.2+10,
 
-                    ),
+                          child: Text(langController.appLocal=="ar"?categoriesController.departments[index]['name_AR'] :categoriesController.departments[index]['name_EN'],overflow: TextOverflow.fade,style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color:  colors[index],),textAlign: TextAlign.center,))
+                    ],
                   ),
                 );
               },
@@ -457,21 +450,17 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                         color: colors[index].withOpacity(opacityColor[index]),
 
                       ),
-                      image:DecorationImage(image: NetworkImage("$baseURL/${categoriesController.departments2[index]['image']}",scale: 1),fit: BoxFit.fill),
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(50),
                     ),
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child:
-                      Container(
-                        color:Colors.black.withOpacity(0.4),
+                    child: Center(
+                      child: Container(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 1),
+                          padding: const EdgeInsets.symmetric(horizontal: 13.0,),
                           child: Text(
                             langController.appLocal=="ar"?categoriesController.departments2[index]['name_AR'] :categoriesController.departments2[index]['name_EN'],
                             style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w400,
                               color: colors[index],
                             ),
                           ),
@@ -529,8 +518,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                               FadeTransition(
                                 opacity: animation,
                                 child: ProductDetails(
-                                  product:
-                                  productController.recommendedProducts[index],
+                                  product: productController.recommendedProducts[index],
                                 ),
                               ),
                         ),
