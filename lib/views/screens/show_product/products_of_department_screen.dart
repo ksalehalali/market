@@ -263,7 +263,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                 ),
               ),
               const SizedBox(
-                height: 4.0,
+                height: 8.0,
               ),
               widget.haveChildren == true
                   ? SizedBox(
@@ -275,31 +275,35 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
               hasChildren2 == true
                   ? SizedBox(
                   width: screenSize.width.w,
-                  height: screenSize.height * 0.1 - 35.h,
+                  height: screenSize.height * 0.1 - 38.h,
                   child: _buildDepartmentsOptionsOfDeps())
                   : Container(),
-              Center(
-                child: Obx(
-                      () => productController.gotProductsByCat.value == false
-                      ? Lottie.asset(
-                    'assets/animations/30826-online-shopping.json',
-                    height: 2.h,
-                    width: 222.w,
-                    fit: BoxFit.cover,
-                    controller: _controller,
-                    onLoaded: (composition) {
-                      // Configure the AnimationController with the duration of the
-                      // Lottie file and start the animation.
-                      _controller
-                        ..duration = composition.duration
-                        ..forward();
-                    },
-                  )
-                      : Container(),
-                ),
-              ),
+              // productController.gotProductsByCat.value == false
+              //     ?Padding(
+              //   padding: const EdgeInsets.only(top: 8.0),
+              //   child: Center(
+              //     child: Obx(
+              //           () => productController.gotProductsByCat.value == false
+              //           ? Lottie.asset(
+              //         'assets/animations/30826-online-shopping.json',
+              //         height: 42.h,
+              //         width: 222.w,
+              //         fit: BoxFit.cover,
+              //         controller: _controller,
+              //         onLoaded: (composition) {
+              //           // Configure the AnimationController with the duration of the
+              //           // Lottie file and start the animation.
+              //           _controller
+              //             ..duration = composition.duration
+              //             ..forward();
+              //         },
+              //       )
+              //           : Container(),
+              //     ),
+              //   ),
+              // ):Container(),
               const SizedBox(
-                height: 7.0,
+                height: 12.0,
               ),
               SizedBox(
                 width: screenSize.width,
@@ -333,7 +337,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                     opacityColor.add(1.0);
                   } else {
                     opacityColor.add(0.7);
-                    colors.add(Colors.white);
+                    colors.add(Colors.black87);
                   }
                 }
                 return InkWell(
@@ -459,9 +463,9 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                           child: Text(
                             langController.appLocal=="ar"?categoriesController.departments2[index]['name_AR'] :categoriesController.departments2[index]['name_EN'],
                             style: TextStyle(
-                              fontSize: 14.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w400,
-                              color: colors[index],
+                              color: colors2[index],
                             ),
                           ),
                         ),

@@ -369,15 +369,15 @@ class _ProductDetailsState extends State<ProductDetails>
                                                     .getDetailsDone.value ==
                                                 true
                                             ? Positioned(
-                                                top: screenSize.height * .1 - 11.h,
+                                                top: screenSize.height * .1 - 12.h,
                                                 left: 12..w,
                                                 child: Container(
                                                   padding: EdgeInsets.zero,
                                                   margin: EdgeInsets.zero,
                                                   width: screenSize.width *
-                                                      .1.w,
+                                                      .1+1.w,
                                                   height: screenSize.width *
-                                                      .1.h,
+                                                      .1+1.h,
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
