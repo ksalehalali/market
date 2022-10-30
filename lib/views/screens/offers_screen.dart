@@ -4,6 +4,7 @@ import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:get/get.dart';
 import '../../Assistants/globals.dart';
 import '../../Data/data_for_ui.dart';
+import '../../controllers/catgories_controller.dart';
 import '../../controllers/lang_controller.dart';
 import '../../controllers/product_controller.dart';
 import '../widgets/departments_shpe.dart';
@@ -23,6 +24,7 @@ class OffersScreen extends StatefulWidget {
 class _OffersScreenState extends State<OffersScreen> {
   final ProductsController productController = Get.find();
   final LangController langController = Get.find();
+  final CategoriesController categoriesController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -170,12 +172,12 @@ class _OffersScreenState extends State<OffersScreen> {
               crossAxisSpacing: 2.0,
               childAspectRatio: 1.3),
           itemBuilder: (context, index) {
-            return Padding(
+            return  Padding(
                 padding: EdgeInsets.zero,
                 child: DepartmentShapeTile(
-                  assetPath: categories[index]['imagePath'],
-                  title:langController.appLocal=="en"? categories[index]['catName']:categories[index]['catNameAR'],
-                  depId: categories[index]['id']!,
+                  assetPath: "$baseURL/${categoriesController.mainCategories[index]["image"]}",
+                  title:langController.appLocal=='en' ?categoriesController.mainCategories[index]['name_EN']:categoriesController.mainCategories[index]['name_AR'],
+                  depId: categoriesController.mainCategories[index]['id']!,
                 ));
           },
         ),
@@ -186,7 +188,7 @@ class _OffersScreenState extends State<OffersScreen> {
   Widget _buildHorizontalListOfBestSallersProducts() {
     final screenSize = MediaQuery.of(context).size;
     return SizedBox(
-        height:langController.appLocal =="ar"? screenSize.height * 0.4 - 16.h:screenSize.height * 0.4 - 26.h,
+        height:langController.appLocal =="ar"? screenSize.height * 0.4 +30.h:screenSize.height * 0.4 +16.h,
         child: CustomScrollView(
           scrollDirection: Axis.horizontal,
           slivers: [
@@ -231,7 +233,7 @@ class _OffersScreenState extends State<OffersScreen> {
   Widget _buildHorizontalListOfOffersProducts() {
     final screenSize = MediaQuery.of(context).size;
     return SizedBox(
-        height:langController.appLocal =="ar"? screenSize.height * 0.4 - 16.h:screenSize.height * 0.4 - 26.h,
+        height:langController.appLocal =="ar"? screenSize.height * 0.4 +30.h:screenSize.height * 0.4 +16.h,
         child: CustomScrollView(
           scrollDirection: Axis.horizontal,
           slivers: [

@@ -8,11 +8,13 @@ import 'package:market/core/info_widget.dart';
 import 'package:market/views/screens/categories/veiw_all_screen.dart';
 import 'package:market/views/screens/home/search_area_des.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:market/views/screens/order/Cart.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../Assistants/globals.dart';
 import '../../../Data/data_for_ui.dart';
 import '../../../controllers/address_location_controller.dart';
+import '../../../controllers/catgories_controller.dart';
 import '../../../controllers/product_controller.dart';
 import '../../address/address_on_map.dart';
 import '../../address/list_addresses.dart';
@@ -38,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final ProductsController productController = Get.find();
   final AddressController addressController = Get.find();
   final LangController langController = Get.find();
+  final CategoriesController categoriesController = Get.find();
 
   ScrollController? scrollController;
 
@@ -335,7 +338,7 @@ Widget _buildCrosolImages(){
       child: Container(
         color: Colors.grey[50],
         child: GridView.builder(
-          itemCount: categories.length,
+          itemCount: categoriesController.mainCategories.length,
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
           padding: EdgeInsets.zero,
@@ -349,9 +352,9 @@ Widget _buildCrosolImages(){
             return Padding(
                 padding: EdgeInsets.zero,
                 child: DepartmentShapeTile(
-                  assetPath: categories[index]['imagePath'],
-                  title:langController.appLocal=='en' ?categories[index]['catName']:categories[index]['catNameAR'],
-                  depId: categories[index]['id']!,
+                  assetPath: "$baseURL/${categoriesController.mainCategories[index]["image"]}",
+                  title:langController.appLocal=='en' ?categoriesController.mainCategories[index]['name_EN']:categoriesController.mainCategories[index]['name_AR'],
+                  depId: categoriesController.mainCategories[index]['id']!,
                 ));
           },
         ),
@@ -362,7 +365,7 @@ Widget _buildCrosolImages(){
   Widget _buildHorizontalListOfRecommendedProducts() {
     final screenSize = MediaQuery.of(context).size;
     return SizedBox(
-        height:langController.appLocal =="ar"? screenSize.height * 0.4+10.h:screenSize.height * 0.4+10.h,
+        height:langController.appLocal =="ar"? screenSize.height * 0.4 +30.h:screenSize.height * 0.4 +16.h,
         child: Padding(
           padding:  EdgeInsets.only(right: 5.0.w),
           child: CustomScrollView(
@@ -411,7 +414,7 @@ Widget _buildCrosolImages(){
   Widget _buildHorizontalListOfOffersProducts() {
     final screenSize = MediaQuery.of(context).size;
     return SizedBox(
-        height:langController.appLocal =="ar"? screenSize.height * 0.4+10.h:screenSize.height * 0.4+10.h,
+        height:langController.appLocal =="ar"? screenSize.height * 0.4 +30.h:screenSize.height * 0.4 +16.h,
         child: Padding(
           padding:  EdgeInsets.only(right: 5.0.w),
           child: CustomScrollView(

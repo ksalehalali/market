@@ -185,10 +185,11 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
     }
   }
 
+  var childAspectRatio = 0.5;
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-
+    if(screenSize.height >920)childAspectRatio=0.5;
     return Container(
       color: myHexColor5,
       child: SafeArea(
@@ -268,14 +269,14 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
               widget.haveChildren == true
                   ? SizedBox(
                   width: screenSize.width.w,
-                  height: screenSize.height * 0.1+12.h,
+                  height: screenSize.height * 0.1+32.h,
                   child: _buildDepartmentsOptions(screenSize))
                   : Container(),
               hasChildren2 ==true?Divider():Container(),
               hasChildren2 == true
                   ? SizedBox(
                   width: screenSize.width.w,
-                  height: screenSize.height * 0.1 - 38.h,
+                  height: screenSize.height * 0.1 - 44.h,
                   child: _buildDepartmentsOptionsOfDeps())
                   : Container(),
               // productController.gotProductsByCat.value == false
@@ -305,12 +306,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
               const SizedBox(
                 height: 12.0,
               ),
-              SizedBox(
-                width: screenSize.width,
-                height:screenSize.height * 0.6.h,
-                child: _buildDepartmentProductsList(),
-
-              ),
+              _buildDepartmentProductsList(),
 
             ],
           ),
@@ -392,9 +388,8 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
                       ),
                       SizedBox(height: 5),
                       SizedBox(
-                          width: screenSize.width *0.2+10,
-
-                          child: Text(langController.appLocal=="ar"?categoriesController.departments[index]['name_AR'] :categoriesController.departments[index]['name_EN'],overflow: TextOverflow.fade,style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color:  colors[index],),textAlign: TextAlign.center,))
+                          width: screenSize.width *0.2+32.w,
+                          child: Text(langController.appLocal=="ar"?categoriesController.departments[index]['name_AR'] :categoriesController.departments[index]['name_EN'],overflow: TextOverflow.fade,maxLines:1,style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color:  colors[index],),textAlign: TextAlign.center,))
                     ],
                   ),
                 );
@@ -486,6 +481,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
 
 
   Widget _buildDepartmentProductsList() {
+
     return Padding(
       padding:  EdgeInsets.only(top: 4.0.h, bottom: 0.0.h),
       child: Container(
@@ -498,11 +494,11 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
             shrinkWrap: true,
             padding: EdgeInsets.zero,
             semanticChildCount: 0,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 1,
-                crossAxisSpacing: 6.2,
-                childAspectRatio: 0.6),
+                crossAxisSpacing: 6,
+                childAspectRatio: 0.5 ,),
             itemBuilder: (context, index) {
               return Padding(
                   padding: EdgeInsets.zero,
@@ -534,4 +530,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
         ),
       ),
     );
-  }}
+  }
+
+
+}

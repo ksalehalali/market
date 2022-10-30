@@ -67,7 +67,7 @@ class ProductItemCard extends StatelessWidget {
         // }
       },
       child: Container(
-        height: 220.h,
+        height: screenSize.height.h *0.6,
         width: screenSize.width * 0.4 + 10.w,
         decoration: BoxDecoration(
             border:

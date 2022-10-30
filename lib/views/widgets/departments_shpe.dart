@@ -39,7 +39,7 @@ class DepartmentShapeTile extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(100)),
-              child: Image.asset(
+              child: Image.network(
                 this.assetPath!,
                 fit: BoxFit.fill,
               ),
