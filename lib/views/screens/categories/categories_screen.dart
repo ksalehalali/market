@@ -41,7 +41,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     //createBrandsList();
   }
   Widget buildCategoriesButtons(var data,int index){
-    for(int i =0; i<categories.length;i++){
+    for(int i =0; i<categoriesController.mainCategories.length;i++){
       if(i==0){
         colors.add(myHexColor);
         opacityColor.add(1.0);
@@ -53,83 +53,84 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       return InkWell(
         onTap: (){
           print('object');
-          switch (index){
-            case 0:
-              showBrands= true;
-              departmentContent = womenFashionDepartments;
-              brandsContent = womenFashionDepartments;
-              if(womenFashionDepartments[0]['hasChildren']==true ){
-                productController
-                    .getProductsByCat(womenFashionDepartments[0]['depId'],langController.appLocal);
-              }
-              break;
-            case 1:
-              showBrands= true;
-
-              departmentContent = menFashionDepartments;
-              break;
-            case 2:
-              showBrands= true;
-
-              departmentContent = childrenAndToysDepartments;
-              break;
-            case 3:
-              showBrands= true;
-
-              departmentContent = accessoriesAndGifts;
-              break;
-            case 4:
-              showBrands= true;
-
-              departmentContent = beautySuppliesAndPersonalCare;
-              break;
-            case 5:
-              showBrands= true;
-
-              departmentContent = mensStuff;
-              break;
-            case 6:
-              showBrands= true;
-
-              departmentContent = mobilesAndAccessories;
-              break;
-            case 7:
-              showBrands= true;
-
-              departmentContent = homeKitchen;
-              break;
-            case 8:
-              setState(() {
-                showBrands =false;
-              });
-              departmentContent = brands;
-              break;
-            case 9:
-              showBrands= true;
-
-              departmentContent = watchesAndBags;
-              break;
-            case 10:
-              showBrands= true;
-
-              departmentContent = mensShoes;
-              break;
-            case 11:
-              showBrands= true;
-
-              departmentContent = womenShoes;
-              break;
-            case 12:
-              showBrands= true;
-
-              departmentContent = kidsShoes;
-              break;
-            case 13:
-              showBrands= true;
-
-              departmentContent = childrenClothes;
-              break;
-          }
+          departmentContent = categoriesController.departmentsListOfCategories[index];
+          // switch (index){
+          //   case 0:
+          //     showBrands= true;
+          //     departmentContent = womenFashionDepartments;
+          //     brandsContent = womenFashionDepartments;
+          //     if(womenFashionDepartments[0]['hasChildren']==true ){
+          //       productController
+          //           .getProductsByCat(womenFashionDepartments[0]['depId'],langController.appLocal);
+          //     }
+          //     break;
+          //   case 1:
+          //     showBrands= true;
+          //
+          //     departmentContent = menFashionDepartments;
+          //     break;
+          //   case 2:
+          //     showBrands= true;
+          //
+          //     departmentContent = childrenAndToysDepartments;
+          //     break;
+          //   case 3:
+          //     showBrands= true;
+          //
+          //     departmentContent = accessoriesAndGifts;
+          //     break;
+          //   case 4:
+          //     showBrands= true;
+          //
+          //     departmentContent = beautySuppliesAndPersonalCare;
+          //     break;
+          //   case 5:
+          //     showBrands= true;
+          //
+          //     departmentContent = mensStuff;
+          //     break;
+          //   case 6:
+          //     showBrands= true;
+          //
+          //     departmentContent = mobilesAndAccessories;
+          //     break;
+          //   case 7:
+          //     showBrands= true;
+          //
+          //     departmentContent = homeKitchen;
+          //     break;
+          //   case 8:
+          //     setState(() {
+          //       showBrands =false;
+          //     });
+          //     departmentContent = brands;
+          //     break;
+          //   case 9:
+          //     showBrands= true;
+          //
+          //     departmentContent = watchesAndBags;
+          //     break;
+          //   case 10:
+          //     showBrands= true;
+          //
+          //     departmentContent = mensShoes;
+          //     break;
+          //   case 11:
+          //     showBrands= true;
+          //
+          //     departmentContent = womenShoes;
+          //     break;
+          //   case 12:
+          //     showBrands= true;
+          //
+          //     departmentContent = kidsShoes;
+          //     break;
+          //   case 13:
+          //     showBrands= true;
+          //
+          //     departmentContent = childrenClothes;
+          //     break;
+          // }
           setState(() {
 
             for(int i =0; i<colors.length;i++){
@@ -149,13 +150,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           height: 76.h,
           width: 79.w,
           decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage(data['imagePath'].toString(),),fit: BoxFit.fill)
+              image: DecorationImage(image: NetworkImage("$baseURL/${data['image']}",),fit: BoxFit.fill)
           ),
           child: Container(
               color: colors[index].withOpacity(opacityColor[index]),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Center(child: Text(langController.appLocal=='en'?data['catName'].toString():data['catNameAR'].toString(),maxLines: 2,textAlign: TextAlign.center,style: TextStyle(fontSize: 13.sp,fontWeight: FontWeight.w600,color: Colors.white),)),
+                child: Center(child: Text(langController.appLocal=='en'?data['name_EN'].toString():data['name_AR'].toString(),maxLines: 2,textAlign: TextAlign.center,style: TextStyle(fontSize: 13.sp,fontWeight: FontWeight.w600,color: Colors.white),)),
               )),
         ),
       );
@@ -220,12 +221,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    width: 100.w,
+                    width: screenSize.width *0.2.w,
                     height:screenSize.height <700? screenSize.height*.9-93.h:screenSize.height*.9-83.h,
                     child: CustomScrollView(
                       slivers: [
                         SliverList(delegate: SliverChildBuilderDelegate(
-                            (context,index)=> buildCategoriesButtons(categories[index], index),childCount: categories.length
+                            (context,index)=> buildCategoriesButtons(categoriesController.mainCategories[index], index),childCount: categoriesController.mainCategories.length
                         ))
                       ],
                     )
@@ -304,22 +305,23 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     // ),
   }
   Widget _buildListOfDepartments(categories,bool hasChildren,int i){
+    var screenSize= MediaQuery.of(context).size;
     return  SliverGrid(
       delegate: SliverChildBuilderDelegate(
               (context,index){
             return InkWell(
               onTap: ()async{
-                 categoriesController.getListCategoryByCategory(categories[index]['depId']);
-                 print(categories[index]['hasChildren']);
-                Get.to(()=> ProductsOfDepartmentScreen(depId: categories[index]['depId'],haveChildren: categories[index]['hasChildren'],));
+                 //categoriesController.getListCategoryByCategory(categoriesController.mainCategories[index]['id']);
+                 //print(categories[index]['hasChildren']);
+                Get.to(()=> ProductsOfDepartmentScreen(depId: categories[index]['id'],haveChildren: categories[index]['children']));
               },
               child: Padding(
                   padding: EdgeInsets.zero,
                   child: Column(
                     children: <Widget>[
                       Container(
-                        height: 82.h,
-                        width: 78.w,
+                        height: screenSize.height *0.1+8.h,
+                        width: screenSize.width *0.2.w,
                         //padding:  EdgeInsets.all(0.1),
                         decoration:  BoxDecoration(
                           color: myHexColor,
@@ -327,23 +329,23 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         ),
                         child: ClipRRect(
                           borderRadius: const BorderRadius.all(Radius.circular(6)),
-                          child: Image.asset(
-                            hasChildren ==true ?categories[index]['imagePath'].toString():categories[i]['imagePath'].toString(),
+                          child: Image.network(
+                            "$baseURL/${categories[index]['image']}",
                             fit: BoxFit.fill,
                           ),
                         ),
                       ),
                       SizedBox(height: 4.h),
-                      Text(hasChildren ==true ?langController.appLocal=="ar"?categories[index]['depNameAR'].toString():categories[index]['depName'].toString():langController.appLocal=="ar"?categories[i]['depNameAR'].toString() :categories[i]['depName'].toString(),style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
+                      Text(langController.appLocal=="ar"?categories[index]['name_AR'].toString():categories[index]['name_EN'].toString(),style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
                     ],
                   )),
             );
 
-          },childCount:hasChildren ==true ?categories.length:1),
+          },childCount:categories.length),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           mainAxisSpacing: 1.0.w,
           crossAxisSpacing: 1.0.h,
-          childAspectRatio: 0.6.h,
+          childAspectRatio: 0.7.h,
           crossAxisCount: 3),);
 
   }

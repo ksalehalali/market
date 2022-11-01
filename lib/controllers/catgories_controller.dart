@@ -11,6 +11,7 @@ class CategoriesController extends GetxController {
   var departments2 = [].obs;
   var categories = [].obs;
   var mainCategories = [].obs;
+  var departmentsListOfCategories = [].obs;
 
 
   @override
@@ -113,11 +114,43 @@ class CategoriesController extends GetxController {
 
       update();
       print('departments2 length :===: ${departments2.length}');
+      getListDepartmentsByCatyId();
     } else {
       print('error controller ::: ListCategory');
       print(response.reasonPhrase);
     }
 
     update();
+  }
+
+  //get list  departments
+  Future getListDepartmentsByCatyId() async {
+    for (int i = 0; i < mainCategories.length ; i++) {
+      var headers = {
+        'Authorization': 'bearer ${user.accessToken}',
+        'Content-Type': 'application/json'
+      };
+      var request =
+      http.Request('POST', Uri.parse('$baseURL/api/ListCategoryByCategory'));
+      request.body = json.encode({"id": mainCategories[i]['id']});
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        departments2.value = [];
+
+        var json = jsonDecode(await response.stream.bytesToString());
+        var data = json['description'];
+        departmentsListOfCategories.add(data);
+        update();
+        print('departmentsListOfCategories length :===: ${departmentsListOfCategories.length}');
+      } else {
+        print('error in departmentsListOfCategories controller ::: departmentsListOfCategories');
+        print(response.reasonPhrase);
+      }
+
+      update();
+    }
   }
 }
