@@ -44,6 +44,7 @@ class CategoriesController extends GetxController {
       update();
 
       print('cat length :: ${departments.length}');
+
     } else {
       print('error in category controller ::: ListCategoryByCategory');
       print(response.reasonPhrase);

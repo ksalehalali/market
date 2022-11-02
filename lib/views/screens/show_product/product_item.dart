@@ -106,7 +106,7 @@ class ProductItemCard extends StatelessWidget {
                       //cacheManager: customCacheManager,
                       key: UniqueKey(),
                       imageUrl: '$baseURL/${product.imageUrl}',
-                      height: screenSize.height * 0.2 + 55.h,
+                      height: screenSize.height * 0.2 + 48.h,
                       width:from =='dep' ?  screenSize.width * 0.4 +30.w:screenSize.width * 0.4.w,
                       maxHeightDiskCache: 110,
                       fit: BoxFit.fill,
@@ -222,7 +222,7 @@ class ProductItemCard extends StatelessWidget {
                           children: [
                             Padding(
                               padding:
-                                   EdgeInsets.symmetric(vertical: 8.0.h),
+                                   EdgeInsets.only(bottom: 8.0.h),
                               child: SizedBox(
                                 width: screenSize.width * 0.3+32.w,
                                 child: Text("${langController.appLocal=="en"? product.en_name:product.ar_name}".toUpperCase(),
@@ -237,7 +237,7 @@ class ProductItemCard extends StatelessWidget {
 
                             Padding(
                               padding:
-                                   EdgeInsets.symmetric(vertical: 6.0.h),
+                                   EdgeInsets.symmetric(vertical: 4.0.h),
                               child: SizedBox(
                                 width: screenSize.width *.3.w,
                                 child: Text(

@@ -121,43 +121,43 @@ String? phoneNumber;
                     ],
                   ),
                   Spacer(),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>  AddressOnMap(fromCart: widget.fromCart,)));
-                      },
-                      child: Container(
-                          height: 72.h,
-                          width: 72.w,
-                          decoration: BoxDecoration(
-                              image: const DecorationImage(
-                                fit: BoxFit.fill,
-                                opacity: 0.7,
-                                image: AssetImage(
-                                  'assets/images/isolate-golden-location-pin.jpg',
-                                ),
-                              ),
-                              borderRadius: BorderRadius.circular(12)),
-                          child: Stack(
-                            alignment: Alignment.bottomCenter,
-                            children: [
-                              Container(
-                                height: 17.h,
-                                color: Colors.white.withOpacity(0.3),
-                              ),
-                              Text(
-                                'Edit_txt'.tr,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.blue[700],
-                                    fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          )),
-                    ),
-                  )
+                  // Align(
+                  //   alignment: Alignment.centerRight,
+                  //   child: InkWell(
+                  //     onTap: () {
+                  //       Navigator.of(context).push(MaterialPageRoute(
+                  //           builder: (context) =>  AddressOnMap(fromCart: widget.fromCart,)));
+                  //     },
+                  //     child: Container(
+                  //         height: 72.h,
+                  //         width: 72.w,
+                  //         decoration: BoxDecoration(
+                  //             image: const DecorationImage(
+                  //               fit: BoxFit.fill,
+                  //               opacity: 0.7,
+                  //               image: AssetImage(
+                  //                 'assets/images/isolate-golden-location-pin.jpg',
+                  //               ),
+                  //             ),
+                  //             borderRadius: BorderRadius.circular(12)),
+                  //         child: Stack(
+                  //           alignment: Alignment.bottomCenter,
+                  //           children: [
+                  //             Container(
+                  //               height: 17.h,
+                  //               color: Colors.white.withOpacity(0.3),
+                  //             ),
+                  //             Text(
+                  //               'Edit_txt'.tr,
+                  //               style: TextStyle(
+                  //                   fontSize: 14,
+                  //                   color: Colors.blue[700],
+                  //                   fontWeight: FontWeight.bold),
+                  //             )
+                  //           ],
+                  //         )),
+                  //   ),
+                  // )
                 ],
               ),
             ),
@@ -307,12 +307,24 @@ String? phoneNumber;
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      addressController.addNewAddress(
-                          addressName:_addresNameController.text,phone: phoneNumber!,area:_areaController.text,street:_streetNameController.text,house:_houseNameController.text);
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>  ListAddresses(fromCart: true,fromAccount: false,)));
+                      print('area ${_areaController.text}');
+                      print('street ${_streetNameController.text}');
+
+                      print('house ${_houseNameController.text}');
+                      print('phone ${phoneNumber}');
+                      print('name ${_addresNameController.text}');
+
+
+                      if(_areaController.text.length > 3 && _streetNameController.text.length >1) {
+                        addressController.addNewAddress(
+                            addressName:_addresNameController.text,phone: phoneNumber!,area:_areaController.text,street:_streetNameController.text,house:_houseNameController.text).then((value) =>
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>  ListAddresses(fromCart: false,fromAccount: false,)))
+                        );
+                      }
+
                     },
                     child:  Text(
                       'SAVE ADDRESS_txt'.tr,

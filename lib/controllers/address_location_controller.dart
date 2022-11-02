@@ -79,9 +79,9 @@ class AddressController extends GetxController {
       "Address": pinAddress.value.toString(),
       "NameAddress": addressName,
       "phone": phone,
-      'Area':area,
-      'Strret':street,
-      'House':house
+      "Area":area,
+      "Strret":street,
+      "House":house
     });
     request.headers.addAll(headers);
 

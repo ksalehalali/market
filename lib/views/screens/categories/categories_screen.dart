@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../Assistants/globals.dart';
 import '../../../Data/data_for_ui.dart';
@@ -31,13 +33,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   var departmentContent =[];
   var brandsContent =[];
-
+  int mainCatIndex = 0;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    departmentContent = womenFashionDepartments;
-    brandsContent =womenFashionDepartments;
+
+    departmentContent = categoriesController.departmentsListOfCategories[0];
+
     //createBrandsList();
   }
   Widget buildCategoriesButtons(var data,int index){
@@ -53,84 +56,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       return InkWell(
         onTap: (){
           print('object');
+          mainCatIndex = index;
           departmentContent = categoriesController.departmentsListOfCategories[index];
-          // switch (index){
-          //   case 0:
-          //     showBrands= true;
-          //     departmentContent = womenFashionDepartments;
-          //     brandsContent = womenFashionDepartments;
-          //     if(womenFashionDepartments[0]['hasChildren']==true ){
-          //       productController
-          //           .getProductsByCat(womenFashionDepartments[0]['depId'],langController.appLocal);
-          //     }
-          //     break;
-          //   case 1:
-          //     showBrands= true;
-          //
-          //     departmentContent = menFashionDepartments;
-          //     break;
-          //   case 2:
-          //     showBrands= true;
-          //
-          //     departmentContent = childrenAndToysDepartments;
-          //     break;
-          //   case 3:
-          //     showBrands= true;
-          //
-          //     departmentContent = accessoriesAndGifts;
-          //     break;
-          //   case 4:
-          //     showBrands= true;
-          //
-          //     departmentContent = beautySuppliesAndPersonalCare;
-          //     break;
-          //   case 5:
-          //     showBrands= true;
-          //
-          //     departmentContent = mensStuff;
-          //     break;
-          //   case 6:
-          //     showBrands= true;
-          //
-          //     departmentContent = mobilesAndAccessories;
-          //     break;
-          //   case 7:
-          //     showBrands= true;
-          //
-          //     departmentContent = homeKitchen;
-          //     break;
-          //   case 8:
-          //     setState(() {
-          //       showBrands =false;
-          //     });
-          //     departmentContent = brands;
-          //     break;
-          //   case 9:
-          //     showBrands= true;
-          //
-          //     departmentContent = watchesAndBags;
-          //     break;
-          //   case 10:
-          //     showBrands= true;
-          //
-          //     departmentContent = mensShoes;
-          //     break;
-          //   case 11:
-          //     showBrands= true;
-          //
-          //     departmentContent = womenShoes;
-          //     break;
-          //   case 12:
-          //     showBrands= true;
-          //
-          //     departmentContent = kidsShoes;
-          //     break;
-          //   case 13:
-          //     showBrands= true;
-          //
-          //     departmentContent = childrenClothes;
-          //     break;
-          // }
           setState(() {
 
             for(int i =0; i<colors.length;i++){
@@ -149,15 +76,45 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
           height: 76.h,
           width: 79.w,
-          decoration: BoxDecoration(
-              image: DecorationImage(image: NetworkImage("$baseURL/${data['image']}",),fit: BoxFit.fill)
+          // decoration: BoxDecoration(
+          //     image: DecorationImage(image: NetworkImage("$baseURL/${data['image']}",),fit: BoxFit.fill)
+          // ),
+          child: Stack(
+            children: [
+              CachedNetworkImage(
+              key: UniqueKey(),
+          imageUrl:"$baseURL/${data['image']}",
+                fit: BoxFit.fill,
+                height: 76.h,
+                width: 79.w,
+                maxHeightDiskCache: 110,
+                placeholder: (context, url) =>
+                    Center(child:   Shimmer.fromColors(
+                      baseColor: Colors.grey[400]!,
+                      highlightColor: Colors.grey[300]!,
+                      child: Container(
+                        height: 220.h,
+                        width: 110.w,
+                        decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(2)),
+                      ),
+                    ),),
+                errorWidget: (context, url, error) => Container(
+                  color: Colors.black,
+                  child: const Icon(
+                    Icons.error,
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+              Container(
+                color: colors[index].withOpacity(opacityColor[index]),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(child: Text(langController.appLocal=='en'?data['name_EN'].toString():data['name_AR'].toString(),maxLines: 2,textAlign: TextAlign.center,style: TextStyle(fontSize: 13.sp,fontWeight: FontWeight.w600,color: Colors.white),)),
+                ))],
           ),
-          child: Container(
-              color: colors[index].withOpacity(opacityColor[index]),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(child: Text(langController.appLocal=='en'?data['name_EN'].toString():data['name_AR'].toString(),maxLines: 2,textAlign: TextAlign.center,style: TextStyle(fontSize: 13.sp,fontWeight: FontWeight.w600,color: Colors.white),)),
-              )),
         ),
       );
 
@@ -250,7 +207,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
                               slivers:<Widget> [
                                 _buildTitle('Category_txt'.tr,screenSize,),
-                               _buildListOfDepartments(departmentContent,true,0),
+                              _buildListOfDepartments(departmentContent,true,0)
 
                                 // _buildTitle(showBrands?'Brands_txt'.tr:''),
                                 // _buildListOfDepartments(showBrands?brandsContent:[]),
@@ -304,8 +261,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     //   title: Text('AAAAAAAA',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: Colors.black),),
     // ),
   }
+
   Widget _buildListOfDepartments(categories,bool hasChildren,int i){
     var screenSize= MediaQuery.of(context).size;
+    print("Category one data : $categories");
     return  SliverGrid(
       delegate: SliverChildBuilderDelegate(
               (context,index){
@@ -313,7 +272,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               onTap: ()async{
                  //categoriesController.getListCategoryByCategory(categoriesController.mainCategories[index]['id']);
                  //print(categories[index]['hasChildren']);
-                Get.to(()=> ProductsOfDepartmentScreen(depId: categories[index]['id'],haveChildren: categories[index]['children']));
+                Get.to(()=> ProductsOfDepartmentScreen(depId: categoriesController.departmentsListOfCategories[mainCatIndex][index]['id'],haveChildren:categoriesController.departmentsListOfCategories[mainCatIndex][index]['children'] ));
               },
               child: Padding(
                   padding: EdgeInsets.zero,
@@ -329,9 +288,30 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         ),
                         child: ClipRRect(
                           borderRadius: const BorderRadius.all(Radius.circular(6)),
-                          child: Image.network(
-                            "$baseURL/${categories[index]['image']}",
+                          child: CachedNetworkImage(
+                            key: UniqueKey(),
+                            imageUrl:"$baseURL/${categories[index]['image']}",
                             fit: BoxFit.fill,
+                            maxHeightDiskCache: 110,
+                            placeholder: (context, url) =>
+                                Center(child:   Shimmer.fromColors(
+                                  baseColor: Colors.grey[400]!,
+                                  highlightColor: Colors.grey[300]!,
+                                  child: Container(
+                                    height: 220.h,
+                                    width: screenSize.width * 0.4 + 10.w,
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius: BorderRadius.circular(2)),
+                                  ),
+                                ),),
+                            errorWidget: (context, url, error) => Container(
+                              color: Colors.black,
+                              child: const Icon(
+                                Icons.error,
+                                color: Colors.red,
+                              ),
+                            ),
                           ),
                         ),
                       ),

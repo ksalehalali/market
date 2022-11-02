@@ -87,10 +87,10 @@ class AddressOnMapState extends State<AddressOnMap> {
                   padding: const EdgeInsets.all(8.0),
                   child: Obx(
                     () => SizedBox(
-                      width: screenSize.width * 0.9.w ,
+                      width: screenSize.width  ,
                       child: Text(
                         addressController.pinAddress.value,
-                        maxLines: 1,
+                        maxLines: 2,
 
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,

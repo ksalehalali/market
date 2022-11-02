@@ -47,8 +47,6 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
   @override
   void dispose() {
     // TODO: implement dispose
-    _controller.dispose();
-
     super.dispose();
   }
 
@@ -56,140 +54,27 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller = AnimationController(vsync: this);
     // _controller.addStatusListener((status) {
     //   if(status == AnimationStatus.completed){
     //     //
     //   }
     // });
+getData();
+  }
+
+  getData()async{
     if (widget.haveChildren == true) {
-      if (categoriesController.departments.length > 0) {
-        productController
-            .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
-      } else {
-        Timer(200.milliseconds, () {
-          if (categoriesController.departments.length > 0) {
-            productController
-                .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
-            return;
-          } else {
-            Timer(200.milliseconds, () {
-              if (categoriesController.departments.length > 0) {
-                productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
 
-                return;
-              } else {
-                Timer(200.milliseconds, () {
-                  if (categoriesController.departments.length > 0) {
-                    productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
-
-                    return;
-                  } else {
-                    Timer(200.milliseconds, () {
-                      if (categoriesController.departments.length > 0) {
-                        productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
-
-                        return;
-                      } else {
-                        Timer(200.milliseconds, () {
-                          if (categoriesController.departments.length > 0) {
-                            productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
-
-                            return;
-                          } else {
-                            Timer(200.milliseconds, () {
-                              if (categoriesController.departments.length > 0) {
-                                productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
-
-                                return;
-                              } else {
-                                Timer(200.milliseconds, () {
-                                  if (categoriesController.departments.length >
-                                      0) {
-                                    productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
-
-                                    return;
-                                  } else {
-                                    Timer(200.milliseconds, () {
-                                      if (categoriesController
-                                          .departments.length >
-                                          0) {
-                                        productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
-
-                                        return;
-                                      } else {
-                                        Timer(200.milliseconds, () {
-                                          if (categoriesController
-                                              .departments.length >
-                                              0) {
-                                            productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
-
-                                            return;
-                                          } else {
-                                            Timer(200.milliseconds, () {
-                                              if (categoriesController
-                                                  .departments.length >
-                                                  0) {
-                                                productController
-                                                    .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
-
-                                                return;
-                                              } else {
-                                                Timer(200.milliseconds, () {
-                                                  if (categoriesController
-                                                      .departments.length >
-                                                      0) {
-                                                    productController
-                                                        .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
-                                                    return;
-                                                  } else {
-                                                    Timer(2200.milliseconds,
-                                                            () {
-                                                          productController
-                                                              .getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
-                                                          return;
-                                                        });
-                                                  }
-                                                  return;
-                                                });
-                                              }
-                                              return;
-                                            });
-                                          }
-                                          return;
-                                        });
-                                      }
-                                      return;
-                                    });
-                                  }
-                                  return;
-                                });
-                              }
-                              return;
-                            });
-                          }
-                          return;
-                        });
-                      }
-                      return;
-                    });
-                  }
-                });
-              }
-            });
-          }
-        });
-      }
+      await categoriesController.getListCategoryByCategory(widget.depId);
+      productController.getProductsByCat(categoriesController.departments[0]['id'],langController.appLocal);
     } else {
       productController.getProductsByCat(widget.depId,langController.appLocal);
     }
   }
-
   var childAspectRatio = 0.5;
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    if(screenSize.height >920)childAspectRatio=0.5;
     return Container(
       color: myHexColor5,
       child: SafeArea(
@@ -306,7 +191,9 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
               const SizedBox(
                 height: 12.0,
               ),
-              _buildDepartmentProductsList(),
+              SizedBox(
+                  height: screenSize.height * 0.6-5,
+                  child: _buildDepartmentProductsList()),
 
             ],
           ),
@@ -483,7 +370,7 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
   Widget _buildDepartmentProductsList() {
 
     return Padding(
-      padding:  EdgeInsets.only(top: 4.0.h, bottom: 0.0.h),
+      padding:  EdgeInsets.only(top: 2.0.h, bottom: 0.0.h),
       child: Container(
         color: Colors.grey[50],
         child: Obx(
@@ -497,8 +384,8 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
             gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 1,
-                crossAxisSpacing: 6,
-                childAspectRatio: 0.5 ,),
+                crossAxisSpacing: 1,
+                childAspectRatio: 0.6 ,),
             itemBuilder: (context, index) {
               return Padding(
                   padding: EdgeInsets.zero,
