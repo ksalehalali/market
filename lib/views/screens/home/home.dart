@@ -103,6 +103,7 @@ Widget _buildCrosolImages(){
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    print('height: ${screenSize.height} --> width: ${screenSize.width}');
     return Container(
         color: myHexColor5.withOpacity(0.2),
 
@@ -173,7 +174,7 @@ Widget _buildCrosolImages(){
                           ),
                         ),
                         SizedBox(
-                            height: screenSize.height * 0.2 + 95.h,
+                            height: screenSize.height >800?screenSize.height*0.2 + 75.h:screenSize.height* 0.2 + 95.h,
                             width: screenSize.width ,
                             child: _buildDepartmentsList()),
                         SizedBox(
@@ -190,7 +191,7 @@ Widget _buildCrosolImages(){
                               child: Text(
                                 'Latest Products_txt'.tr,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 14.sp),
+                                    fontWeight: FontWeight.bold, fontSize: 17.sp),
                               ),
                             ),
                             const Spacer(),
@@ -205,7 +206,7 @@ Widget _buildCrosolImages(){
                                   'View All_txt'.tr,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 13.sp,
+                                      fontSize: 15.sp,
                                       color: Colors.grey[700]),
                                 ),
                               ),
@@ -237,7 +238,7 @@ Widget _buildCrosolImages(){
                               child: Text(
                                 'Recommended for you_txt'.tr,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 14.sp),
+                                    fontWeight: FontWeight.bold, fontSize: 17.sp),
                               ),
                             ),
                             const Spacer(),
@@ -252,7 +253,7 @@ Widget _buildCrosolImages(){
                                   'View All_txt'.tr,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 13.sp,
+                                      fontSize: 15.sp,
                                       color: Colors.grey[700]),
                                 ),
                               ),
@@ -282,7 +283,7 @@ Widget _buildCrosolImages(){
                               child: Text(
                                 'Offers_txt'.tr,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 14.sp),
+                                    fontWeight: FontWeight.bold, fontSize: 17.sp),
                               ),
                             ),
                             const Spacer(),
@@ -297,7 +298,7 @@ Widget _buildCrosolImages(){
                                   'View All_txt'.tr,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 13.sp,
+                                      fontSize: 15.sp,
                                       color: Colors.grey[700]),
                                 ),
                               ),
@@ -345,7 +346,7 @@ Widget _buildCrosolImages(){
           semanticChildCount: 0,
           gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              mainAxisSpacing: 3,
+              mainAxisSpacing: 1,
               crossAxisSpacing: 5.0,
               childAspectRatio:size.width<390? 1.1:1.2),
           itemBuilder: (context, index) {
@@ -365,7 +366,7 @@ Widget _buildCrosolImages(){
   Widget _buildHorizontalListOfRecommendedProducts() {
     final screenSize = MediaQuery.of(context).size;
     return SizedBox(
-        height:langController.appLocal =="ar"? screenSize.height * 0.4 +30.h:screenSize.height * 0.4 +16.h,
+        height:screenSize.height >860?langController.appLocal =="ar"? screenSize.height * 0.4-17.h:screenSize.height * 0.4-15.h:langController.appLocal =="ar"? screenSize.height * 0.4+8.h:screenSize.height * 0.4.h,
         child: Padding(
           padding:  EdgeInsets.only(right: 5.0.w),
           child: CustomScrollView(
@@ -414,7 +415,7 @@ Widget _buildCrosolImages(){
   Widget _buildHorizontalListOfOffersProducts() {
     final screenSize = MediaQuery.of(context).size;
     return SizedBox(
-        height:langController.appLocal =="ar"? screenSize.height * 0.4 +30.h:screenSize.height * 0.4 +16.h,
+        height:screenSize.height >860?langController.appLocal =="ar"? screenSize.height * 0.4-17.h:screenSize.height * 0.4-15.h:langController.appLocal =="ar"? screenSize.height * 0.4+8.h:screenSize.height * 0.4.h,
         child: Padding(
           padding:  EdgeInsets.only(right: 5.0.w),
           child: CustomScrollView(

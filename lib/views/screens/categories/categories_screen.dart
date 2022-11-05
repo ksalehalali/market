@@ -279,7 +279,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   child: Column(
                     children: <Widget>[
                       Container(
-                        height: screenSize.height *0.1+8.h,
+                        height: screenSize.height *0.1+2.h,
                         width: screenSize.width *0.2.w,
                         //padding:  EdgeInsets.all(0.1),
                         decoration:  BoxDecoration(

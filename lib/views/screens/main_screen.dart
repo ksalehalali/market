@@ -74,9 +74,7 @@ class _MainScreenState extends State<MainScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    print(Get.size.height);
-    print(Get.size.width);
-
+print("screen size : ${MediaQuery.of(context).size}");
     return Scaffold(
         body: PageStorage(
           bucket: bucket,

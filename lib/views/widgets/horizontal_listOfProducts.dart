@@ -12,7 +12,7 @@ Widget buildHorizontalListOfProducts(BuildContext context ,bool fromDetails) {
 
   final screenSize = MediaQuery.of(context).size;
   return SizedBox(
-    height:langController.appLocal =="ar"? screenSize.height * 0.4+20.h:screenSize.height * 0.4+20.h,
+    height:screenSize.height >820?langController.appLocal =="ar"? screenSize.height * 0.4-17.h:screenSize.height * 0.4-15.h:langController.appLocal =="ar"? screenSize.height * 0.4+8.h:screenSize.height * 0.4.h,
     child: FutureBuilder(
         builder: (context, data) => data.connectionState ==
                 ConnectionState.waiting

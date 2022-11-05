@@ -106,7 +106,7 @@ class ProductItemCard extends StatelessWidget {
                       //cacheManager: customCacheManager,
                       key: UniqueKey(),
                       imageUrl: '$baseURL/${product.imageUrl}',
-                      height: screenSize.height * 0.2 + 48.h,
+                      height: screenSize.height * 0.2 + 46.h,
                       width:from =='dep' ?  screenSize.width * 0.4 +30.w:screenSize.width * 0.4.w,
                       maxHeightDiskCache: 110,
                       fit: BoxFit.fill,
@@ -135,8 +135,8 @@ class ProductItemCard extends StatelessWidget {
             Positioned(
                 top: 8.0.h,
                 left: 10.0.w,
-                width: screenSize.width * .1 - 5.w,
-                height: screenSize.width * .1 - 5.h,
+                width: screenSize.width * .1 - 4.w,
+                height: screenSize.width * .1 - 4.h,
                 child: Align(
                   alignment: Alignment.center,
                   child: LikeButton(
@@ -222,7 +222,7 @@ class ProductItemCard extends StatelessWidget {
                           children: [
                             Padding(
                               padding:
-                                   EdgeInsets.only(bottom: 8.0.h),
+                                   EdgeInsets.only(bottom: 6.0.h),
                               child: SizedBox(
                                 width: screenSize.width * 0.3+32.w,
                                 child: Text("${langController.appLocal=="en"? product.en_name:product.ar_name}".toUpperCase(),
@@ -243,10 +243,12 @@ class ProductItemCard extends StatelessWidget {
                                 child: Text(
                                   '${langController.appLocal=="en"?product.categoryNameEN:product.categoryNameAR}'.toUpperCase(),
                                   //textAlign: TextAlign.right,
+                                  maxLines: 1,
                                   style: TextStyle(
                                       fontFamily: 'Montserrat-Arabic Regular',
                                       color: Colors.black.withOpacity(0.7),
                                       fontSize: 12.sp,
+
                                       fontWeight: FontWeight.w500),
                                 ),
                               ),

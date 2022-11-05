@@ -54,11 +54,6 @@ class _ProductsOfDepartmentScreenState extends State<ProductsOfDepartmentScreen>
   void initState() {
     // TODO: implement initState
     super.initState();
-    // _controller.addStatusListener((status) {
-    //   if(status == AnimationStatus.completed){
-    //     //
-    //   }
-    // });
 getData();
   }
 
@@ -148,13 +143,13 @@ getData();
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 8.0,
+               SizedBox(
+                height: 4.0.h,
               ),
               widget.haveChildren == true
                   ? SizedBox(
                   width: screenSize.width.w,
-                  height: screenSize.height * 0.1+32.h,
+                  height: screenSize.height * 0.1+12.h,
                   child: _buildDepartmentsOptions(screenSize))
                   : Container(),
               hasChildren2 ==true?Divider():Container(),
@@ -192,7 +187,7 @@ getData();
                 height: 12.0,
               ),
               SizedBox(
-                  height: screenSize.height * 0.6-5,
+                  height: widget.haveChildren ==true ?screenSize.height * 0.6-15:screenSize.height * 0.8-30,
                   child: _buildDepartmentProductsList()),
 
             ],
@@ -234,6 +229,8 @@ getData();
                           opacityColor[i] = 0.7;
                           colors[i] = Colors.black87;
                         }
+                        opacityColor2.clear();
+                        colors2.clear();
                       }
                     });
                     productController.getProductsByCat(categoriesController.departments[index]['id'],langController.appLocal);
@@ -258,7 +255,7 @@ getData();
                   Column(
                     children: <Widget>[
                       Container(
-                        height: screenSize.height *0.1 -16,
+                        height: screenSize.height *0.1 -17,
                         width:  screenSize.height *0.1 -16,
                         padding:  EdgeInsets.all(0.1),
                         decoration:  BoxDecoration(
@@ -273,7 +270,7 @@ getData();
                           ),
                         ),
                       ),
-                      SizedBox(height: 5),
+                      SizedBox(height: 4),
                       SizedBox(
                           width: screenSize.width *0.2+32.w,
                           child: Text(langController.appLocal=="ar"?categoriesController.departments[index]['name_AR'] :categoriesController.departments[index]['name_EN'],overflow: TextOverflow.fade,maxLines:1,style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold,color:  colors[index],),textAlign: TextAlign.center,))

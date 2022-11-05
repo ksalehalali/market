@@ -32,10 +32,16 @@ class _SearchProductScreenState extends State<SearchProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black87,
+      ) ,
+
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 70,),
+
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: SizedBox(
